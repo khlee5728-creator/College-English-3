@@ -1,0 +1,16 @@
+# 저작권 자료 (절대 배포 금지)
+docs/
+
+# 테스트 PDF
+*.pdf
+
+# 개발 도구
+node_modules/
+package-lock.json
+.claude/
+
+# OS/에디터
+Thumbs.db
+Desktop.ini
+.DS_Store
+.vscode/

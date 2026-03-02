@@ -1,0 +1,336 @@
+/* ============================================
+   SLIDES - Layout & Navigation Engine
+   ============================================ */
+
+/* Progress Bar */
+#progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--progress-height);
+  background: var(--color-border-light);
+  z-index: 1000;
+}
+
+#progress-fill {
+  height: 100%;
+  background: var(--progress-color);
+  width: 0%;
+  transition: width var(--transition-normal);
+}
+
+/* Presentation Container */
+#presentation {
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Individual Slide */
+.slide {
+  display: none;
+  min-height: 100vh;
+  padding: calc(var(--progress-height) + var(--space-lg)) var(--slide-padding) calc(var(--space-3xl) + 20px);
+  max-width: var(--slide-max-width);
+  margin: 0 auto;
+  flex-direction: column;
+  justify-content: flex-start;
+  animation: fadeIn 0.3s ease;
+}
+
+.slide.active {
+  display: flex;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ---- Slide Type Variants ---- */
+
+/* Title Slide */
+.slide--title {
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.slide--title h1 {
+  font-size: var(--fs-hero);
+  margin-bottom: var(--space-md);
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.slide--title .subtitle {
+  font-size: var(--fs-h3);
+  color: var(--color-text-light);
+  margin-bottom: var(--space-lg);
+}
+
+/* Vocabulary Slide */
+.slide--vocab {
+  padding-top: calc(var(--progress-height) + var(--space-md));
+}
+
+/* Grammar Slide */
+.slide--grammar {
+  padding-top: calc(var(--progress-height) + var(--space-md));
+}
+
+.grammar-layout {
+  display: grid;
+  gap: var(--space-xl);
+}
+
+/* Expressions Slide */
+.slide--expressions {
+  padding-top: calc(var(--progress-height) + var(--space-md));
+}
+
+/* Activity Slide */
+.slide--activity {
+  padding-top: calc(var(--progress-height) + var(--space-md));
+}
+
+/* Break Slide */
+.slide--break {
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, var(--color-bg-alt), #e8f0fe);
+}
+
+.slide--break h2 {
+  font-size: var(--fs-title);
+  color: var(--color-primary);
+}
+
+.break-icon {
+  font-size: 4rem;
+  margin: var(--space-lg) 0;
+  display: block;
+}
+
+/* Section Title Slide (mini-title within lecture) */
+.slide--section {
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  background: var(--color-bg-alt);
+}
+
+.slide--section h2 {
+  font-size: var(--fs-title);
+}
+
+/* ---- Navigation Controls ---- */
+#slide-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-lg);
+  padding: var(--space-sm) var(--space-lg);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid var(--color-border-light);
+  z-index: 999;
+}
+
+#slide-nav button {
+  background: var(--color-primary);
+  color: var(--color-text-white);
+  border: none;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-full);
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+}
+
+#slide-nav button:hover {
+  background: var(--color-primary-light);
+  transform: scale(1.1);
+}
+
+#slide-nav button:disabled {
+  background: var(--color-border);
+  cursor: not-allowed;
+  transform: none;
+}
+
+#slide-counter {
+  font-size: var(--fs-small);
+  color: var(--color-text-light);
+  font-weight: var(--fw-medium);
+  min-width: 80px;
+  text-align: center;
+}
+
+/* Home Button */
+#btn-home {
+  position: absolute;
+  left: var(--space-lg);
+  background: none;
+  border: 2px solid var(--color-border);
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-md);
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-muted);
+  transition: all var(--transition-fast);
+  text-decoration: none;
+}
+
+#btn-home:hover {
+  border-color: var(--color-primary-light);
+  color: var(--color-primary);
+  background: var(--color-info-light);
+  text-decoration: none;
+}
+
+/* PDF Button */
+#btn-pdf {
+  position: absolute;
+  right: var(--space-lg);
+  background: none;
+  border: 2px solid var(--color-border);
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-md);
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-muted);
+  transition: all var(--transition-fast);
+}
+
+#btn-pdf:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+  background: var(--color-bg-incorrect);
+}
+
+/* ---- Overview Mode ---- */
+#presentation.overview-mode {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-md);
+  padding: var(--space-xl);
+  overflow-y: auto;
+  height: 100vh;
+}
+
+#presentation.overview-mode .slide {
+  display: flex !important;
+  min-height: 200px;
+  max-height: 220px;
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transform: scale(0.95);
+  overflow: hidden;
+  padding: var(--space-md);
+  font-size: 0.4em;
+  transition: all var(--transition-fast);
+}
+
+#presentation.overview-mode .slide:hover {
+  border-color: var(--color-primary);
+  transform: scale(1);
+  box-shadow: var(--shadow-md);
+}
+
+#presentation.overview-mode .slide.active {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.3);
+}
+
+/* ---- Keyboard Shortcut Hint ---- */
+#keyboard-hint {
+  position: fixed;
+  bottom: 60px;
+  right: var(--space-lg);
+  background: var(--color-bg-dark);
+  color: var(--color-text-white);
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-md);
+  font-size: var(--fs-tiny);
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+  z-index: 998;
+}
+
+#keyboard-hint.visible {
+  opacity: 0.8;
+}
+
+/* ---- Timer Display ---- */
+#class-timer {
+  position: fixed;
+  top: var(--space-lg);
+  right: var(--space-lg);
+  background: var(--color-bg-dark);
+  color: var(--color-text-white);
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-md);
+  font-size: var(--fs-h3);
+  font-weight: var(--fw-bold);
+  font-family: var(--font-mono);
+  z-index: 997;
+  cursor: pointer;
+  user-select: none;
+}
+
+#class-timer.warning {
+  background: var(--color-accent);
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+/* ---- Fullscreen Button ---- */
+#btn-fullscreen {
+  position: fixed;
+  top: var(--space-lg);
+  left: var(--space-lg);
+  background: rgba(0,0,0,0.1);
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: 1.1rem;
+  color: var(--color-text-muted);
+  z-index: 997;
+  transition: all var(--transition-fast);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#btn-fullscreen:hover {
+  background: rgba(0,0,0,0.2);
+  color: var(--color-text);
+}

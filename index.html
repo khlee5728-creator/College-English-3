@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Practical English 3 (대학영어 3) - Course Home</title>
+  <link rel="stylesheet" href="assets/css/theme.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: var(--font-en);
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      color: var(--color-text);
+      overflow-y: auto;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 3rem;
+    }
+    header {
+      text-align: center;
+      padding: 2rem 0 1.5rem;
+      color: white;
+    }
+    header h1 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      margin-bottom: 0.3rem;
+      color: white;
+    }
+    header .ko-title {
+      font-family: var(--font-ko);
+      font-size: clamp(1rem, 2vw, 1.3rem);
+      opacity: 0.9;
+      margin-bottom: 0.5rem;
+    }
+    header p {
+      font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+      opacity: 0.8;
+    }
+    .week-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .week-card {
+      background: white;
+      border-radius: 12px;
+      padding: 1.3rem 1.5rem;
+      text-decoration: none;
+      color: var(--color-text);
+      transition: all 0.25s ease;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      display: block;
+      position: relative;
+      overflow: hidden;
+    }
+    .week-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+      text-decoration: none;
+    }
+    .week-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+    }
+    .week-card.first-half::before { background: var(--color-primary-light); }
+    .week-card.second-half::before { background: var(--color-secondary); }
+    .week-card.exam::before { background: var(--color-accent); }
+    .week-card.ot::before { background: var(--color-warning); }
+    .week-num {
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--color-text-muted);
+      margin-bottom: 0.3rem;
+    }
+    .week-card h3 {
+      font-size: 1.1rem;
+      color: var(--color-primary);
+      margin-bottom: 0.3rem;
+    }
+    .week-card .units {
+      font-size: 0.85rem;
+      color: var(--color-text-light);
+      margin-bottom: 0.3rem;
+    }
+    .week-card .topics {
+      font-family: var(--font-ko);
+      font-size: 0.82rem;
+      color: var(--color-text-muted);
+    }
+    .week-card.exam {
+      background: linear-gradient(135deg, #fff5f5, #ffe0e0);
+    }
+    .week-card.exam h3 {
+      color: var(--color-accent);
+    }
+    .section-label {
+      color: white;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin: 2rem 0 0.8rem;
+      opacity: 0.9;
+    }
+    footer {
+      text-align: center;
+      color: rgba(255,255,255,0.6);
+      padding: 2rem 0 1rem;
+      font-size: 0.8rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Practical English 3</h1>
+      <div class="ko-title">대학영어 3 - 생활 영어</div>
+      <p>Interchange 2 (5th Edition) | 15-Week Course</p>
+    </header>
+
+    <div class="section-label">First Half (전반기)</div>
+    <div class="week-grid">
+      <a href="weeks/week01-orientation/index.html" class="week-card ot">
+        <div class="week-num">Week 1</div>
+        <h3>Orientation</h3>
+        <div class="units">Course Introduction & Icebreaking</div>
+        <div class="topics">오리엔테이션, 자기소개</div>
+      </a>
+      <a href="weeks/week02-unit01-02/index.html" class="week-card first-half">
+        <div class="week-num">Week 2</div>
+        <h3>Childhood Memories & City Life</h3>
+        <div class="units">Unit 1 & Unit 2</div>
+        <div class="topics">어린 시절 추억과 도시 생활</div>
+      </a>
+      <a href="weeks/week03-unit03/index.html" class="week-card first-half">
+        <div class="week-num">Week 3</div>
+        <h3>Housing & Lifestyle</h3>
+        <div class="units">Unit 3</div>
+        <div class="topics">생활 환경의 변화</div>
+      </a>
+      <a href="weeks/week04-unit04/index.html" class="week-card first-half">
+        <div class="week-num">Week 4</div>
+        <h3>Food & Cooking</h3>
+        <div class="units">Unit 4</div>
+        <div class="topics">음식과 요리 경험</div>
+      </a>
+      <a href="weeks/week05-unit05/index.html" class="week-card first-half">
+        <div class="week-num">Week 5</div>
+        <h3>Travel Planning</h3>
+        <div class="units">Unit 5</div>
+        <div class="topics">여행 계획 세우기</div>
+      </a>
+      <a href="weeks/week06-unit06/index.html" class="week-card first-half">
+        <div class="week-num">Week 6</div>
+        <h3>Requests, Refusals & Apologies</h3>
+        <div class="units">Unit 6</div>
+        <div class="topics">부탁, 거절, 그리고 사과</div>
+      </a>
+      <a href="weeks/week07-unit07-08/index.html" class="week-card first-half">
+        <div class="week-num">Week 7</div>
+        <h3>Technology & Celebrations</h3>
+        <div class="units">Unit 7 & Unit 8</div>
+        <div class="topics">기술 활용과 기념일</div>
+      </a>
+      <a href="weeks/week08-midterm/index.html" class="week-card exam">
+        <div class="week-num">Week 8</div>
+        <h3>Midterm Exam</h3>
+        <div class="units">Units 1-8 Review & Test</div>
+        <div class="topics">중간고사</div>
+      </a>
+    </div>
+
+    <div class="section-label">Second Half (후반기)</div>
+    <div class="week-grid">
+      <a href="weeks/week09-unit09/index.html" class="week-card second-half">
+        <div class="week-num">Week 9</div>
+        <h3>Changes Through Time</h3>
+        <div class="units">Unit 9</div>
+        <div class="topics">시대의 변화</div>
+      </a>
+      <a href="weeks/week10-unit10/index.html" class="week-card second-half">
+        <div class="week-num">Week 10</div>
+        <h3>Personality & Careers</h3>
+        <div class="units">Unit 10</div>
+        <div class="topics">성향과 직업 탐색</div>
+      </a>
+      <a href="weeks/week11-unit11/index.html" class="week-card second-half">
+        <div class="week-num">Week 11</div>
+        <h3>World Landmarks & Culture</h3>
+        <div class="units">Unit 11</div>
+        <div class="topics">세계의 명소와 문화</div>
+      </a>
+      <a href="weeks/week12-unit12/index.html" class="week-card second-half">
+        <div class="week-num">Week 12</div>
+        <h3>Storytelling</h3>
+        <div class="units">Unit 12</div>
+        <div class="topics">흥미로운 스토리텔링</div>
+      </a>
+      <a href="weeks/week13-unit13-14/index.html" class="week-card second-half">
+        <div class="week-num">Week 13</div>
+        <h3>Pop Culture & Body Language</h3>
+        <div class="units">Unit 13 & Unit 14</div>
+        <div class="topics">대중문화와 비언어적 의사소통</div>
+      </a>
+      <a href="weeks/week14-unit15-16/index.html" class="week-card second-half">
+        <div class="week-num">Week 14</div>
+        <h3>Dilemmas & Excuses</h3>
+        <div class="units">Unit 15 & Unit 16</div>
+        <div class="topics">곤란한 상황과 변명</div>
+      </a>
+      <a href="weeks/week15-final/index.html" class="week-card exam">
+        <div class="week-num">Week 15</div>
+        <h3>Final Exam</h3>
+        <div class="units">Units 9-16 Review & Test</div>
+        <div class="topics">기말고사</div>
+      </a>
+    </div>
+
+    <footer>
+      Practical English 3 | Interchange 2, 5th Edition
+    </footer>
+  </div>
+</body>
+</html>

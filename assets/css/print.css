@@ -1,0 +1,130 @@
+/* ============================================
+   PRINT - Print-Friendly Styles
+   ============================================ */
+
+@media print {
+  /* Reset body for print */
+  body {
+    overflow: visible;
+    background: white;
+    color: black;
+    font-size: 12pt;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Reset presentation container */
+  #presentation {
+    display: block;
+    min-height: auto;
+    height: auto;
+    width: 100%;
+    overflow: visible;
+  }
+
+  /* Hide UI controls */
+  #progress-bar,
+  #slide-nav,
+  #class-timer,
+  #btn-fullscreen,
+  #keyboard-hint,
+  .btn-check,
+  .btn-reveal,
+  .btn-reset {
+    display: none !important;
+  }
+
+  /* All slides visible, one per page */
+  .slide {
+    display: block !important;
+    min-height: auto;
+    height: auto;
+    max-width: 100%;
+    padding: 1cm;
+    margin: 0;
+    overflow: visible;
+
+    /* Clear flex residuals */
+    flex-direction: initial;
+    justify-content: initial;
+    align-items: initial;
+
+    /* Page break: modern properties with legacy fallbacks */
+    page-break-after: always;
+    break-after: page;
+
+    /* Animation off */
+    animation: none;
+  }
+
+  .slide:last-child {
+    page-break-after: auto;
+    break-after: auto;
+  }
+
+  /* Title / Break / Section slides: center text */
+  .slide--title,
+  .slide--break,
+  .slide--section {
+    text-align: center;
+    padding-top: 3cm;
+  }
+
+  /* Title slide heading: remove gradient text effect */
+  .slide--title h1 {
+    -webkit-text-fill-color: initial;
+    background: none;
+    color: #1a5276;
+  }
+
+  /* Break slide: remove background gradient */
+  .slide--break {
+    background: none;
+  }
+
+  /* Vocabulary cards: show both sides */
+  .vocab-card {
+    border: 1px solid #ccc;
+  }
+
+  .vocab-back {
+    display: block !important;
+    border-top: 1px dashed #999;
+    margin-top: 4pt;
+    padding-top: 4pt;
+  }
+
+  .vocab-card.flipped .vocab-front {
+    opacity: 1;
+  }
+
+  /* Form inputs */
+  .fill-blank-input {
+    border: none;
+    border-bottom: 1px solid black;
+    background: none;
+    width: 150px;
+  }
+
+  /* Quiz options */
+  .quiz-option {
+    border: 1px solid #ccc;
+  }
+
+  /* Korean notes */
+  .korean-note {
+    border-left: 2px solid #999;
+    background: #f9f9f9;
+  }
+
+  /* Show hidden answers */
+  .answer-reveal {
+    display: block !important;
+    background: #f0f0f0;
+  }
+
+  /* Links: show URL in print */
+  a { color: black; text-decoration: underline; }
+  a::after { content: " (" attr(href) ")"; font-size: 0.8em; }
+  #btn-home::after { content: none; }
+}

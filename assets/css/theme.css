@@ -1,0 +1,98 @@
+/* ============================================
+   THEME - CSS Custom Properties
+   Practical English 3 (대학영어 3)
+   ============================================ */
+
+:root {
+  /* Color Palette */
+  --color-primary: #1a5276;
+  --color-primary-light: #2980b9;
+  --color-primary-dark: #0e3a56;
+  --color-secondary: #27ae60;
+  --color-secondary-light: #2ecc71;
+  --color-accent: #e74c3c;
+  --color-accent-light: #ff6b6b;
+  --color-warning: #f39c12;
+  --color-warning-light: #ffeaa7;
+  --color-info: #3498db;
+  --color-info-light: #d6eaf8;
+
+  /* Background Colors */
+  --color-bg: #fefefe;
+  --color-bg-alt: #f4f6f7;
+  --color-bg-dark: #2c3e50;
+  --color-bg-korean: #fff8e1;
+  --color-bg-grammar: #eaf2f8;
+  --color-bg-expression: #e8f8f5;
+  --color-bg-activity: #fef9e7;
+  --color-bg-correct: #eafaf1;
+  --color-bg-incorrect: #fdedec;
+  --color-bg-vocab: #f5f0ff;
+
+  /* Text Colors */
+  --color-text: #2c3e50;
+  --color-text-light: #5d6d7e;
+  --color-text-muted: #95a5a6;
+  --color-text-white: #ffffff;
+  --color-text-korean: #6d4c00;
+
+  /* Border Colors */
+  --color-border: #d5dbdb;
+  --color-border-light: #ebedef;
+
+  /* Typography */
+  --font-en: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  --font-ko: 'Noto Sans KR', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+  --font-mono: 'Consolas', 'Monaco', 'Courier New', monospace;
+
+  /* Font Sizes - Responsive with clamp() */
+  --fs-hero: clamp(2.5rem, 5vw, 4rem);
+  --fs-title: clamp(2rem, 4vw, 3.2rem);
+  --fs-h2: clamp(1.6rem, 3vw, 2.4rem);
+  --fs-h3: clamp(1.3rem, 2.5vw, 1.8rem);
+  --fs-body: clamp(1.1rem, 2vw, 1.5rem);
+  --fs-body-lg: clamp(1.2rem, 2.2vw, 1.7rem);
+  --fs-small: clamp(0.9rem, 1.5vw, 1.1rem);
+  --fs-tiny: clamp(0.8rem, 1.2vw, 0.95rem);
+
+  /* Font Weights */
+  --fw-light: 300;
+  --fw-normal: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+
+  /* Spacing */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
+
+  /* Slide Layout */
+  --slide-max-width: 1100px;
+  --slide-padding: clamp(1.5rem, 4vw, 3.5rem);
+
+  /* Border Radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-full: 50%;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
+  --shadow-lg: 0 8px 24px rgba(0,0,0,0.12);
+
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-normal: 250ms ease;
+  --transition-slow: 400ms ease;
+
+  /* Progress Bar */
+  --progress-height: 4px;
+  --progress-color: var(--color-primary-light);
+}
