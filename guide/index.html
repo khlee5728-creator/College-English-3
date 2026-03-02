@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI 프로젝트 가이드 | Practical English 3</title>
+  <link rel="stylesheet" href="../assets/css/theme.css">
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="stylesheet" href="../assets/css/slides.css">
+  <link rel="stylesheet" href="../assets/css/interactive.css">
+  <link rel="stylesheet" href="../assets/css/print.css" media="print">
+</head>
+<body>
+  <div id="progress-bar"><div id="progress-fill"></div></div>
+  <button id="btn-fullscreen" title="Fullscreen (F)">&#x26F6;</button>
+
+  <div id="presentation">
+
+    <!-- ==================== SLIDE 1: Title ==================== -->
+    <section class="slide slide--title">
+      <div class="week-label">Project Guide</div>
+      <h1>AI 도구 활용<br>창의적 학습 프로젝트</h1>
+      <p class="subtitle">Creative Learning Project with AI Tools</p>
+      <p class="text-muted" style="margin-top: var(--space-md);">Practical English 3 &mdash; 대학영어 3</p>
+    </section>
+
+    <!-- ==================== SLIDE 2: Overview ==================== -->
+    <section class="slide slide--section">
+      <h2>프로젝트 개요</h2>
+      <p class="subtitle">Project Overview</p>
+      <p class="text-muted" style="margin-top: var(--space-lg);">AI를 활용하여 상황극 시뮬레이터나<br>실전 표현 가이드를 제작합니다</p>
+    </section>
+
+    <!-- ==================== SLIDE 3: Introduction ==================== -->
+    <section class="slide">
+      <h2>프로젝트 소개</h2>
+      <p class="text-large">본 프로젝트는 <strong>실제 상황에서의 의사소통 능력</strong>을 강화하기 위해 AI를 활용하여 창의적인 학습 결과물을 제작하는 과정입니다.</p>
+      <div class="info-box">
+        <h3>목표</h3>
+        <ul>
+          <li>교재 기반의 핵심 표현을 <strong>실전 상황</strong>에 적용</li>
+          <li>AI 도구를 활용한 <strong>창의적 콘텐츠</strong> 제작</li>
+          <li>비판적 검증을 통한 <strong>정확한 표현</strong> 습득</li>
+          <li>발표를 통한 <strong>의사소통 역량</strong> 강화</li>
+        </ul>
+      </div>
+      <div class="korean-note">
+        이 프로젝트는 교재에서 배운 내용을 기반으로 AI 도구를 활용하여 실제 상황에서 사용할 수 있는 영어 학습 자료를 직접 만들어보는 과정입니다.
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 4: Step 1 ==================== -->
+    <section class="slide">
+      <h2>[1단계] 교재 내용 숙지 및 문제 해결</h2>
+      <p class="subtitle" style="color: var(--color-primary-light); margin-bottom: var(--space-lg);">Step 1: Master Textbook Content</p>
+      <div class="expression-box">
+        <h3>수행 내용</h3>
+        <ul class="expression-list">
+          <li>
+            <strong>교재 상황별 핵심 표현과 대화문 숙달</strong><br>
+            <span class="ko">Master key expressions and dialogues for each situation in the textbook</span>
+          </li>
+          <li>
+            <strong>관련 연습문제를 풀며 어휘와 어조 익히기</strong><br>
+            <span class="ko">Practice exercises to learn appropriate vocabulary and tone</span>
+          </li>
+        </ul>
+      </div>
+      <div class="korean-note">
+        <strong>핵심:</strong> 프로젝트의 기초는 교재 내용의 완벽한 이해입니다. 먼저 해당 단원의 표현과 대화문을 충분히 학습한 후 다음 단계로 진행하세요.
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 5: Step 2 ==================== -->
+    <section class="slide">
+      <h2>[2단계] 프로젝트 기획 (5W1H 기반)</h2>
+      <p class="subtitle" style="color: var(--color-primary-light); margin-bottom: var(--space-lg);">Step 2: Project Planning with 5W1H</p>
+      <div class="info-box">
+        <h3>기획안 작성</h3>
+        <p>타겟 사용자, 대화 상황, 장소, 목적 등을 <strong>5W1H</strong>에 맞춰 설정합니다.</p>
+      </div>
+      <table class="grammar-table" style="margin: var(--space-lg) 0;">
+        <thead>
+          <tr>
+            <th>5W1H</th>
+            <th>질문</th>
+            <th>예시</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Who</strong></td><td>누구를 위한 것인가?</td><td>해외여행 초보자</td></tr>
+          <tr><td><strong>What</strong></td><td>무엇을 만들 것인가?</td><td>호텔 예약 시뮬레이터</td></tr>
+          <tr><td><strong>When</strong></td><td>어떤 상황/시점인가?</td><td>체크인/체크아웃 시</td></tr>
+          <tr><td><strong>Where</strong></td><td>어디에서 사용하나?</td><td>해외 호텔 프론트</td></tr>
+          <tr><td><strong>Why</strong></td><td>왜 필요한가?</td><td>돌발 상황 대처 연습</td></tr>
+          <tr><td><strong>How</strong></td><td>어떻게 구현할 것인가?</td><td>AI 챗봇 기반 롤플레이</td></tr>
+        </tbody>
+      </table>
+      <div class="korean-note">
+        <strong>요구 명세서 예시:</strong> "해외 호텔 예약 시 발생할 수 있는 돌발 상황 대처 시뮬레이션"처럼 구체적인 시나리오를 작성하세요.
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 6: Step 3 ==================== -->
+    <section class="slide">
+      <h2>[3단계] AI Tool 기반 개발</h2>
+      <p class="subtitle" style="color: var(--color-primary-light); margin-bottom: var(--space-lg);">Step 3: AI-Powered Development</p>
+      <p>AI를 활용해 다양한 형태의 학습 콘텐츠를 제작합니다.</p>
+      <div class="two-col" style="margin-top: var(--space-lg);">
+        <div class="info-box">
+          <h3>제작 가능한 결과물</h3>
+          <ul>
+            <li>롤플레이 챗봇</li>
+            <li>아바타 영상</li>
+            <li>인터랙티브 대화 가이드</li>
+            <li>웹페이지 / 앱</li>
+          </ul>
+        </div>
+        <div class="info-box">
+          <h3>확장 방향</h3>
+          <ul>
+            <li>확장된 시나리오 적용</li>
+            <li>추가 표현 개발</li>
+            <li>변형된 상황 설정</li>
+            <li>교재 대화 기반 응용</li>
+          </ul>
+        </div>
+      </div>
+      <div class="korean-note">
+        교재의 대화를 기반으로 <strong>확장된 시나리오나 추가 표현, 변형된 상황</strong>을 적용하여 AI로 결과물을 개발하세요.
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 7: Step 4 ==================== -->
+    <section class="slide">
+      <h2>[4단계] 비판적 검증</h2>
+      <p class="subtitle" style="color: var(--color-primary-light); margin-bottom: var(--space-lg);">Step 4: Critical Validation (Hallucination Check)</p>
+      <div class="expression-box">
+        <h3>검증 체크리스트</h3>
+        <ul class="expression-list">
+          <li>
+            <strong>문화적 적절성</strong><br>
+            <span class="ko">AI가 제안한 표현이 문화적으로 적절한가?</span>
+          </li>
+          <li>
+            <strong>자연스러운 표현</strong><br>
+            <span class="ko">실제 원어민이 사용하는 자연스러운 표현인가?</span>
+          </li>
+          <li>
+            <strong>교재 대조 검증</strong><br>
+            <span class="ko">교재의 내용과 비교하여 정확한가?</span>
+          </li>
+        </ul>
+      </div>
+      <div class="korean-note">
+        <strong>중요:</strong> AI가 생성한 모든 표현은 반드시 교재와 대조하여 검증해야 합니다. AI는 때로 부정확하거나 부자연스러운 표현(Hallucination)을 생성할 수 있습니다.
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 8: Challenge Missions ==================== -->
+    <section class="slide">
+      <h2>특화 도전 미션</h2>
+      <p class="subtitle" style="color: var(--color-secondary); margin-bottom: var(--space-lg);">Special Challenge Missions</p>
+      <div class="info-box" style="border-left-color: var(--color-secondary);">
+        <h3>1. AI 롤플레이 시뮬레이터</h3>
+        <p>특정 상황에서 사용자와 상호작용하며 피드백을 주는 <strong>대화형 웹페이지</strong> 제작</p>
+      </div>
+      <div class="info-box" style="margin-top: var(--space-md); border-left-color: var(--color-secondary);">
+        <h3>2. 문화적 뉘앙스 분석 브이로그</h3>
+        <p>같은 표현이 상황(격식/비격식)에 따라 어떻게 변하는지 <strong>AI 아바타로 설명</strong>하는 영상</p>
+      </div>
+      <div class="info-box" style="margin-top: var(--space-md); border-left-color: var(--color-secondary);">
+        <h3>3. 상황별 표현 사전 앱</h3>
+        <p>검색 가능하고 예문이 확장된 <strong>나만의 생활영어 표현 앱</strong> 제작</p>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 9: Required Content ==================== -->
+    <section class="slide">
+      <h2>발표 자료 필수 포함 내용</h2>
+      <p class="subtitle" style="color: var(--color-accent); margin-bottom: var(--space-lg);">Required Presentation Content</p>
+      <div class="objectives">
+        <div class="objective">
+          <span class="obj-num">1</span>
+          <div>
+            <strong>교재 내용 요약</strong><br>
+            <span class="ko">학습한 주요 상황별 표현 정리 및 대화문 분석</span>
+          </div>
+        </div>
+        <div class="objective">
+          <span class="obj-num">2</span>
+          <div>
+            <strong>확장 및 변형 내용</strong><br>
+            <span class="ko">교재 외에 추가로 조사한 표현이나 AI와 생성한 새로운 상황 시나리오</span>
+          </div>
+        </div>
+        <div class="objective">
+          <span class="obj-num">3</span>
+          <div>
+            <strong>개발 프로세스 기록</strong><br>
+            <span class="ko">사용한 AI 도구 리스트, 프롬프트(Prompt), 부자연스러운 AI 답변을 수정한 사례</span>
+          </div>
+        </div>
+        <div class="objective">
+          <span class="obj-num">4</span>
+          <div>
+            <strong>시험 문제 출제</strong><br>
+            <span class="ko">상황에 맞는 적절한 표현을 묻는 문제 2~3개 및 해설</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 10: Tools & Format ==================== -->
+    <section class="slide">
+      <h2>도구 및 제출 포맷</h2>
+      <p class="subtitle" style="color: var(--color-info); margin-bottom: var(--space-lg);">Tools &amp; Submission Format</p>
+      <div class="info-box">
+        <h3>사용 가능한 AI 도구</h3>
+        <p style="font-size: var(--fs-body-lg); line-height: 2;">
+          <strong>ChatGPT</strong> &bull; <strong>Gemini</strong> &bull; <strong>Claude</strong> &bull; <strong>AI Studio</strong> &bull; <strong>Cursor</strong> &bull; <strong>Antigravity</strong> &bull; <strong>Claude Code</strong> &bull; <strong>Canva</strong> &bull; <strong>젠스파크</strong> 등
+        </p>
+      </div>
+      <div class="expression-box" style="margin-top: var(--space-lg);">
+        <h3>제출 포맷</h3>
+        <ul class="expression-list">
+          <li>
+            <strong>PPT</strong><br>
+            <span class="ko">파워포인트 프레젠테이션</span>
+          </li>
+          <li>
+            <strong>HTML</strong><br>
+            <span class="ko">웹페이지 형태의 결과물</span>
+          </li>
+          <li>
+            <strong>Google Slides</strong><br>
+            <span class="ko">구글 슬라이드 (공유 링크)</span>
+          </li>
+          <li>
+            <strong>ZIP</strong><br>
+            <span class="ko">여러 파일을 포함한 압축 파일</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 11: Evaluation ==================== -->
+    <section class="slide">
+      <h2>평가 기준</h2>
+      <p class="subtitle" style="color: var(--color-accent); margin-bottom: var(--space-lg);">Evaluation Criteria</p>
+      <table class="grading-table">
+        <thead>
+          <tr>
+            <th>평가 항목</th>
+            <th>비율</th>
+            <th>세부 기준</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>이해력</strong></td>
+            <td>30%</td>
+            <td>상황에 맞는 적절한 표현과 맥락을 이해하고 있는가?</td>
+          </tr>
+          <tr>
+            <td><strong>창의적 확장</strong></td>
+            <td>30%</td>
+            <td>실제 소통 역량을 높일 수 있는 창의적인 결과물인가?</td>
+          </tr>
+          <tr>
+            <td><strong>과정의 투명성</strong></td>
+            <td>20%</td>
+            <td>AI 활용 과정과 수정 노력이 명확히 보이는가?</td>
+          </tr>
+          <tr>
+            <td><strong>완성도</strong></td>
+            <td>20%</td>
+            <td>결과물의 시뮬레이션 가능 여부 및 발표 퀄리티</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="korean-note" style="border-left-color: var(--color-accent);">
+        <strong>주의:</strong> AI가 생성한 스크립트를 그대로 읽기만 하는 것은 평가에서 제외됩니다. 반드시 본인의 이해와 수정 과정이 드러나야 합니다.
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 12: Closing ==================== -->
+    <section class="slide slide--title">
+      <h1>Good Luck!</h1>
+      <p class="subtitle">창의적인 프로젝트를 기대합니다!</p>
+      <p style="font-family: var(--font-ko); font-size: var(--fs-h3); color: var(--color-text-light); margin-top: var(--space-md);">AI를 도구로 활용하되, 학습의 주인공은 여러분입니다.</p>
+    </section>
+
+  </div>
+
+  <nav id="slide-nav">
+    <a id="btn-home" href="../index.html" title="Course Home">&#8962;</a>
+    <button id="btn-prev" aria-label="Previous">&#9664;</button>
+    <span id="slide-counter">1 / 12</span>
+    <button id="btn-next" aria-label="Next">&#9654;</button>
+    <button id="btn-pdf" onclick="window.print()" title="Save as PDF">&#128196;</button>
+  </nav>
+
+  <div id="class-timer" class="hidden">00:00</div>
+  <div id="keyboard-hint">Use &larr; &rarr; arrows to navigate | ESC for overview | F for fullscreen</div>
+
+  <script src="../assets/js/slides.js"></script>
+  <script src="../assets/js/interactive.js"></script>
+  <script src="../assets/js/timer.js"></script>
+</body>
+</html>
