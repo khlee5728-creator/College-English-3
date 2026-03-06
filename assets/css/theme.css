@@ -95,4 +95,15 @@
   /* Progress Bar */
   --progress-height: 4px;
   --progress-color: var(--color-primary-light);
+
+  /* Reading Section */
+  --color-bg-reading: #faf9f6;
+  --color-reading-border: #8e7cc3;
+
+  /* Grammar Analysis */
+  --color-subject: #e74c3c;
+  --color-verb: #2980b9;
+  --color-object: #27ae60;
+  --color-complement: #f39c12;
+  --color-modifier: #8e44ad;
 }

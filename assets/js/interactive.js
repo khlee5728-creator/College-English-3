@@ -153,4 +153,68 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // ---- True/False Questions ----
+  document.querySelectorAll('.reading-question-item').forEach(item => {
+    const correctValue = item.dataset.correct;
+    const options = item.querySelectorAll('.tf-option');
+    const feedback = item.querySelector('.quiz-feedback');
+
+    options.forEach(option => {
+      option.addEventListener('click', () => {
+        if (item.classList.contains('answered')) return;
+        item.classList.add('answered');
+
+        const value = option.dataset.value;
+        options.forEach(opt => {
+          opt.style.pointerEvents = 'none';
+          if (opt.dataset.value === correctValue) opt.classList.add('correct');
+        });
+
+        if (value === correctValue) {
+          if (feedback) { feedback.textContent = 'Correct!'; feedback.style.color = '#27ae60'; }
+        } else {
+          option.classList.add('incorrect');
+          if (feedback) { feedback.textContent = 'Incorrect.'; feedback.style.color = '#e74c3c'; }
+        }
+      });
+    });
+  });
+
+  // ---- Sentence Transformation ----
+  document.querySelectorAll('.transform-item .btn-check').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.transform-item');
+      if (!item) return;
+      const input = item.querySelector('.transform-input');
+      const feedback = item.querySelector('.feedback');
+      if (!input || !feedback) return;
+
+      const answers = input.dataset.answer.toLowerCase().split('|').map(a => a.trim());
+      const userAnswer = input.value.toLowerCase().trim();
+
+      if (answers.includes(userAnswer)) {
+        input.classList.remove('incorrect');
+        input.classList.add('correct');
+        feedback.textContent = 'Correct!';
+        feedback.className = 'feedback correct';
+      } else {
+        input.classList.remove('correct');
+        input.classList.add('incorrect');
+        feedback.textContent = `Answer: ${answers[0]}`;
+        feedback.className = 'feedback incorrect';
+      }
+    });
+  });
+
+  // Allow Enter key for transform inputs
+  document.querySelectorAll('.transform-input').forEach(input => {
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        const btn = input.closest('.transform-item').querySelector('.btn-check');
+        if (btn) btn.click();
+      }
+    });
+  });
+
 });

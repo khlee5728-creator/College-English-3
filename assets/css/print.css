@@ -127,4 +127,71 @@
   a { color: black; text-decoration: underline; }
   a::after { content: " (" attr(href) ")"; font-size: 0.8em; }
   #btn-home::after { content: none; }
+
+  /* New Components: Print-friendly styles */
+
+  /* Timeline */
+  .timeline { display: flex; border: 1px solid #ccc; }
+  .timeline-period { border-right: 1px dashed #ccc; padding: 8pt; }
+  .timeline-period:last-child { border-right: none; }
+  .timeline-period--past,
+  .timeline-period--present,
+  .timeline-period--future { background: none; }
+
+  /* Conditional Flow */
+  .conditional-flow { display: flex; border: 1px solid #ccc; }
+  .conditional-flow .condition-box,
+  .conditional-flow .result-box { background: none; padding: 8pt; }
+  .conditional-flow .flow-arrow { background: #ddd; color: black; }
+  .conditional-flow--unreal .condition-box,
+  .conditional-flow--unreal .result-box { background: none; }
+  .conditional-flow--unreal .flow-arrow { background: #ddd; }
+
+  /* Sequence Steps */
+  .sequence-step::before { background: #333; }
+  .sequence-step:not(:last-child)::after { background: #ccc; }
+
+  /* Phrasal Verb Cards */
+  .phrasal-verb-card { border: 1px solid #ccc; }
+  .phrasal-verb-card .pv-particle { background: #eee; }
+
+  /* Voice Transform */
+  .voice-transform-item { border: 1px solid #ccc; }
+  .voice-transform-item .vt-active,
+  .voice-transform-item .vt-passive { background: none; }
+
+  /* Speech Comparison */
+  .speech-comparison { display: grid; grid-template-columns: 1fr 1fr; gap: 8pt; }
+  .speech-direct,
+  .speech-indirect { border: 1px solid #ccc; background: none; }
+  .speech-direct::before,
+  .speech-indirect::before { background: #666; }
+
+  /* Error Box */
+  .error-box { border: 1px solid #ccc; background: none; }
+  .error-wrong { text-decoration: line-through; }
+
+  /* Contrast Table */
+  .contrast-table th:first-child,
+  .contrast-table th:last-child { background: #ddd; color: black; }
+  .contrast-table td:first-child,
+  .contrast-table td:last-child { background: none; }
+
+  /* Grammar Analysis */
+  .grammar-analysis { border: 1px solid #ccc; }
+  .sentence-analysis { background: none; }
+
+  /* Reading Passage */
+  .reading-passage { border: 1px solid #999; background: none; }
+  .reading-passage .vocab-highlight { background: #eee; }
+
+  /* Word Formation */
+  .word-formation-card { border: 1px solid #ccc; }
+
+  /* Transform Item */
+  .transform-item { border: 1px solid #ccc; }
+  .transform-input { border: none; border-bottom: 1px solid black; background: none; }
+
+  /* Flip All button */
+  .btn-flip-all { display: none !important; }
 }

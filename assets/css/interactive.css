@@ -539,3 +539,940 @@
   color: var(--color-primary);
   font-size: var(--fs-h3);
 }
+
+/* ============================================
+   READING SECTION
+   ============================================ */
+
+/* Reading Passage Box */
+.reading-passage {
+  background: var(--color-bg-reading);
+  border: 2px solid var(--color-reading-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl) var(--space-2xl);
+  margin: var(--space-md) 0;
+  font-size: var(--fs-body);
+  line-height: 2;
+  color: var(--color-text);
+  position: relative;
+}
+
+.reading-passage .passage-title {
+  font-size: var(--fs-h3);
+  font-weight: var(--fw-bold);
+  color: var(--color-reading-border);
+  margin-bottom: var(--space-md);
+  text-align: center;
+}
+
+.reading-passage p {
+  margin-bottom: var(--space-md);
+  text-indent: 1.5em;
+}
+
+.reading-passage p:first-of-type {
+  text-indent: 0;
+}
+
+.reading-passage .vocab-highlight {
+  background: var(--color-warning-light);
+  padding: 0 4px;
+  border-radius: var(--radius-sm);
+  font-weight: var(--fw-semibold);
+}
+
+/* Reading Comprehension Questions */
+.reading-questions {
+  margin: var(--space-md) 0;
+}
+
+.reading-question-item {
+  background: white;
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-md);
+  padding: var(--space-md) var(--space-lg);
+  margin-bottom: var(--space-md);
+}
+
+.reading-question-item .question-text {
+  font-size: var(--fs-body);
+  font-weight: var(--fw-semibold);
+  margin-bottom: var(--space-sm);
+}
+
+/* True/False Options */
+.tf-options {
+  display: flex;
+  gap: var(--space-md);
+  margin-top: var(--space-sm);
+}
+
+.tf-option {
+  font-family: var(--font-en);
+  font-size: var(--fs-body);
+  padding: var(--space-xs) var(--space-xl);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-bg-alt);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  font-weight: var(--fw-semibold);
+}
+
+.tf-option:hover {
+  border-color: var(--color-primary-light);
+  background: var(--color-info-light);
+}
+
+.tf-option.correct {
+  border-color: var(--color-secondary);
+  background: var(--color-bg-correct);
+}
+
+.tf-option.incorrect {
+  border-color: var(--color-accent);
+  background: var(--color-bg-incorrect);
+}
+
+/* ============================================
+   GRAMMAR ANALYSIS - Sentence Structure
+   ============================================ */
+
+/* Sentence Structure Analysis */
+.grammar-analysis {
+  background: white;
+  border: 2px solid var(--color-info);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg) var(--space-xl);
+  margin: var(--space-md) 0;
+}
+
+.grammar-analysis h3 {
+  color: var(--color-info);
+  margin-bottom: var(--space-md);
+  font-size: var(--fs-h3);
+}
+
+.sentence-analysis {
+  font-size: var(--fs-body-lg);
+  line-height: 2.2;
+  padding: var(--space-md);
+  background: var(--color-bg-alt);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-sm);
+  text-align: center;
+}
+
+.sentence-analysis .s { color: var(--color-subject); font-weight: var(--fw-bold); border-bottom: 3px solid var(--color-subject); }
+.sentence-analysis .v { color: var(--color-verb); font-weight: var(--fw-bold); border-bottom: 3px solid var(--color-verb); }
+.sentence-analysis .o { color: var(--color-object); font-weight: var(--fw-bold); border-bottom: 3px solid var(--color-object); }
+.sentence-analysis .c { color: var(--color-complement); font-weight: var(--fw-bold); border-bottom: 3px solid var(--color-complement); }
+.sentence-analysis .m { color: var(--color-modifier); font-weight: var(--fw-bold); border-bottom: 3px solid var(--color-modifier); }
+
+.analysis-legend {
+  display: flex;
+  gap: var(--space-lg);
+  justify-content: center;
+  margin-top: var(--space-sm);
+  font-size: var(--fs-small);
+  flex-wrap: wrap;
+}
+
+.analysis-legend span {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.analysis-legend .dot {
+  width: 12px;
+  height: 12px;
+  border-radius: var(--radius-full);
+  display: inline-block;
+}
+
+.analysis-legend .dot-s { background: var(--color-subject); }
+.analysis-legend .dot-v { background: var(--color-verb); }
+.analysis-legend .dot-o { background: var(--color-object); }
+.analysis-legend .dot-c { background: var(--color-complement); }
+.analysis-legend .dot-m { background: var(--color-modifier); }
+
+/* ============================================
+   ERROR BOX - Korean Learner Errors
+   ============================================ */
+
+.error-box {
+  background: var(--color-bg-incorrect);
+  border: 2px solid var(--color-accent);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg) var(--space-xl);
+  margin: var(--space-md) 0;
+}
+
+.error-box h3 {
+  color: var(--color-accent);
+  margin-bottom: var(--space-md);
+}
+
+.error-item {
+  padding: var(--space-sm) 0;
+  font-size: var(--fs-body);
+  border-bottom: 1px solid rgba(231, 76, 60, 0.2);
+}
+
+.error-item:last-child {
+  border-bottom: none;
+}
+
+.error-wrong {
+  color: var(--color-accent);
+  text-decoration: line-through;
+  font-weight: var(--fw-semibold);
+}
+
+.error-right {
+  color: var(--color-secondary);
+  font-weight: var(--fw-bold);
+}
+
+.error-explain {
+  color: var(--color-text-light);
+  font-size: var(--fs-small);
+  margin-top: var(--space-xs);
+  font-family: var(--font-ko);
+}
+
+/* ============================================
+   CONTRAST TABLE - Korean-English Comparison
+   ============================================ */
+
+.contrast-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: var(--space-md) 0;
+  font-size: var(--fs-body);
+}
+
+.contrast-table th {
+  padding: var(--space-sm) var(--space-md);
+  text-align: center;
+  font-weight: var(--fw-bold);
+}
+
+.contrast-table th:first-child {
+  background: var(--color-primary);
+  color: var(--color-text-white);
+  width: 50%;
+}
+
+.contrast-table th:last-child {
+  background: var(--color-warning);
+  color: var(--color-text-white);
+  width: 50%;
+}
+
+.contrast-table td {
+  padding: var(--space-md);
+  border-bottom: 1px solid var(--color-border-light);
+  vertical-align: top;
+}
+
+.contrast-table td:first-child {
+  font-family: var(--font-en);
+  background: var(--color-bg-grammar);
+}
+
+.contrast-table td:last-child {
+  font-family: var(--font-ko);
+  background: var(--color-bg-korean);
+  color: var(--color-text-korean);
+}
+
+.contrast-note {
+  background: var(--color-info-light);
+  border-left: 4px solid var(--color-info);
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-sm);
+  margin-top: var(--space-xs);
+  font-size: var(--fs-small);
+  font-family: var(--font-ko);
+  color: var(--color-text-light);
+}
+
+/* ============================================
+   WORD FORMATION
+   ============================================ */
+
+.word-formation {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-md);
+  margin: var(--space-md) 0;
+}
+
+.word-formation-card {
+  background: white;
+  border: 2px solid var(--color-border-light);
+  border-radius: var(--radius-md);
+  padding: var(--space-md) var(--space-lg);
+}
+
+.word-formation-card .affix {
+  font-size: var(--fs-h3);
+  font-weight: var(--fw-bold);
+  color: var(--color-primary);
+  margin-bottom: var(--space-xs);
+}
+
+.word-formation-card .meaning {
+  font-size: var(--fs-small);
+  color: var(--color-text-light);
+  margin-bottom: var(--space-sm);
+}
+
+.word-formation-card .examples {
+  font-size: var(--fs-body);
+}
+
+.word-formation-card .examples span {
+  display: inline-block;
+  background: var(--color-bg-grammar);
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  margin: 2px 4px;
+  font-size: var(--fs-small);
+}
+
+/* ============================================
+   SENTENCE TRANSFORMATION Exercise
+   ============================================ */
+
+.transform-item {
+  background: white;
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-md);
+  padding: var(--space-md) var(--space-lg);
+  margin-bottom: var(--space-md);
+}
+
+.transform-item .original {
+  font-size: var(--fs-body);
+  margin-bottom: var(--space-sm);
+  color: var(--color-text-light);
+}
+
+.transform-item .prompt {
+  font-size: var(--fs-small);
+  color: var(--color-primary);
+  font-weight: var(--fw-semibold);
+  margin-bottom: var(--space-sm);
+}
+
+.transform-input {
+  font-family: var(--font-en);
+  font-size: var(--fs-body);
+  padding: var(--space-xs) var(--space-md);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  width: 100%;
+  transition: border-color var(--transition-fast);
+}
+
+.transform-input:focus {
+  outline: none;
+  border-color: var(--color-primary-light);
+}
+
+.transform-input.correct {
+  border-color: var(--color-secondary);
+  background: var(--color-bg-correct);
+}
+
+.transform-input.incorrect {
+  border-color: var(--color-accent);
+  background: var(--color-bg-incorrect);
+}
+
+/* ============================================
+   KOREAN NOTE (enhanced)
+   ============================================ */
+
+.korean-note {
+  font-family: var(--font-ko);
+  background: var(--color-bg-korean);
+  border-left: 4px solid var(--color-warning);
+  border-radius: var(--radius-sm);
+  padding: var(--space-md) var(--space-lg);
+  margin: var(--space-md) 0;
+  color: var(--color-text-korean);
+  font-size: var(--fs-body);
+}
+
+.korean-note strong {
+  color: var(--color-primary);
+}
+
+/* ============================================
+   SEQUENCE STEPS - Cooking Procedures, Instructions
+   (Unit 4, Unit 7)
+   ============================================ */
+
+.sequence-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin: var(--space-md) 0;
+  counter-reset: step-counter;
+}
+
+.sequence-step {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-lg);
+  padding: var(--space-md) var(--space-lg);
+  position: relative;
+  counter-increment: step-counter;
+}
+
+.sequence-step::before {
+  content: counter(step-counter);
+  min-width: 36px;
+  height: 36px;
+  background: var(--color-primary);
+  color: var(--color-text-white);
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-body);
+  flex-shrink: 0;
+}
+
+.sequence-step:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  left: calc(var(--space-lg) + 18px);
+  top: calc(var(--space-md) + 36px);
+  width: 2px;
+  height: calc(100% - 36px);
+  background: var(--color-border);
+}
+
+.sequence-step .step-label {
+  font-size: var(--fs-small);
+  font-weight: var(--fw-bold);
+  color: var(--color-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.sequence-step .step-content {
+  font-size: var(--fs-body);
+  line-height: 1.6;
+}
+
+.sequence-step .step-content strong {
+  color: var(--color-primary);
+}
+
+/* Horizontal variant for compact display */
+.sequence-steps--horizontal {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  align-items: center;
+}
+
+.sequence-steps--horizontal .sequence-step {
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: var(--space-sm);
+  flex: 1;
+  min-width: 120px;
+}
+
+.sequence-steps--horizontal .sequence-step::after {
+  display: none;
+}
+
+.sequence-steps--horizontal .step-arrow {
+  font-size: var(--fs-h3);
+  color: var(--color-primary-light);
+  flex-shrink: 0;
+  align-self: center;
+}
+
+/* ============================================
+   TIMELINE - Past/Present/Future Comparison
+   (Unit 1, Unit 9, Unit 12)
+   ============================================ */
+
+.timeline {
+  display: flex;
+  gap: 0;
+  margin: var(--space-md) 0;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 2px solid var(--color-border-light);
+}
+
+.timeline-period {
+  flex: 1;
+  padding: var(--space-lg);
+  text-align: center;
+  position: relative;
+}
+
+.timeline-period--past {
+  background: var(--color-bg-incorrect);
+  border-right: 2px dashed var(--color-border);
+}
+
+.timeline-period--present {
+  background: var(--color-bg-grammar);
+  border-right: 2px dashed var(--color-border);
+}
+
+.timeline-period--future {
+  background: var(--color-bg-correct);
+}
+
+.timeline-period .period-label {
+  font-size: var(--fs-h3);
+  font-weight: var(--fw-bold);
+  margin-bottom: var(--space-sm);
+}
+
+.timeline-period--past .period-label { color: var(--color-accent); }
+.timeline-period--present .period-label { color: var(--color-primary); }
+.timeline-period--future .period-label { color: var(--color-secondary); }
+
+.timeline-period .period-content {
+  font-size: var(--fs-body);
+  line-height: 1.8;
+}
+
+.timeline-period .period-content strong {
+  font-weight: var(--fw-bold);
+}
+
+.timeline-period .period-grammar {
+  font-size: var(--fs-small);
+  color: var(--color-text-light);
+  margin-top: var(--space-sm);
+  font-style: italic;
+}
+
+/* Vertical timeline for story events */
+.timeline--vertical {
+  flex-direction: column;
+  border: none;
+  position: relative;
+  padding-left: var(--space-2xl);
+}
+
+.timeline--vertical::before {
+  content: '';
+  position: absolute;
+  left: 16px;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--color-primary-light);
+}
+
+.timeline--vertical .timeline-event {
+  position: relative;
+  padding: var(--space-md) var(--space-lg);
+  background: white;
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-md);
+}
+
+.timeline--vertical .timeline-event::before {
+  content: '';
+  position: absolute;
+  left: calc(-1 * var(--space-2xl) + 10px);
+  top: var(--space-lg);
+  width: 14px;
+  height: 14px;
+  background: var(--color-primary);
+  border-radius: var(--radius-full);
+  border: 3px solid white;
+  box-shadow: var(--shadow-sm);
+}
+
+.timeline--vertical .timeline-event .event-time {
+  font-size: var(--fs-small);
+  font-weight: var(--fw-bold);
+  color: var(--color-primary);
+  margin-bottom: var(--space-xs);
+}
+
+.timeline--vertical .timeline-event .event-text {
+  font-size: var(--fs-body);
+}
+
+/* ============================================
+   CONDITIONAL FLOW - If/Then Diagrams
+   (Unit 9, Unit 15)
+   ============================================ */
+
+.conditional-flow {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  margin: var(--space-md) 0;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 2px solid var(--color-info);
+}
+
+.conditional-flow .condition-box {
+  flex: 1;
+  padding: var(--space-lg);
+  background: var(--color-info-light);
+  text-align: center;
+}
+
+.conditional-flow .condition-box .condition-label {
+  font-size: var(--fs-small);
+  font-weight: var(--fw-bold);
+  color: var(--color-info);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--space-sm);
+}
+
+.conditional-flow .condition-box .condition-text {
+  font-size: var(--fs-body-lg);
+  font-weight: var(--fw-semibold);
+}
+
+.conditional-flow .flow-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 var(--space-md);
+  background: var(--color-info);
+  color: var(--color-text-white);
+  font-size: var(--fs-h3);
+  font-weight: var(--fw-bold);
+  min-width: 50px;
+}
+
+.conditional-flow .result-box {
+  flex: 1;
+  padding: var(--space-lg);
+  background: var(--color-bg-correct);
+  text-align: center;
+}
+
+.conditional-flow .result-box .result-label {
+  font-size: var(--fs-small);
+  font-weight: var(--fw-bold);
+  color: var(--color-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--space-sm);
+}
+
+.conditional-flow .result-box .result-text {
+  font-size: var(--fs-body-lg);
+  font-weight: var(--fw-semibold);
+}
+
+/* Unreal conditional variant */
+.conditional-flow--unreal {
+  border-color: var(--color-modifier);
+}
+
+.conditional-flow--unreal .condition-box {
+  background: #f3e8fd;
+}
+
+.conditional-flow--unreal .condition-box .condition-label {
+  color: var(--color-modifier);
+}
+
+.conditional-flow--unreal .flow-arrow {
+  background: var(--color-modifier);
+}
+
+.conditional-flow--unreal .result-box {
+  background: #fef3e2;
+}
+
+.conditional-flow--unreal .result-box .result-label {
+  color: var(--color-complement);
+}
+
+/* ============================================
+   PHRASAL VERB CARD - Verb + Particle
+   (Unit 6)
+   ============================================ */
+
+.phrasal-verb-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--space-md);
+  margin: var(--space-md) 0;
+}
+
+.phrasal-verb-card {
+  background: white;
+  border: 2px solid var(--color-border-light);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+  transition: border-color var(--transition-fast);
+}
+
+.phrasal-verb-card:hover {
+  border-color: var(--color-primary-light);
+}
+
+.phrasal-verb-card .pv-verb {
+  display: inline-block;
+  font-size: var(--fs-h3);
+  font-weight: var(--fw-bold);
+  color: var(--color-primary);
+  margin-right: var(--space-xs);
+}
+
+.phrasal-verb-card .pv-particle {
+  display: inline-block;
+  font-size: var(--fs-h3);
+  font-weight: var(--fw-bold);
+  color: var(--color-secondary);
+  background: var(--color-bg-correct);
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+}
+
+.phrasal-verb-card .pv-meaning {
+  font-size: var(--fs-body);
+  color: var(--color-text-light);
+  margin: var(--space-sm) 0;
+}
+
+.phrasal-verb-card .pv-meaning-ko {
+  font-family: var(--font-ko);
+  font-size: var(--fs-small);
+  color: var(--color-text-korean);
+  background: var(--color-bg-korean);
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  display: inline-block;
+  margin-bottom: var(--space-sm);
+}
+
+.phrasal-verb-card .pv-examples {
+  font-size: var(--fs-small);
+  border-top: 1px dashed var(--color-border);
+  padding-top: var(--space-sm);
+}
+
+.phrasal-verb-card .pv-separable {
+  font-size: var(--fs-tiny);
+  color: var(--color-text-muted);
+  margin-top: var(--space-xs);
+}
+
+.phrasal-verb-card .pv-separable .tag {
+  display: inline-block;
+  padding: 1px 6px;
+  border-radius: var(--radius-sm);
+  font-weight: var(--fw-semibold);
+  font-size: var(--fs-tiny);
+}
+
+.phrasal-verb-card .pv-separable .tag--sep {
+  background: var(--color-bg-correct);
+  color: var(--color-secondary);
+}
+
+.phrasal-verb-card .pv-separable .tag--insep {
+  background: var(--color-bg-incorrect);
+  color: var(--color-accent);
+}
+
+/* ============================================
+   VOICE TRANSFORM - Active ↔ Passive
+   (Unit 11)
+   ============================================ */
+
+.voice-transform {
+  margin: var(--space-md) 0;
+}
+
+.voice-transform-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  margin-bottom: var(--space-md);
+  padding: var(--space-md);
+  background: white;
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-md);
+}
+
+.voice-transform-item .vt-active {
+  flex: 1;
+  padding: var(--space-sm) var(--space-md);
+  background: var(--color-bg-grammar);
+  border-radius: var(--radius-sm);
+  font-size: var(--fs-body);
+  text-align: center;
+}
+
+.voice-transform-item .vt-active .vt-label {
+  font-size: var(--fs-tiny);
+  font-weight: var(--fw-bold);
+  color: var(--color-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: block;
+  margin-bottom: var(--space-xs);
+}
+
+.voice-transform-item .vt-arrow {
+  font-size: var(--fs-h3);
+  color: var(--color-primary-light);
+  flex-shrink: 0;
+}
+
+.voice-transform-item .vt-passive {
+  flex: 1;
+  padding: var(--space-sm) var(--space-md);
+  background: var(--color-bg-expression);
+  border-radius: var(--radius-sm);
+  font-size: var(--fs-body);
+  text-align: center;
+}
+
+.voice-transform-item .vt-passive .vt-label {
+  font-size: var(--fs-tiny);
+  font-weight: var(--fw-bold);
+  color: var(--color-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: block;
+  margin-bottom: var(--space-xs);
+}
+
+/* Color-coded elements within voice transform */
+.voice-transform-item .vt-subject { color: var(--color-subject); font-weight: var(--fw-bold); }
+.voice-transform-item .vt-verb { color: var(--color-verb); font-weight: var(--fw-bold); }
+.voice-transform-item .vt-object { color: var(--color-object); font-weight: var(--fw-bold); }
+.voice-transform-item .vt-agent { color: var(--color-modifier); font-weight: var(--fw-bold); }
+
+/* ============================================
+   SPEECH BUBBLE - Direct ↔ Indirect Speech
+   (Unit 16)
+   ============================================ */
+
+.speech-comparison {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-lg);
+  margin: var(--space-md) 0;
+}
+
+.speech-direct {
+  position: relative;
+  background: var(--color-info-light);
+  border: 2px solid var(--color-info);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+}
+
+.speech-direct::before {
+  content: 'Direct Speech';
+  position: absolute;
+  top: calc(-1 * var(--space-sm) - 2px);
+  left: var(--space-md);
+  background: var(--color-info);
+  color: var(--color-text-white);
+  padding: 2px 12px;
+  border-radius: var(--radius-sm);
+  font-size: var(--fs-tiny);
+  font-weight: var(--fw-bold);
+  text-transform: uppercase;
+}
+
+.speech-direct .speech-speaker {
+  font-weight: var(--fw-bold);
+  color: var(--color-info);
+  margin-bottom: var(--space-xs);
+  font-size: var(--fs-small);
+}
+
+.speech-direct .speech-text {
+  font-size: var(--fs-body);
+  font-style: italic;
+}
+
+.speech-direct .speech-text::before { content: '\201C'; font-size: 1.2em; }
+.speech-direct .speech-text::after { content: '\201D'; font-size: 1.2em; }
+
+.speech-indirect {
+  position: relative;
+  background: var(--color-bg-expression);
+  border: 2px solid var(--color-secondary);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+}
+
+.speech-indirect::before {
+  content: 'Indirect Speech';
+  position: absolute;
+  top: calc(-1 * var(--space-sm) - 2px);
+  left: var(--space-md);
+  background: var(--color-secondary);
+  color: var(--color-text-white);
+  padding: 2px 12px;
+  border-radius: var(--radius-sm);
+  font-size: var(--fs-tiny);
+  font-weight: var(--fw-bold);
+  text-transform: uppercase;
+}
+
+.speech-indirect .speech-text {
+  font-size: var(--fs-body);
+}
+
+.speech-indirect .speech-change {
+  font-weight: var(--fw-bold);
+  color: var(--color-secondary);
+  text-decoration: underline;
+  text-decoration-style: dotted;
+}
+
+.speech-comparison .speech-note {
+  grid-column: 1 / -1;
+  font-size: var(--fs-small);
+  color: var(--color-text-light);
+  text-align: center;
+  font-family: var(--font-ko);
+}
+
+/* Responsive: stack vertically on small screens */
+@media (max-width: 700px) {
+  .timeline { flex-direction: column; }
+  .timeline-period--past,
+  .timeline-period--present {
+    border-right: none;
+    border-bottom: 2px dashed var(--color-border);
+  }
+  .conditional-flow { flex-direction: column; }
+  .conditional-flow .flow-arrow {
+    min-width: auto;
+    min-height: 36px;
+    padding: var(--space-xs) 0;
+  }
+  .speech-comparison { grid-template-columns: 1fr; }
+  .phrasal-verb-grid { grid-template-columns: 1fr; }
+}
