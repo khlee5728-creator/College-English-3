@@ -697,13 +697,13 @@
   </div><!-- end #presentation -->
 
   <nav id="slide-nav">
-    <a href="../../index.html" title="Home">&#x2302;</a>
-    <button id="btn-prev" title="Previous">&#x25C0;</button>
-    <span id="slide-counter">1 / 29</span>
-    <button id="btn-next" title="Next">&#x25B6;</button>
-    <button id="btn-print" title="Print">&#x1F4C4;</button>
+    <a id="btn-home" href="../../index.html" title="Course Home">&#8962;</a>
+    <button id="btn-prev" aria-label="Previous">&#9664;</button>
+    <span id="slide-counter"></span>
+    <button id="btn-next" aria-label="Next">&#9654;</button>
+    <button id="btn-pdf" onclick="window.print()" title="Save as PDF">&#128196;</button>
   </nav>
-  <footer id="slide-footer">Use &larr; &rarr; arrows to navigate | ESC for overview | F for fullscreen</footer>
+  <div id="keyboard-hint">Use &larr; &rarr; arrows to navigate | ESC for overview | F for fullscreen</div>
   <script src="../../assets/js/slides.js"></script>
   <script src="../../assets/js/interactive.js"></script>
 </body>
