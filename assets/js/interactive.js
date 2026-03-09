@@ -21,6 +21,8 @@ document.addEventListener('DOMContentLoaded', () => {
       `<span><span class="dot dot-${cls}"></span> ${label}</span>`
     ).join('');
     section.appendChild(legend);
+    // Add extra bottom padding so fixed legend doesn't cover content
+    section.style.paddingBottom = 'calc(var(--space-3xl) + 50px)';
   });
 
   // ---- Vocabulary Card Flip ----
