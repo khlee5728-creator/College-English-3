@@ -670,12 +670,20 @@
 .sentence-analysis .m { color: var(--color-modifier); font-weight: var(--fw-bold); border-bottom: 3px solid var(--color-modifier); }
 
 .analysis-legend {
+  position: fixed;
+  bottom: 68px;
+  left: 0;
+  right: 0;
   display: flex;
-  gap: var(--space-lg);
+  gap: var(--space-md);
   justify-content: center;
-  margin-top: var(--space-sm);
-  font-size: var(--fs-small);
+  padding: var(--space-xs) var(--space-md);
+  font-size: 0.7rem;
   flex-wrap: wrap;
+  opacity: 0.85;
+  background: rgba(255,255,255,0.92);
+  z-index: 90;
+  pointer-events: none;
 }
 
 .analysis-legend span {

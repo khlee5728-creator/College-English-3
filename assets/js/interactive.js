@@ -5,6 +5,24 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
+  // ---- Sentence Analysis Legend (auto-inject) ----
+  document.querySelectorAll('section.slide').forEach(section => {
+    if (!section.querySelector('.sentence-analysis')) return;
+    section.querySelectorAll('.analysis-legend').forEach(el => el.remove());
+    const legend = document.createElement('div');
+    legend.className = 'analysis-legend';
+    legend.innerHTML = [
+      ['s', 'Subject (주어)'],
+      ['v', 'Verb (동사)'],
+      ['o', 'Object (목적어)'],
+      ['c', 'Complement (보어)'],
+      ['m', 'Modifier (수식어)']
+    ].map(([cls, label]) =>
+      `<span><span class="dot dot-${cls}"></span> ${label}</span>`
+    ).join('');
+    section.appendChild(legend);
+  });
+
   // ---- Vocabulary Card Flip ----
   document.querySelectorAll('.vocab-card').forEach(card => {
     card.addEventListener('click', () => {
