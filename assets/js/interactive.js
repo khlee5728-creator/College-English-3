@@ -237,4 +237,100 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // ---- Vocab Highlight Tooltip ----
+  (function initVocabTooltip() {
+    let activeTooltip = null;
+    let activeHighlight = null;
+
+    function getMeaning(el) {
+      return el.dataset.korean || el.dataset.meaning || '';
+    }
+
+    function removeTooltip() {
+      if (activeTooltip) {
+        activeTooltip.remove();
+        activeTooltip = null;
+      }
+      if (activeHighlight) {
+        activeHighlight.classList.remove('vocab-highlight--active');
+        activeHighlight = null;
+      }
+    }
+
+    function positionTooltip(el, tooltip) {
+      const rect = el.getBoundingClientRect();
+      const tooltipRect = tooltip.getBoundingClientRect();
+      const gap = 8;
+
+      // Default: show above
+      let top = rect.top - tooltipRect.height - gap;
+      let arrowPos = 'bottom';
+
+      // If not enough space above, show below
+      if (top < 10) {
+        top = rect.bottom + gap;
+        arrowPos = 'top';
+      }
+
+      // Horizontal: center on word, clamp to viewport
+      let left = rect.left + (rect.width / 2) - (tooltipRect.width / 2);
+      const vw = window.innerWidth;
+      if (left < 10) left = 10;
+      if (left + tooltipRect.width > vw - 10) left = vw - tooltipRect.width - 10;
+
+      tooltip.style.top = (top + window.scrollY) + 'px';
+      tooltip.style.left = left + 'px';
+      tooltip.dataset.arrow = arrowPos;
+    }
+
+    function createTooltip(el) {
+      const meaning = getMeaning(el);
+      if (!meaning) return;
+
+      removeTooltip();
+
+      activeHighlight = el;
+      el.classList.add('vocab-highlight--active');
+
+      const tooltip = document.createElement('div');
+      tooltip.className = 'vocab-tooltip';
+      tooltip.textContent = meaning;
+      document.body.appendChild(tooltip);
+      activeTooltip = tooltip;
+
+      positionTooltip(el, tooltip);
+
+      requestAnimationFrame(() => {
+        tooltip.classList.add('vocab-tooltip--visible');
+      });
+    }
+
+    document.addEventListener('click', (e) => {
+      const hl = e.target.closest('.vocab-highlight');
+      if (hl) {
+        e.stopPropagation();
+        if (!getMeaning(hl)) return;
+        if (activeHighlight === hl) {
+          removeTooltip();
+        } else {
+          createTooltip(hl);
+        }
+        return;
+      }
+      if (activeTooltip) removeTooltip();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && activeTooltip) removeTooltip();
+    });
+
+    window.addEventListener('scroll', () => {
+      if (activeTooltip) removeTooltip();
+    }, { passive: true });
+
+    window.addEventListener('resize', () => {
+      if (activeTooltip && activeHighlight) positionTooltip(activeHighlight, activeTooltip);
+    });
+  })();
+
 });

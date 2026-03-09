@@ -581,6 +581,61 @@
   font-weight: var(--fw-semibold);
 }
 
+/* Clickable indicator for highlights with meaning data */
+.vocab-highlight[data-korean],
+.vocab-highlight[data-meaning] {
+  cursor: pointer;
+  transition: background var(--transition-fast);
+}
+
+.vocab-highlight--active {
+  background: var(--color-warning) !important;
+  color: white;
+}
+
+/* Vocab Tooltip */
+.vocab-tooltip {
+  position: absolute;
+  z-index: 995;
+  background: var(--color-bg-dark);
+  color: white;
+  font-family: var(--font-ko);
+  font-size: var(--fs-small);
+  font-weight: var(--fw-medium);
+  padding: var(--space-xs) var(--space-md);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  max-width: 280px;
+  overflow-wrap: break-word;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.vocab-tooltip--visible {
+  opacity: 1;
+}
+
+.vocab-tooltip[data-arrow="bottom"]::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: var(--color-bg-dark);
+}
+
+.vocab-tooltip[data-arrow="top"]::after {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-bottom-color: var(--color-bg-dark);
+}
+
 /* Reading Comprehension Questions */
 .reading-questions {
   margin: var(--space-md) 0;
