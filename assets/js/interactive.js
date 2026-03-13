@@ -49,7 +49,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const wordEl = card.querySelector('.vocab-word');
       if (wordEl && ttsSupported) {
         card.classList.add('vocab-card--speaking');
-        const utterance = speakWord(wordEl.textContent.trim());
+        const word = wordEl.textContent.trim().replace(/\s*\(.*?\)\s*/g, '').trim();
+        const utterance = speakWord(word);
         if (utterance) {
           utterance.onend = () => card.classList.remove('vocab-card--speaking');
           utterance.onerror = () => card.classList.remove('vocab-card--speaking');
