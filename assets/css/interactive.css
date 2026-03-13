@@ -80,6 +80,35 @@
   font-weight: var(--fw-semibold);
 }
 
+/* ---- TTS Speaker Icon & Animation ---- */
+.vocab-card--has-tts .vocab-word::after {
+  content: '\1F50A';
+  font-size: 0.5em;
+  margin-left: 0.4em;
+  opacity: 0.3;
+  vertical-align: middle;
+  transition: opacity var(--transition-normal);
+}
+
+.vocab-card--has-tts:hover .vocab-word::after {
+  opacity: 0.6;
+}
+
+.vocab-card--speaking {
+  border-color: var(--color-primary) !important;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.25);
+}
+
+.vocab-card--speaking .vocab-word::after {
+  opacity: 1 !important;
+  animation: pulse-speaker 0.6s ease-in-out infinite;
+}
+
+@keyframes pulse-speaker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
 .vocab-instruction {
   text-align: center;
   color: var(--color-text-muted);

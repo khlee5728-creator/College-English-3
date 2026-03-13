@@ -25,10 +25,36 @@ document.addEventListener('DOMContentLoaded', () => {
     section.style.paddingBottom = 'calc(var(--space-3xl) + 50px)';
   });
 
-  // ---- Vocabulary Card Flip ----
+  // ---- TTS (Text-to-Speech) Helper ----
+  const ttsSupported = 'speechSynthesis' in window;
+
+  function speakWord(text) {
+    if (!ttsSupported) return;
+    window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'en-US';
+    utterance.rate = 0.9;
+    utterance.pitch = 1;
+    window.speechSynthesis.speak(utterance);
+    return utterance;
+  }
+
+  // ---- Vocabulary Card Flip + Pronunciation ----
   document.querySelectorAll('.vocab-card').forEach(card => {
+    if (ttsSupported) card.classList.add('vocab-card--has-tts');
+
     card.addEventListener('click', () => {
       card.classList.toggle('flipped');
+
+      const wordEl = card.querySelector('.vocab-word');
+      if (wordEl && ttsSupported) {
+        card.classList.add('vocab-card--speaking');
+        const utterance = speakWord(wordEl.textContent.trim());
+        if (utterance) {
+          utterance.onend = () => card.classList.remove('vocab-card--speaking');
+          utterance.onerror = () => card.classList.remove('vocab-card--speaking');
+        }
+      }
     });
   });
 
@@ -150,7 +176,9 @@ document.addEventListener('DOMContentLoaded', () => {
       // Reset vocab cards
       container.querySelectorAll('.vocab-card').forEach(card => {
         card.classList.remove('flipped');
+        card.classList.remove('vocab-card--speaking');
       });
+      if (ttsSupported) window.speechSynthesis.cancel();
 
       // Hide answers
       container.querySelectorAll('.answer-reveal').forEach(ar => {
