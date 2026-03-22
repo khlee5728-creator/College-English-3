@@ -1117,6 +1117,10 @@
   position: relative;
 }
 
+.timeline-period ul {
+  text-align: left;
+}
+
 .timeline-period--past {
   background: var(--color-bg-incorrect);
   border-right: 2px dashed var(--color-border);
