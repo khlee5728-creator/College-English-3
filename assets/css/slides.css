@@ -334,3 +334,86 @@
   background: rgba(0,0,0,0.2);
   color: var(--color-text);
 }
+
+/* ============================================
+   SLIDE IMAGES - Unsplash Image Components
+   ============================================ */
+
+/* Base image container */
+.slide-image {
+  width: 100%;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  margin: var(--space-sm) 0 var(--space-md);
+  background: var(--color-bg-alt);
+  position: relative;
+}
+
+.slide-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: opacity 0.4s ease;
+}
+
+.slide-image img[loading="lazy"] {
+  opacity: 0;
+}
+
+.slide-image img.loaded {
+  opacity: 1;
+}
+
+/* Hero image - full width banner for Snapshot/Perspectives */
+.slide-image--hero {
+  max-height: 200px;
+  margin-top: 0;
+}
+
+/* Side image - floats alongside text for Reading */
+.slide-image--side {
+  float: right;
+  width: 38%;
+  max-width: 360px;
+  max-height: 260px;
+  margin: 0 0 var(--space-md) var(--space-lg);
+}
+
+/* Small accent image - for Conversation/Word Power */
+.slide-image--small {
+  width: 280px;
+  max-height: 170px;
+  margin: 0 auto var(--space-md);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .slide-image--side {
+    float: none;
+    width: 100%;
+    max-width: 100%;
+    max-height: 180px;
+    margin: 0 0 var(--space-md) 0;
+  }
+  .slide-image--small {
+    width: 100%;
+    max-width: 100%;
+  }
+  .slide-image--hero {
+    max-height: 150px;
+  }
+}
+
+/* Overview mode: hide images for cleaner thumbnails */
+#presentation.overview-mode .slide-image {
+  display: none;
+}
+
+/* Print: constrain images */
+@media print {
+  .slide-image {
+    max-height: 150px;
+    break-inside: avoid;
+  }
+}
