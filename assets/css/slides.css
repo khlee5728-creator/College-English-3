@@ -352,7 +352,7 @@
 .slide-image img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   display: block;
   transition: opacity 0.4s ease;
 }
@@ -367,7 +367,7 @@
 
 /* Hero image - full width banner for Snapshot/Perspectives */
 .slide-image--hero {
-  max-height: 200px;
+  max-height: 240px;
   margin-top: 0;
 }
 
@@ -376,14 +376,14 @@
   float: right;
   width: 38%;
   max-width: 360px;
-  max-height: 260px;
+  max-height: 280px;
   margin: 0 0 var(--space-md) var(--space-lg);
 }
 
 /* Small accent image - for Conversation/Word Power */
 .slide-image--small {
-  width: 280px;
-  max-height: 170px;
+  width: 300px;
+  max-height: 200px;
   margin: 0 auto var(--space-md);
 }
 
