@@ -1057,6 +1057,8 @@
   color: var(--color-primary);
   text-transform: uppercase;
   letter-spacing: 0.05em;
+  min-width: 120px;
+  flex-shrink: 0;
 }
 
 .sequence-step .step-content {
