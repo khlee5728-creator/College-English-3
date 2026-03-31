@@ -603,6 +603,10 @@
   text-indent: 0;
 }
 
+.conversation-dialogue p {
+  text-indent: 0 !important;
+}
+
 .reading-passage .vocab-highlight {
   background: var(--color-warning-light);
   padding: 0 4px;
