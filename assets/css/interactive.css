@@ -423,6 +423,11 @@
   font-size: var(--fs-small);
   margin-top: var(--space-sm);
   font-weight: var(--fw-semibold);
+  display: none;
+}
+
+.quiz-feedback.visible {
+  display: block;
 }
 
 /* ---- Pair Work / Group Activity Box ---- */

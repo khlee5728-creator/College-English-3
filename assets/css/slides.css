@@ -124,6 +124,11 @@
   background: var(--color-bg-alt);
 }
 
+.slide--section ul,
+.slide--section ol {
+  text-align: left;
+}
+
 .slide--section h2 {
   font-size: var(--fs-title);
 }

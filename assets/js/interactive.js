@@ -103,6 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const correctValue = item.dataset.correct;
     const options = item.querySelectorAll('.quiz-option');
     const feedback = item.querySelector('.quiz-feedback');
+    const originalHint = feedback ? feedback.textContent.trim() : '';
 
     options.forEach(option => {
       option.addEventListener('click', () => {
@@ -119,18 +120,15 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         });
 
-        if (value === correctValue) {
-          option.classList.add('correct');
-          if (feedback) {
-            feedback.textContent = 'Correct!';
-            feedback.style.color = '#27ae60';
-          }
-        } else {
+        if (feedback) {
+          const prefix = value === correctValue ? '✓ Correct!' : '✗ Incorrect.';
+          const color = value === correctValue ? '#27ae60' : '#e74c3c';
+          feedback.innerHTML = '<span style="color:' + color + '">' + prefix + '</span>' + (originalHint ? ' — ' + originalHint : '');
+          feedback.classList.add('visible');
+        }
+
+        if (value !== correctValue) {
           option.classList.add('incorrect');
-          if (feedback) {
-            feedback.textContent = 'Incorrect. The correct answer is highlighted.';
-            feedback.style.color = '#e74c3c';
-          }
         }
       });
     });
