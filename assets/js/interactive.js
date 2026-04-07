@@ -362,16 +362,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ── Snapshot checkbox toggle (☐ ↔ ☑) ── */
   document.addEventListener('click', (e) => {
-    const li = e.target.closest('li');
-    if (!li) return;
-    const text = li.textContent;
+    const el = e.target.closest('li') || e.target.closest('td');
+    if (!el) return;
+    const text = el.textContent;
     if (text.includes('\u2610') || text.includes('\u2611')) {
-      if (li.innerHTML.includes('\u2610')) {
-        li.innerHTML = li.innerHTML.replace('\u2610', '\u2611');
-        li.style.color = 'var(--color-primary, #2a6496)';
+      if (el.innerHTML.includes('\u2610')) {
+        el.innerHTML = el.innerHTML.replace('\u2610', '\u2611');
+        el.style.color = 'var(--color-primary, #2a6496)';
       } else {
-        li.innerHTML = li.innerHTML.replace('\u2611', '\u2610');
-        li.style.color = '';
+        el.innerHTML = el.innerHTML.replace('\u2611', '\u2610');
+        el.style.color = '';
       }
     }
   });
