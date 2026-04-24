@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Midterm Exam (Student) — Practical English 3</title>
+  <link rel="stylesheet" href="../assets/css/theme.css">
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <style>
+    body {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem 2.5rem;
+      background: #fff;
+      color: #222;
+      font-family: var(--font-en, 'Georgia', serif);
+      line-height: 1.65;
+    }
+    .exam-header {
+      border-bottom: 3px double #222;
+      padding-bottom: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .exam-header h1 {
+      font-size: 1.75rem;
+      margin: 0 0 0.3rem;
+      text-align: center;
+    }
+    .exam-header .subtitle {
+      text-align: center;
+      font-size: 1rem;
+      color: #555;
+      margin: 0 0 1rem;
+    }
+    .exam-info {
+      display: flex;
+      justify-content: space-between;
+      font-size: 1rem;
+      margin-top: 0.8rem;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .exam-info span {
+      border-bottom: 1px solid #333;
+      min-width: 140px;
+      display: inline-block;
+    }
+    .btn-pdf {
+      background: #2a6496;
+      color: #fff;
+      border: 0;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      margin-left: 1rem;
+    }
+    .btn-pdf:hover { background: #1e4d73; }
+    .exam-section {
+      margin: 2rem 0;
+    }
+    .exam-section h2 {
+      background: #2a6496;
+      color: #fff;
+      padding: 0.5rem 0.9rem;
+      font-size: 1.1rem;
+      margin-bottom: 0.8rem;
+      border-radius: 4px;
+    }
+    .q {
+      margin-bottom: 1.1rem;
+      margin-left: 1rem;
+      padding-left: 1.5rem;
+      text-indent: -1.5rem;
+      font-size: 1rem;
+      line-height: 1.65;
+    }
+    .q-num {
+      display: inline-block;
+      width: 1.5rem;
+      text-align: right;
+      padding-right: 0.3rem;
+      box-sizing: border-box;
+      font-weight: bold;
+      color: #2a6496;
+    }
+    .q-body { text-indent: 0; padding-left: 1.5rem; display: block; margin-top: 0.2rem; margin-left: 0; }
+    .choices {
+      list-style: none;
+      padding: 0;
+      margin: 0.4rem 0 0 0;
+      font-size: 1rem;
+    }
+    .choices li {
+      margin-bottom: 0.15rem;
+      font-size: 1rem;
+      line-height: 1.65;
+    }
+    .blank {
+      display: inline-block;
+      min-width: 100px;
+      border-bottom: 1px solid #333;
+      padding: 0 4px;
+      text-indent: 0;
+    }
+    .tf-options {
+      margin-left: 0;
+      margin-top: 0.25rem;
+    }
+    .tf-options label { margin-right: 1.5rem; }
+    .reading-box {
+      background: #f7f9fc;
+      border: 1px solid #d0d8e3;
+      border-radius: 6px;
+      padding: 1rem 1.2rem;
+      margin: 0.8rem 0 1rem 1rem;
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+    .reading-box h3 {
+      font-size: 1.05rem;
+      margin: 0 0 0.5rem;
+      color: #2a6496;
+    }
+    .reading-box p {
+      margin: 0 0 0.5rem;
+      text-indent: 1em;
+      font-size: inherit;
+      line-height: inherit;
+    }
+    .reading-box p:first-of-type { text-indent: 0; }
+    .instruction {
+      background: #fff9e5;
+      border-left: 4px solid #f6c23e;
+      padding: 0.5rem 0.9rem;
+      margin: 0.5rem 0 1rem;
+      font-size: 0.9rem;
+      color: #5a4a00;
+    }
+    .word-bank {
+      background: #e8f4f8;
+      border: 2px solid #2a6496;
+      border-radius: 6px;
+      padding: 0.7rem 1rem;
+      margin: 0.5rem 1rem 1rem 1rem;
+      font-size: 1rem;
+      font-family: var(--font-en, 'Georgia', serif);
+      line-height: 1.8;
+    }
+    .word-bank strong { color: #2a6496; margin-right: 0.5rem; }
+    .passage-title {
+      font-weight: bold;
+      margin-left: 1rem;
+      margin-top: 0.8rem;
+    }
+    @media print {
+      @page { margin: 0.5in 0.6in; size: A4; }
+      .btn-pdf, .no-print { display: none !important; }
+      body { padding: 0; max-width: 100%; font-size: 11pt; margin: 0; }
+      .exam-header { margin-bottom: 0.8rem; padding-bottom: 0.5rem; }
+      .exam-header h1 { font-size: 1.3rem; margin-bottom: 0.2rem; }
+      .exam-header .subtitle { font-size: 0.9rem; margin-bottom: 0.4rem; }
+      .exam-section { margin: 0.8rem 0; page-break-inside: auto; }
+      .exam-section h2 { page-break-after: avoid; }
+      .q { page-break-inside: avoid; }
+      .reading-box { page-break-inside: avoid; }
+      .word-bank { page-break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <div class="exam-header">
+    <h1>중간고사 — Midterm Exam</h1>
+    <p class="subtitle">Practical English 3 · Units 1–8 · Time: 60 minutes · Total: 52 questions / 100 points</p>
+    <div class="exam-info">
+      <div>이름 (Name): <span></span></div>
+      <div>학번 (ID): <span></span></div>
+      <div class="no-print">Score: <span></span> / 100
+        <button class="btn-pdf" onclick="window.print()">📄 Save as PDF</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================= I. VOCABULARY ============================= -->
+  <section class="exam-section">
+    <h2>I. Vocabulary (10 Q &times; 2 pts = 20 points)</h2>
+    <p class="instruction">Questions 1–6: Choose the correct answer. 알맞은 답을 고르세요.</p>
+
+    <div class="q"><span class="q-num">1.</span> "A _____ is a soft, stuffed toy that many children sleep with at night."
+      <ul class="choices">
+        <li>(a) goldfish</li>
+        <li>(b) teddy bear</li>
+        <li>(c) skateboard</li>
+        <li>(d) comic book</li>
+      </ul>
+    </div>
+
+    <div class="q"><span class="q-num">2.</span> "Too many cars on the road cause ___." Choose the correct <strong>compound noun</strong>.
+      <ul class="choices">
+        <li>(a) a subway station</li>
+        <li>(b) a bus stop</li>
+        <li>(c) a traffic jam</li>
+        <li>(d) a taxi stand</li>
+      </ul>
+    </div>
+
+    <div class="q"><span class="q-num">3.</span> Which adjective best describes an apartment with <strong>very little space</strong>?
+      <ul class="choices">
+        <li>(a) spacious</li>
+        <li>(b) bright</li>
+        <li>(c) cramped</li>
+        <li>(d) modern</li>
+      </ul>
+    </div>
+
+    <div class="q"><span class="q-num">4.</span> Which item does <strong>NOT</strong> belong to the "Health" category of travel preparations?
+      <ul class="choices">
+        <li>(a) vaccination</li>
+        <li>(b) medication</li>
+        <li>(c) first-aid kit</li>
+        <li>(d) passport</li>
+      </ul>
+    </div>
+
+    <div class="q"><span class="q-num">5.</span> "She always gets the latest gadgets. She's a real _____."
+      <ul class="choices">
+        <li>(a) hacker</li>
+        <li>(b) geek</li>
+        <li>(c) early adopter</li>
+        <li>(d) computer whiz</li>
+      </ul>
+    </div>
+
+    <div class="q"><span class="q-num">6.</span> Which word is <strong>NOT</strong> usually paired with the verb "go to"?
+      <ul class="choices">
+        <li>(a) a wedding</li>
+        <li>(b) a party</li>
+        <li>(c) a concert</li>
+        <li>(d) decorations</li>
+      </ul>
+    </div>
+
+    <p class="instruction">Questions 7&ndash;10: Fill in the blank using a word/phrase from the word bank below. 각 빈칸에 word bank의 단어/표현을 골라 넣으세요. <strong>(Not all words will be used.)</strong></p>
+
+    <div class="word-bank">
+      <strong>Word Bank:</strong>
+      passport &nbsp;&middot;&nbsp; vaccination &nbsp;&middot;&nbsp; first-aid kit &nbsp;&middot;&nbsp; money belt &nbsp;&middot;&nbsp; suitcase &nbsp;&middot;&nbsp; hiking boots &nbsp;&middot;&nbsp; swimsuit &nbsp;&middot;&nbsp; plane ticket
+    </div>
+
+    <div class="q"><span class="q-num">7.</span> "You need a valid <span class="blank"></span> and a visa to enter some countries."
+    </div>
+
+    <div class="q"><span class="q-num">8.</span> "Get a <span class="blank"></span> against yellow fever before visiting tropical areas."
+    </div>
+
+    <div class="q"><span class="q-num">9.</span> "Pack a small <span class="blank"></span> in case someone gets hurt on the trip."
+    </div>
+
+    <div class="q"><span class="q-num">10.</span> "Put your cash in a <span class="blank"></span> and wear it under your clothes for safety."
+    </div>
+  </section>
+
+  <!-- ============================= II. GRAMMAR ============================= -->
+  <section class="exam-section">
+    <h2>II. Grammar (13 Q &times; 2 pts = 26 points)</h2>
+    <p class="instruction">Questions 11–17: Choose the correct answer.</p>
+
+    <div class="q"><span class="q-num">11.</span> "Where _____ you grow up?"
+      <ul class="choices">
+        <li>(a) did</li>
+        <li>(b) do</li>
+        <li>(c) have</li>
+        <li>(d) were</li>
+      </ul>
+    </div>
+
+    <div class="q"><span class="q-num">12.</span> "I _____ play the piano when I was young, but I don't anymore."
+      <ul class="choices">
+        <li>(a) used to</li>
+        <li>(b) use to</li>
+        <li>(c) am used to</li>
+        <li>(d) using to</li>
+      </ul>
+    </div>
+
+    <div class="q"><span class="q-num">13.</span> Choose the correct <strong>indirect question</strong>:
+      <ul class="choices">
+        <li>(a) Do you know where is the subway station?</li>
+        <li>(b) Do you know where the subway station is?</li>
+        <li>(c) Do you know where was the subway station?</li>
+        <li>(d) Do you know where subway station is?</li>
+      </ul>
+    </div>
+
+    <div class="q"><span class="q-num">14.</span> "Our apartment isn't _____ for our family."
+      <ul class="choices">
+        <li>(a) enough big</li>
+        <li>(b) big enough</li>
+        <li>(c) too big</li>
+        <li>(d) as big</li>
+      </ul>
+    </div>
+
+    <div class="q"><span class="q-num">15.</span> Read this excerpt from the Unit 4 Conversation ("I&rsquo;ve never heard of that!"). Choose the correct forms.<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;<strong>Aiden:</strong> "_____ you ever _____ frog legs?"<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;<strong>Claire:</strong> "Yes, I have. I had them last week. They were delicious!"
+      <ul class="choices">
+        <li>(a) Did / eat</li>
+        <li>(b) Have / ate</li>
+        <li>(c) Have / eaten</li>
+        <li>(d) Do / eat</li>
+      </ul>
+    </div>
+
+    <div class="q"><span class="q-num">16.</span> "I haven't decided yet. Maybe I _____ camping this weekend."
+      <ul class="choices">
+        <li>(a) am going to go</li>
+        <li>(b) 'll go</li>
+        <li>(c) went</li>
+        <li>(d) go</li>
+      </ul>
+    </div>
+
+    <div class="q"><span class="q-num">17.</span> "I use my phone _____ photos."
+      <ul class="choices">
+        <li>(a) for take</li>
+        <li>(b) to taking</li>
+        <li>(c) for taking</li>
+        <li>(d) for took</li>
+      </ul>
+    </div>
+
+    <p class="instruction">Questions 18–21: Fill in the blank with the correct word.</p>
+
+    <div class="q"><span class="q-num">18.</span> "My apartment is too small. I <span class="blank"></span> I had a bigger one."
+    </div>
+
+    <div class="q"><span class="q-num">19.</span> "<span class="blank"></span>, boil the macaroni. Then melt the butter. Next, add the cheese."
+    </div>
+
+    <div class="q"><span class="q-num">20.</span> "Would you mind <span class="blank"></span> off your phone? It's distracting." <em>(Use the correct form of <strong>turn</strong>.)</em>
+    </div>
+
+    <div class="q"><span class="q-num">21.</span> "Mother's Day is a day <span class="blank"></span> my kids make pancakes for me."
+    </div>
+
+    <p class="instruction">Questions 22–23: Mark each sentence as <strong>True (O)</strong> or <strong>False (X)</strong>.</p>
+
+    <div class="q"><span class="q-num">22.</span> "There is too much bedrooms in the apartment." — This sentence is grammatically correct.
+      <div class="tf-options">
+        <label>☐ True (O)</label>
+        <label>☐ False (X)</label>
+      </div>
+    </div>
+
+    <div class="q"><span class="q-num">23.</span> "You should to study harder." — This sentence is grammatically correct.
+      <div class="tf-options">
+        <label>☐ True (O)</label>
+        <label>☐ False (X)</label>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================= III. PRONUNCIATION ============================= -->
+  <section class="exam-section">
+    <h2>III. Pronunciation (6 Q &times; 2 pts = 12 points)</h2>
+    <p class="instruction">The apostrophe (') marks the <strong>stressed syllable</strong>. 아포스트로피(')는 강세 음절을 나타냅니다.</p>
+
+    <div class="q"><span class="q-num">24.</span> Which word has the stress on the <strong>second syllable</strong>?
+      <ul class="choices">
+        <li>(a) internet</li>
+        <li>(b) computer</li>
+        <li>(c) messages</li>
+        <li>(d) digital</li>
+      </ul>
+    </div>
+
+    <div class="q"><span class="q-num">25.</span> Which shows the correct stress position for "recommend"?
+      <ul class="choices">
+        <li>(a) RE'·com·mend</li>
+        <li>(b) re·COM'·mend</li>
+        <li>(c) re·com·MEND'</li>
+        <li>(d) re'·com'·mend'</li>
+      </ul>
+    </div>
+
+    <div class="q"><span class="q-num">26.</span> How many syllables does the word "comfortable" actually have when pronounced naturally?
+      <ul class="choices">
+        <li>(a) 4 (COM·FOR·TA·BLE)</li>
+        <li>(b) 5 (COM·FOR·TA·BU·LE)</li>
+        <li>(c) 3 (COMF·TER·BLE)</li>
+        <li>(d) 2 (COMF·BLE)</li>
+      </ul>
+    </div>
+
+    <div class="q"><span class="q-num">27.</span> When you pronounce "do it" naturally (linked sounds), what sound is inserted between the two words?
+      <ul class="choices">
+        <li>(a) /j/ (y sound)</li>
+        <li>(b) /w/</li>
+        <li>(c) /h/</li>
+        <li>(d) nothing is inserted</li>
+      </ul>
+    </div>
+
+    <p class="instruction">Questions 28–29: Rewrite the word with a stress mark (') on the stressed syllable. 단어를 다시 쓰고 강세 위치에 아포스트로피(')를 표시하세요.</p>
+
+    <div class="q"><span class="q-num">28.</span> Rewrite the word with a stress mark: <strong>engineer</strong> → <span class="blank" style="min-width:180px"></span>
+    </div>
+
+    <div class="q"><span class="q-num">29.</span> Rewrite the word with a stress mark: <strong>assignment</strong> → <span class="blank" style="min-width:180px"></span>
+    </div>
+  </section>
+
+  <!-- ============================= IV. READING ============================= -->
+  <section class="exam-section">
+    <h2>IV. Reading Comprehension (9 Q &times; 2 pts + 1 Q &times; 3 pts = 21 points)</h2>
+
+    <p class="passage-title">Passage A: Pizza — The World's Favorite Food</p>
+    <div class="reading-box">
+      <p>Food, and the way we eat it, is always changing. As society develops, we learn new ways of growing, processing, and cooking food. Food must fit modern lifestyles and local tastes, too.</p>
+      <p><span style="background:#fff6d0; padding:2px 6px; border:1px dashed #b8860b; border-radius:4px; font-family:var(--font-en,'Georgia',serif);">[ appeared / today / in / first / we / pizza / Italy / 1889 / recognize / in / The ]</span> <em>&rarr; <strong>see Q30: unscramble</strong></em>. A famous baker from Naples made a special pizza for the Italian royal family. Queen Margherita loved the dish so much that the baker named it after her. Since then, this simple meal of bread, cheese, and tomato has traveled the world.</p>
+      <p>Pizza began its journey to New York in the 1890s, when many Italians moved to New York. The first pizzeria opened in 1905. At first it was only popular with Italians, but by the late 1940s, Americans discovered a taste for it. Today, they spend an incredible $37 billion a year on pizza.</p>
+      <p>Pizza continued its travels around the world, adapting all the time. <span style="background:#fff6d0; padding:2px 6px; border:1px dashed #b8860b; border-radius:4px; font-family:var(--font-en,'Georgia',serif);">[ to / unusual / peanuts / Sweden / it / on / bananas / your / In / and / have / pizza / is / not ]</span> <em>&rarr; <strong>see Q32: unscramble</strong></em>. <span style="background:#fff6d0; padding:2px 6px; border:1px dashed #b8860b; border-radius:4px; font-family:var(--font-en,'Georgia',serif);">[ squid / a / seafood / and / nation / love / lovers / so / octopus / Japan / they / is / of ]</span> <em>&rarr; <strong>see Q33: unscramble</strong></em>. In the Philippines, they like mango on their pizza.</p>
+    </div>
+
+    <div class="q"><span class="q-num">30.</span> Rearrange <strong>all</strong> the scrambled words below to form the complete sentence from Passage A. <em>(Add a period as needed.)</em><br>
+      <strong>Words:</strong> [ appeared / today / in / first / we / pizza / Italy / 1889 / recognize / in / The ]<br>
+      <strong>Answer:</strong> <span class="blank" style="min-width:500px; display:inline-block;"></span>
+    </div>
+
+    <div class="q"><span class="q-num">31.</span> Why was the pizza named "Margherita"?
+      <ul class="choices">
+        <li>(a) Because it was the first pizza ever made.</li>
+        <li>(b) Because the Italian queen loved it.</li>
+        <li>(c) Because it was the baker's wife's name.</li>
+        <li>(d) Because it was made with only cheese.</li>
+      </ul>
+    </div>
+
+    <div class="q"><span class="q-num">32.</span> Rearrange <strong>all</strong> the scrambled words below to form the complete sentence from Passage A. <em>(Add a comma and a period as needed.)</em><br>
+      <strong>Words:</strong> [ to / unusual / peanuts / Sweden / it / on / bananas / your / In / and / have / pizza / is / not ]<br>
+      <strong>Answer:</strong> <span class="blank" style="min-width:500px; display:inline-block;"></span>
+    </div>
+
+    <div class="q"><span class="q-num">33.</span> Rearrange <strong>all</strong> the scrambled words below to form the complete sentence from Passage A. <em>(Add a comma and a period as needed.)</em><br>
+      <strong>Words:</strong> [ squid / a / seafood / and / nation / love / lovers / so / octopus / Japan / they / is / of ]<br>
+      <strong>Answer:</strong> <span class="blank" style="min-width:500px; display:inline-block;"></span>
+    </div>
+
+    <p class="passage-title">Passage B: The Sharing Economy — Good for Everybody?</p>
+    <div class="reading-box">
+      <p>Modern technology has made it easier for ordinary people to rent things or services to others. With the click of an app, we can find almost anything. It could be a new dress to wear on the weekend, or someone to clean your house. This is the sharing economy, and it is now a profitable $20 billion-a-year business. But some people are now asking: Just how good is it for society in general?</p>
+      <p>Not long ago, when people went on vacation, they usually stayed in a hotel. Today they have the choice of staying in someone's private house. They pay less, but what effect does this have on the hotel industry? Hotels receive fewer guests, but they still have to pay salaries to their employees and taxes to the government.</p>
+      <p>Then there are car-sharing sites. Some people argue this is better for the environment, since fewer cars on the roads means less pollution. But public transportation is, after all, much kinder to the environment than cars. There is no doubt that the sharing economy is growing. <span style="background:#fff6d0; padding:2px 6px; border:1px dashed #b8860b; border-radius:4px; font-family:var(--font-en,'Georgia',serif);">[ be / $335 / Some / think / economists / it / worth / billion / will / 2025 / by ]</span> <em>&rarr; <strong>see Q36: unscramble</strong></em>.</p>
+    </div>
+
+    <div class="q"><span class="q-num">34.</span> Which is <strong>NOT</strong> mentioned as a sharing economy service in the passage?
+      <ul class="choices">
+        <li>(a) renting a dress</li>
+        <li>(b) staying in a private house</li>
+        <li>(c) car sharing</li>
+        <li>(d) borrowing books</li>
+      </ul>
+    </div>
+
+    <div class="q"><span class="q-num">35.</span> What does the word "<strong>profitable</strong>" mean in the passage?
+      <ul class="choices">
+        <li>(a) risky</li>
+        <li>(b) popular</li>
+        <li>(c) making money</li>
+        <li>(d) expensive</li>
+      </ul>
+    </div>
+
+    <div class="q"><span class="q-num">36.</span> Rearrange <strong>all</strong> the scrambled words below to form the complete sentence from Passage B. <em>(Add a period as needed.)</em><br>
+      <strong>Words:</strong> [ be / $335 / Some / think / economists / it / worth / billion / will / 2025 / by ]<br>
+      <strong>Answer:</strong> <span class="blank" style="min-width:500px; display:inline-block;"></span>
+    </div>
+
+    <div class="q"><span class="q-num">37.</span> True or False: <em>According to the passage, public transportation is worse for the environment than cars.</em>
+      <div class="tf-options">
+        <label>☐ True (O)</label>
+        <label>☐ False (X)</label>
+      </div>
+    </div>
+
+    <p class="passage-title">Passage C: A Traditional Wedding (Unit 8 Conversation)</p>
+    <div class="reading-box">
+      <p><strong>Julia:</strong> Is this a picture from your wedding, Anusha?</p>
+      <p><strong>Anusha:</strong> Yes. We had the ceremony in India.</p>
+      <p><strong>Julia:</strong> And was this your wedding dress?</p>
+      <p><strong>Anusha:</strong> Yes. It&rsquo;s a sari, actually. In India, when women get married, they usually wear a brightly colored sari, not a white dress.</p>
+      <p><strong>Julia:</strong> It&rsquo;s beautiful! So, what are weddings like in India?</p>
+      <p><strong>Anusha:</strong> Well, in some traditions, <span style="background:#fff6d0; padding:2px 6px; border:1px dashed #b8860b; border-radius:4px; font-family:var(--font-en,'Georgia',serif);">[ flowers / the / groom / and / After / of / arrives / garlands / the / exchange / bride / groom ]</span> <em>&rarr; <strong>see Q38: unscramble</strong></em>. We did that. But before the wedding, the bride&rsquo;s female relatives usually have a party to celebrate. I&rsquo;m an only child, so we skipped that.</p>
+    </div>
+
+    <div class="q"><span class="q-num">38.</span> <strong>(3 pts)</strong> Rearrange <strong>all</strong> the scrambled words below to form the complete sentence from the passage. <em>(Add a comma and a period as needed.)</em><br>
+      <strong>Words:</strong> [ flowers / the / groom / and / After / of / arrives / garlands / the / exchange / bride / groom ]<br>
+      <strong>Answer:</strong> <span class="blank" style="min-width:500px; display:inline-block;"></span>
+    </div>
+
+    <div class="q"><span class="q-num">39.</span> According to Anusha, what do Indian brides traditionally wear?
+      <ul class="choices">
+        <li>(a) a white dress</li>
+        <li>(b) a brightly colored sari</li>
+        <li>(c) a traditional Korean hanbok</li>
+        <li>(d) a simple white shirt</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============================= V. EXPRESSIONS & WRITING ============================= -->
+  <section class="exam-section">
+    <h2>V. Expressions &amp; Writing (4 Q &times; 3 pts = 12 points)</h2>
+    <p class="instruction">Fill in the blank using the correct word or phrase from the textbook.</p>
+
+    <div class="q"><span class="q-num">40.</span> (Describing housing) "Hi! I'm looking for a new apartment. It should be big <span class="blank"></span> for my family of four."
+    </div>
+
+    <div class="q"><span class="q-num">41.</span> (Giving travel advice) "You <span class="blank" style="min-width:90px"></span> better buy travel insurance before you leave the country." <em>(Use the advice modal &mdash; both full form and contracted form are accepted.)</em>
+    </div>
+
+    <div class="q"><span class="q-num">42.</span> (Making apologies) A: "Please turn down the music." B: "OK, I'<span class="blank" style="min-width:60px"></span> turn it down right now." (Responding with willingness)
+    </div>
+
+    <div class="q"><span class="q-num">43.</span> (Describing customs) "Chuseok is a time <span class="blank"></span> families visit their hometowns and share songpyeon."
+    </div>
+  </section>
+
+  <!-- ============================= VI. STUDENT-SUBMITTED QUESTIONS ============================= -->
+  <section class="exam-section">
+    <h2>VI. Student-Submitted Questions — 학생 출제 문제 (9 Q &times; 1 pt = 9 points)</h2>
+    <p class="instruction">The following questions were submitted by students. Answer carefully. 다음은 학생들이 출제한 문제입니다.</p>
+
+    <div class="q"><span class="q-num">44.</span> 다음 대화의 빈칸에 들어갈 표현으로 가장 적절한 것은?<br>
+      A: How do you like your new apartment?<br>
+      B: It's nice, but it's <span class="blank" style="min-width:80px"></span> dark. I need more sunlight.
+      <ul class="choices">
+        <li>① enough</li>
+        <li>② too</li>
+        <li>③ as</li>
+        <li>④ very much</li>
+        <li>⑤ not enough</li>
+      </ul>
+    </div>
+
+    <div class="q"><span class="q-num">45.</span> 다음 문장의 빈칸에 들어갈 동사의 형태로 가장 적절한 것은?<br>
+      "I don't like my old car. I wish I <span class="blank" style="min-width:80px"></span> a fast sports car instead."
+      <ul class="choices">
+        <li>① have</li>
+        <li>② has</li>
+        <li>③ having</li>
+        <li>④ had</li>
+        <li>⑤ will have</li>
+      </ul>
+    </div>
+
+    <div class="q"><span class="q-num">46.</span> 다음 글 내용과 의미가 동일한 빈칸에 들어갈 표현을 고르시오.<br>
+      <em>"My old room was small, and my new room is also small. They are the same size."</em><br>
+      → "My new room is <span class="blank" style="min-width:80px"></span> small <span class="blank" style="min-width:80px"></span> my old one."
+      <ul class="choices">
+        <li>① too / to</li>
+        <li>② enough / that</li>
+        <li>③ as / as</li>
+        <li>④ more / than</li>
+        <li>⑤ so / that</li>
+      </ul>
+    </div>
+
+    <div class="q"><span class="q-num">47.</span> 다음 대화의 빈칸에 들어갈 표현으로 가장 적절한 것은?<br>
+      A: Have you ever tried making pizza?<br>
+      B: Yes, I <span class="blank" style="min-width:80px"></span> it once with my brother last weekend.
+      <ul class="choices">
+        <li>① have made</li>
+        <li>② made</li>
+        <li>③ make</li>
+        <li>④ am making</li>
+        <li>⑤ was make</li>
+      </ul>
+    </div>
+
+    <div class="q"><span class="q-num">48.</span> 다음 문장의 빈칸에 들어갈 표현으로 가장 적절한 것은?<br>
+      My father <span class="blank" style="min-width:80px"></span> to Italy three times, so he knows a lot about Italian food.
+      <ul class="choices">
+        <li>① went</li>
+        <li>② goes</li>
+        <li>③ has been</li>
+        <li>④ is going</li>
+        <li>⑤ was</li>
+      </ul>
+    </div>
+
+    <div class="q"><span class="q-num">49.</span> 다음 상황에 알맞은 표현은?<br>
+      <em>상황: 방이 너무 시끄럽다. 음악 소리를 줄여달라고 공손하게 요청하려고 한다.</em>
+      <ul class="choices">
+        <li>① Turn the music down.</li>
+        <li>② Can you turn the music down?</li>
+        <li>③ I turn the music down.</li>
+        <li>④ Turning the music down.</li>
+      </ul>
+    </div>
+
+    <div class="q"><span class="q-num">50.</span> 다음 대화에 알맞은 응답은?<br>
+      A: Could you take out the trash?<br>
+      B: <span class="blank" style="min-width:150px"></span>
+      <ul class="choices">
+        <li>① I take out the trash.</li>
+        <li>② Sure! I'll take it out.</li>
+        <li>③ Take out it.</li>
+        <li>④ I took it out.</li>
+      </ul>
+    </div>
+
+    <div class="q"><span class="q-num">51.</span> 다음 중 대명사(it) 목적어를 올바르게 사용한 문장은?
+      <ul class="choices">
+        <li>① Please turn off it.</li>
+        <li>② Please listen to it.</li>
+        <li>③ Please look it at.</li>
+        <li>④ Please take out it.</li>
+      </ul>
+    </div>
+
+    <div class="q"><span class="q-num">52.</span> 다음 빈칸에 들어갈 동사의 가장 적절한 형태를 고르시오.<br>
+      "After the groom <span class="blank" style="min-width:80px"></span>, the bride and groom will exchange garlands of flowers."
+      <ul class="choices">
+        <li>① will arrive</li>
+        <li>② arrives</li>
+        <li>③ is arriving</li>
+        <li>④ arrived</li>
+      </ul>
+    </div>
+  </section>
+
+</body>
+</html>
