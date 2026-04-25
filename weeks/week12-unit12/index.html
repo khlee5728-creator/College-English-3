@@ -70,13 +70,13 @@
       <figure class="slide-image slide-image--small"><img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&h=400&q=80&auto=format&fit=crop&crop=entropy" alt="Person deep in thought while planning their next steps at a desk" loading="lazy" onload="this.classList.add('loaded')"></figure>
       <p>Listen to what happened to these people. Check (&check;) the things that have happened to you.</p>
       <div class="reading-passage" style="line-height: 1.8;">
-        <p><label><input type="checkbox"> <strong>1.</strong> &ldquo;I <span class="vocab-highlight" data-meaning="점심을 먹고 있었다">was having lunch</span> when I spilled a cup of coffee on my clothes.&rdquo;</label></p>
-        <p><label><input type="checkbox"> <strong>2.</strong> &ldquo;I <span class="vocab-highlight" data-meaning="운전하고 있었다">was driving</span> to the airport to pick up a friend, but I got a flat tire.&rdquo;</label></p>
-        <p><label><input type="checkbox"> <strong>3.</strong> &ldquo;I was studying for an important test when the lights went out.&rdquo;</label></p>
-        <p><label><input type="checkbox"> <strong>4.</strong> &ldquo;While I <span class="vocab-highlight" data-meaning="걸어가고 있었다">was walking</span> down the street, I found a wallet with lots of money.&rdquo;</label></p>
-        <p><label><input type="checkbox"> <strong>5.</strong> &ldquo;I was traveling in another country when I met an old school friend.&rdquo;</label></p>
-        <p><label><input type="checkbox"> <strong>6.</strong> &ldquo;I was getting off a bus when I slipped and fell on the sidewalk.&rdquo;</label></p>
-        <p><label><input type="checkbox"> <strong>7.</strong> &ldquo;While I <span class="vocab-highlight" data-meaning="쇼핑하고 있었다">was shopping</span> one day, a celebrity walked into the store.&rdquo;</label></p>
+        <p style="text-indent:0;"><label><input type="checkbox"> <strong>1.</strong> &ldquo;I <span class="vocab-highlight" data-meaning="점심을 먹고 있었다">was having lunch</span> when I spilled a cup of coffee on my clothes.&rdquo;</label></p>
+        <p style="text-indent:0;"><label><input type="checkbox"> <strong>2.</strong> &ldquo;I <span class="vocab-highlight" data-meaning="운전하고 있었다">was driving</span> to the airport to pick up a friend, but I got a flat tire.&rdquo;</label></p>
+        <p style="text-indent:0;"><label><input type="checkbox"> <strong>3.</strong> &ldquo;I was studying for an important test when the lights went out.&rdquo;</label></p>
+        <p style="text-indent:0;"><label><input type="checkbox"> <strong>4.</strong> &ldquo;While I <span class="vocab-highlight" data-meaning="걸어가고 있었다">was walking</span> down the street, I found a wallet with lots of money.&rdquo;</label></p>
+        <p style="text-indent:0;"><label><input type="checkbox"> <strong>5.</strong> &ldquo;I was traveling in another country when I met an old school friend.&rdquo;</label></p>
+        <p style="text-indent:0;"><label><input type="checkbox"> <strong>6.</strong> &ldquo;I was getting off a bus when I slipped and fell on the sidewalk.&rdquo;</label></p>
+        <p style="text-indent:0;"><label><input type="checkbox"> <strong>7.</strong> &ldquo;While I <span class="vocab-highlight" data-meaning="쇼핑하고 있었다">was shopping</span> one day, a celebrity walked into the store.&rdquo;</label></p>
       </div>
       <div class="korean-note"><strong>포인트:</strong> 모든 문장에서 <strong>과거진행형</strong>(was/were + -ing)이 배경 행위를, <strong>단순과거</strong>(-ed)가 끼어든 사건을 나타냅니다. 다음 Grammar Focus에서 이 패턴을 자세히 배웁니다.</div>
     </section>
@@ -369,9 +369,18 @@
     <section class="slide slide--vocab">
       <h2>Word Power: Positive vs. Negative Adverbs</h2>
       <p>Classify each adverb as positive, negative, or either:</p>
-      <table class="contrast-table">
+      <table class="contrast-table" style="table-layout:fixed;">
+        <colgroup>
+          <col style="width:33.33%;">
+          <col style="width:33.34%;">
+          <col style="width:33.33%;">
+        </colgroup>
         <thead>
-          <tr><th>&#x2705; Positive</th><th>&#x274C; Negative</th><th>&#x1F504; Either</th></tr>
+          <tr>
+            <th style="width:33.33%;">&#x2705; Positive</th>
+            <th style="width:33.34%;">&#x274C; Negative</th>
+            <th style="width:33.33%;">&#x1F504; Either</th>
+          </tr>
         </thead>
         <tbody>
           <tr><td>fortunately</td><td>sadly</td><td>coincidentally</td></tr>
@@ -545,12 +554,21 @@
       <h2>Practice: Present Perfect Continuous</h2>
       <p>Complete each conversation with the present perfect continuous.</p>
       <ol>
-        <li class="fill-blank-item">A: ___ you <input type="text" class="fill-blank-input" data-answer="been learning|Have ... been learning"> (learn) any new skills this year?<br>
-        B: Yes, I have. I <input type="text" class="fill-blank-input" data-answer="'ve been taking|have been taking"> (take) some art courses. <button class="btn-check">Check</button> <span class="feedback"></span></li>
-        <li class="fill-blank-item">A: What <input type="text" class="fill-blank-input" data-answer="have you been doing|have ... been doing"> (you / do) lately?<br>
-        B: Well, I <input type="text" class="fill-blank-input" data-answer="'ve been looking|have been looking"> (look) for a new job. <button class="btn-check">Check</button> <span class="feedback"></span></li>
-        <li class="fill-blank-item">A: How <input type="text" class="fill-blank-input" data-answer="have you been feeling|have ... been feeling"> (you / feel) recently?<br>
-        B: Great! I <input type="text" class="fill-blank-input" data-answer="'ve been running|have been running"> (run) three times a week. <button class="btn-check">Check</button> <span class="feedback"></span></li>
+        <li class="fill-blank-item">
+          <p>A: ___ you <input type="text" class="fill-blank-input" data-answer="been learning|Have ... been learning"> (learn) any new skills this year?</p>
+          <p>B: Yes, I have. I <input type="text" class="fill-blank-input" data-answer="'ve been taking|have been taking"> (take) some art courses.</p>
+          <button class="btn-check">Check</button> <span class="feedback"></span>
+        </li>
+        <li class="fill-blank-item">
+          <p>A: What <input type="text" class="fill-blank-input" data-answer="have you been doing|have ... been doing"> (you / do) lately?</p>
+          <p>B: Well, I <input type="text" class="fill-blank-input" data-answer="'ve been looking|have been looking"> (look) for a new job.</p>
+          <button class="btn-check">Check</button> <span class="feedback"></span>
+        </li>
+        <li class="fill-blank-item">
+          <p>A: How <input type="text" class="fill-blank-input" data-answer="have you been feeling|have ... been feeling"> (you / feel) recently?</p>
+          <p>B: Great! I <input type="text" class="fill-blank-input" data-answer="'ve been running|have been running"> (run) three times a week.</p>
+          <button class="btn-check">Check</button> <span class="feedback"></span>
+        </li>
       </ol>
       <div class="korean-note">각 대화를 현재완료진행형(have/has been + -ing)으로 완성하세요.</div>
     </section>
