@@ -54,7 +54,7 @@
     <!-- ========== SLIDE 4: Snapshot - Movie Trivia ========== -->
     <section class="slide slide--content">
       <h2>Snapshot: Movie Trivia</h2>
-      <figure class="slide-image slide-image--hero"><img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=1200&h=520&q=80&auto=format&fit=crop&crop=entropy" alt="Dark cinema theater with rows of red seats facing a glowing movie screen" loading="lazy" onload="this.classList.add('loaded')"></figure>
+      <figure class="slide-image slide-image--small"><img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=600&h=400&q=80&auto=format&fit=crop&crop=entropy" alt="Dark cinema theater with rows of red seats facing a glowing movie screen" loading="lazy" onload="this.classList.add('loaded')"></figure>
       <p>Did you know these amazing movie facts?</p>
       <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin: 0.8rem 0; font-size: 0.85em;">
         <div style="padding: 0.8rem; background: var(--color-bg-alt, #f0f4f8); border-radius: 8px;">
@@ -162,10 +162,10 @@
       <h2>Practice: -ing or -ed?</h2>
       <p>Complete each sentence with the correct participle form.</p>
       <ol>
-        <li>John Cho is such an <input type="text" class="fill-blank-input" data-answer="amazing"> (amaze) actor. I&rsquo;m always <input type="text" class="fill-blank-input" data-answer="amazed"> (amaze) by his talent.</li>
-        <li>Most TV shows are really <input type="text" class="fill-blank-input" data-answer="boring"> (bore). I often get so <input type="text" class="fill-blank-input" data-answer="bored"> (bore) watching them.</li>
-        <li>I was <input type="text" class="fill-blank-input" data-answer="interested"> (interest) in watching <em>The Martian</em>. The movie is really <input type="text" class="fill-blank-input" data-answer="interesting"> (interest).</li>
-        <li>It&rsquo;s <input type="text" class="fill-blank-input" data-answer="surprising"> (surprise) that horror movies are so popular. I can&rsquo;t understand why people go to the movies to feel <input type="text" class="fill-blank-input" data-answer="terrified"> (terrify).</li>
+        <li class="fill-blank-item">John Cho is such an <input type="text" class="fill-blank-input" data-answer="amazing"> (amaze) actor. I&rsquo;m always <input type="text" class="fill-blank-input" data-answer="amazed"> (amaze) by his talent. <button class="btn-check">Check</button> <span class="feedback"></span></li>
+        <li class="fill-blank-item">Most TV shows are really <input type="text" class="fill-blank-input" data-answer="boring"> (bore). I often get so <input type="text" class="fill-blank-input" data-answer="bored"> (bore) watching them. <button class="btn-check">Check</button> <span class="feedback"></span></li>
+        <li class="fill-blank-item">I was <input type="text" class="fill-blank-input" data-answer="interested"> (interest) in watching <em>The Martian</em>. The movie is really <input type="text" class="fill-blank-input" data-answer="interesting"> (interest). <button class="btn-check">Check</button> <span class="feedback"></span></li>
+        <li class="fill-blank-item">It&rsquo;s <input type="text" class="fill-blank-input" data-answer="surprising"> (surprise) that horror movies are so popular. I can&rsquo;t understand why people go to the movies to feel <input type="text" class="fill-blank-input" data-answer="terrified"> (terrify). <button class="btn-check">Check</button> <span class="feedback"></span></li>
       </ol>
       <div class="korean-note">각 문장에 -ing 또는 -ed 형태를 선택하세요. 감정의 원인이면 -ing, 감정을 느끼는 사람이면 -ed입니다.</div>
     </section>
@@ -217,49 +217,90 @@
     <!-- ========== SLIDE 11: Word Power — Opinion Adjectives ========== -->
     <section class="slide slide--vocab">
       <h2>Word Power: Opinion Adjectives</h2>
-      <p>Click each card to see the Korean meaning. <button class="btn-flip-all">Flip All</button></p>
+      <p>Click each card to see the Korean meaning.</p>
       <div class="vocab-grid">
         <div class="vocab-card" data-korean="재미있는, 웃긴">
-          <div class="vocab-front"><span class="vocab-word">amusing</span></div>
-          <div class="vocab-back"><span class="vocab-meaning">재미있는, 웃긴</span></div>
+          <div class="vocab-front">
+            <span class="vocab-word">amusing</span>
+            <span class="vocab-pos">adjective</span>
+            <span class="vocab-example">The comedy show was very <strong>amusing</strong>.</span>
+          </div>
+          <div class="vocab-back"><span class="vocab-korean">재미있는, 웃긴</span></div>
         </div>
         <div class="vocab-card" data-korean="기이한, 괴상한">
-          <div class="vocab-front"><span class="vocab-word">bizarre</span></div>
-          <div class="vocab-back"><span class="vocab-meaning">기이한, 괴상한</span></div>
+          <div class="vocab-front">
+            <span class="vocab-word">bizarre</span>
+            <span class="vocab-pos">adjective</span>
+            <span class="vocab-example">That was a <strong>bizarre</strong> ending to the movie.</span>
+          </div>
+          <div class="vocab-back"><span class="vocab-korean">기이한, 괴상한</span></div>
         </div>
         <div class="vocab-card" data-korean="역겨운, 불쾌한">
-          <div class="vocab-front"><span class="vocab-word">disgusting</span></div>
-          <div class="vocab-back"><span class="vocab-meaning">역겨운, 불쾌한</span></div>
+          <div class="vocab-front">
+            <span class="vocab-word">disgusting</span>
+            <span class="vocab-pos">adjective</span>
+            <span class="vocab-example">The food in the horror scene looked <strong>disgusting</strong>.</span>
+          </div>
+          <div class="vocab-back"><span class="vocab-korean">역겨운, 불쾌한</span></div>
         </div>
         <div class="vocab-card" data-korean="환상적인, 멋진">
-          <div class="vocab-front"><span class="vocab-word">fantastic</span></div>
-          <div class="vocab-back"><span class="vocab-meaning">환상적인, 멋진</span></div>
+          <div class="vocab-front">
+            <span class="vocab-word">fantastic</span>
+            <span class="vocab-pos">adjective</span>
+            <span class="vocab-example">The special effects were absolutely <strong>fantastic</strong>.</span>
+          </div>
+          <div class="vocab-back"><span class="vocab-korean">환상적인, 멋진</span></div>
         </div>
         <div class="vocab-card" data-korean="아주 웃긴">
-          <div class="vocab-front"><span class="vocab-word">hilarious</span></div>
-          <div class="vocab-back"><span class="vocab-meaning">아주 웃긴</span></div>
+          <div class="vocab-front">
+            <span class="vocab-word">hilarious</span>
+            <span class="vocab-pos">adjective</span>
+            <span class="vocab-example">That comedian is absolutely <strong>hilarious</strong>.</span>
+          </div>
+          <div class="vocab-back"><span class="vocab-korean">아주 웃긴</span></div>
         </div>
         <div class="vocab-card" data-korean="끔찍한, 무시무시한">
-          <div class="vocab-front"><span class="vocab-word">horrible</span></div>
-          <div class="vocab-back"><span class="vocab-meaning">끔찍한, 무시무시한</span></div>
+          <div class="vocab-front">
+            <span class="vocab-word">horrible</span>
+            <span class="vocab-pos">adjective</span>
+            <span class="vocab-example">The villain in the film was truly <strong>horrible</strong>.</span>
+          </div>
+          <div class="vocab-back"><span class="vocab-korean">끔찍한, 무시무시한</span></div>
         </div>
         <div class="vocab-card" data-korean="믿을 수 없는, 놀라운">
-          <div class="vocab-front"><span class="vocab-word">incredible</span></div>
-          <div class="vocab-back"><span class="vocab-meaning">믿을 수 없는, 놀라운</span></div>
+          <div class="vocab-front">
+            <span class="vocab-word">incredible</span>
+            <span class="vocab-pos">adjective</span>
+            <span class="vocab-example">The action stunts were <strong>incredible</strong>.</span>
+          </div>
+          <div class="vocab-back"><span class="vocab-korean">믿을 수 없는, 놀라운</span></div>
         </div>
         <div class="vocab-card" data-korean="우스꽝스러운">
-          <div class="vocab-front"><span class="vocab-word">ridiculous</span></div>
-          <div class="vocab-back"><span class="vocab-meaning">우스꽝스러운</span></div>
+          <div class="vocab-front">
+            <span class="vocab-word">ridiculous</span>
+            <span class="vocab-pos">adjective</span>
+            <span class="vocab-example">Some superhero plots are completely <strong>ridiculous</strong>.</span>
+          </div>
+          <div class="vocab-back"><span class="vocab-korean">우스꽝스러운</span></div>
         </div>
         <div class="vocab-card" data-korean="뛰어난, 탁월한">
-          <div class="vocab-front"><span class="vocab-word">outstanding</span></div>
-          <div class="vocab-back"><span class="vocab-meaning">뛰어난, 탁월한</span></div>
+          <div class="vocab-front">
+            <span class="vocab-word">outstanding</span>
+            <span class="vocab-pos">adjective</span>
+            <span class="vocab-example">The lead actor gave an <strong>outstanding</strong> performance.</span>
+          </div>
+          <div class="vocab-back"><span class="vocab-korean">뛰어난, 탁월한</span></div>
         </div>
         <div class="vocab-card" data-korean="이상한, 기묘한">
-          <div class="vocab-front"><span class="vocab-word">weird</span></div>
-          <div class="vocab-back"><span class="vocab-meaning">이상한, 기묘한</span></div>
+          <div class="vocab-front">
+            <span class="vocab-word">weird</span>
+            <span class="vocab-pos">adjective</span>
+            <span class="vocab-example">I just watched a really <strong>weird</strong> movie.</span>
+          </div>
+          <div class="vocab-back"><span class="vocab-korean">이상한, 기묘한</span></div>
         </div>
       </div>
+      <button class="btn-flip-all">Flip All Cards</button>
     </section>
 
     <!-- ========== SLIDE 12: Word Power — Synonym Groups ========== -->
@@ -282,7 +323,7 @@
     <!-- ========== SLIDE 13: Perspectives — And the Oscar Goes To... ========== -->
     <section class="slide slide--content">
       <h2>Perspectives: And the Oscar Goes To&hellip;</h2>
-      <figure class="slide-image slide-image--hero"><img src="https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?w=1200&h=520&q=80&auto=format&fit=crop&crop=entropy" alt="Golden Oscar award trophy statue gleaming under spotlight" loading="lazy" onload="this.classList.add('loaded')"></figure>
+      <figure class="slide-image slide-image--small"><img src="https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?w=600&h=400&q=80&auto=format&fit=crop&crop=entropy" alt="Golden Oscar award trophy statue gleaming under spotlight" loading="lazy" onload="this.classList.add('loaded')"></figure>
       <p>Listen to people describe their Hollywood favorites. Can you guess the actress, actor, or movie?</p>
       <div class="reading-passage" style="line-height: 1.8; font-size: 0.9em;">
         <p><strong>1.</strong> &ldquo;He&rsquo;s a famous American actor <span class="vocab-highlight" data-meaning="~인 (사람)">who</span> is also a successful director and producer. He won the Oscar for Best Motion Picture in 2013 with <em>Argo</em>, <span class="vocab-highlight" data-meaning="~한 (사물)">which</span> he directed and co-produced.&rdquo;</p>
@@ -350,11 +391,11 @@
       <h2>Practice: Relative Pronouns</h2>
       <p>Complete each sentence with <em>who</em>, <em>which</em>, or <em>that</em>.</p>
       <ol>
-        <li>Adele is a singer and songwriter <input type="text" class="fill-blank-input" data-answer="who|that"> writes her own music.</li>
-        <li><em>The Voice</em> is a reality show <input type="text" class="fill-blank-input" data-answer="which|that"> finds new singing talent.</li>
-        <li><em>Fantastic Four</em> is a movie franchise <input type="text" class="fill-blank-input" data-answer="which|that"> is based on a comic book.</li>
-        <li>Michael Keaton is a famous actor <input type="text" class="fill-blank-input" data-answer="who|that"> began his career as a cameraman.</li>
-        <li>Dakota Fanning is an actress <input type="text" class="fill-blank-input" data-answer="who|that"> made her first movie when she was only seven.</li>
+        <li class="fill-blank-item">Adele is a singer and songwriter <input type="text" class="fill-blank-input" data-answer="who|that"> writes her own music. <button class="btn-check">Check</button> <span class="feedback"></span></li>
+        <li class="fill-blank-item"><em>The Voice</em> is a reality show <input type="text" class="fill-blank-input" data-answer="which|that"> finds new singing talent. <button class="btn-check">Check</button> <span class="feedback"></span></li>
+        <li class="fill-blank-item"><em>Fantastic Four</em> is a movie franchise <input type="text" class="fill-blank-input" data-answer="which|that"> is based on a comic book. <button class="btn-check">Check</button> <span class="feedback"></span></li>
+        <li class="fill-blank-item">Michael Keaton is a famous actor <input type="text" class="fill-blank-input" data-answer="who|that"> began his career as a cameraman. <button class="btn-check">Check</button> <span class="feedback"></span></li>
+        <li class="fill-blank-item">Dakota Fanning is an actress <input type="text" class="fill-blank-input" data-answer="who|that"> made her first movie when she was only seven. <button class="btn-check">Check</button> <span class="feedback"></span></li>
       </ol>
       <div class="korean-note">사람이면 who/that, 사물이면 which/that을 사용합니다. that은 모두에 사용 가능!</div>
     </section>
@@ -395,33 +436,58 @@
     <!-- ========== SLIDE 19: Reading A — Vocabulary ========== -->
     <section class="slide slide--vocab">
       <h2>Vocabulary from Reading A</h2>
-      <p><button class="btn-flip-all">Flip All</button></p>
+      <p>Click each card to see the Korean meaning.</p>
       <div class="vocab-grid">
         <div class="vocab-card" data-korean="납득시키다, 설득하다">
-          <div class="vocab-front"><span class="vocab-word">convince</span></div>
-          <div class="vocab-back"><span class="vocab-meaning">납득시키다, 설득하다</span></div>
+          <div class="vocab-front">
+            <span class="vocab-word">convince</span>
+            <span class="vocab-pos">verb</span>
+            <span class="vocab-example">The director had to <strong>convince</strong> the actor to take the role.</span>
+          </div>
+          <div class="vocab-back"><span class="vocab-korean">납득시키다, 설득하다</span></div>
         </div>
         <div class="vocab-card" data-korean="뼈, 골격 (a bone)">
-          <div class="vocab-front"><span class="vocab-word">a bone (in a person&rsquo;s chest)</span></div>
-          <div class="vocab-back"><span class="vocab-meaning">뼈, 골격</span></div>
+          <div class="vocab-front">
+            <span class="vocab-word">a bone (in a person&rsquo;s chest)</span>
+            <span class="vocab-pos">noun</span>
+            <span class="vocab-example">The actor broke <strong>a bone</strong> while doing his own stunts.</span>
+          </div>
+          <div class="vocab-back"><span class="vocab-korean">뼈, 골격</span></div>
         </div>
         <div class="vocab-card" data-korean="도전, 어려운 과제">
-          <div class="vocab-front"><span class="vocab-word">challenge</span></div>
-          <div class="vocab-back"><span class="vocab-meaning">도전, 어려운 과제</span></div>
+          <div class="vocab-front">
+            <span class="vocab-word">challenge</span>
+            <span class="vocab-pos">noun</span>
+            <span class="vocab-example">Filming on location was a real <strong>challenge</strong>.</span>
+          </div>
+          <div class="vocab-back"><span class="vocab-korean">도전, 어려운 과제</span></div>
         </div>
         <div class="vocab-card" data-korean="신병 훈련소">
-          <div class="vocab-front"><span class="vocab-word">boot camp</span></div>
-          <div class="vocab-back"><span class="vocab-meaning">신병 훈련소</span></div>
+          <div class="vocab-front">
+            <span class="vocab-word">boot camp</span>
+            <span class="vocab-pos">noun</span>
+            <span class="vocab-example">Actors attend a <strong>boot camp</strong> to prepare for action films.</span>
+          </div>
+          <div class="vocab-back"><span class="vocab-korean">신병 훈련소</span></div>
         </div>
         <div class="vocab-card" data-korean="대사 (배우의)">
-          <div class="vocab-front"><span class="vocab-word">lines (actor&rsquo;s ~)</span></div>
-          <div class="vocab-back"><span class="vocab-meaning">대사 (배우의)</span></div>
+          <div class="vocab-front">
+            <span class="vocab-word">lines (actor&rsquo;s ~)</span>
+            <span class="vocab-pos">noun (plural)</span>
+            <span class="vocab-example">An actor must memorize hundreds of <strong>lines</strong> for a movie.</span>
+          </div>
+          <div class="vocab-back"><span class="vocab-korean">대사 (배우의)</span></div>
         </div>
         <div class="vocab-card" data-korean="프랜차이즈, 시리즈물">
-          <div class="vocab-front"><span class="vocab-word">franchise</span></div>
-          <div class="vocab-back"><span class="vocab-meaning">프랜차이즈, 시리즈물</span></div>
+          <div class="vocab-front">
+            <span class="vocab-word">franchise</span>
+            <span class="vocab-pos">noun</span>
+            <span class="vocab-example">The Star Wars <strong>franchise</strong> has many films.</span>
+          </div>
+          <div class="vocab-back"><span class="vocab-korean">프랜차이즈, 시리즈물</span></div>
         </div>
       </div>
+      <button class="btn-flip-all">Flip All Cards</button>
     </section>
 
     <!-- ============================= PART 4: BREAK (Slide 20) ============================= -->
@@ -446,7 +512,7 @@
     <!-- ========== SLIDE 22: Snapshot — Popular Emojis ========== -->
     <section class="slide slide--content">
       <h2>Snapshot: Popular Emojis</h2>
-      <figure class="slide-image slide-image--hero"><img src="https://images.unsplash.com/photo-1587483166702-bf9aa66bd791?w=1200&h=520&q=80&auto=format&fit=crop&crop=entropy" alt="Colorful emoji stickers representing digital communication" loading="lazy" onload="this.classList.add('loaded')"></figure>
+      <figure class="slide-image slide-image--small"><img src="https://images.unsplash.com/photo-1587483166702-bf9aa66bd791?w=600&h=400&q=80&auto=format&fit=crop&crop=entropy" alt="Colorful emoji stickers representing digital communication" loading="lazy" onload="this.classList.add('loaded')"></figure>
       <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.8rem; margin: 1rem 0; text-align: center;">
         <div style="padding: 0.8rem; background: var(--color-bg-alt, #f0f4f8); border-radius: 8px;">
           <p style="font-size: 2em;">😐</p><p>I am not amused.</p>
@@ -485,49 +551,90 @@
     <!-- ========== SLIDE 23: Word Power — Body Language ========== -->
     <section class="slide slide--vocab">
       <h2>Word Power: Body Language &amp; Emotions</h2>
-      <p>Click each card to see the Korean meaning. <button class="btn-flip-all">Flip All</button></p>
+      <p>Click each card to see the Korean meaning.</p>
       <div class="vocab-grid">
         <div class="vocab-card" data-korean="머리를 긁다 (혼란)">
-          <div class="vocab-front"><span class="vocab-word">scratch one&rsquo;s head</span></div>
-          <div class="vocab-back"><span class="vocab-meaning">머리를 긁다 (혼란)</span></div>
+          <div class="vocab-front">
+            <span class="vocab-word">scratch one&rsquo;s head</span>
+            <span class="vocab-pos">verb phrase</span>
+            <span class="vocab-example">He had to <strong>scratch his head</strong> to figure out the puzzle.</span>
+          </div>
+          <div class="vocab-back"><span class="vocab-korean">머리를 긁다 (혼란)</span></div>
         </div>
         <div class="vocab-card" data-korean="손톱을 물다 (긴장)">
-          <div class="vocab-front"><span class="vocab-word">bite one&rsquo;s nails</span></div>
-          <div class="vocab-back"><span class="vocab-meaning">손톱을 물다 (긴장)</span></div>
+          <div class="vocab-front">
+            <span class="vocab-word">bite one&rsquo;s nails</span>
+            <span class="vocab-pos">verb phrase</span>
+            <span class="vocab-example">She <strong>bites her nails</strong> when she&rsquo;s nervous.</span>
+          </div>
+          <div class="vocab-back"><span class="vocab-korean">손톱을 물다 (긴장)</span></div>
         </div>
         <div class="vocab-card" data-korean="눈을 굴리다 (짜증)">
-          <div class="vocab-front"><span class="vocab-word">roll one&rsquo;s eyes</span></div>
-          <div class="vocab-back"><span class="vocab-meaning">눈을 굴리다 (짜증)</span></div>
+          <div class="vocab-front">
+            <span class="vocab-word">roll one&rsquo;s eyes</span>
+            <span class="vocab-pos">verb phrase</span>
+            <span class="vocab-example">Teenagers often <strong>roll their eyes</strong> at parents.</span>
+          </div>
+          <div class="vocab-back"><span class="vocab-korean">눈을 굴리다 (짜증)</span></div>
         </div>
         <div class="vocab-card" data-korean="발을 구르다 (조급함)">
-          <div class="vocab-front"><span class="vocab-word">tap one&rsquo;s foot</span></div>
-          <div class="vocab-back"><span class="vocab-meaning">발을 구르다 (조급함)</span></div>
+          <div class="vocab-front">
+            <span class="vocab-word">tap one&rsquo;s foot</span>
+            <span class="vocab-pos">verb phrase</span>
+            <span class="vocab-example">He <strong>taps his foot</strong> when he&rsquo;s impatient.</span>
+          </div>
+          <div class="vocab-back"><span class="vocab-korean">발을 구르다 (조급함)</span></div>
         </div>
         <div class="vocab-card" data-korean="코를 찡그리다 (역겨움)">
-          <div class="vocab-front"><span class="vocab-word">wrinkle one&rsquo;s nose</span></div>
-          <div class="vocab-back"><span class="vocab-meaning">코를 찡그리다 (역겨움)</span></div>
+          <div class="vocab-front">
+            <span class="vocab-word">wrinkle one&rsquo;s nose</span>
+            <span class="vocab-pos">verb phrase</span>
+            <span class="vocab-example">She <strong>wrinkles her nose</strong> at strange smells.</span>
+          </div>
+          <div class="vocab-back"><span class="vocab-korean">코를 찡그리다 (역겨움)</span></div>
         </div>
         <div class="vocab-card" data-korean="짜증난">
-          <div class="vocab-front"><span class="vocab-word">annoyed</span></div>
-          <div class="vocab-back"><span class="vocab-meaning">짜증난</span></div>
+          <div class="vocab-front">
+            <span class="vocab-word">annoyed</span>
+            <span class="vocab-pos">adjective</span>
+            <span class="vocab-example">I was <strong>annoyed</strong> by the loud music.</span>
+          </div>
+          <div class="vocab-back"><span class="vocab-korean">짜증난</span></div>
         </div>
         <div class="vocab-card" data-korean="혼란스러운">
-          <div class="vocab-front"><span class="vocab-word">confused</span></div>
-          <div class="vocab-back"><span class="vocab-meaning">혼란스러운</span></div>
+          <div class="vocab-front">
+            <span class="vocab-word">confused</span>
+            <span class="vocab-pos">adjective</span>
+            <span class="vocab-example">The instructions left me <strong>confused</strong>.</span>
+          </div>
+          <div class="vocab-back"><span class="vocab-korean">혼란스러운</span></div>
         </div>
         <div class="vocab-card" data-korean="당황한">
-          <div class="vocab-front"><span class="vocab-word">embarrassed</span></div>
-          <div class="vocab-back"><span class="vocab-meaning">당황한</span></div>
+          <div class="vocab-front">
+            <span class="vocab-word">embarrassed</span>
+            <span class="vocab-pos">adjective</span>
+            <span class="vocab-example">He was <strong>embarrassed</strong> when he forgot her name.</span>
+          </div>
+          <div class="vocab-back"><span class="vocab-korean">당황한</span></div>
         </div>
         <div class="vocab-card" data-korean="좌절한">
-          <div class="vocab-front"><span class="vocab-word">frustrated</span></div>
-          <div class="vocab-back"><span class="vocab-meaning">좌절한</span></div>
+          <div class="vocab-front">
+            <span class="vocab-word">frustrated</span>
+            <span class="vocab-pos">adjective</span>
+            <span class="vocab-example">I&rsquo;m <strong>frustrated</strong> with this slow computer.</span>
+          </div>
+          <div class="vocab-back"><span class="vocab-korean">좌절한</span></div>
         </div>
         <div class="vocab-card" data-korean="초조한, 긴장한">
-          <div class="vocab-front"><span class="vocab-word">nervous</span></div>
-          <div class="vocab-back"><span class="vocab-meaning">초조한, 긴장한</span></div>
+          <div class="vocab-front">
+            <span class="vocab-word">nervous</span>
+            <span class="vocab-pos">adjective</span>
+            <span class="vocab-example">She felt <strong>nervous</strong> before the speech.</span>
+          </div>
+          <div class="vocab-back"><span class="vocab-korean">초조한, 긴장한</span></div>
         </div>
       </div>
+      <button class="btn-flip-all">Flip All Cards</button>
     </section>
 
     <!-- ========== SLIDE 24: Conversation — It's pretty confusing ========== -->
@@ -605,10 +712,10 @@
       <h2>Practice: Modals for Speculation</h2>
       <p>What do these gestures mean? Use <em>might</em>, <em>could</em>, <em>may</em>, or <em>must</em>.</p>
       <ol>
-        <li>Someone is scratching their head. &rarr; It <input type="text" class="fill-blank-input" data-answer="might|could|may|probably"> mean they are <input type="text" class="fill-blank-input" data-answer="confused">.</li>
-        <li>A person is biting their nails. &rarr; It <input type="text" class="fill-blank-input" data-answer="might|could|may|probably"> mean they are <input type="text" class="fill-blank-input" data-answer="nervous">.</li>
-        <li>Someone is rolling their eyes. &rarr; That <input type="text" class="fill-blank-input" data-answer="must|probably|definitely"> mean they are <input type="text" class="fill-blank-input" data-answer="annoyed|bored">.</li>
-        <li>A person is tapping their foot. &rarr; It <input type="text" class="fill-blank-input" data-answer="could|might|probably"> mean they feel <input type="text" class="fill-blank-input" data-answer="impatient|frustrated">.</li>
+        <li class="fill-blank-item">Someone is scratching their head. &rarr; It <input type="text" class="fill-blank-input" data-answer="might|could|may|probably"> mean they are <input type="text" class="fill-blank-input" data-answer="confused">. <button class="btn-check">Check</button> <span class="feedback"></span></li>
+        <li class="fill-blank-item">A person is biting their nails. &rarr; It <input type="text" class="fill-blank-input" data-answer="might|could|may|probably"> mean they are <input type="text" class="fill-blank-input" data-answer="nervous">. <button class="btn-check">Check</button> <span class="feedback"></span></li>
+        <li class="fill-blank-item">Someone is rolling their eyes. &rarr; That <input type="text" class="fill-blank-input" data-answer="must|probably|definitely"> mean they are <input type="text" class="fill-blank-input" data-answer="annoyed|bored">. <button class="btn-check">Check</button> <span class="feedback"></span></li>
+        <li class="fill-blank-item">A person is tapping their foot. &rarr; It <input type="text" class="fill-blank-input" data-answer="could|might|probably"> mean they feel <input type="text" class="fill-blank-input" data-answer="impatient|frustrated">. <button class="btn-check">Check</button> <span class="feedback"></span></li>
       </ol>
       <div class="korean-note">몸짓이 의미하는 바를 추측 조동사를 사용하여 표현하세요.</div>
     </section>
@@ -665,7 +772,7 @@
     <!-- ========== SLIDE 30: Perspectives — Rules and Regulations ========== -->
     <section class="slide slide--content">
       <h2>Perspectives: Rules and Regulations</h2>
-      <figure class="slide-image slide-image--hero"><img src="https://images.unsplash.com/photo-1521791055366-0d553872125f?w=1200&h=520&q=80&auto=format&fit=crop&crop=entropy" alt="Collection of various regulatory and warning signs on a wall" loading="lazy" onload="this.classList.add('loaded')"></figure>
+      <figure class="slide-image slide-image--small"><img src="https://images.unsplash.com/photo-1521791055366-0d553872125f?w=600&h=400&q=80&auto=format&fit=crop&crop=entropy" alt="Collection of various regulatory and warning signs on a wall" loading="lazy" onload="this.classList.add('loaded')"></figure>
       <p>What do you think these signs mean? Match each sign with the correct meaning.</p>
       <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.8rem; margin: 1rem 0; text-align: center;">
         <div style="padding: 0.8rem; background: var(--color-bg-alt, #f0f4f8); border-radius: 8px;">
@@ -734,11 +841,11 @@
       <h2>Practice: Rules &amp; Signs</h2>
       <p>What do these rules mean? Complete with the correct expression.</p>
       <ol>
-        <li>&#x1F6AB; No photography &rarr; You <input type="text" class="fill-blank-input" data-answer="aren't allowed to|can't"> take photos here.</li>
-        <li>&#x1F198; Seat belt sign &rarr; You <input type="text" class="fill-blank-input" data-answer="have to|'ve got to"> fasten your seat belt.</li>
-        <li>&#x1F17F;&#xFE0F; Parking sign &rarr; You <input type="text" class="fill-blank-input" data-answer="can|are allowed to"> park here.</li>
-        <li>&#x1F6B7; No pedestrians &rarr; Pedestrians <input type="text" class="fill-blank-input" data-answer="aren't allowed|can't walk"> in this area.</li>
-        <li>&#x1F4F5; No phones &rarr; You <input type="text" class="fill-blank-input" data-answer="have to|'ve got to"> turn off electronic devices.</li>
+        <li class="fill-blank-item">&#x1F6AB; No photography &rarr; You <input type="text" class="fill-blank-input" data-answer="aren't allowed to|can't"> take photos here. <button class="btn-check">Check</button> <span class="feedback"></span></li>
+        <li class="fill-blank-item">&#x1F198; Seat belt sign &rarr; You <input type="text" class="fill-blank-input" data-answer="have to|'ve got to"> fasten your seat belt. <button class="btn-check">Check</button> <span class="feedback"></span></li>
+        <li class="fill-blank-item">&#x1F17F;&#xFE0F; Parking sign &rarr; You <input type="text" class="fill-blank-input" data-answer="can|are allowed to"> park here. <button class="btn-check">Check</button> <span class="feedback"></span></li>
+        <li class="fill-blank-item">&#x1F6B7; No pedestrians &rarr; Pedestrians <input type="text" class="fill-blank-input" data-answer="aren't allowed|can't walk"> in this area. <button class="btn-check">Check</button> <span class="feedback"></span></li>
+        <li class="fill-blank-item">&#x1F4F5; No phones &rarr; You <input type="text" class="fill-blank-input" data-answer="have to|'ve got to"> turn off electronic devices. <button class="btn-check">Check</button> <span class="feedback"></span></li>
       </ol>
       <div class="korean-note">표지판이 의미하는 규칙을 허가/의무/금지 표현으로 완성하세요.</div>
     </section>
@@ -806,33 +913,58 @@
     <!-- ========== SLIDE 36: Reading B — Vocabulary ========== -->
     <section class="slide slide--vocab">
       <h2>Vocabulary: English Idioms</h2>
-      <p><button class="btn-flip-all">Flip All</button></p>
+      <p>Click each card to see the Korean meaning.</p>
       <div class="vocab-grid">
         <div class="vocab-card" data-korean="몸이 안 좋은, 아픈">
-          <div class="vocab-front"><span class="vocab-word">under the weather</span></div>
-          <div class="vocab-back"><span class="vocab-meaning">몸이 안 좋은, 아픈</span></div>
+          <div class="vocab-front">
+            <span class="vocab-word">under the weather</span>
+            <span class="vocab-pos">idiom</span>
+            <span class="vocab-example">I&rsquo;m feeling a bit <strong>under the weather</strong> today.</span>
+          </div>
+          <div class="vocab-back"><span class="vocab-korean">몸이 안 좋은, 아픈</span></div>
         </div>
         <div class="vocab-card" data-korean="최후의 한계, 마지막 한 방">
-          <div class="vocab-front"><span class="vocab-word">the last straw</span></div>
-          <div class="vocab-back"><span class="vocab-meaning">최후의 한계, 마지막 한 방</span></div>
+          <div class="vocab-front">
+            <span class="vocab-word">the last straw</span>
+            <span class="vocab-pos">idiom</span>
+            <span class="vocab-example">Missing the deadline was <strong>the last straw</strong>.</span>
+          </div>
+          <div class="vocab-back"><span class="vocab-korean">최후의 한계, 마지막 한 방</span></div>
         </div>
         <div class="vocab-card" data-korean="기억나게 하다, 낯익다">
-          <div class="vocab-front"><span class="vocab-word">ring a bell</span></div>
-          <div class="vocab-back"><span class="vocab-meaning">기억나게 하다, 낯익다</span></div>
+          <div class="vocab-front">
+            <span class="vocab-word">ring a bell</span>
+            <span class="vocab-pos">idiom</span>
+            <span class="vocab-example">That name doesn&rsquo;t <strong>ring a bell</strong>.</span>
+          </div>
+          <div class="vocab-back"><span class="vocab-korean">기억나게 하다, 낯익다</span></div>
         </div>
         <div class="vocab-card" data-korean="뱃멀미가 나는">
-          <div class="vocab-front"><span class="vocab-word">seasick</span></div>
-          <div class="vocab-back"><span class="vocab-meaning">뱃멀미가 나는</span></div>
+          <div class="vocab-front">
+            <span class="vocab-word">seasick</span>
+            <span class="vocab-pos">adjective</span>
+            <span class="vocab-example">He gets <strong>seasick</strong> on every boat trip.</span>
+          </div>
+          <div class="vocab-back"><span class="vocab-korean">뱃멀미가 나는</span></div>
         </div>
         <div class="vocab-card" data-korean="관용어, 숙어">
-          <div class="vocab-front"><span class="vocab-word">idiom</span></div>
-          <div class="vocab-back"><span class="vocab-meaning">관용어, 숙어</span></div>
+          <div class="vocab-front">
+            <span class="vocab-word">idiom</span>
+            <span class="vocab-pos">noun</span>
+            <span class="vocab-example">&ldquo;Break a leg&rdquo; is a common English <strong>idiom</strong>.</span>
+          </div>
+          <div class="vocab-back"><span class="vocab-korean">관용어, 숙어</span></div>
         </div>
         <div class="vocab-card" data-korean="익숙한, 친숙한">
-          <div class="vocab-front"><span class="vocab-word">familiar</span></div>
-          <div class="vocab-back"><span class="vocab-meaning">익숙한, 친숙한</span></div>
+          <div class="vocab-front">
+            <span class="vocab-word">familiar</span>
+            <span class="vocab-pos">adjective</span>
+            <span class="vocab-example">Her face looks <strong>familiar</strong> but I can&rsquo;t remember her name.</span>
+          </div>
+          <div class="vocab-back"><span class="vocab-korean">익숙한, 친숙한</span></div>
         </div>
       </div>
+      <button class="btn-flip-all">Flip All Cards</button>
     </section>
 
     <!-- ============================= PART 7: REVIEW (Slides 37-40) ============================= -->
@@ -872,11 +1004,11 @@
       <h2>Review Quiz 2/2: Fill in the Blanks</h2>
       <p>Complete each sentence with the correct form.</p>
       <ol>
-        <li>I find horror movies <input type="text" class="fill-blank-input" data-answer="terrifying">. They make me feel <input type="text" class="fill-blank-input" data-answer="terrified">. (terrify)</li>
-        <li><em>Frozen</em> is an animated movie <input type="text" class="fill-blank-input" data-answer="that|which"> became a global hit.</li>
-        <li>She&rsquo;s tapping her foot. She <input type="text" class="fill-blank-input" data-answer="must|might|could"> be feeling impatient.</li>
-        <li>You <input type="text" class="fill-blank-input" data-answer="aren't allowed to|can't"> use your phone during the exam.</li>
-        <li>I&rsquo;m feeling a little <input type="text" class="fill-blank-input" data-answer="under the weather"> today. (idiom = sick)</li>
+        <li class="fill-blank-item">I find horror movies <input type="text" class="fill-blank-input" data-answer="terrifying">. They make me feel <input type="text" class="fill-blank-input" data-answer="terrified">. (terrify) <button class="btn-check">Check</button> <span class="feedback"></span></li>
+        <li class="fill-blank-item"><em>Frozen</em> is an animated movie <input type="text" class="fill-blank-input" data-answer="that|which"> became a global hit. <button class="btn-check">Check</button> <span class="feedback"></span></li>
+        <li class="fill-blank-item">She&rsquo;s tapping her foot. She <input type="text" class="fill-blank-input" data-answer="must|might|could"> be feeling impatient. <button class="btn-check">Check</button> <span class="feedback"></span></li>
+        <li class="fill-blank-item">You <input type="text" class="fill-blank-input" data-answer="aren't allowed to|can't"> use your phone during the exam. <button class="btn-check">Check</button> <span class="feedback"></span></li>
+        <li class="fill-blank-item">I&rsquo;m feeling a little <input type="text" class="fill-blank-input" data-answer="under the weather"> today. (idiom = sick) <button class="btn-check">Check</button> <span class="feedback"></span></li>
       </ol>
       <div class="korean-note">Unit 13(-ing/-ed, 관계대명사)과 Unit 14(추측 조동사, 규칙 표현, 관용어)를 모두 활용하세요.</div>
     </section>
