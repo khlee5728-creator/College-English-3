@@ -43,7 +43,7 @@
     <!-- ========== SLIDE 3: Snapshot ========== -->
     <section class="slide slide--content">
       <h2>Snapshot: True Stories of Incredible Coincidences</h2>
-      <figure class="slide-image slide-image--hero"><img src="https://images.unsplash.com/photo-1473755504818-b72b6dfdc226?w=1200&h=520&q=80&auto=format&fit=crop&crop=entropy" alt="Vintage books collection evoking the wonder of finding a special old book" loading="lazy" onload="this.classList.add('loaded')"></figure>
+      <figure class="slide-image slide-image--small"><img src="https://images.unsplash.com/photo-1473755504818-b72b6dfdc226?w=600&h=400&q=80&auto=format&fit=crop&crop=entropy" alt="Vintage books collection evoking the wonder of finding a special old book" loading="lazy" onload="this.classList.add('loaded')"></figure>
       <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0;">
         <div style="padding: 1rem; background: var(--color-bg-alt, #f0f4f8); border-radius: 8px;">
           <p><strong>&#x1F4D6; Story A: Anne Parrish</strong></p>
@@ -67,7 +67,7 @@
     <!-- ========== SLIDE 4: Perspectives ========== -->
     <section class="slide slide--content">
       <h2>Perspectives: What Next?</h2>
-      <figure class="slide-image slide-image--hero"><img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&h=520&q=80&auto=format&fit=crop&crop=entropy" alt="Person deep in thought while planning their next steps at a desk" loading="lazy" onload="this.classList.add('loaded')"></figure>
+      <figure class="slide-image slide-image--small"><img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&h=400&q=80&auto=format&fit=crop&crop=entropy" alt="Person deep in thought while planning their next steps at a desk" loading="lazy" onload="this.classList.add('loaded')"></figure>
       <p>Listen to what happened to these people. Check (&check;) the things that have happened to you.</p>
       <div class="reading-passage" style="line-height: 1.8;">
         <p><label><input type="checkbox"> <strong>1.</strong> &ldquo;I <span class="vocab-highlight" data-meaning="점심을 먹고 있었다">was having lunch</span> when I spilled a cup of coffee on my clothes.&rdquo;</label></p>
@@ -184,10 +184,10 @@
       <h2>Practice: Past Continuous vs. Simple Past</h2>
       <p>Complete each sentence with the correct form of the verb.</p>
       <ol>
-        <li>My sister <input type="text" class="fill-blank-input" data-answer="was texting"> (text) while she <input type="text" class="fill-blank-input" data-answer="was driving"> (drive), and she almost <input type="text" class="fill-blank-input" data-answer="crashed"> (crash) her car.</li>
-        <li>While I <input type="text" class="fill-blank-input" data-answer="was cooking"> (cook) dinner last night, a friend <input type="text" class="fill-blank-input" data-answer="called"> (call) and I <input type="text" class="fill-blank-input" data-answer="burned|burnt"> (burn) the food.</li>
-        <li>My father <input type="text" class="fill-blank-input" data-answer="was skiing"> (ski) when he <input type="text" class="fill-blank-input" data-answer="broke"> (break) his leg.</li>
-        <li>Once I <input type="text" class="fill-blank-input" data-answer="was reading"> (read) a good book, but someone <input type="text" class="fill-blank-input" data-answer="told"> (tell) me the ending.</li>
+        <li class="fill-blank-item">My sister <input type="text" class="fill-blank-input" data-answer="was texting"> (text) while she <input type="text" class="fill-blank-input" data-answer="was driving"> (drive), and she almost <input type="text" class="fill-blank-input" data-answer="crashed"> (crash) her car. <button class="btn-check">Check</button> <span class="feedback"></span></li>
+        <li class="fill-blank-item">While I <input type="text" class="fill-blank-input" data-answer="was cooking"> (cook) dinner last night, a friend <input type="text" class="fill-blank-input" data-answer="called"> (call) and I <input type="text" class="fill-blank-input" data-answer="burned|burnt"> (burn) the food. <button class="btn-check">Check</button> <span class="feedback"></span></li>
+        <li class="fill-blank-item">My father <input type="text" class="fill-blank-input" data-answer="was skiing"> (ski) when he <input type="text" class="fill-blank-input" data-answer="broke"> (break) his leg. <button class="btn-check">Check</button> <span class="feedback"></span></li>
+        <li class="fill-blank-item">Once I <input type="text" class="fill-blank-input" data-answer="was reading"> (read) a good book, but someone <input type="text" class="fill-blank-input" data-answer="told"> (tell) me the ending. <button class="btn-check">Check</button> <span class="feedback"></span></li>
       </ol>
       <div class="korean-note">배경 행위는 과거진행(was/were + -ing), 끼어든 행위는 단순과거(-ed/불규칙)로 채우세요.</div>
     </section>
@@ -197,17 +197,23 @@
       <h2>Transform: Combine the Actions</h2>
       <p>Combine each pair into one sentence using <em>when</em> or <em>while</em>.</p>
       <div class="transform-exercise">
-        <div class="transform-item" data-answer="I was taking a selfie when a man came and stole my phone.|While I was taking a selfie, a man came and stole my phone.">
+        <div class="transform-item">
           <span class="transform-source">I / take a selfie &mdash; a man / come and steal my phone</span>
-          <input type="text" class="transform-input" placeholder="I was taking a selfie when...">
+          <input type="text" class="transform-input" data-answer="I was taking a selfie when a man came and stole my phone.|While I was taking a selfie, a man came and stole my phone." placeholder="I was taking a selfie when...">
+          <button class="btn-check">Check</button>
+          <span class="feedback"></span>
         </div>
-        <div class="transform-item" data-answer="While I was walking down the street, I found a wallet with lots of money.|I was walking down the street when I found a wallet with lots of money.">
+        <div class="transform-item">
           <span class="transform-source">I / walk down the street &mdash; I / find a wallet with lots of money</span>
-          <input type="text" class="transform-input" placeholder="While I was walking...">
+          <input type="text" class="transform-input" data-answer="While I was walking down the street, I found a wallet with lots of money.|I was walking down the street when I found a wallet with lots of money." placeholder="While I was walking...">
+          <button class="btn-check">Check</button>
+          <span class="feedback"></span>
         </div>
-        <div class="transform-item" data-answer="I was getting off a bus when I slipped and fell on the sidewalk.|While I was getting off a bus, I slipped and fell on the sidewalk.">
+        <div class="transform-item">
           <span class="transform-source">I / get off a bus &mdash; I / slip and fall on the sidewalk</span>
-          <input type="text" class="transform-input" placeholder="I was getting off...">
+          <input type="text" class="transform-input" data-answer="I was getting off a bus when I slipped and fell on the sidewalk.|While I was getting off a bus, I slipped and fell on the sidewalk." placeholder="I was getting off...">
+          <button class="btn-check">Check</button>
+          <span class="feedback"></span>
         </div>
       </div>
       <div class="korean-note">두 행위를 when 또는 while을 사용하여 하나의 문장으로 결합하세요.</div>
@@ -273,49 +279,90 @@
     <!-- ========== SLIDE 13: Word Power — Storytelling Adverbs ========== -->
     <section class="slide slide--vocab">
       <h2>Word Power: Storytelling Adverbs</h2>
-      <p>These adverbs make stories more dramatic. Click to see meanings. <button class="btn-flip-all">Flip All</button></p>
+      <p>These adverbs make stories more dramatic. Click to see meanings.</p>
       <div class="vocab-grid">
         <div class="vocab-card" data-korean="우연히도">
-          <div class="vocab-front"><span class="vocab-word">coincidentally</span></div>
-          <div class="vocab-back"><span class="vocab-meaning">우연히도</span></div>
+          <div class="vocab-front">
+            <span class="vocab-word">coincidentally</span>
+            <span class="vocab-pos">adverb</span>
+            <span class="vocab-example"><strong>Coincidentally</strong>, we both arrived at the same time.</span>
+          </div>
+          <div class="vocab-back"><span class="vocab-korean">우연히도</span></div>
         </div>
         <div class="vocab-card" data-korean="다행히도 (+)">
-          <div class="vocab-front"><span class="vocab-word">fortunately</span></div>
-          <div class="vocab-back"><span class="vocab-meaning">다행히도 (+)</span></div>
+          <div class="vocab-front">
+            <span class="vocab-word">fortunately</span>
+            <span class="vocab-pos">adverb</span>
+            <span class="vocab-example"><strong>Fortunately</strong>, no one was hurt in the accident.</span>
+          </div>
+          <div class="vocab-back"><span class="vocab-korean">다행히도 (+)</span></div>
         </div>
         <div class="vocab-card" data-korean="운 좋게도 (+)">
-          <div class="vocab-front"><span class="vocab-word">luckily</span></div>
-          <div class="vocab-back"><span class="vocab-meaning">운 좋게도 (+)</span></div>
+          <div class="vocab-front">
+            <span class="vocab-word">luckily</span>
+            <span class="vocab-pos">adverb</span>
+            <span class="vocab-example"><strong>Luckily</strong>, I had an extra umbrella with me.</span>
+          </div>
+          <div class="vocab-back"><span class="vocab-korean">운 좋게도 (+)</span></div>
         </div>
         <div class="vocab-card" data-korean="기적적으로 (+)">
-          <div class="vocab-front"><span class="vocab-word">miraculously</span></div>
-          <div class="vocab-back"><span class="vocab-meaning">기적적으로 (+)</span></div>
+          <div class="vocab-front">
+            <span class="vocab-word">miraculously</span>
+            <span class="vocab-pos">adverb</span>
+            <span class="vocab-example"><strong>Miraculously</strong>, the patient survived the surgery.</span>
+          </div>
+          <div class="vocab-back"><span class="vocab-korean">기적적으로 (+)</span></div>
         </div>
         <div class="vocab-card" data-korean="슬프게도 (-)">
-          <div class="vocab-front"><span class="vocab-word">sadly</span></div>
-          <div class="vocab-back"><span class="vocab-meaning">슬프게도 (-)</span></div>
+          <div class="vocab-front">
+            <span class="vocab-word">sadly</span>
+            <span class="vocab-pos">adverb</span>
+            <span class="vocab-example"><strong>Sadly</strong>, the old theater was demolished last year.</span>
+          </div>
+          <div class="vocab-back"><span class="vocab-korean">슬프게도 (-)</span></div>
         </div>
         <div class="vocab-card" data-korean="이상하게도">
-          <div class="vocab-front"><span class="vocab-word">strangely</span></div>
-          <div class="vocab-back"><span class="vocab-meaning">이상하게도</span></div>
+          <div class="vocab-front">
+            <span class="vocab-word">strangely</span>
+            <span class="vocab-pos">adverb</span>
+            <span class="vocab-example"><strong>Strangely</strong>, the door was already open when I arrived.</span>
+          </div>
+          <div class="vocab-back"><span class="vocab-korean">이상하게도</span></div>
         </div>
         <div class="vocab-card" data-korean="갑자기">
-          <div class="vocab-front"><span class="vocab-word">suddenly</span></div>
-          <div class="vocab-back"><span class="vocab-meaning">갑자기</span></div>
+          <div class="vocab-front">
+            <span class="vocab-word">suddenly</span>
+            <span class="vocab-pos">adverb</span>
+            <span class="vocab-example">It started raining <strong>suddenly</strong> in the middle of the picnic.</span>
+          </div>
+          <div class="vocab-back"><span class="vocab-korean">갑자기</span></div>
         </div>
         <div class="vocab-card" data-korean="놀랍게도">
-          <div class="vocab-front"><span class="vocab-word">surprisingly</span></div>
-          <div class="vocab-back"><span class="vocab-meaning">놀랍게도</span></div>
+          <div class="vocab-front">
+            <span class="vocab-word">surprisingly</span>
+            <span class="vocab-pos">adverb</span>
+            <span class="vocab-example"><strong>Surprisingly</strong>, the test was easier than expected.</span>
+          </div>
+          <div class="vocab-back"><span class="vocab-korean">놀랍게도</span></div>
         </div>
         <div class="vocab-card" data-korean="예상치 못하게">
-          <div class="vocab-front"><span class="vocab-word">unexpectedly</span></div>
-          <div class="vocab-back"><span class="vocab-meaning">예상치 못하게</span></div>
+          <div class="vocab-front">
+            <span class="vocab-word">unexpectedly</span>
+            <span class="vocab-pos">adverb</span>
+            <span class="vocab-example">My old friend showed up <strong>unexpectedly</strong>.</span>
+          </div>
+          <div class="vocab-back"><span class="vocab-korean">예상치 못하게</span></div>
         </div>
         <div class="vocab-card" data-korean="불행히도 (-)">
-          <div class="vocab-front"><span class="vocab-word">unfortunately</span></div>
-          <div class="vocab-back"><span class="vocab-meaning">불행히도 (-)</span></div>
+          <div class="vocab-front">
+            <span class="vocab-word">unfortunately</span>
+            <span class="vocab-pos">adverb</span>
+            <span class="vocab-example"><strong>Unfortunately</strong>, we missed the last train.</span>
+          </div>
+          <div class="vocab-back"><span class="vocab-korean">불행히도 (-)</span></div>
         </div>
       </div>
+      <button class="btn-flip-all">Flip All Cards</button>
     </section>
 
     <!-- ========== SLIDE 14: Adverb Categories ========== -->
@@ -342,11 +389,11 @@
       <h2>Word Power: Adverb Practice</h2>
       <p>Complete each story with the best adverb.</p>
       <ol>
-        <li>We were having a party when, <input type="text" class="fill-blank-input" data-answer="suddenly">, the lights went out!</li>
-        <li>I was walking down the street when, <input type="text" class="fill-blank-input" data-answer="coincidentally|unexpectedly">, I ran into my old school friend.</li>
-        <li>I fell off my bike at high speed. <input type="text" class="fill-blank-input" data-answer="Fortunately|Luckily|Miraculously">, I wasn&rsquo;t hurt.</li>
-        <li><input type="text" class="fill-blank-input" data-answer="Unfortunately|Sadly">, I lost my phone while I was traveling.</li>
-        <li>I was dancing at a party when, <input type="text" class="fill-blank-input" data-answer="unfortunately|suddenly">, I fell down!</li>
+        <li class="fill-blank-item">We were having a party when, <input type="text" class="fill-blank-input" data-answer="suddenly">, the lights went out! <button class="btn-check">Check</button> <span class="feedback"></span></li>
+        <li class="fill-blank-item">I was walking down the street when, <input type="text" class="fill-blank-input" data-answer="coincidentally|unexpectedly">, I ran into my old school friend. <button class="btn-check">Check</button> <span class="feedback"></span></li>
+        <li class="fill-blank-item">I fell off my bike at high speed. <input type="text" class="fill-blank-input" data-answer="Fortunately|Luckily|Miraculously">, I wasn&rsquo;t hurt. <button class="btn-check">Check</button> <span class="feedback"></span></li>
+        <li class="fill-blank-item"><input type="text" class="fill-blank-input" data-answer="Unfortunately|Sadly">, I lost my phone while I was traveling. <button class="btn-check">Check</button> <span class="feedback"></span></li>
+        <li class="fill-blank-item">I was dancing at a party when, <input type="text" class="fill-blank-input" data-answer="unfortunately|suddenly">, I fell down! <button class="btn-check">Check</button> <span class="feedback"></span></li>
       </ol>
       <div class="korean-note">각 이야기에 가장 알맞은 부사를 넣어 완성하세요. 부사는 문장 앞이나 when 절 뒤에 옵니다.</div>
     </section>
@@ -498,12 +545,12 @@
       <h2>Practice: Present Perfect Continuous</h2>
       <p>Complete each conversation with the present perfect continuous.</p>
       <ol>
-        <li>A: ___ you <input type="text" class="fill-blank-input" data-answer="been learning|Have ... been learning"> (learn) any new skills this year?<br>
-        B: Yes, I have. I <input type="text" class="fill-blank-input" data-answer="'ve been taking|have been taking"> (take) some art courses.</li>
-        <li>A: What <input type="text" class="fill-blank-input" data-answer="have you been doing|have ... been doing"> (you / do) lately?<br>
-        B: Well, I <input type="text" class="fill-blank-input" data-answer="'ve been looking|have been looking"> (look) for a new job.</li>
-        <li>A: How <input type="text" class="fill-blank-input" data-answer="have you been feeling|have ... been feeling"> (you / feel) recently?<br>
-        B: Great! I <input type="text" class="fill-blank-input" data-answer="'ve been running|have been running"> (run) three times a week.</li>
+        <li class="fill-blank-item">A: ___ you <input type="text" class="fill-blank-input" data-answer="been learning|Have ... been learning"> (learn) any new skills this year?<br>
+        B: Yes, I have. I <input type="text" class="fill-blank-input" data-answer="'ve been taking|have been taking"> (take) some art courses. <button class="btn-check">Check</button> <span class="feedback"></span></li>
+        <li class="fill-blank-item">A: What <input type="text" class="fill-blank-input" data-answer="have you been doing|have ... been doing"> (you / do) lately?<br>
+        B: Well, I <input type="text" class="fill-blank-input" data-answer="'ve been looking|have been looking"> (look) for a new job. <button class="btn-check">Check</button> <span class="feedback"></span></li>
+        <li class="fill-blank-item">A: How <input type="text" class="fill-blank-input" data-answer="have you been feeling|have ... been feeling"> (you / feel) recently?<br>
+        B: Great! I <input type="text" class="fill-blank-input" data-answer="'ve been running|have been running"> (run) three times a week. <button class="btn-check">Check</button> <span class="feedback"></span></li>
       </ol>
       <div class="korean-note">각 대화를 현재완료진행형(have/has been + -ing)으로 완성하세요.</div>
     </section>
@@ -626,41 +673,74 @@
     <!-- ========== SLIDE 27: Vocabulary from Reading ========== -->
     <section class="slide slide--vocab">
       <h2>Vocabulary from Reading</h2>
-      <p>Key words and phrases from the article. <button class="btn-flip-all">Flip All</button></p>
+      <p>Key words and phrases from the article.</p>
       <div class="vocab-grid">
         <div class="vocab-card" data-korean="귀가 먹은, 청각 장애의">
-          <div class="vocab-front"><span class="vocab-word">deaf</span></div>
-          <div class="vocab-back"><span class="vocab-meaning">귀가 먹은, 청각 장애의</span></div>
+          <div class="vocab-front">
+            <span class="vocab-word">deaf</span>
+            <span class="vocab-pos">adjective</span>
+            <span class="vocab-example">My grandfather is <strong>deaf</strong> in one ear.</span>
+          </div>
+          <div class="vocab-back"><span class="vocab-korean">귀가 먹은, 청각 장애의</span></div>
         </div>
         <div class="vocab-card" data-korean="장애">
-          <div class="vocab-front"><span class="vocab-word">disability</span></div>
-          <div class="vocab-back"><span class="vocab-meaning">장애</span></div>
+          <div class="vocab-front">
+            <span class="vocab-word">disability</span>
+            <span class="vocab-pos">noun</span>
+            <span class="vocab-example">Many companies hire people with a <strong>disability</strong>.</span>
+          </div>
+          <div class="vocab-back"><span class="vocab-korean">장애</span></div>
         </div>
         <div class="vocab-card" data-korean="악몽">
-          <div class="vocab-front"><span class="vocab-word">nightmare</span></div>
-          <div class="vocab-back"><span class="vocab-meaning">악몽</span></div>
+          <div class="vocab-front">
+            <span class="vocab-word">nightmare</span>
+            <span class="vocab-pos">noun</span>
+            <span class="vocab-example">Losing my passport was a complete <strong>nightmare</strong>.</span>
+          </div>
+          <div class="vocab-back"><span class="vocab-korean">악몽</span></div>
         </div>
         <div class="vocab-card" data-korean="청중, 관객">
-          <div class="vocab-front"><span class="vocab-word">audience</span></div>
-          <div class="vocab-back"><span class="vocab-meaning">청중, 관객</span></div>
+          <div class="vocab-front">
+            <span class="vocab-word">audience</span>
+            <span class="vocab-pos">noun</span>
+            <span class="vocab-example">The <strong>audience</strong> clapped after the performance.</span>
+          </div>
+          <div class="vocab-back"><span class="vocab-korean">청중, 관객</span></div>
         </div>
         <div class="vocab-card" data-korean="보청기">
-          <div class="vocab-front"><span class="vocab-word">hearing aids</span></div>
-          <div class="vocab-back"><span class="vocab-meaning">보청기</span></div>
+          <div class="vocab-front">
+            <span class="vocab-word">hearing aids</span>
+            <span class="vocab-pos">noun (plural)</span>
+            <span class="vocab-example">He uses <strong>hearing aids</strong> to help him listen.</span>
+          </div>
+          <div class="vocab-back"><span class="vocab-korean">보청기</span></div>
         </div>
         <div class="vocab-card" data-korean="수화, 수어">
-          <div class="vocab-front"><span class="vocab-word">sign language</span></div>
-          <div class="vocab-back"><span class="vocab-meaning">수화, 수어</span></div>
+          <div class="vocab-front">
+            <span class="vocab-word">sign language</span>
+            <span class="vocab-pos">noun</span>
+            <span class="vocab-example">She is fluent in <strong>sign language</strong>.</span>
+          </div>
+          <div class="vocab-back"><span class="vocab-korean">수화, 수어</span></div>
         </div>
         <div class="vocab-card" data-korean="공연하다, 연주하다">
-          <div class="vocab-front"><span class="vocab-word">perform</span></div>
-          <div class="vocab-back"><span class="vocab-meaning">공연하다, 연주하다</span></div>
+          <div class="vocab-front">
+            <span class="vocab-word">perform</span>
+            <span class="vocab-pos">verb</span>
+            <span class="vocab-example">The band will <strong>perform</strong> at the festival tonight.</span>
+          </div>
+          <div class="vocab-back"><span class="vocab-korean">공연하다, 연주하다</span></div>
         </div>
         <div class="vocab-card" data-korean="작곡하다">
-          <div class="vocab-front"><span class="vocab-word">compose</span></div>
-          <div class="vocab-back"><span class="vocab-meaning">작곡하다</span></div>
+          <div class="vocab-front">
+            <span class="vocab-word">compose</span>
+            <span class="vocab-pos">verb</span>
+            <span class="vocab-example">Beethoven could <strong>compose</strong> music even after he became deaf.</span>
+          </div>
+          <div class="vocab-back"><span class="vocab-korean">작곡하다</span></div>
         </div>
       </div>
+      <button class="btn-flip-all">Flip All Cards</button>
     </section>
 
     <!-- ========== SLIDE 28: Reading Discussion ========== -->
@@ -737,11 +817,11 @@
       <h2>Review Quiz 2/2: Complete the Story</h2>
       <p>Fill in each blank with the correct tense.</p>
       <ol>
-        <li>I <input type="text" class="fill-blank-input" data-answer="was walking"> (walk) down the street last Tuesday when, suddenly, I <input type="text" class="fill-blank-input" data-answer="saw"> (see) my old friend from high school.</li>
-        <li>&ldquo;Hey! What <input type="text" class="fill-blank-input" data-answer="have you been doing"> (you / do) lately?&rdquo; I asked.</li>
-        <li>&ldquo;I <input type="text" class="fill-blank-input" data-answer="'ve been working|have been working"> (work) as a nurse since January,&rdquo; she said.</li>
-        <li>While we <input type="text" class="fill-blank-input" data-answer="were talking"> (talk), it <input type="text" class="fill-blank-input" data-answer="started"> (start) to rain.</li>
-        <li><input type="text" class="fill-blank-input" data-answer="Fortunately|Luckily">, there was a caf&eacute; nearby!</li>
+        <li class="fill-blank-item">I <input type="text" class="fill-blank-input" data-answer="was walking"> (walk) down the street last Tuesday when, suddenly, I <input type="text" class="fill-blank-input" data-answer="saw"> (see) my old friend from high school. <button class="btn-check">Check</button> <span class="feedback"></span></li>
+        <li class="fill-blank-item">&ldquo;Hey! What <input type="text" class="fill-blank-input" data-answer="have you been doing"> (you / do) lately?&rdquo; I asked. <button class="btn-check">Check</button> <span class="feedback"></span></li>
+        <li class="fill-blank-item">&ldquo;I <input type="text" class="fill-blank-input" data-answer="'ve been working|have been working"> (work) as a nurse since January,&rdquo; she said. <button class="btn-check">Check</button> <span class="feedback"></span></li>
+        <li class="fill-blank-item">While we <input type="text" class="fill-blank-input" data-answer="were talking"> (talk), it <input type="text" class="fill-blank-input" data-answer="started"> (start) to rain. <button class="btn-check">Check</button> <span class="feedback"></span></li>
+        <li class="fill-blank-item"><input type="text" class="fill-blank-input" data-answer="Fortunately|Luckily">, there was a caf&eacute; nearby! <button class="btn-check">Check</button> <span class="feedback"></span></li>
       </ol>
       <div class="korean-note">이야기를 완성하세요: 배경 행위(과거진행), 끼어든 사건(단순과거), 최근 활동(현재완료진행), 부사를 적절히 사용합니다.</div>
     </section>
