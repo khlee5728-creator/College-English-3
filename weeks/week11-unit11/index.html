@@ -43,7 +43,7 @@
     <!-- ========== SLIDE 3: Snapshot ========== -->
     <section class="slide slide--content">
       <h2>Snapshot: Amazing Facts About Amazing Landmarks</h2>
-      <figure class="slide-image slide-image--hero"><img src="https://images.unsplash.com/photo-1431274172761-fca41d930114?w=1200&h=520&q=80&auto=format&fit=crop&crop=entropy" alt="Eiffel Tower towering over the Paris cityscape at golden hour" loading="lazy" onload="this.classList.add('loaded')"></figure>
+      <figure class="slide-image slide-image--small"><img src="https://images.unsplash.com/photo-1431274172761-fca41d930114?w=600&h=400&q=80&auto=format&fit=crop&crop=entropy" alt="Eiffel Tower towering over the Paris cityscape at golden hour" loading="lazy" onload="this.classList.add('loaded')"></figure>
       <p>Did you know these facts about famous landmarks?</p>
       <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0;">
         <div style="padding: 0.8rem; background: var(--color-bg-alt, #f0f4f8); border-radius: 8px;">
@@ -76,7 +76,7 @@
     <!-- ========== SLIDE 4: Perspectives ========== -->
     <section class="slide slide--content">
       <h2>Perspectives: Where Dreams Come True</h2>
-      <figure class="slide-image slide-image--hero"><img src="https://images.unsplash.com/photo-1536098561742-ca998e48cbcc?w=1200&h=520&q=80&auto=format&fit=crop&crop=entropy" alt="Disney theme park castle under bright blue sky during daytime" loading="lazy" onload="this.classList.add('loaded')"></figure>
+      <figure class="slide-image slide-image--small"><img src="https://images.unsplash.com/photo-1536098561742-ca998e48cbcc?w=600&h=400&q=80&auto=format&fit=crop&crop=entropy" alt="Disney theme park castle under bright blue sky during daytime" loading="lazy" onload="this.classList.add('loaded')"></figure>
       <p>How much do you know about the Walt Disney Company and theme parks? Find <strong>three mistakes</strong> in the statements below.</p>
       <div class="reading-passage" style="line-height: 1.8;">
         <p><strong>1.</strong> The Walt Disney Company <span class="vocab-highlight" data-meaning="설립되었다">was founded</span> in 1923 in California by Walt Disney and his brother Roy.</p>
@@ -186,11 +186,11 @@
       <h2>Practice: Passive Voice (Past) with <em>by</em></h2>
       <p>Complete each sentence with the correct passive form.</p>
       <ol>
-        <li>The songs <em>Revolution</em> and <em>Hey Jude</em> <input type="text" class="fill-blank-input" data-answer="were recorded"> (record) by the Beatles in 1968.</li>
-        <li>The 2014 Oscar for Best Actress <input type="text" class="fill-blank-input" data-answer="was given"> (give) to Cate Blanchett.</li>
-        <li>The first iPad <input type="text" class="fill-blank-input" data-answer="was released"> (release) in 2010.</li>
-        <li>The 2014 World Cup final <input type="text" class="fill-blank-input" data-answer="was won"> (win) by Germany.</li>
-        <li>The novel <em>One Hundred Years of Solitude</em> <input type="text" class="fill-blank-input" data-answer="was written"> (write) by Gabriel Garc&iacute;a M&aacute;rquez.</li>
+        <li class="fill-blank-item">The songs <em>Revolution</em> and <em>Hey Jude</em> <input type="text" class="fill-blank-input" data-answer="were recorded"> (record) by the Beatles in 1968. <button class="btn-check">Check</button> <span class="feedback"></span></li>
+        <li class="fill-blank-item">The 2014 Oscar for Best Actress <input type="text" class="fill-blank-input" data-answer="was given"> (give) to Cate Blanchett. <button class="btn-check">Check</button> <span class="feedback"></span></li>
+        <li class="fill-blank-item">The first iPad <input type="text" class="fill-blank-input" data-answer="was released"> (release) in 2010. <button class="btn-check">Check</button> <span class="feedback"></span></li>
+        <li class="fill-blank-item">The 2014 World Cup final <input type="text" class="fill-blank-input" data-answer="was won"> (win) by Germany. <button class="btn-check">Check</button> <span class="feedback"></span></li>
+        <li class="fill-blank-item">The novel <em>One Hundred Years of Solitude</em> <input type="text" class="fill-blank-input" data-answer="was written"> (write) by Gabriel Garc&iacute;a M&aacute;rquez. <button class="btn-check">Check</button> <span class="feedback"></span></li>
       </ol>
       <div class="korean-note">각 문장을 올바른 수동태(was/were + 과거분사)로 완성하세요.</div>
     </section>
@@ -200,17 +200,23 @@
       <h2>Transform: Active &rarr; Passive (Past)</h2>
       <p>Rewrite each active sentence in the passive voice with <em>by</em>.</p>
       <div class="transform-exercise">
-        <div class="transform-item" data-answer="The Empire State Building was designed by the American architect William Lamb.">
+        <div class="transform-item">
           <span class="transform-source">The American architect William Lamb designed the Empire State Building.</span>
-          <input type="text" class="transform-input" placeholder="The Empire State Building...">
+          <input type="text" class="transform-input" data-answer="The Empire State Building was designed by the American architect William Lamb." placeholder="The Empire State Building...">
+          <button class="btn-check">Check</button>
+          <span class="feedback"></span>
         </div>
-        <div class="transform-item" data-answer="The first digital HDTV was produced by Woo Paik in 1991.">
+        <div class="transform-item">
           <span class="transform-source">Woo Paik produced the first digital HDTV in 1991.</span>
-          <input type="text" class="transform-input" placeholder="The first digital HDTV...">
+          <input type="text" class="transform-input" data-answer="The first digital HDTV was produced by Woo Paik in 1991." placeholder="The first digital HDTV...">
+          <button class="btn-check">Check</button>
+          <span class="feedback"></span>
         </div>
-        <div class="transform-item" data-answer="The first Harry Potter book was written by J. K. Rowling on an old manual typewriter.">
+        <div class="transform-item">
           <span class="transform-source">J. K. Rowling wrote the first Harry Potter book on an old manual typewriter.</span>
-          <input type="text" class="transform-input" placeholder="The first Harry Potter book...">
+          <input type="text" class="transform-input" data-answer="The first Harry Potter book was written by J. K. Rowling on an old manual typewriter." placeholder="The first Harry Potter book...">
+          <button class="btn-check">Check</button>
+          <span class="feedback"></span>
         </div>
       </div>
       <div class="korean-note">능동태 문장을 수동태로 바꾸세요. 목적어 → 주어, 주어 → by 뒤 행위자로 이동합니다.</div>
@@ -274,49 +280,90 @@
     <!-- ========== SLIDE 13: Word Power — Country Products ========== -->
     <section class="slide slide--vocab">
       <h2>Word Power: Country Products &amp; Features</h2>
-      <p>Click each card to see the Korean meaning. <button class="btn-flip-all">Flip All</button></p>
+      <p>Click each card to see the Korean meaning.</p>
       <div class="vocab-grid">
         <div class="vocab-card" data-korean="소, 가축">
-          <div class="vocab-front"><span class="vocab-word">cattle</span></div>
-          <div class="vocab-back"><span class="vocab-meaning">소, 가축</span></div>
+          <div class="vocab-front">
+            <span class="vocab-word">cattle</span>
+            <span class="vocab-pos">noun (plural)</span>
+            <span class="vocab-example">Ranchers raise <strong>cattle</strong> for beef and dairy.</span>
+          </div>
+          <div class="vocab-back"><span class="vocab-korean">소, 가축</span></div>
         </div>
         <div class="vocab-card" data-korean="방언, 사투리">
-          <div class="vocab-front"><span class="vocab-word">dialects</span></div>
-          <div class="vocab-back"><span class="vocab-meaning">방언, 사투리</span></div>
+          <div class="vocab-front">
+            <span class="vocab-word">dialects</span>
+            <span class="vocab-pos">noun (plural)</span>
+            <span class="vocab-example">China has many regional <strong>dialects</strong>.</span>
+          </div>
+          <div class="vocab-back"><span class="vocab-korean">방언, 사투리</span></div>
         </div>
         <div class="vocab-card" data-korean="전자제품">
-          <div class="vocab-front"><span class="vocab-word">electronics</span></div>
-          <div class="vocab-back"><span class="vocab-meaning">전자제품</span></div>
+          <div class="vocab-front">
+            <span class="vocab-word">electronics</span>
+            <span class="vocab-pos">noun (plural)</span>
+            <span class="vocab-example">Korea exports advanced <strong>electronics</strong>.</span>
+          </div>
+          <div class="vocab-back"><span class="vocab-korean">전자제품</span></div>
         </div>
         <div class="vocab-card" data-korean="수공예품">
-          <div class="vocab-front"><span class="vocab-word">handicrafts</span></div>
-          <div class="vocab-back"><span class="vocab-meaning">수공예품</span></div>
+          <div class="vocab-front">
+            <span class="vocab-word">handicrafts</span>
+            <span class="vocab-pos">noun (plural)</span>
+            <span class="vocab-example">Local artists sell <strong>handicrafts</strong> at the market.</span>
+          </div>
+          <div class="vocab-back"><span class="vocab-korean">수공예품</span></div>
         </div>
         <div class="vocab-card" data-korean="언어">
-          <div class="vocab-front"><span class="vocab-word">languages</span></div>
-          <div class="vocab-back"><span class="vocab-meaning">언어</span></div>
+          <div class="vocab-front">
+            <span class="vocab-word">languages</span>
+            <span class="vocab-pos">noun (plural)</span>
+            <span class="vocab-example">India has hundreds of different <strong>languages</strong>.</span>
+          </div>
+          <div class="vocab-back"><span class="vocab-korean">언어</span></div>
         </div>
         <div class="vocab-card" data-korean="양">
-          <div class="vocab-front"><span class="vocab-word">sheep</span></div>
-          <div class="vocab-back"><span class="vocab-meaning">양</span></div>
+          <div class="vocab-front">
+            <span class="vocab-word">sheep</span>
+            <span class="vocab-pos">noun</span>
+            <span class="vocab-example">Australia raises millions of <strong>sheep</strong> for wool.</span>
+          </div>
+          <div class="vocab-back"><span class="vocab-korean">양</span></div>
         </div>
         <div class="vocab-card" data-korean="기념품">
-          <div class="vocab-front"><span class="vocab-word">souvenirs</span></div>
-          <div class="vocab-back"><span class="vocab-meaning">기념품</span></div>
+          <div class="vocab-front">
+            <span class="vocab-word">souvenirs</span>
+            <span class="vocab-pos">noun (plural)</span>
+            <span class="vocab-example">Tourists love to buy <strong>souvenirs</strong> from each country they visit.</span>
+          </div>
+          <div class="vocab-back"><span class="vocab-korean">기념품</span></div>
         </div>
         <div class="vocab-card" data-korean="대두, 콩">
-          <div class="vocab-front"><span class="vocab-word">soybeans</span></div>
-          <div class="vocab-back"><span class="vocab-meaning">대두, 콩</span></div>
+          <div class="vocab-front">
+            <span class="vocab-word">soybeans</span>
+            <span class="vocab-pos">noun (plural)</span>
+            <span class="vocab-example">The U.S. grows huge amounts of <strong>soybeans</strong>.</span>
+          </div>
+          <div class="vocab-back"><span class="vocab-korean">대두, 콩</span></div>
         </div>
         <div class="vocab-card" data-korean="직물, 섬유">
-          <div class="vocab-front"><span class="vocab-word">textiles</span></div>
-          <div class="vocab-back"><span class="vocab-meaning">직물, 섬유</span></div>
+          <div class="vocab-front">
+            <span class="vocab-word">textiles</span>
+            <span class="vocab-pos">noun (plural)</span>
+            <span class="vocab-example">Bangladesh is famous for its <strong>textiles</strong> industry.</span>
+          </div>
+          <div class="vocab-back"><span class="vocab-korean">직물, 섬유</span></div>
         </div>
         <div class="vocab-card" data-korean="밀">
-          <div class="vocab-front"><span class="vocab-word">wheat</span></div>
-          <div class="vocab-back"><span class="vocab-meaning">밀</span></div>
+          <div class="vocab-front">
+            <span class="vocab-word">wheat</span>
+            <span class="vocab-pos">noun</span>
+            <span class="vocab-example">Canada is a major exporter of <strong>wheat</strong>.</span>
+          </div>
+          <div class="vocab-back"><span class="vocab-korean">밀</span></div>
         </div>
       </div>
+      <button class="btn-flip-all">Flip All Cards</button>
     </section>
 
     <!-- ========== SLIDE 14: Word Power Categories ========== -->
@@ -342,11 +389,11 @@
       <h2>Word Power: Country Fact Practice</h2>
       <p>Complete each sentence with the correct word.</p>
       <ol>
-        <li>The United States grows <input type="text" class="fill-blank-input" data-answer="soybeans"> and <input type="text" class="fill-blank-input" data-answer="wheat">.</li>
-        <li>Australia raises <input type="text" class="fill-blank-input" data-answer="cattle"> and <input type="text" class="fill-blank-input" data-answer="sheep">.</li>
-        <li>China manufactures <input type="text" class="fill-blank-input" data-answer="electronics|textiles"> and <input type="text" class="fill-blank-input" data-answer="textiles|electronics">.</li>
-        <li>In India, people speak many different <input type="text" class="fill-blank-input" data-answer="dialects|languages"> and <input type="text" class="fill-blank-input" data-answer="languages|dialects">.</li>
-        <li>You can find <input type="text" class="fill-blank-input" data-answer="souvenirs|handicrafts"> and <input type="text" class="fill-blank-input" data-answer="handicrafts|souvenirs"> at different shops in Brazil.</li>
+        <li class="fill-blank-item">The United States grows <input type="text" class="fill-blank-input" data-answer="soybeans"> and <input type="text" class="fill-blank-input" data-answer="wheat">. <button class="btn-check">Check</button> <span class="feedback"></span></li>
+        <li class="fill-blank-item">Australia raises <input type="text" class="fill-blank-input" data-answer="cattle"> and <input type="text" class="fill-blank-input" data-answer="sheep">. <button class="btn-check">Check</button> <span class="feedback"></span></li>
+        <li class="fill-blank-item">China manufactures <input type="text" class="fill-blank-input" data-answer="electronics|textiles"> and <input type="text" class="fill-blank-input" data-answer="textiles|electronics">. <button class="btn-check">Check</button> <span class="feedback"></span></li>
+        <li class="fill-blank-item">In India, people speak many different <input type="text" class="fill-blank-input" data-answer="dialects|languages"> and <input type="text" class="fill-blank-input" data-answer="languages|dialects">. <button class="btn-check">Check</button> <span class="feedback"></span></li>
+        <li class="fill-blank-item">You can find <input type="text" class="fill-blank-input" data-answer="souvenirs|handicrafts"> and <input type="text" class="fill-blank-input" data-answer="handicrafts|souvenirs"> at different shops in Brazil. <button class="btn-check">Check</button> <span class="feedback"></span></li>
       </ol>
       <div class="korean-note">적절한 단어를 넣어 각 나라에 대한 문장을 완성하세요.</div>
     </section>
@@ -506,12 +553,12 @@
       <h2>Practice: Passive Voice (Present) without <em>by</em></h2>
       <p>Complete each sentence with the correct passive form.</p>
       <ol>
-        <li>Sheep&rsquo;s milk <input type="text" class="fill-blank-input" data-answer="is used"> (use) for making feta cheese.</li>
-        <li>Handicrafts <input type="text" class="fill-blank-input" data-answer="are sold"> (sell) in the streets in Thailand.</li>
-        <li>Cars and electronics <input type="text" class="fill-blank-input" data-answer="are manufactured"> (manufacture) in Japan.</li>
-        <li>A lot of cattle <input type="text" class="fill-blank-input" data-answer="are raised|is raised"> (raise) in Australia.</li>
-        <li>Tea <input type="text" class="fill-blank-input" data-answer="is grown"> (grow) in cooler parts of the island.</li>
-        <li>Many people <input type="text" class="fill-blank-input" data-answer="are employed"> (employ) in the food-processing industry.</li>
+        <li class="fill-blank-item">Sheep&rsquo;s milk <input type="text" class="fill-blank-input" data-answer="is used"> (use) for making feta cheese. <button class="btn-check">Check</button> <span class="feedback"></span></li>
+        <li class="fill-blank-item">Handicrafts <input type="text" class="fill-blank-input" data-answer="are sold"> (sell) in the streets in Thailand. <button class="btn-check">Check</button> <span class="feedback"></span></li>
+        <li class="fill-blank-item">Cars and electronics <input type="text" class="fill-blank-input" data-answer="are manufactured"> (manufacture) in Japan. <button class="btn-check">Check</button> <span class="feedback"></span></li>
+        <li class="fill-blank-item">A lot of cattle <input type="text" class="fill-blank-input" data-answer="are raised|is raised"> (raise) in Australia. <button class="btn-check">Check</button> <span class="feedback"></span></li>
+        <li class="fill-blank-item">Tea <input type="text" class="fill-blank-input" data-answer="is grown"> (grow) in cooler parts of the island. <button class="btn-check">Check</button> <span class="feedback"></span></li>
+        <li class="fill-blank-item">Many people <input type="text" class="fill-blank-input" data-answer="are employed"> (employ) in the food-processing industry. <button class="btn-check">Check</button> <span class="feedback"></span></li>
       </ol>
       <div class="korean-note">동사를 알맞은 수동태(is/are + 과거분사)로 바꿔 문장을 완성하세요. 주어가 단수인지 복수인지 확인하세요!</div>
     </section>
@@ -622,41 +669,74 @@
     <!-- ========== SLIDE 27: Vocabulary from Reading ========== -->
     <section class="slide slide--vocab">
       <h2>Vocabulary from Reading</h2>
-      <p>Key words and phrases from the museum texts. <button class="btn-flip-all">Flip All</button></p>
+      <p>Key words and phrases from the museum texts.</p>
       <div class="vocab-grid">
         <div class="vocab-card" data-korean="~까지 거슬러 올라가는">
-          <div class="vocab-front"><span class="vocab-word">dating back to</span></div>
-          <div class="vocab-back"><span class="vocab-meaning">~까지 거슬러 올라가는</span></div>
+          <div class="vocab-front">
+            <span class="vocab-word">dating back to</span>
+            <span class="vocab-pos">phrase</span>
+            <span class="vocab-example">The museum has artifacts <strong>dating back to</strong> ancient times.</span>
+          </div>
+          <div class="vocab-back"><span class="vocab-korean">~까지 거슬러 올라가는</span></div>
         </div>
         <div class="vocab-card" data-korean="장식된">
-          <div class="vocab-front"><span class="vocab-word">decorated</span></div>
-          <div class="vocab-back"><span class="vocab-meaning">장식된</span></div>
+          <div class="vocab-front">
+            <span class="vocab-word">decorated</span>
+            <span class="vocab-pos">adjective</span>
+            <span class="vocab-example">The walls are beautifully <strong>decorated</strong> with paintings.</span>
+          </div>
+          <div class="vocab-back"><span class="vocab-korean">장식된</span></div>
         </div>
         <div class="vocab-card" data-korean="소장품, 수집품">
-          <div class="vocab-front"><span class="vocab-word">collection</span></div>
-          <div class="vocab-back"><span class="vocab-meaning">소장품, 수집품</span></div>
+          <div class="vocab-front">
+            <span class="vocab-word">collection</span>
+            <span class="vocab-pos">noun</span>
+            <span class="vocab-example">The museum has a famous <strong>collection</strong> of dinosaur fossils.</span>
+          </div>
+          <div class="vocab-back"><span class="vocab-korean">소장품, 수집품</span></div>
         </div>
         <div class="vocab-card" data-korean="조각, 조각상">
-          <div class="vocab-front"><span class="vocab-word">sculpture</span></div>
-          <div class="vocab-back"><span class="vocab-meaning">조각, 조각상</span></div>
+          <div class="vocab-front">
+            <span class="vocab-word">sculpture</span>
+            <span class="vocab-pos">noun</span>
+            <span class="vocab-example">A marble <strong>sculpture</strong> stands in the center of the hall.</span>
+          </div>
+          <div class="vocab-back"><span class="vocab-korean">조각, 조각상</span></div>
         </div>
         <div class="vocab-card" data-korean="나란히, 함께">
-          <div class="vocab-front"><span class="vocab-word">side by side</span></div>
-          <div class="vocab-back"><span class="vocab-meaning">나란히, 함께</span></div>
+          <div class="vocab-front">
+            <span class="vocab-word">side by side</span>
+            <span class="vocab-pos">adverb phrase</span>
+            <span class="vocab-example">The exhibits are arranged <strong>side by side</strong> for comparison.</span>
+          </div>
+          <div class="vocab-back"><span class="vocab-korean">나란히, 함께</span></div>
         </div>
         <div class="vocab-card" data-korean="전시물">
-          <div class="vocab-front"><span class="vocab-word">exhibit</span></div>
-          <div class="vocab-back"><span class="vocab-meaning">전시물</span></div>
+          <div class="vocab-front">
+            <span class="vocab-word">exhibit</span>
+            <span class="vocab-pos">noun</span>
+            <span class="vocab-example">The new <strong>exhibit</strong> opens next month.</span>
+          </div>
+          <div class="vocab-back"><span class="vocab-korean">전시물</span></div>
         </div>
         <div class="vocab-card" data-korean="현미경">
-          <div class="vocab-front"><span class="vocab-word">microscope</span></div>
-          <div class="vocab-back"><span class="vocab-meaning">현미경</span></div>
+          <div class="vocab-front">
+            <span class="vocab-word">microscope</span>
+            <span class="vocab-pos">noun</span>
+            <span class="vocab-example">Visitors can look through a <strong>microscope</strong> at the bug exhibit.</span>
+          </div>
+          <div class="vocab-back"><span class="vocab-korean">현미경</span></div>
         </div>
         <div class="vocab-card" data-korean="전시 중인 / 판매 중인">
-          <div class="vocab-front"><span class="vocab-word">on show / for sale</span></div>
-          <div class="vocab-back"><span class="vocab-meaning">전시 중인 / 판매 중인</span></div>
+          <div class="vocab-front">
+            <span class="vocab-word">on show / for sale</span>
+            <span class="vocab-pos">phrase</span>
+            <span class="vocab-example">The paintings are <strong>on show</strong> in the main gallery.</span>
+          </div>
+          <div class="vocab-back"><span class="vocab-korean">전시 중인 / 판매 중인</span></div>
         </div>
       </div>
+      <button class="btn-flip-all">Flip All Cards</button>
     </section>
 
     <!-- ========== SLIDE 28: Reading Discussion ========== -->
@@ -737,17 +817,23 @@
       <h2>Review Quiz 2/2: Active &rarr; Passive</h2>
       <p>Rewrite these active sentences in the passive voice.</p>
       <div class="transform-exercise">
-        <div class="transform-item" data-answer="The telephone was invented by Alexander Graham Bell.">
+        <div class="transform-item">
           <span class="transform-source">Alexander Graham Bell invented the telephone.</span>
-          <input type="text" class="transform-input" placeholder="The telephone...">
+          <input type="text" class="transform-input" data-answer="The telephone was invented by Alexander Graham Bell." placeholder="The telephone...">
+          <button class="btn-check">Check</button>
+          <span class="feedback"></span>
         </div>
-        <div class="transform-item" data-answer="Tea is grown in China.">
+        <div class="transform-item">
           <span class="transform-source">People grow tea in China.</span>
-          <input type="text" class="transform-input" placeholder="Tea...">
+          <input type="text" class="transform-input" data-answer="Tea is grown in China." placeholder="Tea...">
+          <button class="btn-check">Check</button>
+          <span class="feedback"></span>
         </div>
-        <div class="transform-item" data-answer="Kimchi is eaten in Korea.|Kimchi is eaten in Korea every day.">
+        <div class="transform-item">
           <span class="transform-source">Koreans eat kimchi every day.</span>
-          <input type="text" class="transform-input" placeholder="Kimchi...">
+          <input type="text" class="transform-input" data-answer="Kimchi is eaten in Korea.|Kimchi is eaten in Korea every day." placeholder="Kimchi...">
+          <button class="btn-check">Check</button>
+          <span class="feedback"></span>
         </div>
       </div>
       <div class="korean-note">능동태 문장을 수동태로 변환하세요. 행위자가 일반적인 사람(People, Koreans)일 때는 by를 생략할 수 있습니다.</div>
