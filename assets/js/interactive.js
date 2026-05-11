@@ -69,8 +69,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const feedback = item.querySelector('.feedback');
       if (!input || !feedback) return;
 
-      const answer = input.dataset.answer.toLowerCase().trim();
-      const answers = answer.split('|'); // Support multiple correct answers with |
+      const rawAnswers = input.dataset.answer.split('|').map(a => a.trim()); // Original case for display
+      const answers = rawAnswers.map(a => a.toLowerCase()); // Lowercased for comparison
       const userAnswer = input.value.toLowerCase().trim();
 
       if (answers.includes(userAnswer)) {
@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
       } else {
         input.classList.remove('correct');
         input.classList.add('incorrect');
-        feedback.textContent = `Try again! (Answer: ${answers[0]})`;
+        feedback.textContent = `Try again! (Answer: ${rawAnswers[0]})`;
         feedback.className = 'feedback incorrect';
       }
     });
@@ -236,7 +236,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const feedback = item.querySelector('.feedback');
       if (!input || !feedback) return;
 
-      const answers = input.dataset.answer.toLowerCase().split('|').map(a => a.trim());
+      const rawAnswers = input.dataset.answer.split('|').map(a => a.trim()); // Original case for display
+      const answers = rawAnswers.map(a => a.toLowerCase()); // Lowercased for comparison
       const userAnswer = input.value.toLowerCase().trim();
 
       if (answers.includes(userAnswer)) {
@@ -247,7 +248,7 @@ document.addEventListener('DOMContentLoaded', () => {
       } else {
         input.classList.remove('correct');
         input.classList.add('incorrect');
-        feedback.textContent = `Answer: ${answers[0]}`;
+        feedback.textContent = `Answer: ${rawAnswers[0]}`;
         feedback.className = 'feedback incorrect';
       }
     });
