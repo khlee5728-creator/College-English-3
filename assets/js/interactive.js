@@ -65,23 +65,43 @@ document.addEventListener('DOMContentLoaded', () => {
       const item = btn.closest('.fill-blank-item');
       if (!item) return;
 
-      const input = item.querySelector('.fill-blank-input');
+      const inputs = item.querySelectorAll('.fill-blank-input');
       const feedback = item.querySelector('.feedback');
-      if (!input || !feedback) return;
+      if (inputs.length === 0 || !feedback) return;
 
-      const rawAnswers = input.dataset.answer.split('|').map(a => a.trim()); // Original case for display
-      const answers = rawAnswers.map(a => a.toLowerCase()); // Lowercased for comparison
-      const userAnswer = input.value.toLowerCase().trim();
+      const results = [];
+      let allCorrect = true;
+      inputs.forEach(input => {
+        const rawAnswers = input.dataset.answer.split('|').map(a => a.trim()); // Original case for display
+        const answers = rawAnswers.map(a => a.toLowerCase()); // Lowercased for comparison
+        const userAnswer = input.value.toLowerCase().trim();
+        const isCorrect = answers.includes(userAnswer);
 
-      if (answers.includes(userAnswer)) {
-        input.classList.remove('incorrect');
-        input.classList.add('correct');
+        if (isCorrect) {
+          input.classList.remove('incorrect');
+          input.classList.add('correct');
+        } else {
+          input.classList.remove('correct');
+          input.classList.add('incorrect');
+          allCorrect = false;
+        }
+        results.push({ correct: isCorrect, answer: rawAnswers[0] });
+      });
+
+      if (allCorrect) {
         feedback.textContent = 'Correct!';
         feedback.className = 'feedback correct';
+      } else if (inputs.length === 1) {
+        // Single-input case: preserve original message format
+        feedback.textContent = `Try again! (Answer: ${results[0].answer})`;
+        feedback.className = 'feedback incorrect';
       } else {
-        input.classList.remove('correct');
-        input.classList.add('incorrect');
-        feedback.textContent = `Try again! (Answer: ${rawAnswers[0]})`;
+        // Multi-input case: list only the incorrect ones with index
+        const wrongList = results
+          .map((r, idx) => r.correct ? null : `(${idx + 1}) ${r.answer}`)
+          .filter(Boolean)
+          .join(', ');
+        feedback.textContent = `Try again! Answers: ${wrongList}`;
         feedback.className = 'feedback incorrect';
       }
     });
