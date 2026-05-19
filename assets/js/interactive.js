@@ -85,23 +85,35 @@ document.addEventListener('DOMContentLoaded', () => {
           input.classList.add('incorrect');
           allCorrect = false;
         }
-        results.push({ correct: isCorrect, answer: rawAnswers[0] });
+        results.push({ correct: isCorrect, rawAnswers });
       });
 
+      // Helper: format possible answers list (joins by " / " if multiple)
+      const formatAnswers = (arr) => arr.length > 1 ? arr.join(' / ') : arr[0];
+
       if (allCorrect) {
-        feedback.textContent = 'Correct!';
+        if (inputs.length === 1 && results[0].rawAnswers.length > 1) {
+          // Single-input with multiple acceptable answers — show others too
+          const userAns = inputs[0].value.trim();
+          const others = results[0].rawAnswers.filter(a => a.toLowerCase() !== userAns.toLowerCase());
+          feedback.innerHTML = '<strong>Correct!</strong>' +
+            (others.length ? ' <span style="font-size:0.88em; color:#374151;">(Other valid: ' + others.join(' / ') + ')</span>' : '');
+        } else {
+          feedback.textContent = 'Correct!';
+        }
         feedback.className = 'feedback correct';
       } else if (inputs.length === 1) {
-        // Single-input case: preserve original message format
-        feedback.textContent = `Try again! (Answer: ${results[0].answer})`;
+        // Single-input incorrect: show all possible answers
+        const ans = results[0].rawAnswers;
+        feedback.innerHTML = `Try again! <span style="font-size:0.95em;">(Answer${ans.length > 1 ? 's' : ''}: ${formatAnswers(ans)})</span>`;
         feedback.className = 'feedback incorrect';
       } else {
-        // Multi-input case: list only the incorrect ones with index
+        // Multi-input case: list only the incorrect blanks with all their possible answers
         const wrongList = results
-          .map((r, idx) => r.correct ? null : `(${idx + 1}) ${r.answer}`)
+          .map((r, idx) => r.correct ? null : `(${idx + 1}) ${formatAnswers(r.rawAnswers)}`)
           .filter(Boolean)
-          .join(', ');
-        feedback.textContent = `Try again! Answers: ${wrongList}`;
+          .join('<br>');
+        feedback.innerHTML = `<strong>Try again!</strong><br><span style="font-size:0.9em;">${wrongList}</span>`;
         feedback.className = 'feedback incorrect';
       }
     });
@@ -263,12 +275,24 @@ document.addEventListener('DOMContentLoaded', () => {
       if (answers.includes(userAnswer)) {
         input.classList.remove('incorrect');
         input.classList.add('correct');
-        feedback.textContent = 'Correct!';
+        if (rawAnswers.length > 1) {
+          const others = rawAnswers.filter(a => a.toLowerCase() !== userAnswer);
+          feedback.innerHTML = '<strong>Correct!</strong>' +
+            (others.length ? '<br><span style="font-size:0.88em; color:#374151;">Other valid answers: ' +
+              others.map(a => '&bull; ' + a).join('<br>&nbsp;&nbsp;&nbsp;&nbsp;') + '</span>' : '');
+        } else {
+          feedback.textContent = 'Correct!';
+        }
         feedback.className = 'feedback correct';
       } else {
         input.classList.remove('correct');
         input.classList.add('incorrect');
-        feedback.textContent = `Answer: ${rawAnswers[0]}`;
+        if (rawAnswers.length > 1) {
+          feedback.innerHTML = '<strong>Try again!</strong><br><span style="font-size:0.88em;">Possible answers:<br>' +
+            rawAnswers.map(a => '&bull; ' + a).join('<br>') + '</span>';
+        } else {
+          feedback.textContent = `Answer: ${rawAnswers[0]}`;
+        }
         feedback.className = 'feedback incorrect';
       }
     });
