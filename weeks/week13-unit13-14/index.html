@@ -486,78 +486,45 @@
     <section class="slide slide--activity">
       <h2>Reading A: Comprehension</h2>
       <p>Choose the correct answer for each question.</p>
-      <div class="quiz-item" data-correct="B">
-        <p><strong>1.</strong> Good acting is about convincing the audience ___.</p>
-        <label><input type="radio" name="qa1" data-value="A"> that you look attractive</label>
-        <label><input type="radio" name="qa1" data-value="B"> that you really are somebody else</label>
+      <div class="quiz-item" data-correct="b">
+        <p>1. Good acting is about convincing the audience &hellip;</p>
+        <div class="quiz-options">
+          <button class="quiz-option" data-value="a">a) that you look attractive</button>
+          <button class="quiz-option" data-value="b">b) that you really are somebody else</button>
+        </div>
+        <div class="quiz-feedback">&ldquo;Acting is about convincing the audience that you really are somebody else.&rdquo;</div>
       </div>
-      <div class="quiz-item" data-correct="A">
-        <p><strong>2.</strong> Christian Bale lost weight by ___.</p>
-        <label><input type="radio" name="qa2" data-value="A"> eating very little food each day</label>
-        <label><input type="radio" name="qa2" data-value="B"> exercising at a military boot camp</label>
+      <div class="quiz-item" data-correct="a">
+        <p>2. Christian Bale lost weight by &hellip;</p>
+        <div class="quiz-options">
+          <button class="quiz-option" data-value="a">a) eating very little food each day</button>
+          <button class="quiz-option" data-value="b">b) exercising at a military boot camp</button>
+        </div>
+        <div class="quiz-feedback">Bale famously survived on a tiny daily diet to lose extreme weight for the role.</div>
       </div>
-      <div class="quiz-item" data-correct="B">
-        <p><strong>3.</strong> Heath Ledger prepared for the Joker role by ___.</p>
-        <label><input type="radio" name="qa3" data-value="A"> training at a boot camp for weeks</label>
-        <label><input type="radio" name="qa3" data-value="B"> isolating himself in a hotel room for six weeks</label>
+      <div class="quiz-item" data-correct="b">
+        <p>3. Heath Ledger prepared for the Joker role by &hellip;</p>
+        <div class="quiz-options">
+          <button class="quiz-option" data-value="a">a) training at a boot camp for weeks</button>
+          <button class="quiz-option" data-value="b">b) isolating himself in a hotel room for six weeks</button>
+        </div>
+        <div class="quiz-feedback">Ledger locked himself in a hotel room for six weeks to develop the Joker character.</div>
       </div>
     </section>
 
     <!-- ========== SLIDE 19: Reading A — Vocabulary ========== -->
-    <section class="slide slide--vocab">
+    <section class="slide slide--activity">
       <h2>Vocabulary from Reading A</h2>
-      <p>Click each card to see the Korean meaning.</p>
-      <div class="vocab-grid">
-        <div class="vocab-card" data-korean="납득시키다, 설득하다">
-          <div class="vocab-front">
-            <span class="vocab-word">convince</span>
-            <span class="vocab-pos">verb</span>
-            <span class="vocab-example">The director had to <strong>convince</strong> the actor to take the role.</span>
-          </div>
-          <div class="vocab-back"><span class="vocab-korean">납득시키다, 설득하다</span></div>
-        </div>
-        <div class="vocab-card" data-korean="뼈, 골격 (a bone)">
-          <div class="vocab-front">
-            <span class="vocab-word">a bone (in a person&rsquo;s chest)</span>
-            <span class="vocab-pos">noun</span>
-            <span class="vocab-example">The actor broke <strong>a bone</strong> while doing his own stunts.</span>
-          </div>
-          <div class="vocab-back"><span class="vocab-korean">뼈, 골격</span></div>
-        </div>
-        <div class="vocab-card" data-korean="도전, 어려운 과제">
-          <div class="vocab-front">
-            <span class="vocab-word">challenge</span>
-            <span class="vocab-pos">noun</span>
-            <span class="vocab-example">Filming on location was a real <strong>challenge</strong>.</span>
-          </div>
-          <div class="vocab-back"><span class="vocab-korean">도전, 어려운 과제</span></div>
-        </div>
-        <div class="vocab-card" data-korean="신병 훈련소">
-          <div class="vocab-front">
-            <span class="vocab-word">boot camp</span>
-            <span class="vocab-pos">noun</span>
-            <span class="vocab-example">Actors attend a <strong>boot camp</strong> to prepare for action films.</span>
-          </div>
-          <div class="vocab-back"><span class="vocab-korean">신병 훈련소</span></div>
-        </div>
-        <div class="vocab-card" data-korean="대사 (배우의)">
-          <div class="vocab-front">
-            <span class="vocab-word">lines (actor&rsquo;s ~)</span>
-            <span class="vocab-pos">noun (plural)</span>
-            <span class="vocab-example">An actor must memorize hundreds of <strong>lines</strong> for a movie.</span>
-          </div>
-          <div class="vocab-back"><span class="vocab-korean">대사 (배우의)</span></div>
-        </div>
-        <div class="vocab-card" data-korean="프랜차이즈, 시리즈물">
-          <div class="vocab-front">
-            <span class="vocab-word">franchise</span>
-            <span class="vocab-pos">noun</span>
-            <span class="vocab-example">The Star Wars <strong>franchise</strong> has many films.</span>
-          </div>
-          <div class="vocab-back"><span class="vocab-korean">프랜차이즈, 시리즈물</span></div>
-        </div>
-      </div>
-      <button class="btn-flip-all">Flip All Cards</button>
+      <p>Complete each sentence with a word from the article.</p>
+      <ol>
+        <li class="fill-blank-item">Good acting is about <input type="text" class="fill-blank-input" data-answer="convincing"> the audience that you really are somebody else. <button class="btn-check">Check</button> <span class="feedback"></span></li>
+        <li class="fill-blank-item">Christian Bale lost so much weight that you could see every <input type="text" class="fill-blank-input" data-answer="bone"> in his chest. <button class="btn-check">Check</button> <span class="feedback"></span></li>
+        <li class="fill-blank-item">Playing a famous villain was a real <input type="text" class="fill-blank-input" data-answer="challenge"> for the actor. <button class="btn-check">Check</button> <span class="feedback"></span></li>
+        <li class="fill-blank-item">Action actors often train at a <input type="text" class="fill-blank-input" data-answer="boot camp"> to prepare for their roles. <button class="btn-check">Check</button> <span class="feedback"></span></li>
+        <li class="fill-blank-item">A serious actor must memorize hundreds of <input type="text" class="fill-blank-input" data-answer="lines"> before shooting begins. <button class="btn-check">Check</button> <span class="feedback"></span></li>
+        <li class="fill-blank-item">The Star Wars <input type="text" class="fill-blank-input" data-answer="franchise"> includes many sequels and spin-offs. <button class="btn-check">Check</button> <span class="feedback"></span></li>
+      </ol>
+      <div class="korean-note">독해 본문에서 사용된 핵심 어휘를 빈칸에 채워 문맥을 다시 확인해 보세요.</div>
     </section>
 
     <!-- ============================= PART 4: BREAK (Slide 20) ============================= -->
@@ -996,84 +963,54 @@
     <!-- ========== SLIDE 35: Reading B — Comprehension ========== -->
     <section class="slide slide--activity">
       <h2>Reading B: Idiom Comprehension</h2>
-      <p>Correct the false statements below.</p>
-      <div class="quiz-item" data-correct="B">
-        <p><strong>1.</strong> &ldquo;Under the weather&rdquo; means ___.</p>
-        <label><input type="radio" name="qb1" data-value="A"> it&rsquo;s going to rain</label>
-        <label><input type="radio" name="qb1" data-value="B"> you feel sick</label>
+      <p>Choose the correct meaning for each idiom.</p>
+      <div class="quiz-item" data-correct="b">
+        <p>1. &ldquo;Under the weather&rdquo; means &hellip;</p>
+        <div class="quiz-options">
+          <button class="quiz-option" data-value="a">a) it&rsquo;s going to rain</button>
+          <button class="quiz-option" data-value="b">b) you feel sick</button>
+        </div>
+        <div class="quiz-feedback">&ldquo;Under the weather&rdquo;는 몸이 안 좋다·아프다는 뜻의 관용 표현.</div>
       </div>
-      <div class="quiz-item" data-correct="A">
-        <p><strong>2.</strong> Sailors went to the bottom of the ship because ___.</p>
-        <label><input type="radio" name="qb2" data-value="A"> they felt sicker when the ship tossed in the storm</label>
-        <label><input type="radio" name="qb2" data-value="B"> they had to carry too much water</label>
+      <div class="quiz-item" data-correct="a">
+        <p>2. Sailors went to the bottom of the ship because &hellip;</p>
+        <div class="quiz-options">
+          <button class="quiz-option" data-value="a">a) they felt sicker when the ship tossed in the storm</button>
+          <button class="quiz-option" data-value="b">b) they had to carry too much water</button>
+        </div>
+        <div class="quiz-feedback">파도가 심할 때 배가 흔들리면 갑판에서 멀미가 심해져 선원들은 아래쪽으로 내려갔습니다.</div>
       </div>
-      <div class="quiz-item" data-correct="B">
-        <p><strong>3.</strong> &ldquo;The last straw&rdquo; refers to ___.</p>
-        <label><input type="radio" name="qb3" data-value="A"> a camel that falls down</label>
-        <label><input type="radio" name="qb3" data-value="B"> a final problem that makes someone take action</label>
+      <div class="quiz-item" data-correct="b">
+        <p>3. &ldquo;The last straw&rdquo; refers to &hellip;</p>
+        <div class="quiz-options">
+          <button class="quiz-option" data-value="a">a) a camel that falls down</button>
+          <button class="quiz-option" data-value="b">b) a final problem that makes someone take action</button>
+        </div>
+        <div class="quiz-feedback">&ldquo;The last straw that broke the camel&rsquo;s back&rdquo; &mdash; 쌓이고 쌓인 끝에 결국 행동을 유발하는 마지막 한계 상황.</div>
       </div>
-      <div class="quiz-item" data-correct="A">
-        <p><strong>4.</strong> &ldquo;Ring a bell&rdquo; means something sounds ___.</p>
-        <label><input type="radio" name="qb4" data-value="A"> familiar</label>
-        <label><input type="radio" name="qb4" data-value="B"> loud and annoying</label>
+      <div class="quiz-item" data-correct="a">
+        <p>4. &ldquo;Ring a bell&rdquo; means something sounds &hellip;</p>
+        <div class="quiz-options">
+          <button class="quiz-option" data-value="a">a) familiar</button>
+          <button class="quiz-option" data-value="b">b) loud and annoying</button>
+        </div>
+        <div class="quiz-feedback">&ldquo;Ring a bell&rdquo;은 어딘가 익숙하게 들린다·기억나게 한다는 뜻.</div>
       </div>
     </section>
 
     <!-- ========== SLIDE 36: Reading B — Vocabulary ========== -->
-    <section class="slide slide--vocab">
+    <section class="slide slide--activity">
       <h2>Vocabulary: English Idioms</h2>
-      <p>Click each card to see the Korean meaning.</p>
-      <div class="vocab-grid">
-        <div class="vocab-card" data-korean="몸이 안 좋은, 아픈">
-          <div class="vocab-front">
-            <span class="vocab-word">under the weather</span>
-            <span class="vocab-pos">idiom</span>
-            <span class="vocab-example">I&rsquo;m feeling a bit <strong>under the weather</strong> today.</span>
-          </div>
-          <div class="vocab-back"><span class="vocab-korean">몸이 안 좋은, 아픈</span></div>
-        </div>
-        <div class="vocab-card" data-korean="최후의 한계, 마지막 한 방">
-          <div class="vocab-front">
-            <span class="vocab-word">the last straw</span>
-            <span class="vocab-pos">idiom</span>
-            <span class="vocab-example">Missing the deadline was <strong>the last straw</strong>.</span>
-          </div>
-          <div class="vocab-back"><span class="vocab-korean">최후의 한계, 마지막 한 방</span></div>
-        </div>
-        <div class="vocab-card" data-korean="기억나게 하다, 낯익다">
-          <div class="vocab-front">
-            <span class="vocab-word">ring a bell</span>
-            <span class="vocab-pos">idiom</span>
-            <span class="vocab-example">That name doesn&rsquo;t <strong>ring a bell</strong>.</span>
-          </div>
-          <div class="vocab-back"><span class="vocab-korean">기억나게 하다, 낯익다</span></div>
-        </div>
-        <div class="vocab-card" data-korean="뱃멀미가 나는">
-          <div class="vocab-front">
-            <span class="vocab-word">seasick</span>
-            <span class="vocab-pos">adjective</span>
-            <span class="vocab-example">He gets <strong>seasick</strong> on every boat trip.</span>
-          </div>
-          <div class="vocab-back"><span class="vocab-korean">뱃멀미가 나는</span></div>
-        </div>
-        <div class="vocab-card" data-korean="관용어, 숙어">
-          <div class="vocab-front">
-            <span class="vocab-word">idiom</span>
-            <span class="vocab-pos">noun</span>
-            <span class="vocab-example">&ldquo;Break a leg&rdquo; is a common English <strong>idiom</strong>.</span>
-          </div>
-          <div class="vocab-back"><span class="vocab-korean">관용어, 숙어</span></div>
-        </div>
-        <div class="vocab-card" data-korean="익숙한, 친숙한">
-          <div class="vocab-front">
-            <span class="vocab-word">familiar</span>
-            <span class="vocab-pos">adjective</span>
-            <span class="vocab-example">Her face looks <strong>familiar</strong> but I can&rsquo;t remember her name.</span>
-          </div>
-          <div class="vocab-back"><span class="vocab-korean">익숙한, 친숙한</span></div>
-        </div>
-      </div>
-      <button class="btn-flip-all">Flip All Cards</button>
+      <p>Complete each sentence with an idiom or word from the article.</p>
+      <ol>
+        <li class="fill-blank-item">I&rsquo;m feeling a bit <input type="text" class="fill-blank-input" data-answer="under the weather"> today &mdash; maybe I caught a cold. <button class="btn-check">Check</button> <span class="feedback"></span></li>
+        <li class="fill-blank-item">Missing the final deadline was <input type="text" class="fill-blank-input" data-answer="the last straw"> &mdash; the manager finally lost his patience. <button class="btn-check">Check</button> <span class="feedback"></span></li>
+        <li class="fill-blank-item">That name doesn&rsquo;t <input type="text" class="fill-blank-input" data-answer="ring a bell"> &mdash; I don&rsquo;t think I&rsquo;ve met him before. <button class="btn-check">Check</button> <span class="feedback"></span></li>
+        <li class="fill-blank-item">He always gets <input type="text" class="fill-blank-input" data-answer="seasick"> on long boat trips because of the rough waves. <button class="btn-check">Check</button> <span class="feedback"></span></li>
+        <li class="fill-blank-item">&ldquo;Break a leg&rdquo; is a famous English <input type="text" class="fill-blank-input" data-answer="idiom"> used to wish someone good luck. <button class="btn-check">Check</button> <span class="feedback"></span></li>
+        <li class="fill-blank-item">Her face looks <input type="text" class="fill-blank-input" data-answer="familiar">, but I can&rsquo;t remember where we met. <button class="btn-check">Check</button> <span class="feedback"></span></li>
+      </ol>
+      <div class="korean-note">독해 본문에서 등장한 관용 표현·핵심 어휘를 빈칸에 채워 문맥을 확인해 보세요.</div>
     </section>
 
     <!-- ============================= PART 7: REVIEW (Slides 37-40) ============================= -->
@@ -1082,29 +1019,41 @@
     <section class="slide slide--activity">
       <h2>Review Quiz 1/2: Units 13 &amp; 14</h2>
       <p>Choose the correct answer.</p>
-      <div class="quiz-item" data-correct="B">
-        <p><strong>1.</strong> The concert was really ___. I was ___ the whole time.</p>
-        <label><input type="radio" name="rq1" data-value="A"> excited / exciting</label>
-        <label><input type="radio" name="rq1" data-value="B"> exciting / excited</label>
-        <label><input type="radio" name="rq1" data-value="C"> exciting / exciting</label>
+      <div class="quiz-item" data-correct="b">
+        <p>1. The concert was really ___. I was ___ the whole time.</p>
+        <div class="quiz-options">
+          <button class="quiz-option" data-value="a">a) excited / exciting</button>
+          <button class="quiz-option" data-value="b">b) exciting / excited</button>
+          <button class="quiz-option" data-value="c">c) exciting / exciting</button>
+        </div>
+        <div class="quiz-feedback">사물·사건 묘사 → <strong>-ing</strong>(exciting), 사람의 감정 → <strong>-ed</strong>(excited).</div>
       </div>
-      <div class="quiz-item" data-correct="A">
-        <p><strong>2.</strong> She&rsquo;s a singer ___ writes her own songs.</p>
-        <label><input type="radio" name="rq2" data-value="A"> who</label>
-        <label><input type="radio" name="rq2" data-value="B"> which</label>
-        <label><input type="radio" name="rq2" data-value="C"> where</label>
+      <div class="quiz-item" data-correct="a">
+        <p>2. She&rsquo;s a singer ___ writes her own songs.</p>
+        <div class="quiz-options">
+          <button class="quiz-option" data-value="a">a) who</button>
+          <button class="quiz-option" data-value="b">b) which</button>
+          <button class="quiz-option" data-value="c">c) where</button>
+        </div>
+        <div class="quiz-feedback">선행사가 사람(singer) → 관계대명사 <strong>who</strong>. which는 사물, where는 장소.</div>
       </div>
-      <div class="quiz-item" data-correct="C">
-        <p><strong>3.</strong> He&rsquo;s biting his nails. He ___ be nervous.</p>
-        <label><input type="radio" name="rq3" data-value="A"> can</label>
-        <label><input type="radio" name="rq3" data-value="B"> has to</label>
-        <label><input type="radio" name="rq3" data-value="C"> might</label>
+      <div class="quiz-item" data-correct="c">
+        <p>3. He&rsquo;s biting his nails. He ___ be nervous.</p>
+        <div class="quiz-options">
+          <button class="quiz-option" data-value="a">a) can</button>
+          <button class="quiz-option" data-value="b">b) has to</button>
+          <button class="quiz-option" data-value="c">c) might</button>
+        </div>
+        <div class="quiz-feedback">추측(speculation, 50% 확률) → <strong>might/may</strong>. can은 능력·허가, have to는 의무.</div>
       </div>
-      <div class="quiz-item" data-correct="B">
-        <p><strong>4.</strong> You ___ turn off your phone in the library.</p>
-        <label><input type="radio" name="rq4" data-value="A"> can</label>
-        <label><input type="radio" name="rq4" data-value="B"> have to</label>
-        <label><input type="radio" name="rq4" data-value="C"> are allowed to</label>
+      <div class="quiz-item" data-correct="b">
+        <p>4. You ___ turn off your phone in the library.</p>
+        <div class="quiz-options">
+          <button class="quiz-option" data-value="a">a) can</button>
+          <button class="quiz-option" data-value="b">b) have to</button>
+          <button class="quiz-option" data-value="c">c) are allowed to</button>
+        </div>
+        <div class="quiz-feedback">도서관 규칙(의무) → <strong>have to</strong>. can/are allowed to는 허가(반대 의미).</div>
       </div>
     </section>
 
