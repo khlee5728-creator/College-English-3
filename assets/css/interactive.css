@@ -762,6 +762,9 @@
 .sentence-analysis .c { color: var(--color-complement); font-weight: var(--fw-bold); border-bottom: 3px solid var(--color-complement); }
 .sentence-analysis .m { color: var(--color-modifier); font-weight: var(--fw-bold); border-bottom: 3px solid var(--color-modifier); }
 
+/* Hide plain-text original sentences in sentence-analysis blocks; only the .breakdown (color-coded) version is shown to avoid duplicated lines. */
+.sentence-analysis .original { display: none; }
+
 .analysis-legend {
   position: fixed;
   bottom: 68px;
