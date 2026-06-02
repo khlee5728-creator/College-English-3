@@ -5,6 +5,14 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
+  // ---- Answer Normalization Helper ----
+  // Strip common punctuation so students aren't penalized for missing/extra
+  // periods, commas, quote marks, etc. Focus stays on grammar/vocabulary.
+  const normalizeAnswer = (s) => (s || '').toLowerCase()
+    .replace(/[.,;:!?"'`\u201C\u201D\u2018\u2019]/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+
   // ---- Sentence Analysis Legend (auto-inject) ----
   document.querySelectorAll('section.slide').forEach(section => {
     if (!section.querySelector('.sentence-analysis')) return;
@@ -73,8 +81,8 @@ document.addEventListener('DOMContentLoaded', () => {
       let allCorrect = true;
       inputs.forEach(input => {
         const rawAnswers = input.dataset.answer.split('|').map(a => a.trim()); // Original case for display
-        const answers = rawAnswers.map(a => a.toLowerCase()); // Lowercased for comparison
-        const userAnswer = input.value.toLowerCase().trim();
+        const answers = rawAnswers.map(normalizeAnswer); // Normalized for comparison
+        const userAnswer = normalizeAnswer(input.value);
         const isCorrect = answers.includes(userAnswer);
 
         if (isCorrect) {
@@ -95,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (inputs.length === 1 && results[0].rawAnswers.length > 1) {
           // Single-input with multiple acceptable answers — show others too
           const userAns = inputs[0].value.trim();
-          const others = results[0].rawAnswers.filter(a => a.toLowerCase() !== userAns.toLowerCase());
+          const others = results[0].rawAnswers.filter(a => normalizeAnswer(a) !== normalizeAnswer(userAns));
           feedback.innerHTML = '<strong>Correct!</strong>' +
             (others.length ? ' <span style="font-size:0.88em; color:#374151;">(Other valid: ' + others.join(' / ') + ')</span>' : '');
         } else {
@@ -269,14 +277,14 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!input || !feedback) return;
 
       const rawAnswers = input.dataset.answer.split('|').map(a => a.trim()); // Original case for display
-      const answers = rawAnswers.map(a => a.toLowerCase()); // Lowercased for comparison
-      const userAnswer = input.value.toLowerCase().trim();
+      const answers = rawAnswers.map(normalizeAnswer); // Normalized for comparison
+      const userAnswer = normalizeAnswer(input.value);
 
       if (answers.includes(userAnswer)) {
         input.classList.remove('incorrect');
         input.classList.add('correct');
         if (rawAnswers.length > 1) {
-          const others = rawAnswers.filter(a => a.toLowerCase() !== userAnswer);
+          const others = rawAnswers.filter(a => normalizeAnswer(a) !== userAnswer);
           feedback.innerHTML = '<strong>Correct!</strong>' +
             (others.length ? '<br><span style="font-size:0.88em; color:#374151;">Other valid answers: ' +
               others.map(a => '&bull; ' + a).join('<br>&nbsp;&nbsp;&nbsp;&nbsp;') + '</span>' : '');
