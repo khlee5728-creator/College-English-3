@@ -1,6 +1,10 @@
 # 저작권 자료 (절대 배포 금지)
 docs/
 
+# 시험 자료 — 로컬에서만 보관 (원격 저장소에 절대 공유 금지)
+midterm exam/
+final exam/
+
 # 테스트 PDF
 *.pdf
 
