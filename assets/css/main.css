@@ -235,9 +235,9 @@ a:hover { color: var(--color-primary); text-decoration: underline; }
    ============================================ */
 .image-attribution {
   position: fixed;
-  bottom: 8px;
+  bottom: 75px;  /* slide-nav(높이 ~60px, z-index 999) 위에 표시 */
   left: 12px;
-  z-index: 997;  /* keyboard-hint(998) 아래 */
+  z-index: 997;
   background: rgba(255, 255, 255, 0.88);
   padding: 3px 10px;
   border-radius: 12px;
