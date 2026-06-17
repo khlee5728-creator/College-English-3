@@ -192,3 +192,90 @@ a:hover { color: var(--color-primary); text-decoration: underline; }
   font-size: 1.5em;
   line-height: 1;
 }
+
+/* ============================================
+   AI-Generated Image Disclosure Badge
+   사용법: <figcaption>설명 <span class="ai-badge">AI-generated</span></figcaption>
+   alt 속성에 [AI-generated] 접두어 추가 권장 (screen reader)
+   ============================================ */
+.ai-badge {
+  display: inline-block;
+  background: #eef2f6;
+  color: #4b5563;
+  font-size: 0.72em;
+  font-style: italic;
+  padding: 1px 8px;
+  border-radius: 10px;
+  margin-left: 0.5em;
+  vertical-align: middle;
+  font-family: var(--font-en, 'Georgia', serif);
+  letter-spacing: 0.02em;
+  user-select: none;
+}
+.ai-badge::before {
+  content: "\2726 ";  /* ✦ sparkle (Google Gemini style) */
+  font-style: normal;
+  margin-right: 0.1em;
+}
+
+/* 인쇄 시 색상 보존 */
+@media print {
+  .ai-badge {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    background: #eef2f6 !important;
+    color: #4b5563 !important;
+  }
+}
+
+/* ============================================
+   Image Source Attribution (Fixed Footer)
+   강의 페이지 좌측 하단 상시 표시 (slideshow 중에도 보임)
+   AI 생성 가능성 일괄 disclosure
+   ============================================ */
+.image-attribution {
+  position: fixed;
+  bottom: 8px;
+  left: 12px;
+  z-index: 997;  /* keyboard-hint(998) 아래 */
+  background: rgba(255, 255, 255, 0.88);
+  padding: 3px 10px;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  color: #6b7280;
+  font-size: 0.7em;
+  font-style: italic;
+  font-family: var(--font-en, 'Georgia', serif);
+  line-height: 1.4;
+  max-width: 60vw;
+  pointer-events: auto;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  cursor: help;
+}
+.image-attribution::before {
+  content: "\2726 ";  /* ✦ sparkle */
+  font-style: normal;
+  color: #9ca3af;
+}
+.image-attribution a {
+  color: #2a6496;
+  text-decoration: none;
+}
+.image-attribution a:hover { text-decoration: underline; }
+
+/* 인쇄 시 정적 위치, 페이지 끝에 표시 */
+@media print {
+  .image-attribution {
+    position: static;
+    margin-top: 1.5rem;
+    background: transparent !important;
+    border: 0;
+    color: #6b7280 !important;
+    font-size: 8pt;
+    text-align: center;
+    max-width: 100%;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
