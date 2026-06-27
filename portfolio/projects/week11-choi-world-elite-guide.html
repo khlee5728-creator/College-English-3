@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Elite Travel Guide</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Malgun Gothic', sans-serif;
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #b4d9eb, #2e98c9 50%, #1a3fa3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        body::before {
+            content: '✈';
+            position: absolute;
+            top: 10%;
+            right: 8%;
+            font-size: 7rem;
+            color: rgba(255, 255, 255, 0.18);
+            transform: rotate(-12deg);
+            animation: fly 10s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 900px;
+            padding: 40px;
+            background: #fff;
+            border-radius: 25px;
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.5);
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 { text-align: center; color: #1a2a6c; margin-bottom: 10px; font-size: 2.5rem; }
+        .subtitle { text-align: center; color: #666; margin-bottom: 30px; }
+        .input-section, .button-group { display: flex; }
+        .input-section { gap: 12px; margin-bottom: 30px; }
+        .button-group { gap: 10px; }
+
+        input {
+            flex: 1;
+            padding: 18px 25px;
+            border: 2px solid #eee;
+            border-radius: 15px;
+            font-size: 1.1rem;
+            outline: none;
+        }
+        input:focus { border-color: #1a2a6c; }
+
+        button {
+            padding: 0 25px;
+            border: 0;
+            border-radius: 15px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        #searchBtn, .chip:hover { background: #2d3fa7; color: #fff; }
+        #pdfBtn { background: #1fa1b2; color: #fff; }
+
+        .landmark-card {
+            margin-bottom: 25px;
+            padding: 30px;
+            border: 1px solid #f0f0f0;
+            border-radius: 20px;
+            background: #fff;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+        }
+        .landmark-name {
+            margin-bottom: 20px;
+            padding-left: 15px;
+            border-left: 6px solid #ffffff;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #728dfa;
+        }
+        .desc-group { margin-bottom: 20px; }
+        .eng-text, .kor-text { display: block; }
+        .eng-text { margin-bottom: 5px; line-height: 1.5; color: #222; font-style: italic; font-family: Georgia, serif; }
+        .kor-text { line-height: 1.6; color: #444; font-weight: 500; }
+        .highlight { background: linear-gradient(to top, #8fe5ff 50%, transparent 50%); padding: 0 3px; font-weight: bold; }
+        .bold-point { color: #00ade2; font-weight: bold; }
+
+        .chips {
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+        .chip {
+            padding: 10px 18px;
+            border-radius: 25px;
+            background: #f0f4f8;
+            color: #1a2a6c;
+            font-size: 0.9rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .loading { text-align: center; color: #5c7bfa; font-weight: bold; font-size: 1.2rem; padding: 60px 0; }
+
+        @keyframes fly {
+            0%, 100% { transform: translate(0, 0) rotate(-12deg); }
+            50% { transform: translate(-18px, 12px) rotate(-6deg); }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>🛫 World Elite Guide 🛬</h1>
+    <p class="subtitle">엄선된 국가별 필수 명소와 박물관 리포트를 생성합니다.</p>
+
+    <div class="input-section">
+        <input type="text" id="countryInput" placeholder="나라 이름을 입력하세요 (예: 페루, 독일, 미국 등)">
+        <div class="button-group">
+            <button id="searchBtn">🎲 리포트 생성</button>
+            <button id="pdfBtn">📄 PDF 저장</button>
+        </div>
+    </div>
+
+    <div id="resultArea">
+        <p style="text-align: center; color: #bbb; margin-top: 80px;">탐험하고 싶은 나라를 입력하면 맞춤형 가이드가 열립니다.</p>
+    </div>
+    <div class="chips" id="chips"></div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<script>
+    // 1. 요청하신 필수 명소 및 박물관 데이터베이스 (3곳씩 고정)
+    const eliteData = {
+        "프랑스": ["에펠탑", "루브르 박물관", "베르사유 궁전"],
+        "페루": ["마추픽추", "라르코 박물관", "쿠스코"],
+        "독일": ["노이슈반타인 성", "페르가몬 박물관", "브란덴부르크 문"],
+        "일본": ["후지산", "에도 도쿄 박물관", "킨카쿠지"],
+        "미국": ["자유의 여신상", "메트로폴리탄 미술관", "그랜드 캐니언"],
+        "영국": ["빅벤", "대영박물관", "런던 아이"],
+        "인도": ["술라브 국제 화장실 박물관", "타지마할", "아그라 성"],
+        "멕시코": ["칸쿤 수중 박물관", "치첸 이트사", "차풀테펙 성"],
+        "우크라이나": ["미콜라 샤드리스트 미크로미니어처 박물관", "성 소피아 대성당", "리비우 역사 지구"],
+        "한국": ["경복궁", "국립중앙박물관", "불국사"]
+    };
+
+    function createHTML(name, summary) {
+        const naturalSet = ['산', '봉우리', '섬', '폭포', '강', '호수', '해변', '자연', '산맥', '화산', '후지산', '그랜드 캐니언', '마추픽추'];
+        const isNatural = naturalSet.some(k => name.includes(k));
+
+        let e1, k1, e2, k2;
+        if (isNatural) {
+            e1 = `This natural wonder <mark class="highlight">was formed</mark> over a long period of geological time.`;
+            k1 = `과거에 이 ${name}은(는) 대자연의 경이로운 섭리에 의해 웅장한 모습으로 <b class="bold-point">형성되었습니다</b>.`;
+            e2 = `Today, it <mark class="highlight">is widely admired and protected</mark> as a global natural heritage site.`;
+            k2 = `현재 이 곳은 전 세계인들에게 깊은 감동을 주며 <b class="bold-point">소중한 자연 유산으로 보존되고 있습니다</b>.`;
+        } else {
+            e1 = `This historical masterpiece <mark class="highlight">was designed and built</mark> with the finest craftsmanship of its time.`;
+            k1 = `과거에 이 건축물은 당대 최고의 기술과 예술적 혼을 바탕으로 <b class="bold-point">완공되었습니다</b>.`;
+            e2 = `Today, it <mark class="highlight">is recognized and preserved</mark> as an iconic landmark of human history.`;
+            k2 = `현재 이 곳은 인류 역사의 아이콘으로 사랑받고 있으며 <b class="bold-point">소중한 문화 유산으로 관리되고 있습니다</b>.`;
+        }
+
+        return `
+            <div class="landmark-card">
+                <div class="landmark-name">✈️ ${name}</div>
+                <div class="desc-group">
+                    <span class="eng-text">${e1}</span>
+                    <span class="kor-text">${k1}</span>
+                </div>
+                <div class="desc-group">
+                    <span class="eng-text">${e2}</span>
+                    <span class="kor-text">${k2}</span>
+                </div>
+                <hr style="margin:20px 0; border:0; border-top:1px dashed #ddd;">
+                <p style="color:#666; font-size:0.95rem; line-height:1.7;"><strong>[위키백과 요약]</strong><br>${summary}</p>
+            </div>
+        `;
+    }
+
+    async function fetchWiki(title) {
+        try {
+            const url = `https://ko.wikipedia.org/w/api.php?action=query&prop=extracts&exintro&explaintext&redirects=1&titles=${encodeURIComponent(title)}&format=json&origin=*`;
+            const res = await fetch(url);
+            const data = await res.json();
+            const pages = data.query.pages;
+            const pageId = Object.keys(pages)[0];
+            let text = pages[pageId].extract || "상세 정보를 가져올 수 없습니다.";
+            text = text.replace(/\([^)]*\)/g, '').replace(/\[\d+\]/g, '').replace(/\[.*?\]/g, '').trim();
+            const sentences = text.match(/[^.!?]+[.!?]+/g);
+            return sentences ? sentences.slice(0, 2).join(' ') : text;
+        } catch { return "데이터 통신 중 오류가 발생했습니다."; }
+    }
+
+    async function getPlaces(country) {
+        if (eliteData[country]) return eliteData[country];
+        
+        // 데이터가 없는 국가일 경우 실시간 검색
+        let list = [];
+        const mRes = await fetch(`https://ko.wikipedia.org/w/api.php?action=query&list=search&srsearch=${encodeURIComponent(country + ' 박물관')}&format=json&origin=*`);
+        const mData = await mRes.json();
+        if (mData.query.search[0]) list.push(mData.query.search[0].title);
+
+        const lRes = await fetch(`https://ko.wikipedia.org/w/api.php?action=query&list=search&srsearch=${encodeURIComponent(country + ' 명소')}&format=json&origin=*`);
+        const lData = await lRes.json();
+        lData.query.search.slice(0, 5).forEach(s => {
+            if (list.length < 3 && s.title !== country && !list.includes(s.title)) list.push(s.title);
+        });
+        return list;
+    }
+
+    async function run() {
+        const country = document.getElementById('countryInput').value.trim();
+        if (!country) { alert("나라 이름을 입력해 주세요!"); return; }
+        const resArea = document.getElementById('resultArea');
+        resArea.innerHTML = `<div class="loading">✈️ ${country}(으)로 떠나는 리포트를 작성 중입니다...</div>`;
+        
+        const places = await getPlaces(country);
+        let html = "";
+        for (const p of places) {
+            const sum = await fetchWiki(p);
+            html += createHTML(p, sum);
+        }
+        resArea.innerHTML = html;
+    }
+
+    async function makePdf() {
+        const cards = document.querySelectorAll('.landmark-card');
+        if (cards.length === 0) { alert("먼저 리포트를 생성해 주세요!"); return; }
+        const btn = document.getElementById('pdfBtn');
+        const originalText = btn.innerText;
+        btn.innerText = "생성 중...";
+
+        const { jsPDF } = window.jspdf;
+        const pdf = new jsPDF('p', 'mm', 'a4');
+
+        for (let i = 0; i < cards.length; i++) {
+            const canvas = await html2canvas(cards[i], { scale: 2, useCORS: true });
+            const imgData = canvas.toDataURL('image/png');
+            if (i > 0) pdf.addPage();
+            const pdfWidth = 190;
+            const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+            pdf.addImage(imgData, 'PNG', 10, 20, pdfWidth, pdfHeight);
+        }
+        pdf.save(`Travel_Report_${document.getElementById('countryInput').value}.pdf`);
+        btn.innerText = originalText;
+    }
+
+    // 칩 생성
+    Object.keys(eliteData).forEach(c => {
+        const chip = document.createElement('div');
+        chip.className = 'chip'; chip.textContent = c;
+        chip.onclick = () => { document.getElementById('countryInput').value = c; run(); };
+        document.getElementById('chips').appendChild(chip);
+    });
+
+    document.getElementById('searchBtn').onclick = run;
+    document.getElementById('pdfBtn').onclick = makePdf;
+    document.getElementById('countryInput').addEventListener('keypress', (e) => { if (e.key === 'Enter') run(); });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>The Master of Seafood - Pro Max (Graded)</title>
+    <style>
+        body { font-family: 'Arial', sans-serif; background: #f0f4f8; text-align: center; padding: 20px; }
+        #game-box { background: white; padding: 30px; border-radius: 30px; display: inline-block; width: 95%; max-width: 650px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); border-top: 8px solid #0288d1; }
+        .guest-img { width: 100%; max-width: 320px; height: 250px; object-fit: cover; border-radius: 20px; margin: 15px 0; border: 4px solid #e1f5fe; }
+        .btn { background: #0288d1; color: white; padding: 14px 22px; border: none; border-radius: 12px; cursor: pointer; margin: 6px; font-size: 16px; font-weight: bold; transition: 0.3s; }
+        .btn:hover { background: #01579b; transform: translateY(-2px); }
+        .vocab { color: #d32f2f; font-weight: bold; }
+        .guide-box { background: #f9f9f9; padding: 15px; border-radius: 15px; text-align: left; margin: 15px 0; border-left: 5px solid #0288d1; font-size: 14px; }
+        .progress-container { background: #e0e0e0; height: 10px; border-radius: 5px; margin: 15px 0; overflow: hidden; }
+        #progress-fill { background: #0288d1; height: 100%; width: 0%; transition: 0.5s; }
+        #status-bar { display: flex; justify-content: space-around; margin-bottom: 20px; font-weight: bold; color: #546e7a; }
+    </style>
+</head>
+<body>
+
+<div id="game-box">
+    <div id="status-bar">
+        <span>👨‍🍳 Chef: Jeongdong</span>
+        <span>🏆 Total Score: <span id="score">0</span></span>
+    </div>
+    <h1>🐟 Seafood Master: Pro Max</h1>
+    <div class="progress-container"><div id="progress-fill"></div></div>
+    
+    <div id="content-area">
+        <div class="guide-box">
+            <h3 style="margin-top:0;">📖 Master's Recipe Book (Check Carefully!)</h3>
+            <p>1. <b>Salmon</b>: Fresh <b>Veggie</b> + <b>Bake</b> + <b>Lemon</b></p>
+            <p>2. <b>Mackerel</b>: <b>Garlic</b> + <b>Grill</b> + <b>Sea Salt</b> (Must be <b>crispy</b>!)</p>
+            <p>3. <b>Sea Bass</b>: <b>Chili</b> + <b>Roast</b> + <b>Spicy Sauce</b> (Not <b>greasy</b>!)</p>
+            <p>4. <b>Shrimp</b>: <b>Butter</b> + <b>Steam</b> + <b>Sweet</b></p>
+            <p>5. <b>Tuna</b>: <b>Onion</b> + <b>Boil</b> + <b>Salty</b></p>
+        </div>
+        <button class="btn" onclick="startGuest()">OPEN RESTAURANT</button>
+    </div>
+</div>
+
+<script>
+    const guests = [
+        { 
+            name: "Salmon", 
+            img: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=600", 
+            q: "I'm on a diet. <b>Have you ever tried</b> making a light Salmon dish?", 
+            okI: "Veggie", okM: "Bake", okT: "Sour (Lemon)" 
+        },
+        { 
+            name: "Mackerel", 
+            img: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=600", 
+            q: "I'm starving! I want something really <b>crunchy</b>. <b>How often do you</b> cook Mackerel?", 
+            okI: "Garlic", okM: "Grill", okT: "Salty (Sea Salt)" 
+        },
+        { 
+            name: "Sea Bass", 
+            img: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=600", 
+            q: "I want a special Sea Bass dinner with a <b>strong kick</b> to it.", 
+            okI: "Chili", okM: "Roast", okT: "Spicy" 
+        },
+        { 
+            name: "Shrimp", 
+            img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600", 
+            q: "I love Shrimp! Can you make it <b>soft and flavorful</b> for me?", 
+            okI: "Butter", okM: "Steam", okT: "Sweet" 
+        },
+        { 
+            name: "Tuna", 
+            img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600", 
+            q: "I want a Tuna steak that <b>goes well with rice</b>. Cook it quickly!", 
+            okI: "Onion", okM: "Boil", okT: "Salty" 
+        }
+    ];
+
+    let current = null;
+    let selI = "", selM = "", totalScore = 0;
+
+    function startGuest() {
+        current = guests[Math.floor(Math.random() * guests.length)];
+        updateProgress(10);
+        showStep1();
+    }
+
+    function showStep1() {
+        document.getElementById('content-area').innerHTML = `
+            <img src="${current.img}" class="guest-img">
+            <p>Guest: "${current.q}"</p>
+            <p><b>[Step 1: Choose Main Ingredient]</b></p>
+            <button class="btn" onclick="goStep2('Veggie')">Fresh Veggie</button>
+            <button class="btn" onclick="goStep2('Garlic')">Garlic</button>
+            <button class="btn" onclick="goStep2('Chili')">Chili</button>
+            <button class="btn" onclick="goStep2('Butter')">Butter</button>
+            <button class="btn" onclick="goStep2('Onion')">Onion</button>
+        `;
+    }
+
+    function goStep2(item) {
+        selI = item;
+        updateProgress(40);
+        document.getElementById('content-area').innerHTML = `
+            <img src="${current.img}" class="guest-img">
+            <p>Adding <b>${item}</b>... Now, how to cook?</p>
+            <p><b>[Step 2: Choose Cooking Method]</b></p>
+            <button class="btn" onclick="goStep3('Bake')">Bake</button>
+            <button class="btn" onclick="goStep3('Grill')">Grill</button>
+            <button class="btn" onclick="goStep3('Roast')">Roast</button>
+            <button class="btn" onclick="goStep3('Steam')">Steam</button>
+            <button class="btn" onclick="goStep3('Boil')">Boil</button>
+        `;
+    }
+
+    function goStep3(method) {
+        selM = method;
+        updateProgress(70);
+        document.getElementById('content-area').innerHTML = `
+            <img src="${current.img}" class="guest-img">
+            <p>Cooking with <b>${method}</b>... Final touch?</p>
+            <p><b>[Step 3: Choose Final Taste]</b></p>
+            <button class="btn" onclick="finish('Sour (Lemon)')">Sour (Lemon)</button>
+            <button class="btn" onclick="finish('Salty (Sea Salt)')">Salty (Sea Salt)</button>
+            <button class="btn" onclick="finish('Spicy')">Spicy</button>
+            <button class="btn" onclick="finish('Sweet')">Sweet</button>
+            <button class="btn" onclick="finish('Salty')">Salty</button>
+        `;
+    }
+
+    function finish(taste) {
+        updateProgress(100);
+        
+        let correctCount = 0;
+        if(selI === current.okI) correctCount++;
+        if(selM === current.okM) correctCount++;
+        if(taste === current.okT) correctCount++;
+
+        let title = "";
+        let feedback = "";
+        let points = 0;
+
+        if(correctCount === 3) {
+            title = "<h2 style='color:green'>✨ MASTERPIECE!</h2>";
+            feedback = `Perfect! You matched the recipe for ${current.name}. The guest is extremely happy!`;
+            points = 30;
+        } else if(correctCount === 2) {
+            title = "<h2 style='color:orange'>⚖️ SO-SO...</h2>";
+            feedback = `Good effort, but something was slightly off. (Correct: 2/3)`;
+            points = 15;
+        } else {
+            title = "<h2 style='color:red'>❌ DISASTER...</h2>";
+            feedback = `Oh no! Check the Recipe Book again. They needed <b>${current.okI}</b>, <b>${current.okM}</b>, and <b>${current.okT}</b>.`;
+            points = 0;
+        }
+
+        totalScore += points;
+        document.getElementById('score').innerText = totalScore;
+
+        document.getElementById('content-area').innerHTML = `
+            <img src="${current.img}" class="guest-img">
+            ${title}
+            <p>${feedback}</p>
+            <p style="font-weight:bold; font-size:18px;">Points Gained: +${points}</p>
+            <button class="btn" onclick="startGuest()">Next Order</button>
+            <button class="btn" style="background:#666" onclick="location.reload()">Reset</button>
+        `;
+    }
+
+    function updateProgress(val) { document.getElementById('progress-fill').style.width = val + "%"; }
+</script>
+</body>
+</html>

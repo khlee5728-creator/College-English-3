@@ -5,6 +5,9 @@ docs/
 midterm exam/
 final exam/
 
+# 학생 원본 자료 — 실명 포함, 로컬 보관 (포트폴리오는 anonymized 버전을 portfolio/ 에 별도 관리)
+26-1 student data/
+
 # 테스트 PDF
 *.pdf
 

@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Portfolio &mdash; Practical English 3</title>
+  <link rel="stylesheet" href="../assets/css/theme.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: var(--font-en);
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      color: var(--color-text);
+    }
+    .container { max-width: 1100px; margin: 0 auto; padding: 2rem 1.5rem 3rem; }
+    .back-link {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      color: rgba(255,255,255,0.85); text-decoration: none;
+      font-size: 0.9rem; margin-bottom: 1rem;
+      padding: 0.4rem 0.8rem; background: rgba(0,0,0,0.15);
+      border-radius: 6px; transition: all 0.2s;
+    }
+    .back-link:hover { background: rgba(0,0,0,0.3); color: white; }
+    header { text-align: center; padding: 1rem 0 2rem; color: white; }
+    header h1 {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      margin-bottom: 0.4rem; color: white;
+    }
+    header .ko-title {
+      font-family: var(--font-ko);
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      opacity: 0.92; margin-bottom: 0.5rem;
+    }
+    header p { font-size: 0.95rem; opacity: 0.85; }
+    header .stat {
+      display: inline-block; margin: 0.8rem 0.4rem 0;
+      padding: 0.25rem 0.8rem; background: rgba(255,255,255,0.15);
+      border-radius: 12px; font-size: 0.8rem; backdrop-filter: blur(4px);
+    }
+
+    .week-section { margin: 2rem 0; }
+    .week-heading {
+      color: white; font-size: 0.85rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 2px;
+      margin-bottom: 0.8rem; padding-bottom: 0.4rem;
+      border-bottom: 1px solid rgba(255,255,255,0.25);
+      display: flex; align-items: baseline; gap: 0.6rem;
+    }
+    .week-heading .topic {
+      font-family: var(--font-ko); font-size: 0.85rem;
+      font-weight: 400; text-transform: none;
+      letter-spacing: 0; opacity: 0.8;
+    }
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 1rem;
+    }
+    .project-card {
+      background: white; border-radius: 12px;
+      overflow: hidden; text-decoration: none; color: var(--color-text);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+      display: flex; flex-direction: column;
+      transition: all 0.25s ease; position: relative;
+    }
+    .project-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 26px rgba(0,0,0,0.18);
+      text-decoration: none;
+    }
+    .project-thumb {
+      height: 110px; background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 3rem; position: relative;
+    }
+    .project-thumb img {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+    .project-thumb.gradient-1 { background: linear-gradient(135deg, #667eea, #764ba2); color: white; }
+    .project-thumb.gradient-2 { background: linear-gradient(135deg, #f093fb, #f5576c); color: white; }
+    .project-thumb.gradient-3 { background: linear-gradient(135deg, #4facfe, #00f2fe); color: white; }
+    .project-thumb.gradient-4 { background: linear-gradient(135deg, #43e97b, #38f9d7); color: #1a5276; }
+    .project-thumb.gradient-5 { background: linear-gradient(135deg, #fa709a, #fee140); color: white; }
+    .project-thumb.gradient-6 { background: linear-gradient(135deg, #30cfd0, #330867); color: white; }
+    .project-thumb.gradient-7 { background: linear-gradient(135deg, #a8edea, #fed6e3); color: #5b3a8a; }
+    .project-thumb.gradient-8 { background: linear-gradient(135deg, #ffecd2, #fcb69f); color: #6b3410; }
+
+    .source-tag {
+      position: absolute; top: 8px; right: 8px;
+      padding: 2px 8px; border-radius: 10px;
+      font-size: 0.68em; font-weight: 600;
+      background: rgba(0,0,0,0.55); color: white;
+      letter-spacing: 0.03em;
+      backdrop-filter: blur(4px);
+    }
+    .source-tag.local { background: rgba(42,100,150,0.85); }
+    .source-tag.gemini { background: rgba(66,133,244,0.85); }
+    .source-tag.codepen { background: rgba(0,0,0,0.85); }
+    .source-tag.claude { background: rgba(217,119,69,0.9); }
+    .source-tag.netlify { background: rgba(0,191,178,0.85); }
+
+    .project-body { padding: 0.9rem 1rem 1rem; flex: 1; display: flex; flex-direction: column; }
+    .project-title {
+      font-size: 1rem; font-weight: 600; color: var(--color-primary);
+      margin-bottom: 0.25rem; line-height: 1.3;
+    }
+    .project-title-ko {
+      font-family: var(--font-ko); font-size: 0.82rem;
+      color: var(--color-text-muted); margin-bottom: 0.6rem;
+    }
+    .project-meta {
+      margin-top: auto; padding-top: 0.5rem;
+      border-top: 1px solid #eee;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.78rem; color: var(--color-text-light);
+    }
+    .student-name {
+      font-family: var(--font-ko); font-weight: 600;
+      color: var(--color-text);
+    }
+    .open-arrow {
+      color: var(--color-primary); font-weight: 600; font-size: 0.85rem;
+    }
+
+    footer {
+      text-align: center; color: rgba(255,255,255,0.6);
+      padding: 2rem 0 1rem; font-size: 0.8rem;
+    }
+
+    /* Image attribution (consistent with lecture pages) */
+    .image-attribution {
+      position: fixed; bottom: 12px; left: 12px; z-index: 997;
+      background: rgba(255, 255, 255, 0.88); padding: 3px 10px;
+      border-radius: 12px; border: 1px solid rgba(0, 0, 0, 0.08);
+      color: #6b7280; font-size: 0.7em; font-style: italic;
+      font-family: var(--font-en, 'Georgia', serif);
+      backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+      cursor: help;
+    }
+    .image-attribution::before { content: "\2726 "; font-style: normal; color: #9ca3af; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="../index.html" class="back-link">&larr; Course Home</a>
+
+    <header>
+      <h1>&#x1F3A8; Student Portfolio</h1>
+      <div class="ko-title">학생 포트폴리오 &mdash; 창의적 AI 활용 프로젝트</div>
+      <p>Student-created learning tools, games, and interactive experiences</p>
+      <div>
+        <span class="stat">23 Projects</span>
+        <span class="stat">Weeks 3 &ndash; 14</span>
+        <span class="stat">Gemini · Claude · CodePen · Netlify</span>
+      </div>
+    </header>
+
+    <!-- ============== WEEK 3 ============== -->
+    <section class="week-section">
+      <h2 class="week-heading">Week 3 <span class="topic">Housing &amp; Lifestyle &mdash; 생활 환경의 변화</span></h2>
+      <div class="project-grid">
+
+        <a class="project-card" href="https://gemini.google.com/share/ca35a23ef6d0" target="_blank" rel="noopener">
+          <div class="project-thumb gradient-1">&#x1F3E0;<span class="source-tag gemini">Gemini</span></div>
+          <div class="project-body">
+            <div class="project-title">MAKEOVER</div>
+            <div class="project-title-ko">방 꾸미기 시뮬레이션</div>
+            <div class="project-meta"><span class="student-name">이OO</span><span class="open-arrow">열기 &#x2197;</span></div>
+          </div>
+        </a>
+
+        <a class="project-card" href="https://codepen.io/editor/estanzqo-the-bold/pen/019cf805-c691-7a06-bb1e-ca0b817af257" target="_blank" rel="noopener">
+          <div class="project-thumb gradient-2">&#x1F4AC;<span class="source-tag codepen">CodePen</span></div>
+          <div class="project-body">
+            <div class="project-title">Will Smith Chat</div>
+            <div class="project-title-ko">윌 스미스와 채팅</div>
+            <div class="project-meta"><span class="student-name">박OO</span><span class="open-arrow">열기 &#x2197;</span></div>
+          </div>
+        </a>
+
+        <a class="project-card" href="https://codepen.io/editor/estanzqo-the-bold/pen/019cf82b-bb9a-73d3-a5c9-83498c3c31b2" target="_blank" rel="noopener">
+          <div class="project-thumb gradient-3">&#x1F4F0;<span class="source-tag codepen">CodePen</span></div>
+          <div class="project-body">
+            <div class="project-title">Card News</div>
+            <div class="project-title-ko">카드뉴스</div>
+            <div class="project-meta"><span class="student-name">박OO</span><span class="open-arrow">열기 &#x2197;</span></div>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- ============== WEEK 4 ============== -->
+    <section class="week-section">
+      <h2 class="week-heading">Week 4 <span class="topic">Food &amp; Cooking &mdash; 음식과 요리 경험</span></h2>
+      <div class="project-grid">
+
+        <a class="project-card" href="view.html?p=week04-kim-seafood-master.html&amp;t=Seafood Master&amp;s=김OO&amp;w=Week 4">
+          <div class="project-thumb gradient-3">&#x1F41F;<span class="source-tag local">Local</span></div>
+          <div class="project-body">
+            <div class="project-title">Seafood Master</div>
+            <div class="project-title-ko">해산물 마스터 게임</div>
+            <div class="project-meta"><span class="student-name">김OO</span><span class="open-arrow">열기 &rarr;</span></div>
+          </div>
+        </a>
+
+        <a class="project-card" href="view.html?p=week04-shin-cook-helper.html&amp;t=Cook Helper&amp;s=신OO&amp;w=Week 4">
+          <div class="project-thumb gradient-5">&#x1F468;&#x200D;&#x1F373;<span class="source-tag local">Local</span></div>
+          <div class="project-body">
+            <div class="project-title">Cook Helper</div>
+            <div class="project-title-ko">요리 도우미</div>
+            <div class="project-meta"><span class="student-name">신OO</span><span class="open-arrow">열기 &rarr;</span></div>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- ============== WEEK 5 ============== -->
+    <section class="week-section">
+      <h2 class="week-heading">Week 5 <span class="topic">Travel Planning &mdash; 여행 계획 세우기</span></h2>
+      <div class="project-grid">
+
+        <a class="project-card" href="https://gemini.google.com/share/2eaf57108ec7" target="_blank" rel="noopener">
+          <div class="project-thumb gradient-4">&#x2708;&#xFE0F;<span class="source-tag gemini">Gemini</span></div>
+          <div class="project-body">
+            <div class="project-title">Global Grammar Traveler</div>
+            <div class="project-title-ko">세계 일주 문법 학습</div>
+            <div class="project-meta"><span class="student-name">정OO</span><span class="open-arrow">열기 &#x2197;</span></div>
+          </div>
+        </a>
+
+        <a class="project-card" href="https://gemini.google.com/share/c3810c3002f3" target="_blank" rel="noopener">
+          <div class="project-thumb gradient-6">&#x1F5FA;&#xFE0F;<span class="source-tag gemini">Gemini</span></div>
+          <div class="project-body">
+            <div class="project-title">AI Travel Planner</div>
+            <div class="project-title-ko">AI 맞춤 여행 플래너</div>
+            <div class="project-meta"><span class="student-name">김OO</span><span class="open-arrow">열기 &#x2197;</span></div>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- ============== WEEK 6 ============== -->
+    <section class="week-section">
+      <h2 class="week-heading">Week 6 <span class="topic">Requests, Refusals &amp; Apologies &mdash; 부탁, 거절, 사과</span></h2>
+      <div class="project-grid">
+
+        <a class="project-card" href="https://gemini.google.com/share/fa2c9db6dc28" target="_blank" rel="noopener">
+          <div class="project-thumb gradient-4">&#x1F9F9;<span class="source-tag gemini">Gemini</span></div>
+          <div class="project-body">
+            <div class="project-title">Clean Up</div>
+            <div class="project-title-ko">청소 부탁 시뮬레이터</div>
+            <div class="project-meta"><span class="student-name">강OO</span><span class="open-arrow">열기 &#x2197;</span></div>
+          </div>
+        </a>
+
+        <a class="project-card" href="https://gemini.google.com/share/e90520759e3f" target="_blank" rel="noopener">
+          <div class="project-thumb"><img src="assets/room-quest.png" alt="Room Quest preview"><span class="source-tag gemini">Gemini</span></div>
+          <div class="project-body">
+            <div class="project-title">Room Quest</div>
+            <div class="project-title-ko">방 정리 퀘스트</div>
+            <div class="project-meta"><span class="student-name">김OO</span><span class="open-arrow">열기 &#x2197;</span></div>
+          </div>
+        </a>
+
+        <a class="project-card" href="view.html?p=week06-lee-hotel-chaos-rescue.html&amp;t=Hotel Chaos Rescue&amp;s=이OO&amp;w=Week 6">
+          <div class="project-thumb gradient-2">&#x1F3E8;<span class="source-tag local">Local</span></div>
+          <div class="project-body">
+            <div class="project-title">Hotel Chaos Rescue</div>
+            <div class="project-title-ko">호텔 위기 구조 게임</div>
+            <div class="project-meta"><span class="student-name">이OO</span><span class="open-arrow">열기 &rarr;</span></div>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- ============== WEEK 7 ============== -->
+    <section class="week-section">
+      <h2 class="week-heading">Week 7 <span class="topic">Technology &amp; Celebrations &mdash; 기술 활용과 기념일</span></h2>
+      <div class="project-grid">
+
+        <a class="project-card" href="https://claude.ai/public/artifacts/bb1d07cf-479a-46db-8105-1db335aac52f" target="_blank" rel="noopener">
+          <div class="project-thumb gradient-5">&#x1F389;<span class="source-tag claude">Claude</span></div>
+          <div class="project-body">
+            <div class="project-title">English Festival Quiz</div>
+            <div class="project-title-ko">영어권 축제 퀴즈</div>
+            <div class="project-meta"><span class="student-name">조OO</span><span class="open-arrow">열기 &#x2197;</span></div>
+          </div>
+        </a>
+
+        <a class="project-card" href="https://claude.ai/public/artifacts/fc8dafe7-db59-4258-8425-7130022a44f1" target="_blank" rel="noopener">
+          <div class="project-thumb gradient-6">&#x1F30D;<span class="source-tag claude">Claude</span></div>
+          <div class="project-body">
+            <div class="project-title">World Festival Explorer</div>
+            <div class="project-title-ko">세계 축제 탐험</div>
+            <div class="project-meta"><span class="student-name">이OO</span><span class="open-arrow">열기 &#x2197;</span></div>
+          </div>
+        </a>
+
+        <a class="project-card" href="https://gemini.google.com/share/a19c4b8b296d" target="_blank" rel="noopener">
+          <div class="project-thumb gradient-4">&#x1F697;<span class="source-tag gemini">Gemini</span></div>
+          <div class="project-body">
+            <div class="project-title">Green Car Assistant</div>
+            <div class="project-title-ko">친환경 자동차 도우미</div>
+            <div class="project-meta"><span class="student-name">조OO</span><span class="open-arrow">열기 &#x2197;</span></div>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- ============== WEEK 9 ============== -->
+    <section class="week-section">
+      <h2 class="week-heading">Week 9 <span class="topic">Changes Through Time &mdash; 시대의 변화</span></h2>
+      <div class="project-grid">
+
+        <a class="project-card" href="https://gemini.google.com/share/2a882fec60f0" target="_blank" rel="noopener">
+          <div class="project-thumb gradient-7">&#x1F52E;<span class="source-tag gemini">Gemini</span></div>
+          <div class="project-body">
+            <div class="project-title">Guess Your Future</div>
+            <div class="project-title-ko">미래 예측 시뮬레이터</div>
+            <div class="project-meta"><span class="student-name">최OO</span><span class="open-arrow">열기 &#x2197;</span></div>
+          </div>
+        </a>
+
+        <a class="project-card" href="view.html?p=week09-jeon-future-career.html&amp;t=Discover Your Future Career&amp;s=전OO&amp;w=Week 9">
+          <div class="project-thumb gradient-1">&#x1F4BC;<span class="source-tag local">Local</span></div>
+          <div class="project-body">
+            <div class="project-title">Discover Your Future Career</div>
+            <div class="project-title-ko">미래 직업 발견하기</div>
+            <div class="project-meta"><span class="student-name">전OO</span><span class="open-arrow">열기 &rarr;</span></div>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- ============== WEEK 11 ============== -->
+    <section class="week-section">
+      <h2 class="week-heading">Week 11 <span class="topic">World Landmarks &amp; Culture &mdash; 세계의 명소와 문화</span></h2>
+      <div class="project-grid">
+
+        <a class="project-card" href="https://gemini.google.com/share/500ae78edc3d" target="_blank" rel="noopener">
+          <div class="project-thumb gradient-3">&#x1F5FE;<span class="source-tag gemini">Gemini</span></div>
+          <div class="project-body">
+            <div class="project-title">Asia Master</div>
+            <div class="project-title-ko">아시아 마스터 퀴즈</div>
+            <div class="project-meta"><span class="student-name">이OO</span><span class="open-arrow">열기 &#x2197;</span></div>
+          </div>
+        </a>
+
+        <a class="project-card" href="view.html?p=week11-choi-world-elite-guide.html&amp;t=World Elite Guide&amp;s=최OO&amp;w=Week 11">
+          <div class="project-thumb gradient-8">&#x1F30F;<span class="source-tag local">Local</span></div>
+          <div class="project-body">
+            <div class="project-title">World Elite Guide</div>
+            <div class="project-title-ko">세계 명소 엘리트 가이드</div>
+            <div class="project-meta"><span class="student-name">최OO</span><span class="open-arrow">열기 &rarr;</span></div>
+          </div>
+        </a>
+
+        <a class="project-card" href="https://gemini.google.com/share/f826573a305b" target="_blank" rel="noopener">
+          <div class="project-thumb gradient-1">&#x26BD;<span class="source-tag gemini">Gemini</span></div>
+          <div class="project-body">
+            <div class="project-title">EURO Stadium Scout</div>
+            <div class="project-title-ko">유럽 축구 경기장 탐험</div>
+            <div class="project-meta"><span class="student-name">박OO</span><span class="open-arrow">열기 &#x2197;</span></div>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- ============== WEEK 12 ============== -->
+    <section class="week-section">
+      <h2 class="week-heading">Week 12 <span class="topic">Storytelling &mdash; 흥미로운 스토리텔링</span></h2>
+      <div class="project-grid">
+
+        <a class="project-card" href="https://gemini.google.com/share/2225e394b097" target="_blank" rel="noopener">
+          <div class="project-thumb gradient-6">&#x1F3F0;<span class="source-tag gemini">Gemini</span></div>
+          <div class="project-body">
+            <div class="project-title">The Mansion Mystery</div>
+            <div class="project-title-ko">맨션 미스터리</div>
+            <div class="project-meta"><span class="student-name">심OO</span><span class="open-arrow">열기 &#x2197;</span></div>
+          </div>
+        </a>
+
+        <a class="project-card" href="https://gemini.google.com/share/a41531d759ab" target="_blank" rel="noopener">
+          <div class="project-thumb gradient-7">&#x1F4DA;<span class="source-tag gemini">Gemini</span></div>
+          <div class="project-body">
+            <div class="project-title">My Own Library</div>
+            <div class="project-title-ko">나만의 도서관</div>
+            <div class="project-meta"><span class="student-name">한OO</span><span class="open-arrow">열기 &#x2197;</span></div>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- ============== WEEK 14 ============== -->
+    <section class="week-section">
+      <h2 class="week-heading">Week 14 <span class="topic">Dilemmas &amp; Excuses &mdash; 곤란한 상황과 변명</span></h2>
+      <div class="project-grid">
+
+        <a class="project-card" href="view.html?p=week14-oh-emoji-space-generator.html&amp;t=Emoji Space Generator&amp;s=오OO&amp;w=Week 14">
+          <div class="project-thumb gradient-5">&#x1F60A;<span class="source-tag local">Local</span></div>
+          <div class="project-body">
+            <div class="project-title">Emoji Space Generator</div>
+            <div class="project-title-ko">이모지 공간 제너레이터</div>
+            <div class="project-meta"><span class="student-name">오OO</span><span class="open-arrow">열기 &rarr;</span></div>
+          </div>
+        </a>
+
+        <a class="project-card" href="https://claude.ai/share/0807887a-7839-4e09-9093-5e74a86299ff" target="_blank" rel="noopener">
+          <div class="project-thumb gradient-8">&#x1F3E0;<span class="source-tag claude">Claude</span></div>
+          <div class="project-body">
+            <div class="project-title">Emoji 3D Room Curator</div>
+            <div class="project-title-ko">이모지 3D 룸 큐레이터</div>
+            <div class="project-meta"><span class="student-name">이OO</span><span class="open-arrow">열기 &#x2197;</span></div>
+          </div>
+        </a>
+
+        <a class="project-card" href="https://musical-pegasus-2e7bcd.netlify.app/" target="_blank" rel="noopener">
+          <div class="project-thumb gradient-4">&#x1F4DD;<span class="source-tag netlify">Netlify</span></div>
+          <div class="project-body">
+            <div class="project-title">Interactive Grammar Tool</div>
+            <div class="project-title-ko">인터랙티브 문법 학습 도구</div>
+            <div class="project-meta"><span class="student-name">양OO</span><span class="open-arrow">열기 &#x2197;</span></div>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+    <footer>
+      Practical English 3 &middot; Student Portfolio &middot; Interchange 2, 5th Edition
+    </footer>
+  </div>
+
+  <aside class="image-attribution" title="Images sourced from Unsplash and student-created content. Some may include AI-generated visuals.">Images: Unsplash &amp; AI-generated</aside>
+</body>
+</html>

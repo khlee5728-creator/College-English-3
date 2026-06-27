@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cook Helper - 깔끔한 요리 도우미</title>
+    <style>
+        body { 
+            font-family: 'Malgun Gothic', sans-serif; 
+            background-color: #f5f6fa; 
+            color: #333; 
+            margin: 0; 
+            padding: 40px 20px; 
+        }
+        .container { 
+            max-width: 800px; 
+            margin: 0 auto; 
+            background: white; 
+            padding: 40px; 
+            border-radius: 15px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08); 
+        }
+        h1 { 
+            color: #ff6b6b; 
+            text-align: center; 
+            margin-top: 0;
+            font-size: 2.5em;
+        }
+        .header-desc {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+            font-size: 1.1em;
+        }
+        .search-container { 
+            display: flex; 
+            gap: 10px; 
+            margin-bottom: 40px; 
+        }
+        input { 
+            flex: 1; 
+            padding: 15px 20px; 
+            border: 2px solid #eee; 
+            border-radius: 8px; 
+            font-size: 16px; 
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        input:focus {
+            border-color: #ff6b6b;
+        }
+        button { 
+            padding: 15px 30px; 
+            background: #ff6b6b; 
+            color: white; 
+            border: none; 
+            border-radius: 8px; 
+            cursor: pointer; 
+            font-size: 16px; 
+            font-weight: bold; 
+            transition: background 0.3s;
+        }
+        button:hover {
+            background: #ff5252;
+        }
+        .btn-all {
+            background: #7f8fa6;
+        }
+        .btn-all:hover {
+            background: #718093;
+        }
+        .recipe-card { 
+            display: none; 
+            border: 1px solid #f0f0f0; 
+            padding: 30px; 
+            border-radius: 12px; 
+            margin-bottom: 30px;
+            background: #fff;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            animation: fadeIn 0.5s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .recipe-card h2 {
+            margin-top: 0;
+            color: #2f3542;
+            border-bottom: 2px solid #f5f6fa;
+            padding-bottom: 15px;
+        }
+        .images { 
+            display: flex; 
+            gap: 15px; 
+            margin-bottom: 20px; 
+        }
+        .images img { 
+            width: 50%; 
+            height: 220px; 
+            object-fit: cover; 
+            border-radius: 8px; 
+        }
+        .highlight-cook { color: #e17055; font-weight: bold; }
+        .highlight-vocab { color: #6c5ce7; font-weight: bold; }
+        .highlight-seq { color: #00b894; font-weight: bold; }
+        .highlight-tense { color: #0984e3; font-weight: bold; text-decoration: underline; }
+        
+        .recipe-desc p {
+            margin: 10px 0;
+            line-height: 1.6;
+            font-size: 1.05em;
+        }
+        
+        .steps { 
+            background: #f8f9fa; 
+            padding: 20px; 
+            border-radius: 8px; 
+            margin: 20px 0;
+            border-left: 4px solid #feca57;
+        }
+        .steps h4 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        .steps p {
+            margin: 8px 0;
+            line-height: 1.6;
+        }
+        
+        .chef-story {
+            background: #fff4e6;
+            padding: 15px 20px;
+            border-radius: 8px;
+            font-style: italic;
+            border-left: 4px solid #ff6b6b;
+            margin-top: 20px;
+        }
+        .chef-story p {
+            margin: 8px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🍳 Cook Helper</h1>
+        <p class="header-desc">재료를 검색하고 완벽한 레시피를 만나보세요!</p>
+
+        <div class="search-container">
+            <input type="text" id="ingredientInput" placeholder="재료 입력 (예: 토마토, 연어, 감자, 닭고기)" onkeypress="if(event.key === 'Enter') searchRecipe()">
+            <button onclick="searchRecipe()">검색</button>
+            <button onclick="showAll()" class="btn-all">전체 보기</button>
+        </div>
+
+        <!-- 1. 토마토 파스타 -->
+        <div id="recipe-tomato" class="recipe-card">
+            <h2>🍅 토마토 (Tomato Pasta)</h2>
+            <div class="images">
+                <img src="https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=600" alt="Raw Tomatoes">
+                <img src="https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=600" alt="Tomato Pasta">
+            </div>
+            
+            <div class="recipe-desc">
+                <p>Tomatoes are an essential <span class="highlight-vocab">ingredient</span> in many <span class="highlight-vocab">traditional</span> Italian dishes.</p>
+                <p>Using fresh tomatoes makes any <span class="highlight-vocab">recipe</span> incredibly <span class="highlight-vocab">delicious</span>!</p>
+            </div>
+            
+            <div class="steps">
+                <h4>📋 Cooking Steps</h4>
+                <p><span class="highlight-seq">First</span>, <span class="highlight-cook">boil</span> the pasta in hot water.</p>
+                <p><span class="highlight-seq">Then</span>, chop the fresh tomatoes.</p>
+                <p><span class="highlight-seq">Next</span>, <span class="highlight-cook">fry</span> garlic in a pan with olive oil.</p>
+                <p><span class="highlight-seq">After that</span>, add the tomatoes to make the sauce.</p>
+                <p><span class="highlight-seq">Finally</span>, mix them all together and serve.</p>
+            </div>
+            
+            <div class="chef-story">
+                <p>👨‍🍳 "I <span class="highlight-tense">have boiled</span> pasta many times before.</p>
+                <p>Yesterday, I <span class="highlight-tense">fried</span> some cherry tomatoes for my friends."</p>
+            </div>
+        </div>
+
+        <!-- 2. 연어 스테이크 -->
+        <div id="recipe-salmon" class="recipe-card">
+            <h2>🍣 연어 (Salmon Steak)</h2>
+            <div class="images">
+                <img src="https://images.unsplash.com/photo-1599084993091-1cb5c0721cc6?w=600" alt="Raw Salmon">
+                <img src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=600" alt="Grilled Salmon">
+            </div>
+            
+            <div class="recipe-desc">
+                <p>Are you feeling <span class="highlight-vocab">adventurous</span> today?</p>
+                <p>Try this amazing salmon dish as a luxurious <span class="highlight-vocab">appetizer</span>!</p>
+            </div>
+            
+            <div class="steps">
+                <h4>📋 Cooking Steps</h4>
+                <p><span class="highlight-seq">First</span>, season the salmon with salt and pepper.</p>
+                <p><span class="highlight-seq">Then</span>, heat up your pan.</p>
+                <p><span class="highlight-seq">Next</span>, you can <span class="highlight-cook">bake</span> it in the oven or <span class="highlight-cook">grill</span> it on the pan.</p>
+                <p><span class="highlight-seq">After that</span>, you can also <span class="highlight-cook">steam</span> some vegetables for a side dish.</p>
+                <p><span class="highlight-seq">Finally</span>, enjoy your healthy meal!</p>
+            </div>
+            
+            <div class="chef-story">
+                <p>👨‍🍳 "I <span class="highlight-tense">have grilled</span> salmon often at parties.</p>
+                <p>Last week, I <span class="highlight-tense">baked</span> a large piece of salmon for dinner."</p>
+            </div>
+        </div>
+
+        <!-- 3. 감자튀김 -->
+        <div id="recipe-potato" class="recipe-card">
+            <h2>🥔 감자 (French Fries)</h2>
+            <div class="images">
+                <img src="https://images.unsplash.com/photo-1518977676601-b53f82aba655?w=600" alt="Potatoes">
+                <img src="https://images.unsplash.com/photo-1576107232684-1279f390859f?w=600" alt="Fries">
+            </div>
+            
+            <div class="recipe-desc">
+                <p>This is a <span class="highlight-vocab">traditional</span> and <span class="highlight-vocab">delicious</span> dish that everyone loves.</p>
+                <p>Potatoes are the perfect <span class="highlight-vocab">ingredient</span> for a simple yet tasty <span class="highlight-vocab">appetizer</span>.</p>
+            </div>
+            
+            <div class="steps">
+                <h4>📋 Cooking Steps</h4>
+                <p><span class="highlight-seq">First</span>, wash the potatoes cleanly.</p>
+                <p><span class="highlight-seq">Then</span>, you can <span class="highlight-cook">boil</span> them if you want mashed potatoes.</p>
+                <p><span class="highlight-seq">Next</span>, cut them into long strips.</p>
+                <p><span class="highlight-seq">After that</span>, <span class="highlight-cook">fry</span> them in hot oil until crispy.</p>
+                <p><span class="highlight-seq">Finally</span>, put some salt and eat.</p>
+            </div>
+            
+            <div class="chef-story">
+                <p>👨‍🍳 "I <span class="highlight-tense">have fried</span> potatoes for my kids countless times.</p>
+                <p>Yesterday, I <span class="highlight-tense">boiled</span> them for a quick and healthy snack."</p>
+            </div>
+        </div>
+
+        <!-- 4. 로스트 치킨 -->
+        <div id="recipe-chicken" class="recipe-card">
+            <h2>🍗 닭고기 (Roasted Chicken)</h2>
+            <div class="images">
+                <img src="https://images.unsplash.com/photo-1604503468506-a8da13d82791?w=600" alt="Raw Chicken">
+                <img src="https://images.unsplash.com/photo-1598514982205-f36b96d1e8d4?w=600" alt="Roast Chicken">
+            </div>
+            
+            <div class="recipe-desc">
+                <p>Chicken is perhaps the most popular <span class="highlight-vocab">ingredient</span> around the world.</p>
+                <p>If you want a fantastic meal, this <span class="highlight-vocab">recipe</span> will never disappoint you!</p>
+            </div>
+            
+            <div class="steps">
+                <h4>📋 Cooking Steps</h4>
+                <p><span class="highlight-seq">First</span>, mix the chicken with your favorite spices.</p>
+                <p><span class="highlight-seq">Then</span>, preheat your oven.</p>
+                <p><span class="highlight-seq">Next</span>, <span class="highlight-cook">bake</span> or <span class="highlight-cook">roast</span> the chicken in the oven.</p>
+                <p><span class="highlight-seq">After that</span>, <span class="highlight-cook">grill</span> it slightly for a crispy skin.</p>
+                <p><span class="highlight-seq">Finally</span>, serve the meal to your family.</p>
+            </div>
+            
+            <div class="chef-story">
+                <p>👨‍🍳 "I <span class="highlight-tense">have roasted</span> chicken for Thanksgiving many times.</p>
+                <p>Just yesterday, I <span class="highlight-tense">grilled</span> a chicken breast for a light salad."</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showAll() {
+            document.getElementById('ingredientInput').value = '';
+            document.querySelectorAll('.recipe-card').forEach(c => c.style.display = 'block');
+        }
+
+        function searchRecipe() {
+            const input = document.getElementById('ingredientInput').value.trim().toLowerCase();
+            const cards = document.querySelectorAll('.recipe-card');
+            
+            // 검색어가 없으면 경고창 띄우고 종료
+            if (input === '') {
+                alert('검색할 재료를 입력해 주세요!');
+                return;
+            }
+            
+            // 검색 전 모든 카드를 일단 숨김
+            cards.forEach(c => c.style.display = 'none');
+            let found = false;
+
+            // 조건에 맞으면 해당 카드만 표시
+            if (input.includes('토마토') || input.includes('tomato')) { document.getElementById('recipe-tomato').style.display = 'block'; found = true; }
+            if (input.includes('연어') || input.includes('salmon')) { document.getElementById('recipe-salmon').style.display = 'block'; found = true; }
+            if (input.includes('감자') || input.includes('potato')) { document.getElementById('recipe-potato').style.display = 'block'; found = true; }
+            if (input.includes('닭') || input.includes('치킨') || input.includes('chicken')) { document.getElementById('recipe-chicken').style.display = 'block'; found = true; }
+
+            // 검색 결과가 없을 경우 알림
+            if (!found) { 
+                alert('현재 검색 가능한 재료: 토마토, 연어, 감자, 닭고기'); 
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,320 @@
+
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+#game { font-family: var(--font-sans); max-width: 660px; margin: 0 auto; }
+#header { background: #0f172a; color: white; padding: 14px 20px; border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0; }
+#header h1 { font-size: 14px; font-weight: 500; text-align: center; margin-bottom: 8px; }
+.meta-row { display: flex; justify-content: space-between; align-items: center; }
+#locationLabel { font-size: 10px; color: #fbbf24; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 500; }
+#progressBar { height: 3px; background: #334155; border-radius: 2px; margin-top: 8px; }
+#progressFill { height: 100%; background: #fbbf24; border-radius: 2px; transition: width 0.5s; width: 0%; }
+#sceneBg { width: 100%; height: 160px; position: relative; overflow: hidden; }
+#sceneBgImg { width: 100%; height: 100%; object-fit: cover; transition: opacity 0.5s ease; }
+#sceneBgOverlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.08), rgba(0,0,0,0.58)); }
+#sceneLabel { position: absolute; bottom: 12px; left: 14px; color: white; font-size: 13px; font-weight: 500; text-shadow: 0 1px 5px rgba(0,0,0,0.7); }
+#sceneIcon { position: absolute; bottom: 10px; right: 14px; font-size: 28px; }
+#chatWindow { height: 240px; overflow-y: auto; padding: 14px; background: var(--color-background-secondary); display: flex; flex-direction: column; gap: 10px; }
+.msg-guest { display: flex; justify-content: flex-start; }
+.msg-manager { display: flex; justify-content: flex-end; }
+.msg-system { display: flex; justify-content: center; }
+.bubble-guest { background: #fee2e2; border: 0.5px solid #fecaca; color: #7f1d1d; padding: 9px 13px; border-radius: 14px 14px 14px 2px; font-size: 13px; max-width: 80%; }
+.bubble-manager { background: #e0e7ff; border: 0.5px solid #c7d2fe; color: #1e1b4b; padding: 9px 13px; border-radius: 14px 14px 2px 14px; font-size: 13px; max-width: 80%; }
+.bubble-system { background: var(--color-background-primary); border: 0.5px dashed var(--color-border-secondary); color: var(--color-text-secondary); padding: 7px 12px; border-radius: var(--border-radius-md); font-size: 11px; text-align: center; max-width: 90%; }
+.speaker-label { font-size: 10px; color: var(--color-text-tertiary); margin-bottom: 3px; font-weight: 500; }
+.speaker-right { text-align: right; }
+#feedbackArea { padding: 10px 14px; background: var(--color-background-primary); border-top: 0.5px solid var(--color-border-tertiary); display: none; }
+#feedbackBox { font-size: 12px; padding: 9px 13px; border-radius: var(--border-radius-md); }
+.fb-correct { background: #f0fdf4; border: 0.5px solid #86efac; color: #14532d; }
+.fb-wrong { background: #fef2f2; border: 0.5px solid #fca5a5; color: #7f1d1d; }
+.fb-loading { background: var(--color-background-secondary); border: 0.5px solid var(--color-border-tertiary); color: var(--color-text-secondary); font-style: italic; }
+#selectionArea { padding: 12px 14px; background: var(--color-background-primary); border-top: 0.5px solid var(--color-border-tertiary); display: flex; flex-direction: column; gap: 7px; }
+.opt-btn { width: 100%; text-align: left; padding: 11px 14px; font-size: 13px; color: #1e3a5f; background: #eef4ff; border: 1px solid #bfcfea; border-left: 3px solid #6b8cce; border-radius: var(--border-radius-md); cursor: pointer; display: flex; align-items: center; gap: 10px; transition: background 0.15s, border-color 0.15s, transform 0.1s; }
+.opt-btn:hover:not(:disabled) { background: #ddeaff; border-color: #4f72b8; border-left-color: #2d57a8; transform: translateX(2px); }
+.opt-btn:active:not(:disabled) { transform: translateX(1px); }
+.opt-btn:disabled { opacity: 0.4; cursor: default; transform: none; }
+.opt-num { display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; border-radius: 50%; background: #6b8cce; color: white; font-size: 11px; font-weight: 500; flex-shrink: 0; }
+#footer { padding: 8px 14px 10px; background: var(--color-background-primary); border-top: 0.5px solid var(--color-border-tertiary); display: flex; justify-content: space-between; align-items: center; border-radius: 0 0 var(--border-radius-lg) var(--border-radius-lg); }
+#stepCounter { font-size: 11px; color: var(--color-text-tertiary); }
+#hintBtn { font-size: 11px; color: #4f46e5; cursor: pointer; font-weight: 500; }
+#hintBtn:hover { text-decoration: underline; }
+.hearts { display: flex; gap: 3px; font-size: 16px; }
+#overlay { display: none; position: absolute; inset: 0; z-index: 10; align-items: center; justify-content: center; flex-direction: column; text-align: center; border-radius: var(--border-radius-lg); padding: 24px; }
+#overlay.gameover { background: rgba(0,0,0,0.94); color: white; }
+#overlay.win { background: rgba(255,255,255,0.97); color: #0f172a; }
+.restart-btn { padding: 10px 28px; border-radius: 999px; font-size: 14px; font-weight: 500; cursor: pointer; border: none; margin-top: 4px; }
+.restart-bad { background: #ef4444; color: white; }
+.restart-good { background: #0f172a; color: white; }
+#gameWrap { border-radius: var(--border-radius-lg); border: 0.5px solid var(--color-border-tertiary); overflow: hidden; position: relative; }
+
+#hintModal { display: none; position: fixed; inset: 0; background: rgba(15,23,42,0.6); z-index: 50; align-items: center; justify-content: center; padding: 16px; }
+#hintModal.open { display: flex; }
+#hintBox { background: #fffbeb; border: 1px solid #fcd34d; border-radius: var(--border-radius-lg); padding: 24px; max-width: 400px; width: 100%; }
+#hintHeader { display: flex; align-items: center; gap: 8px; margin-bottom: 14px; }
+#hintHeader .hint-icon { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; background: #fbbf24; border-radius: 50%; font-size: 14px; flex-shrink: 0; }
+#hintHeader h3 { font-size: 15px; font-weight: 500; color: #78350f; }
+#hintBody { background: #fef3c7; border: 1px solid #fde68a; border-radius: var(--border-radius-md); padding: 14px 16px; }
+#hintText { font-size: 13px; color: #92400e; line-height: 1.8; }
+#hintText b { color: #78350f; }
+#closeHint { margin-top: 16px; width: 100%; padding: 10px; background: #0f172a; color: white; border: none; border-radius: var(--border-radius-md); font-size: 13px; font-weight: 500; cursor: pointer; }
+#closeHint:hover { background: #1e293b; }
+</style>
+
+<div id="game">
+  <div id="gameWrap">
+    <div id="header">
+      <h1>🛎️ Hotel Chaos Rescue <span style="font-size:10px;opacity:0.7">AI 영어 학습 게임</span></h1>
+      <div class="meta-row">
+        <span id="locationLabel">Front Desk</span>
+        <div class="hearts" id="heartsEl"></div>
+      </div>
+      <div id="progressBar"><div id="progressFill"></div></div>
+    </div>
+    <div id="sceneBg">
+      <img id="sceneBgImg" src="" alt="" />
+      <div id="sceneBgOverlay"></div>
+      <div id="sceneLabel"></div>
+      <div id="sceneIcon"></div>
+    </div>
+    <div id="chatWindow"></div>
+    <div id="feedbackArea"><div id="feedbackBox"></div></div>
+    <div id="selectionArea"></div>
+    <div id="footer">
+      <span id="stepCounter">Scenario 1 of 5</span>
+      <span id="hintBtn">💡 문법 힌트</span>
+    </div>
+    <div id="overlay"><div id="overlayContent"></div></div>
+  </div>
+</div>
+
+<div id="hintModal">
+  <div id="hintBox">
+    <div id="hintHeader">
+      <span class="hint-icon">💡</span>
+      <h3>Grammar Tip</h3>
+    </div>
+    <div id="hintBody">
+      <div id="hintText"></div>
+    </div>
+    <button id="closeHint">닫기</button>
+  </div>
+</div>
+
+<script>
+const SCENARIOS = [
+  {
+    location: "Suite Room 1201", guestName: "Ms. Jenkins", guestIcon: "👵",
+    bg: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800&q=80",
+    guestMessage: "Oh dear! I spilled my juice and there are dirty towels and trash everywhere. Can you help me?",
+    options: [
+      { text: "Don't worry, I'll pick up them right away.", correct: false, penalty: 0.5 },
+      { text: "Don't worry, Ms. Jenkins. I'll pick them up for you.", correct: true },
+      { text: "Can I pick them up for you later?", correct: false, penalty: 0.5 }
+    ],
+    hint: "<b>구동사 규칙:</b> 목적어가 대명사(it, them)일 때는 반드시 동사와 부사 <i>사이</i>에 넣어야 합니다.<br><br>✅ pick <b>them</b> up<br>❌ pick up them"
+  },
+  {
+    location: "Room 406 — Noise Complaint", guestName: "Party Guest", guestIcon: "🕺",
+    systemMessage: "📢 [SYSTEM: 옆방 손님으로부터 소음 민원 전화를 받았습니다. 406호로 이동하여 주의를 주어야 합니다.]",
+    bg: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=800&q=80",
+    guestMessage: "Hello? Why are you knocking? We're just having a little fun!",
+    options: [
+      { text: "We received a noise complaint. Would you mind turning it down?", correct: true },
+      { text: "Turn down it! Other people can't sleep!", correct: false, penalty: 0.8 },
+      { text: "Could you please turn it down? I'm sorry.", correct: false, penalty: 0.2 }
+    ],
+    hint: "<b>정중한 요청:</b> 'We received a noise complaint'로 명분을 제시한 뒤<br>'Would you mind turning it down?'이라고 요청하세요."
+  },
+  {
+    location: "Hotel Hallway — 4F", guestName: "Maintenance Manager", guestIcon: "🛠️",
+    bg: "https://images.unsplash.com/photo-1606402179428-a57976d71fa4?w=800&q=80",
+    guestMessage: "Excuse me, would you mind helping me move these heavy boxes?",
+    options: [
+      { text: "Yes, I can help you.", correct: false, penalty: 1.0 },
+      { text: "No, not at all! I'll help you right now.", correct: true },
+      { text: "Sure, no problem.", correct: false, penalty: 0.3 }
+    ],
+    hint: "<b>Mind 응답 주의:</b> 'Would you mind...?'는 '~하는 게 싫으신가요?'의 의미입니다.<br><br>돕고 싶다면 <b>'No, not at all'</b>(싫지 않아요)라고 답해야 합니다."
+  },
+  {
+    location: "Hotel Entrance — No Smoking Zone", guestName: "VIP Guest", guestIcon: "💎",
+    bg: "https://images.unsplash.com/photo-1582719508461-905c673771fd?w=800&q=80",
+    guestMessage: "The smoke from other guests is coming inside. Would you mind not smoking near the entrance?",
+    options: [
+      { text: "No, not at all. I will ask the other guests to smoke elsewhere.", correct: true },
+      { text: "Yes, I mind. They have the right to smoke there.", correct: false, penalty: 1.0 },
+      { text: "Sure, I'll keep smoking there.", correct: false, penalty: 1.2 }
+    ],
+    hint: "<b>부정 요청 응답:</b> 'Would you mind <b>not</b> -ing?'라고 물어도,<br>수락할 때는 여전히 <b>'No, not at all'</b>입니다."
+  },
+  {
+    location: "Hotel Front Desk", guestName: "Busy Traveler", guestIcon: "🏃",
+    bg: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80",
+    guestMessage: "I'm late! Can you call a taxi? And would you mind taking my key?",
+    options: [
+      { text: "Sure, I'll call one. And no, not at all.", correct: true },
+      { text: "Yes, I call taxi. And yes, I take key.", correct: false, penalty: 1.0 },
+      { text: "Certainly. But I mind taking your key.", correct: false, penalty: 1.5 }
+    ],
+    hint: "<b>최종 정리:</b><br>• 'Can...?' → <b>Sure / OK</b>로 답하기<br>• 'Would you mind...?' → <b>No, not at all</b>로 답하기"
+  }
+];
+
+let reputation = 3.0, step = 0, busy = false;
+
+function renderHearts() {
+  const el = document.getElementById('heartsEl');
+  el.innerHTML = '';
+  for (let i = 1; i <= 3; i++) {
+    const s = document.createElement('span');
+    s.style.fontSize = '16px';
+    s.textContent = reputation >= i ? '❤️' : (reputation > i-1 ? '💔' : '🖤');
+    el.appendChild(s);
+  }
+}
+
+function setSceneBg(sc) {
+  const img = document.getElementById('sceneBgImg');
+  img.style.opacity = '0';
+  setTimeout(function() {
+    img.src = sc.bg;
+    img.onload = function() { img.style.opacity = '1'; };
+    img.onerror = function() { img.style.opacity = '0.3'; };
+  }, 200);
+  document.getElementById('sceneLabel').textContent = sc.location;
+  document.getElementById('sceneIcon').textContent = sc.guestIcon;
+}
+
+function addMsg(text, role, name, icon) {
+  name = name || ''; icon = icon || '';
+  const chat = document.getElementById('chatWindow');
+  const wrap = document.createElement('div');
+  if (role === 'system') {
+    wrap.className = 'msg-system';
+    wrap.innerHTML = '<div class="bubble-system">' + text + '</div>';
+  } else {
+    const isM = role === 'manager';
+    wrap.className = isM ? 'msg-manager' : 'msg-guest';
+    wrap.innerHTML = '<div style="display:flex;flex-direction:column;' + (isM ? 'align-items:flex-end' : '') + '">'
+      + '<div class="speaker-label ' + (isM ? 'speaker-right' : '') + '">' + (isM ? '🤵 You' : icon + ' ' + name) + '</div>'
+      + '<div class="' + (isM ? 'bubble-manager' : 'bubble-guest') + '">' + text + '</div>'
+      + '</div>';
+  }
+  chat.appendChild(wrap);
+  chat.scrollTop = chat.scrollHeight;
+}
+
+async function callClaude(prompt, system) {
+  try {
+    const res = await fetch("https://api.anthropic.com/v1/messages", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ model: "claude-sonnet-4-20250514", max_tokens: 1000, system: system, messages: [{ role: "user", content: prompt }] })
+    });
+    const data = await res.json();
+    return (data.content || []).map(function(b) { return b.text || ''; }).join('');
+  } catch(e) { return ''; }
+}
+
+async function getAIFeedback(sc, choice) {
+  const correct = sc.options.find(function(o) { return o.correct; });
+  const result = await callClaude(
+    'Guest: "' + sc.guestMessage + '"\nManager: "' + choice.text + '"\nCorrect: "' + correct.text + '"\nRight?: ' + choice.correct + '\n한국어로 100자 이내 피드백. 오답이면 문법 설명, 정답이면 칭찬.',
+    "You are a polite hotel English trainer. Respond only in Korean, under 100 characters."
+  );
+  return result || (choice.correct ? '정답입니다! 훌륭한 응대였습니다.' : '오답입니다. 힌트를 참고해보세요.');
+}
+
+async function getGuestReaction(sc, choice) {
+  const result = await callClaude(
+    'You are "' + sc.guestName + '". Manager said: "' + choice.text + '". Mood: ' + (choice.correct ? 'satisfied' : 'confused or annoyed') + '. Reply with ONE short English sentence only.',
+    "You are a hotel guest. Give only a short natural English reaction, nothing else."
+  );
+  return result || (choice.correct ? 'Thank you so much!' : "Hmm, that's a bit odd...");
+}
+
+function updateUI() {
+  const sc = SCENARIOS[step];
+  if (!sc) return;
+  document.getElementById('locationLabel').textContent = sc.location;
+  document.getElementById('stepCounter').textContent = 'Scenario ' + (step + 1) + ' of ' + SCENARIOS.length;
+  document.getElementById('progressFill').style.width = ((step / SCENARIOS.length) * 100) + '%';
+  renderHearts();
+  if (reputation <= 0) { showGameOver(); return; }
+  const sa = document.getElementById('selectionArea');
+  sa.innerHTML = '';
+  sc.options.forEach(function(opt, idx) {
+    const btn = document.createElement('button');
+    btn.className = 'opt-btn';
+    btn.disabled = busy;
+    btn.innerHTML = '<span class="opt-num">' + (idx + 1) + '</span>' + opt.text;
+    btn.onclick = function() { handleChoice(opt); };
+    sa.appendChild(btn);
+  });
+}
+
+async function handleChoice(option) {
+  if (busy) return;
+  busy = true; updateUI();
+  addMsg(option.text, 'manager');
+  const fb = document.getElementById('feedbackArea');
+  const fbBox = document.getElementById('feedbackBox');
+  fb.style.display = 'block';
+  fbBox.className = 'feedbackBox fb-loading';
+  fbBox.textContent = '✨ AI 분석 중...';
+  const sc = SCENARIOS[step];
+  const results = await Promise.all([getAIFeedback(sc, option), getGuestReaction(sc, option)]);
+  const feedback = results[0], reaction = results[1];
+  if (option.correct) {
+    fbBox.className = 'feedbackBox fb-correct';
+    fbBox.innerHTML = '✅ <b>AI 분석:</b> ' + feedback;
+    setTimeout(function() { addMsg(reaction, 'guest', sc.guestName, sc.guestIcon); }, 400);
+    step++;
+    setTimeout(function() {
+      fb.style.display = 'none'; busy = false;
+      if (step < SCENARIOS.length) {
+        updateUI();
+        const next = SCENARIOS[step];
+        setSceneBg(next);
+        if (next.systemMessage) addMsg(next.systemMessage, 'system');
+        setTimeout(function() { addMsg(next.guestMessage, 'guest', next.guestName, next.guestIcon); }, 700);
+      } else {
+        document.getElementById('progressFill').style.width = '100%';
+        showWin();
+      }
+    }, 3500);
+  } else {
+    reputation -= (option.penalty || 0);
+    fbBox.className = 'feedbackBox fb-wrong';
+    fbBox.innerHTML = '❌ <b>AI 오답 분석:</b> ' + feedback;
+    setTimeout(function() { addMsg(reaction, 'guest', sc.guestName, sc.guestIcon); }, 400);
+    busy = false; updateUI();
+  }
+}
+
+function showGameOver() {
+  const o = document.getElementById('overlay');
+  o.className = 'gameover'; o.style.display = 'flex';
+  document.getElementById('overlayContent').innerHTML = '<div style="font-size:26px;font-weight:500;color:#ef4444;margin-bottom:8px">YOU\'RE FIRED!</div><div style="font-size:13px;color:#9ca3af;font-style:italic;margin-bottom:20px">"고객 응대 미숙으로 해고되셨습니다."</div><button class="restart-btn restart-bad" onclick="location.reload()">다시 도전</button>';
+}
+
+function showWin() {
+  const o = document.getElementById('overlay');
+  o.className = 'win'; o.style.display = 'flex';
+  let h = '';
+  for (let i = 1; i <= 3; i++) h += reputation >= i ? '❤️' : (reputation > i-1 ? '💔' : '🖤');
+  document.getElementById('overlayContent').innerHTML = '<div style="font-size:48px;margin-bottom:10px">🏆</div><div style="font-size:24px;font-weight:500;margin-bottom:6px">PRO MANAGER!</div><div style="font-size:13px;color:#4f46e5;font-weight:500;margin-bottom:16px">완벽한 서비스 정신!</div><div style="background:#f8fafc;padding:12px 22px;border-radius:var(--border-radius-md);border:0.5px solid #e2e8f0;margin-bottom:16px"><div style="font-size:11px;color:#64748b;margin-bottom:4px">최종 평판 점수</div><div style="font-size:20px">' + h + '</div></div><button class="restart-btn restart-good" onclick="location.reload()">새 게임 시작</button>';
+}
+
+document.getElementById('hintBtn').onclick = function() {
+  document.getElementById('hintText').innerHTML = SCENARIOS[step] ? SCENARIOS[step].hint : '';
+  document.getElementById('hintModal').classList.add('open');
+};
+document.getElementById('closeHint').onclick = function() { document.getElementById('hintModal').classList.remove('open'); };
+
+window.addEventListener('load', function() {
+  const sc = SCENARIOS[0];
+  setSceneBg(sc);
+  updateUI();
+  setTimeout(function() { addMsg(sc.guestMessage, 'guest', sc.guestName, sc.guestIcon); }, 700);
+});
+</script>

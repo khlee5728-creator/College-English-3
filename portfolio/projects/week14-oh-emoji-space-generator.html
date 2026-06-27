@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>이모지 공간 제너레이터 Pro Max</title>
+    <style>
+        body { font-family: 'Malgun Gothic', sans-serif; background-color: #f4f7f6; color: #333; margin: 0; padding: 20px; display: flex; justify-content: center; }
+        .container { background: #fff; padding: 30px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); max-width: 650px; width: 100%; }
+        h1 { font-size: 24px; color: #2c3e50; text-align: center; margin-bottom: 5px; }
+        p.desc { text-align: center; color: #7f8c8d; font-size: 14px; margin-top: 0; margin-bottom: 25px; }
+        .input-group { display: flex; flex-direction: column; margin-bottom: 20px; }
+        label { font-weight: bold; margin-bottom: 8px; color: #34495e; font-size: 15px; line-height: 1.4; }
+        .emoji-list { font-size: 18px; color: #16a085; margin-bottom: 10px; text-align: center; letter-spacing: 2px; }
+        input[type="text"] { padding: 12px; font-size: 24px; border: 1px solid #bdc3c7; border-radius: 5px; text-align: center; letter-spacing: 5px; }
+        input[type="number"] { padding: 12px; font-size: 18px; border: 1px solid #bdc3c7; border-radius: 5px; text-align: center; font-weight: bold; color: #2980b9;}
+        button { margin-top: 10px; padding: 15px; background-color: #1abc9c; color: white; border: none; border-radius: 5px; font-size: 16px; cursor: pointer; font-weight: bold; width: 100%; transition: background-color 0.3s;}
+        button:hover { background-color: #16a085; }
+        .result-box { margin-top: 25px; display: none; border-top: 2px dashed #ecf0f1; padding-top: 20px;}
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th, td { border: 1px solid #ecf0f1; padding: 12px; text-align: center; font-size: 14px; }
+        th { background-color: #34495e; color: white; }
+        td.emoji-col { font-size: 22px; }
+        .total { margin-top: 15px; font-weight: bold; color: #27ae60; text-align: right; font-size: 16px;}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>✨ 이모지 공간 제너레이터 Pro Max</h1>
+        <p class="desc">원하는 체적과 이모지를 자유롭게 조합하는 웹 시뮬레이터</p>
+        
+        <div class="input-group">
+            <label for="volumeInput">📐 전체 공간 체적 설정 (m³)</label>
+            <input type="number" id="volumeInput" value="220" min="10" step="10">
+        </div>
+
+        <div class="input-group">
+            <label for="emojiInput">🎨 공간 이모지 조합</label>
+            <div class="emoji-list">🎬 📚 ☕ 🌳 💪🏻 🎮 🎨 💤</div>
+            <input type="text" id="emojiInput" value="🎬📚☕" placeholder="예: 💪🏻🎮💤">
+        </div>
+        
+        <button onclick="calculateSpace()">공간 체적 분석하기</button>
+
+        <div class="result-box" id="resultBox">
+            <h3 style="margin-bottom: 5px;">📊 공간 분석 결과</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>공간</th>
+                        <th>성격</th>
+                        <th>비율</th>
+                        <th>할당 체적</th>
+                        <th>설정 층고</th>
+                        <th>필요 면적</th>
+                    </tr>
+                </thead>
+                <tbody id="resultBody">
+                </tbody>
+            </table>
+            <div class="total" id="totalVolume">총 체적: 220 m³ (조건 충족)</div>
+        </div>
+    </div>
+
+    <script>
+        // 각 이모지별 건축 데이터 (가중치, 층고, 공간 이름)
+        const spaceData = {
+            '🎬': { weight: 0.6, height: 4.0, name: '시네마룸' },
+            '📚': { weight: 0.4, height: 3.0, name: '독서 공간' },
+            '☕': { weight: 0.35, height: 3.5, name: '라운지 카페' },
+            '🌳': { weight: 0.25, height: 5.0, name: '실내 정원' },
+            '💪🏻': { weight: 0.4, height: 3.5, name: '피트니스' },
+            '💪': { weight: 0.4, height: 3.5, name: '피트니스' }, 
+            '🎮': { weight: 0.3, height: 2.8, name: '게임/오락실' },
+            '🎨': { weight: 0.35, height: 3.5, name: '작업실/화실' },
+            '💤': { weight: 0.2, height: 2.5, name: '수면/휴식처' }
+        };
+
+        function calculateSpace() {
+            // 사용자가 입력한 총 체적 값 가져오기
+            const volumeInputValue = document.getElementById('volumeInput').value;
+            // 값이 없거나 이상하면 기본값 220으로 설정
+            const TOTAL_VOLUME = parseFloat(volumeInputValue) || 220.0; 
+
+            const input = document.getElementById('emojiInput').value;
+            const activeSpaces = [];
+            
+            const keys = ['🎬', '📚', '☕', '🌳', '💪🏻', '💪', '🎮', '🎨', '💤'];
+            let tempInput = input;
+
+            keys.forEach(k => {
+                if (tempInput.includes(k)) {
+                    activeSpaces.push(k);
+                    tempInput = tempInput.split(k).join('');
+                }
+            });
+
+            if (activeSpaces.length === 0) {
+                alert("지원하는 이모지(🎬, 📚, ☕, 🌳, 💪🏻, 🎮, 🎨, 💤)를 하나 이상 입력해 주세요.");
+                return;
+            }
+
+            let totalWeight = 0;
+            activeSpaces.forEach(s => totalWeight += spaceData[s].weight);
+
+            const tbody = document.getElementById('resultBody');
+            tbody.innerHTML = '';
+
+            let sumVolume = 0;
+
+            activeSpaces.forEach(s => {
+                const data = spaceData[s];
+                const ratio = data.weight / totalWeight;
+                const volume = TOTAL_VOLUME * ratio;
+                const height = data.height;
+                const area = volume / height;
+
+                sumVolume += volume;
+
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td class="emoji-col">${s}</td>
+                    <td>${data.name}</td>
+                    <td>${(ratio * 100).toFixed(1)}%</td>
+                    <td>${volume.toFixed(2)} m³</td>
+                    <td>${height.toFixed(1)} m</td>
+                    <td>${area.toFixed(2)} ㎡</td>
+                `;
+                tbody.appendChild(tr);
+            });
+
+            // 결과창에 사용자가 설정한 총 체적으로 표시
+            document.getElementById('totalVolume').innerText = `✓ 총 할당 체적: ${TOTAL_VOLUME} m³ (조건 충족)`;
+            document.getElementById('resultBox').style.display = 'block';
+        }
+    </script>
+</body>
+</html>

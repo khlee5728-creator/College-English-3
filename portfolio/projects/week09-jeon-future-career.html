@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Future Career Finder</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg: #0b0f1a;
+      --surface: #131929;
+      --card: #1a2236;
+      --accent: #f0c060;
+      --accent2: #6eb5ff;
+      --text: #e8eaf0;
+      --muted: #7a859a;
+      --border: #2a3650;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        radial-gradient(1px 1px at 20% 15%, rgba(255,255,255,0.4) 0%, transparent 100%),
+        radial-gradient(1px 1px at 60% 35%, rgba(255,255,255,0.3) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 80% 70%, rgba(255,255,255,0.35) 0%, transparent 100%),
+        radial-gradient(1px 1px at 40% 80%, rgba(255,255,255,0.2) 0%, transparent 100%),
+        radial-gradient(1px 1px at 10% 55%, rgba(255,255,255,0.3) 0%, transparent 100%),
+        radial-gradient(1px 1px at 90% 20%, rgba(255,255,255,0.25) 0%, transparent 100%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* HERO */
+    .hero {
+      position: relative; z-index: 1;
+      text-align: center;
+      padding: 64px 20px 36px;
+    }
+    .hero-label {
+      display: inline-block;
+      font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+      color: var(--accent); border: 1px solid var(--accent);
+      padding: 5px 16px; border-radius: 20px; margin-bottom: 20px;
+      opacity: 0; animation: fadeUp 0.6s 0.2s forwards;
+    }
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 6vw, 4rem); font-weight: 900; line-height: 1.1; color: #fff;
+      opacity: 0; animation: fadeUp 0.7s 0.4s forwards;
+    }
+    h1 span { color: var(--accent); display: block; }
+    .subtitle {
+      margin-top: 14px; font-size: 1rem; color: var(--muted);
+      max-width: 460px; margin-inline: auto; line-height: 1.7;
+      opacity: 0; animation: fadeUp 0.7s 0.6s forwards;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* INPUT */
+    .input-section {
+      position: relative; z-index: 1;
+      max-width: 600px; margin: 36px auto 0; padding: 0 20px;
+      opacity: 0; animation: fadeUp 0.7s 0.8s forwards;
+    }
+    .input-wrapper {
+      display: flex; gap: 10px;
+      background: var(--surface); border: 1.5px solid var(--border);
+      border-radius: 14px; padding: 10px 10px 10px 20px; transition: border-color 0.3s;
+    }
+    .input-wrapper:focus-within {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(240,192,96,0.12);
+    }
+    .input-wrapper input {
+      flex: 1; background: transparent; border: none; outline: none;
+      font-size: 1rem; color: var(--text); font-family: 'DM Sans', sans-serif;
+    }
+    .input-wrapper input::placeholder { color: var(--muted); }
+    .btn-search {
+      background: var(--accent); color: #0b0f1a; border: none;
+      border-radius: 10px; padding: 12px 22px; font-size: 0.9rem;
+      font-weight: 700; cursor: pointer; font-family: 'DM Sans', sans-serif;
+      transition: background 0.2s, transform 0.15s; white-space: nowrap;
+    }
+    .btn-search:hover  { background: #f5d080; transform: scale(1.03); }
+    .btn-search:active { transform: scale(0.97); }
+    .btn-search:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+    .examples {
+      margin-top: 12px; display: flex; flex-wrap: wrap;
+      gap: 8px; justify-content: center;
+    }
+    .chip {
+      background: var(--card); border: 1px solid var(--border);
+      color: var(--muted); font-size: 0.8rem; padding: 5px 14px;
+      border-radius: 20px; cursor: pointer; transition: all 0.2s;
+    }
+    .chip:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* LOADER */
+    .loader { display: none; text-align: center; padding: 60px 20px; position: relative; z-index: 1; }
+    .loader.active { display: block; }
+    .orbit {
+      width: 56px; height: 56px; border: 2.5px solid var(--border);
+      border-top-color: var(--accent); border-radius: 50%;
+      animation: spin 0.9s linear infinite; margin: 0 auto 18px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .loader p { color: var(--muted); font-size: 0.95rem; }
+
+    /* ERROR */
+    .error-box { display: none; text-align: center; padding: 40px 20px; color: #ff7864; position: relative; z-index: 1; }
+    .error-box.active { display: block; }
+
+    /* GRAMMAR LEGEND */
+    .grammar-legend {
+      max-width: 780px; margin: 40px auto 0; padding: 0 20px;
+      position: relative; z-index: 1; display: none;
+    }
+    .grammar-legend.active { display: block; }
+    .legend-box {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 14px; padding: 14px 22px;
+      display: flex; align-items: center; flex-wrap: wrap; gap: 12px;
+    }
+    .legend-title {
+      font-size: 0.75rem; letter-spacing: 1.5px; text-transform: uppercase;
+      color: var(--muted); font-weight: 600;
+    }
+    .legend-list { display: flex; flex-wrap: wrap; gap: 7px; }
+
+    /* SINGLE CARD VIEWER */
+    .viewer {
+      display: none; position: relative; z-index: 1;
+      max-width: 780px; margin: 24px auto 80px; padding: 0 20px;
+    }
+    .viewer.active { display: block; }
+
+    /* Progress dots */
+    .progress-bar {
+      display: flex; justify-content: center; gap: 8px; margin-bottom: 24px;
+    }
+    .progress-dot {
+      width: 28px; height: 4px; border-radius: 2px;
+      background: var(--border); transition: all 0.3s; cursor: pointer;
+    }
+    .progress-dot.active { background: var(--accent); width: 44px; }
+    .progress-dot.done   { background: var(--muted); }
+
+    /* Card */
+    .card-stage { position: relative; border-radius: 22px; overflow: hidden; }
+    .career-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 22px; overflow: hidden;
+      animation: slideIn 0.42s cubic-bezier(.22,.8,.45,1) both;
+    }
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateX(55px) scale(0.97); }
+      to   { opacity: 1; transform: translateX(0) scale(1); }
+    }
+    @keyframes slideInBack {
+      from { opacity: 0; transform: translateX(-55px) scale(0.97); }
+      to   { opacity: 1; transform: translateX(0) scale(1); }
+    }
+    @keyframes slideOut {
+      from { opacity: 1; transform: translateX(0); }
+      to   { opacity: 0; transform: translateX(-55px); }
+    }
+    @keyframes slideOutBack {
+      from { opacity: 1; transform: translateX(0); }
+      to   { opacity: 0; transform: translateX(55px); }
+    }
+
+    /* Photo area */
+    .card-photo-wrap { position: relative; }
+    .card-photo-wrap::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0; height: 110px;
+      background: linear-gradient(transparent, var(--card));
+      pointer-events: none;
+    }
+    .card-photo {
+      width: 100%; height: 300px; object-fit: cover;
+      display: block; background: var(--surface);
+    }
+    .photo-label {
+      position: absolute; top: 16px; left: 16px;
+      background: rgba(11,15,26,0.72); backdrop-filter: blur(8px);
+      border: 1px solid var(--border); color: var(--accent);
+      font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase;
+      padding: 5px 12px; border-radius: 20px; font-weight: 600;
+    }
+
+    /* Card body */
+    .card-body { padding: 26px 28px 28px; }
+    .card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.7rem; font-weight: 700; color: #fff;
+      margin-bottom: 14px; line-height: 1.2;
+    }
+    .card-desc {
+      font-size: 0.93rem; color: #c0c8d8; line-height: 1.85; margin-bottom: 20px;
+    }
+    .grammar-badges { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 26px; }
+    .badge {
+      font-size: 0.72rem; padding: 4px 11px;
+      border-radius: 20px; font-weight: 600;
+    }
+    .badge-past  { background: rgba(110,181,255,0.15); color: #9dd0ff;  border: 1px solid rgba(110,181,255,0.3); }
+    .badge-used  { background: rgba(200,130,255,0.15); color: #d9a0ff;  border: 1px solid rgba(200,130,255,0.3); }
+    .badge-will  { background: rgba(240,192,96,0.15);  color: #f0c060;  border: 1px solid rgba(240,192,96,0.3); }
+    .badge-going { background: rgba(80,220,160,0.15);  color: #70e8b0;  border: 1px solid rgba(80,220,160,0.3); }
+    .badge-may   { background: rgba(255,120,100,0.15); color: #ff9888;  border: 1px solid rgba(255,120,100,0.3); }
+
+    /* Nav row */
+    .nav-row {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 12px; padding-top: 20px;
+    }
+    .nav-counter { font-size: 0.85rem; color: var(--muted); font-weight: 500; letter-spacing: 1px; }
+    .nav-btns { display: flex; gap: 10px; }
+    .btn-nav {
+      background: var(--surface); border: 1.5px solid var(--border);
+      color: var(--text); border-radius: 10px; padding: 10px 22px;
+      font-size: 0.88rem; font-weight: 600; cursor: pointer;
+      font-family: 'DM Sans', sans-serif; transition: all 0.2s;
+    }
+    .btn-nav:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
+    .btn-nav:disabled { opacity: 0.3; cursor: not-allowed; }
+    .btn-nav.next { background: var(--accent); border-color: var(--accent); color: #0b0f1a; }
+    .btn-nav.next:hover:not(:disabled) { background: #f5d080; border-color: #f5d080; }
+
+    /* Grammar highlights */
+    .hl {
+      border-radius: 3px; padding: 1px 3px;
+      font-style: normal; font-weight: 600;
+      position: relative; cursor: default;
+    }
+    .hl::after {
+      content: attr(data-label);
+      position: absolute; bottom: calc(100% + 5px); left: 50%;
+      transform: translateX(-50%);
+      background: #1e2a3a; color: #e8eaf0;
+      font-size: 0.68rem; font-weight: 500; letter-spacing: 0.5px;
+      white-space: nowrap; padding: 3px 8px; border-radius: 6px;
+      border: 1px solid var(--border); pointer-events: none;
+      opacity: 0; transition: opacity 0.18s; z-index: 10;
+    }
+    .hl:hover::after { opacity: 1; }
+    .hl-past  { background: rgba(110,181,255,0.18); color: #9dd0ff;  border-bottom: 2px solid #6eb5ff; }
+    .hl-used  { background: rgba(200,130,255,0.18); color: #d9a0ff;  border-bottom: 2px solid #c882ff; }
+    .hl-will  { background: rgba(240,192,96,0.18);  color: #f0c060;  border-bottom: 2px solid #f0c060; }
+    .hl-going { background: rgba(80,220,160,0.18);  color: #70e8b0;  border-bottom: 2px solid #50dca0; }
+    .hl-may   { background: rgba(255,120,100,0.18); color: #ff9888;  border-bottom: 2px solid #ff7864; }
+
+
+    .emoji-photo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #1a2236 0%, #2a3650 100%);
+    }
+    .emoji-icon {
+      font-size: 120px;
+      line-height: 1;
+      filter: drop-shadow(0 8px 16px rgba(0,0,0,0.3));
+    }
+    ::-webkit-scrollbar { width: 6px; }
+
+    .emoji-photo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #1a2236 0%, #2a3650 100%);
+    }
+    .emoji-icon {
+      font-size: 120px;
+      line-height: 1;
+      filter: drop-shadow(0 8px 16px rgba(0,0,0,0.3));
+    }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+
+    .emoji-photo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #1a2236 0%, #2a3650 100%);
+    }
+    .emoji-icon {
+      font-size: 120px;
+      line-height: 1;
+      filter: drop-shadow(0 8px 16px rgba(0,0,0,0.3));
+    }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+  </style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-label">✦ AI-Powered Career Explorer</div>
+  <h1>Discover Your<span>Future Career</span></h1>
+  <p class="subtitle">Enter your major and explore exciting career paths that <strong>will shape</strong> your future — powered by AI.</p>
+</div>
+
+<div class="input-section">
+  <div class="input-wrapper">
+    <input type="text" id="majorInput" placeholder="e.g. Computer Science, Business, Psychology…"/>
+    <button class="btn-search" id="searchBtn" onclick="searchCareers()">Explore →</button>
+  </div>
+  <div class="examples">
+    <span class="chip" onclick="setMajor('Computer Science')">💻 Computer Science</span>
+    <span class="chip" onclick="setMajor('Business Administration')">📊 Business</span>
+    <span class="chip" onclick="setMajor('Psychology')">🧠 Psychology</span>
+    <span class="chip" onclick="setMajor('Environmental Science')">🌿 Environmental Science</span>
+    <span class="chip" onclick="setMajor('Design')">🎨 Design</span>
+  </div>
+</div>
+
+<div class="loader" id="loader">
+  <div class="orbit"></div>
+  <p>Exploring career paths for you…</p>
+</div>
+<div class="error-box" id="errorBox"><p>⚠️ Something went wrong. Please try again.</p></div>
+
+<!-- Grammar legend -->
+<div class="grammar-legend" id="grammarLegend">
+  <div class="legend-box">
+    <span class="legend-title">📘 Grammar Guide</span>
+    <div class="legend-list">
+      <span class="badge badge-past">Simple Past</span>
+      <span class="badge badge-used">used to + V</span>
+      <span class="badge badge-will">will</span>
+      <span class="badge badge-going">be going to</span>
+      <span class="badge badge-may">may / might</span>
+    </div>
+  </div>
+</div>
+
+<!-- Single-card viewer -->
+<div class="viewer" id="viewer">
+  <div class="progress-bar" id="progressBar"></div>
+  <div class="card-stage" id="cardStage"></div>
+  <div class="nav-row">
+    <span class="nav-counter" id="navCounter"></span>
+    <div class="nav-btns">
+      <button class="btn-nav" id="btnPrev" onclick="navigate(-1)">← Prev</button>
+      <button class="btn-nav next" id="btnNext" onclick="navigate(1)">Next →</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  /* ── Real workplace photos (Unsplash) ── */
+  const PHOTO_MAP = [
+    [/software\s*(engineer|developer|architect)/i,    'https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?w=900&q=85'],
+    [/web\s*developer|front.?end|back.?end/i,         'https://images.unsplash.com/photo-1593720213428-28a5b9e94613?w=900&q=85'],
+    [/full.?stack/i,                                  'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=900&q=85'],
+    [/mobile.*dev|app.*dev/i,                         'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=900&q=85'],
+    [/devops|cloud\s*(architect|engineer)/i,          'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=900&q=85'],
+    [/cyber.*sec|security\s*(analyst|engineer)/i,     'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=900&q=85'],
+    [/machine\s*learning|ai\s*(engineer|researcher)/i,'https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=900&q=85'],
+    [/data\s*scien/i,                                 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&q=85'],
+    [/data\s*anal/i,                                  'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=900&q=85'],
+    [/data\s*engin/i,                                 'https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=900&q=85'],
+    [/product\s*manag/i,                              'https://images.unsplash.com/photo-1552664730-d307ca884978?w=900&q=85'],
+    [/business\s*anal/i,                              'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=900&q=85'],
+    [/consult/i,                                      'https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=900&q=85'],
+    [/entrepreneur|startup/i,                         'https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=900&q=85'],
+    [/marketing/i,                                    'https://images.unsplash.com/photo-1533750349088-cd871a92f312?w=900&q=85'],
+    [/financial\s*anal|investment|banker/i,           'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=900&q=85'],
+    [/accountant|accounting/i,                        'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=900&q=85'],
+    [/project\s*manag/i,                              'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=900&q=85'],
+    [/ux|ui|product\s*design/i,                       'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=900&q=85'],
+    [/graphic\s*design/i,                             'https://images.unsplash.com/photo-1626785774573-4b799315345d?w=900&q=85'],
+    [/motion\s*design|animation/i,                    'https://images.unsplash.com/photo-1616228399234-2e53e15c3b29?w=900&q=85'],
+    [/art\s*director|creative\s*dir/i,                'https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=900&q=85'],
+    [/psycholog|counselor|therapist/i,                'https://images.unsplash.com/photo-1573497491208-6b1acb260507?w=900&q=85'],
+    [/social\s*work/i,                                'https://images.unsplash.com/photo-1531983412531-1f49a365ffed?w=900&q=85'],
+    [/human\s*resource|recruiter/i,                   'https://images.unsplash.com/photo-1521791136064-7986c2920216?w=900&q=85'],
+    [/environment.*scien|ecolog|sustainab/i,          'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=900&q=85'],
+    [/biolog|chemist|lab\s*scien/i,                   'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=900&q=85'],
+    [/research\s*scien|researcher/i,                  'https://images.unsplash.com/photo-1532094349884-543559c1c2e6?w=900&q=85'],
+    [/doctor|physician|surgeon/i,                     'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=900&q=85'],
+    [/nurs/i,                                         'https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?w=900&q=85'],
+    [/pharmac/i,                                      'https://images.unsplash.com/photo-1576602976047-174e57a47881?w=900&q=85'],
+    [/teacher|educator|instruc/i,                     'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=900&q=85'],
+    [/professor|academ/i,                             'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=900&q=85'],
+    [/mechanical\s*engin|electrical\s*engin/i,        'https://images.unsplash.com/photo-1581092335397-9583eb92d232?w=900&q=85'],
+    [/civil\s*engin|construct/i,                      'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=900&q=85'],
+    [/architect/i,                                    'https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=900&q=85'],
+    [/journalist|reporter/i,                          'https://images.unsplash.com/photo-1585829365295-ab7cd400c167?w=900&q=85'],
+    [/content\s*creator|influencer/i,                 'https://images.unsplash.com/photo-1616469829941-c7200edec809?w=900&q=85'],
+    [/writer|author/i,                                'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=900&q=85'],
+    [/lawyer|attorney|legal/i,                        'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=900&q=85'],
+    [/policy|govern|diplomat/i,                       'https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?w=900&q=85'],
+  ];
+
+  // Emoji icons for careers
+  function getCareerEmoji(title) {
+    const lower = title.toLowerCase();
+    
+    // Software/Tech
+    if (/software|developer|programming|coding/.test(lower)) return '💻';
+    if (/data.*scien|data.*analy/.test(lower)) return '📊';
+    if (/machine.*learn|ai|artificial/.test(lower)) return '🤖';
+    if (/web.*dev/.test(lower)) return '🌐';
+    if (/mobile|app/.test(lower)) return '📱';
+    if (/cyber|security/.test(lower)) return '🔒';
+    if (/cloud/.test(lower)) return '☁️';
+    
+    // Business
+    if (/business|consultant|manager/.test(lower)) return '💼';
+    if (/marketing|brand/.test(lower)) return '📢';
+    if (/financ|account|invest/.test(lower)) return '💰';
+    if (/entrepreneur|startup/.test(lower)) return '🚀';
+    if (/sales/.test(lower)) return '📈';
+    
+    // Design/Creative
+    if (/design|ux|ui/.test(lower)) return '🎨';
+    if (/graphic/.test(lower)) return '✏️';
+    if (/photo/.test(lower)) return '📷';
+    if (/video|film/.test(lower)) return '🎬';
+    
+    // Psychology/Social
+    if (/psycholog|counsel|therap/.test(lower)) return '🧠';
+    if (/social.*work/.test(lower)) return '🤝';
+    if (/human.*resource/.test(lower)) return '👥';
+    
+    // Science/Environment
+    if (/environment|sustainab|ecolog/.test(lower)) return '🌿';
+    if (/climat/.test(lower)) return '🌍';
+    if (/research|scientist/.test(lower)) return '🔬';
+    if (/biolog/.test(lower)) return '🧬';
+    if (/chemistry/.test(lower)) return '⚗️';
+    
+    // Healthcare
+    if (/doctor|physician/.test(lower)) return '👨‍⚕️';
+    if (/nurs/.test(lower)) return '👩‍⚕️';
+    if (/pharmac/.test(lower)) return '💊';
+    if (/dent/.test(lower)) return '🦷';
+    
+    // Education
+    if (/teach|educat/.test(lower)) return '👨‍🏫';
+    if (/professor/.test(lower)) return '👨‍🎓';
+    
+    // Engineering
+    if (/mechanical|electrical|civil/.test(lower)) return '⚙️';
+    if (/architect/.test(lower)) return '🏛️';
+    if (/construct/.test(lower)) return '🏗️';
+    
+    // Media/Writing
+    if (/journalist|reporter/.test(lower)) return '📰';
+    if (/writer|author/.test(lower)) return '✍️';
+    if (/content.*creat/.test(lower)) return '📝';
+    
+    // Law/Government
+    if (/law|legal|attorney/.test(lower)) return '⚖️';
+    if (/policy|govern/.test(lower)) return '🏛️';
+    
+    // Default
+    return '⭐';
+  }
+
+    /* ── Grammar highlighter ── */
+  const GRAMMAR_PATTERNS = [
+    { cls: 'hl-used',  label: 'used to',     regex: /\b(used\s+to\s+\w+)/gi },
+    { cls: 'hl-going', label: 'be going to', regex: /\b((?:am|is|are|was|were)\s+going\s+to\s+\w+)/gi },
+    { cls: 'hl-will',  label: 'will',        regex: /\b(will(?:\s+not|n't)?\s+\w+)/gi },
+    { cls: 'hl-may',   label: 'may / might', regex: /\b(may(?:\s+not)?\s+\w+|might(?:\s+not)?\s+\w+)/gi },
+    { cls: 'hl-past',  label: 'Simple Past',
+      regex: /\b(was|were|had|did|went|came|took|made|found|gave|knew|became|began|brought|built|chose|created|decided|developed|discovered|earned|evolved|expanded|felt|grew|helped|introduced|launched|led|moved|needed|offered|opened|played|proved|pushed|relied|remained|required|revolutionized|rose|saw|showed|started|studied|taught|thought|trained|transformed|turned|worked|wrote)\b/gi
+    }
+  ];
+
+  function highlightGrammar(text) {
+    let r = text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    GRAMMAR_PATTERNS.forEach(({ cls, label, regex }) => {
+      r = r.replace(regex, m => `<mark class="hl ${cls}" data-label="${label}">${m}</mark>`);
+    });
+    return r;
+  }
+
+  /* ── State ── */
+  let careers = [], current = 0;
+
+  function setMajor(m) { document.getElementById('majorInput').value = m; document.getElementById('majorInput').focus(); }
+  document.getElementById('majorInput').addEventListener('keydown', e => { if (e.key === 'Enter') searchCareers(); });
+
+  // Demo data for offline use
+  const DEMO_DATA = {
+    "Computer Science": {
+      major: "Computer Science",
+      subtitle: "Shape the digital future with cutting-edge technology",
+      careers: [
+        {
+          title: "Software Engineer",
+          emoji: "💻",
+          description: "Tech companies revolutionized how we work when they introduced remote collaboration tools. This field used to focus only on desktop applications. You will design and build scalable software systems. The industry is going to grow by 25% in the next decade. You may specialize in areas like cloud computing, mobile apps, or AI systems.",
+          grammar: { simple_past: "revolutionized", used_to: "used to focus", will: "will design", be_going_to: "is going to grow", may_might: "may specialize" }
+        },
+        {
+          title: "Data Scientist",
+          emoji: "📊",
+          description: "Companies discovered the power of big data in the 2010s. Data analysis used to require manual spreadsheets and simple statistics. You will extract insights from massive datasets using machine learning. Demand for data professionals is going to increase rapidly. You might work in healthcare, finance, or tech industries.",
+          grammar: { simple_past: "discovered", used_to: "used to require", will: "will extract", be_going_to: "is going to increase", may_might: "might work" }
+        },
+        {
+          title: "AI/Machine Learning Engineer",
+          emoji: "🤖",
+          description: "Neural networks became mainstream when researchers achieved breakthrough results in 2012. AI development used to be limited to academic research labs. You will build intelligent systems that learn from data. This field is going to transform every industry. You may focus on computer vision, natural language processing, or robotics.",
+          grammar: { simple_past: "became", used_to: "used to be limited", will: "will build", be_going_to: "is going to transform", may_might: "may focus" }
+        },
+        {
+          title: "Cybersecurity Analyst",
+          emoji: "🔒",
+          description: "Major cyberattacks exposed vulnerabilities in global systems. Security professionals used to handle threats manually. You will protect organizations from digital threats and data breaches. Cybersecurity is going to become even more critical. You might specialize in penetration testing, incident response, or security architecture.",
+          grammar: { simple_past: "exposed", used_to: "used to handle", will: "will protect", be_going_to: "is going to become", may_might: "might specialize" }
+        },
+        {
+          title: "Full Stack Developer",
+          emoji: "🌐",
+          description: "Web technologies evolved dramatically when JavaScript frameworks emerged. Developers used to specialize in either frontend or backend. You will create complete web applications from database to user interface. Full stack skills are going to be highly valued. You may work with React, Node.js, or cloud platforms.",
+          grammar: { simple_past: "evolved", used_to: "used to specialize", will: "will create", be_going_to: "are going to be", may_might: "may work" }
+        },
+        {
+          title: "DevOps Engineer",
+          emoji: "⚙️",
+          description: "Amazon pioneered modern infrastructure automation with AWS. Operations used to involve manual server configuration. You will automate deployment pipelines and manage cloud infrastructure. DevOps is going to bridge development and operations seamlessly. You might focus on Kubernetes, CI/CD, or infrastructure as code.",
+          grammar: { simple_past: "pioneered", used_to: "used to involve", will: "will automate", be_going_to: "is going to bridge", may_might: "might focus" }
+        }
+      ]
+    },
+    "Business Administration": {
+      major: "Business Administration",
+      subtitle: "Lead organizations to success in a dynamic market",
+      careers: [
+        {
+          title: "Management Consultant",
+          emoji: "💼",
+          description: "Global firms transformed business strategy with data-driven consulting. Consultants used to rely heavily on intuition and experience. You will analyze complex problems and provide strategic solutions. The consulting industry is going to expand into new markets. You may work across various sectors like healthcare, tech, or finance.",
+          grammar: { simple_past: "transformed", used_to: "used to rely", will: "will analyze", be_going_to: "is going to expand", may_might: "may work" }
+        },
+        {
+          title: "Product Manager",
+          emoji: "📱",
+          description: "Tech companies created this role when products became more complex. Product development used to follow rigid waterfall processes. You will lead cross-functional teams to build successful products. The role is going to become more strategic and influential. You might oversee product vision, roadmaps, or go-to-market strategies.",
+          grammar: { simple_past: "created", used_to: "used to follow", will: "will lead", be_going_to: "is going to become", may_might: "might oversee" }
+        },
+        {
+          title: "Marketing Manager",
+          emoji: "📢",
+          description: "Digital platforms revolutionized marketing when social media emerged. Marketing used to depend on traditional TV and print ads. You will develop campaigns that engage customers across channels. Digital marketing is going to dominate advertising budgets. You may specialize in content, social media, or performance marketing.",
+          grammar: { simple_past: "revolutionized", used_to: "used to depend", will: "will develop", be_going_to: "is going to dominate", may_might: "may specialize" }
+        },
+        {
+          title: "Financial Analyst",
+          emoji: "💰",
+          description: "Investment firms adopted sophisticated models after the 2008 financial crisis. Analysts used to work with basic spreadsheets. You will evaluate financial data to guide investment decisions. Fintech is going to reshape traditional financial services. You might focus on equity research, corporate finance, or risk management.",
+          grammar: { simple_past: "adopted", used_to: "used to work", will: "will evaluate", be_going_to: "is going to reshape", may_might: "might focus" }
+        },
+        {
+          title: "Entrepreneur",
+          emoji: "🚀",
+          description: "Startups disrupted traditional industries with innovative business models. Entrepreneurship used to require massive capital investment. You will identify opportunities and build new ventures. The startup ecosystem is going to become more accessible globally. You may launch tech companies, social enterprises, or e-commerce businesses.",
+          grammar: { simple_past: "disrupted", used_to: "used to require", will: "will identify", be_going_to: "is going to become", may_might: "may launch" }
+        },
+        {
+          title: "Human Resources Manager",
+          emoji: "👥",
+          description: "Companies recognized that people are their greatest asset. HR used to handle only administrative tasks. You will develop talent strategies and foster positive workplace cultures. HR is going to play a more strategic role in organizations. You might specialize in recruitment, learning development, or diversity initiatives.",
+          grammar: { simple_past: "recognized", used_to: "used to handle", will: "will develop", be_going_to: "is going to play", may_might: "might specialize" }
+        }
+      ]
+    },
+    "Psychology": {
+      major: "Psychology",
+      subtitle: "Understand the human mind and help people thrive",
+      careers: [
+        {
+          title: "Clinical Psychologist",
+          emoji: "🧠",
+          description: "Mental health awareness grew significantly after public campaigns started. Therapy used to carry heavy social stigma. You will assess and treat mental health conditions through evidence-based methods. Teletherapy is going to make care more accessible. You may specialize in anxiety, depression, or trauma treatment.",
+          grammar: { simple_past: "grew", used_to: "used to carry", will: "will assess", be_going_to: "is going to make", may_might: "may specialize" }
+        },
+        {
+          title: "Organizational Psychologist",
+          emoji: "👔",
+          description: "Companies recognized the importance of workplace culture. HR practices used to ignore psychological principles. You will improve workplace dynamics and employee well-being. This field is going to gain more influence in corporate strategy. You might work on leadership development, team building, or organizational change.",
+          grammar: { simple_past: "recognized", used_to: "used to ignore", will: "will improve", be_going_to: "is going to gain", may_might: "might work" }
+        },
+        {
+          title: "UX Researcher",
+          emoji: "🔍",
+          description: "Tech companies discovered that understanding users improved products. Design used to be purely aesthetic. You will study how people interact with technology and services. User research is going to become essential for all digital products. You may conduct interviews, usability tests, or behavioral studies.",
+          grammar: { simple_past: "discovered", used_to: "used to be", will: "will study", be_going_to: "is going to become", may_might: "may conduct" }
+        },
+        {
+          title: "School Counselor",
+          emoji: "🎓",
+          description: "Schools expanded mental health services for students. Counseling used to be available only in clinical settings. You will help students navigate academic and personal challenges. Student wellness is going to be a top priority in education. You might work with elementary, middle, or high school students.",
+          grammar: { simple_past: "expanded", used_to: "used to be available", will: "will help", be_going_to: "is going to be", may_might: "might work" }
+        },
+        {
+          title: "Forensic Psychologist",
+          emoji: "⚖️",
+          description: "Courts began relying on psychological expertise in legal cases. Criminal profiling used to be based mainly on intuition. You will apply psychological principles to legal and criminal justice issues. Forensic psychology is going to expand its role in the justice system. You may work on competency evaluations, risk assessments, or expert testimony.",
+          grammar: { simple_past: "began", used_to: "used to be based", will: "will apply", be_going_to: "is going to expand", may_might: "may work" }
+        },
+        {
+          title: "Sports Psychologist",
+          emoji: "🏆",
+          description: "Athletes achieved better performance when they addressed mental training. Sports psychology used to be overlooked in athletic programs. You will help athletes optimize performance and mental resilience. Mental coaching is going to be standard practice in sports. You might work with professional teams, Olympians, or college athletes.",
+          grammar: { simple_past: "achieved", used_to: "used to be overlooked", will: "will help", be_going_to: "is going to be", may_might: "might work" }
+        }
+      ]
+    },
+    "Environmental Science": {
+      major: "Environmental Science",
+      subtitle: "Protect our planet for future generations",
+      careers: [
+        {
+          title: "Sustainability Consultant",
+          emoji: "🌿",
+          description: "Corporations shifted priorities when climate change became urgent. Businesses used to view sustainability as optional. You will help organizations reduce their environmental impact. Green consulting is going to be a major growth industry. You may advise on carbon reduction, renewable energy, or circular economy practices.",
+          grammar: { simple_past: "shifted", used_to: "used to view", will: "will help", be_going_to: "is going to be", may_might: "may advise" }
+        },
+        {
+          title: "Environmental Scientist",
+          emoji: "🌍",
+          description: "Researchers documented alarming changes in global ecosystems. Environmental monitoring used to be fragmented and inconsistent. You will study pollution, climate patterns, and ecosystem health. Demand for environmental data is going to surge. You might work on air quality, water resources, or biodiversity conservation.",
+          grammar: { simple_past: "documented", used_to: "used to be", will: "will study", be_going_to: "is going to surge", may_might: "might work" }
+        },
+        {
+          title: "Renewable Energy Specialist",
+          emoji: "⚡",
+          description: "Solar and wind power became competitive with fossil fuels. Energy used to come primarily from coal and oil. You will develop and implement clean energy solutions. Renewable energy is going to dominate the power sector. You may focus on solar, wind, hydroelectric, or emerging technologies.",
+          grammar: { simple_past: "became", used_to: "used to come", will: "will develop", be_going_to: "is going to dominate", may_might: "may focus" }
+        },
+        {
+          title: "Climate Policy Analyst",
+          emoji: "📋",
+          description: "Governments passed landmark climate legislation. Policy work used to be reactive rather than proactive. You will research and shape environmental regulations. Climate policy is going to influence every sector. You might work for governments, NGOs, or international organizations.",
+          grammar: { simple_past: "passed", used_to: "used to be", will: "will research", be_going_to: "is going to influence", may_might: "might work" }
+        },
+        {
+          title: "Conservation Biologist",
+          emoji: "🦋",
+          description: "Scientists identified thousands of species facing extinction. Conservation used to rely on small protected areas. You will protect endangered species and restore habitats. Wildlife conservation is going to require innovative approaches. You may work in national parks, wildlife reserves, or research institutions.",
+          grammar: { simple_past: "identified", used_to: "used to rely", will: "will protect", be_going_to: "is going to require", may_might: "may work" }
+        },
+        {
+          title: "Water Resource Manager",
+          emoji: "💧",
+          description: "Droughts revealed the critical importance of water management. Water systems used to be taken for granted. You will ensure sustainable water supply for communities. Water scarcity is going to be a defining challenge. You might work on irrigation, wastewater treatment, or watershed protection.",
+          grammar: { simple_past: "revealed", used_to: "used to be taken", will: "will ensure", be_going_to: "is going to be", may_might: "might work" }
+        }
+      ]
+    },
+    "Design": {
+      major: "Design",
+      subtitle: "Create beautiful and functional experiences",
+      careers: [
+        {
+          title: "UX/UI Designer",
+          emoji: "🎨",
+          description: "Apple revolutionized product design with intuitive interfaces. Design used to prioritize aesthetics over usability. You will create user-friendly digital experiences. UX design is going to be crucial for every digital product. You may specialize in mobile apps, websites, or emerging platforms.",
+          grammar: { simple_past: "revolutionized", used_to: "used to prioritize", will: "will create", be_going_to: "is going to be", may_might: "may specialize" }
+        },
+        {
+          title: "Graphic Designer",
+          emoji: "✏️",
+          description: "Digital tools transformed how designers worked. Graphic design used to require physical materials and darkrooms. You will craft visual identities for brands and campaigns. Design is going to blend with AI and automation. You might work on branding, advertising, or editorial design.",
+          grammar: { simple_past: "transformed", used_to: "used to require", will: "will craft", be_going_to: "is going to blend", may_might: "might work" }
+        },
+        {
+          title: "Product Designer",
+          emoji: "📐",
+          description: "Tech companies merged physical and digital product design. Design used to be separated into discrete specializations. You will shape end-to-end product experiences. Product design is going to become more holistic and strategic. You may work on consumer electronics, furniture, or interactive products.",
+          grammar: { simple_past: "merged", used_to: "used to be separated", will: "will shape", be_going_to: "is going to become", may_might: "may work" }
+        },
+        {
+          title: "Motion Designer",
+          emoji: "🎬",
+          description: "Streaming platforms increased demand for animated content. Motion design used to be limited to TV commercials. You will create engaging animations for digital media. Video content is going to dominate online engagement. You might produce explainer videos, UI animations, or brand stories.",
+          grammar: { simple_past: "increased", used_to: "used to be limited", will: "will create", be_going_to: "is going to dominate", may_might: "might produce" }
+        },
+        {
+          title: "Brand Designer",
+          emoji: "✨",
+          description: "Companies realized that strong brands built customer loyalty. Branding used to focus only on logos and colors. You will develop comprehensive brand identities and guidelines. Brand strategy is going to be central to business success. You may work on brand positioning, visual systems, or brand experiences.",
+          grammar: { simple_past: "realized", used_to: "used to focus", will: "will develop", be_going_to: "is going to be", may_might: "may work" }
+        },
+        {
+          title: "Service Designer",
+          emoji: "🔄",
+          description: "Organizations discovered that customer journeys needed design thinking. Service design used to be an unfamiliar concept. You will map and improve entire service experiences. Service design is going to transform industries beyond tech. You might work in healthcare, finance, retail, or government services.",
+          grammar: { simple_past: "discovered", used_to: "used to be", will: "will map", be_going_to: "is going to transform", may_might: "might work" }
+        }
+      ]
+    },
+    "Engineering": {
+      major: "Engineering",
+      subtitle: "Build solutions that shape our physical world",
+      careers: [
+        {
+          title: "Mechanical Engineer",
+          emoji: "⚙️",
+          description: "3D printing revolutionized manufacturing when it became affordable. Engineers used to rely on traditional machining methods. You will design machines, vehicles, and mechanical systems. Automation is going to transform mechanical engineering. You may specialize in robotics, aerospace, or automotive design.",
+          grammar: { simple_past: "revolutionized", used_to: "used to rely", will: "will design", be_going_to: "is going to transform", may_might: "may specialize" }
+        },
+        {
+          title: "Civil Engineer",
+          emoji: "🏗️",
+          description: "Smart cities emerged when technology met infrastructure. Civil engineering used to focus mainly on roads and bridges. You will plan and oversee construction of infrastructure projects. Sustainable infrastructure is going to be critical for growing cities. You might work on transportation, water systems, or urban development.",
+          grammar: { simple_past: "emerged", used_to: "used to focus", will: "will plan", be_going_to: "is going to be", may_might: "might work" }
+        },
+        {
+          title: "Electrical Engineer",
+          emoji: "⚡",
+          description: "Electric vehicles changed how engineers thought about power systems. Electrical work used to involve mainly power generation. You will design electrical systems for diverse applications. Clean energy is going to drive electrical innovation. You may focus on power grids, electronics, or renewable systems.",
+          grammar: { simple_past: "changed", used_to: "used to involve", will: "will design", be_going_to: "is going to drive", may_might: "may focus" }
+        },
+        {
+          title: "Biomedical Engineer",
+          emoji: "🏥",
+          description: "Medical technology advanced dramatically with digital health devices. Healthcare engineering used to be a niche field. You will develop medical devices and healthcare technologies. Biomedical innovation is going to improve patient outcomes globally. You might work on prosthetics, imaging systems, or diagnostic tools.",
+          grammar: { simple_past: "advanced", used_to: "used to be", will: "will develop", be_going_to: "is going to improve", may_might: "might work" }
+        }
+      ]
+    },
+    "Economics": {
+      major: "Economics",
+      subtitle: "Analyze markets and shape economic policy",
+      careers: [
+        {
+          title: "Economist",
+          emoji: "📈",
+          description: "Big data changed economic analysis when computational power increased. Economists used to work with limited datasets. You will study economic trends and forecast market behavior. Data-driven economics is going to influence policy decisions. You may work in government, academia, or private consulting.",
+          grammar: { simple_past: "changed", used_to: "used to work", will: "will study", be_going_to: "is going to influence", may_might: "may work" }
+        },
+        {
+          title: "Financial Economist",
+          emoji: "💹",
+          description: "Markets became more complex with derivatives and algorithmic trading. Financial analysis used to rely on fundamental indicators alone. You will model financial markets and investment strategies. Quantitative finance is going to dominate investment firms. You might specialize in risk management, portfolio theory, or market microstructure.",
+          grammar: { simple_past: "became", used_to: "used to rely", will: "will model", be_going_to: "is going to dominate", may_might: "might specialize" }
+        },
+        {
+          title: "Policy Analyst",
+          emoji: "🏛️",
+          description: "Governments adopted evidence-based policymaking after research proved its value. Policy work used to be driven mainly by ideology. You will evaluate the economic impact of regulations and programs. Economic policy analysis is going to be essential for effective governance. You may work on healthcare, education, or tax policy.",
+          grammar: { simple_past: "adopted", used_to: "used to be driven", will: "will evaluate", be_going_to: "is going to be", may_might: "may work" }
+        },
+        {
+          title: "Development Economist",
+          emoji: "🌍",
+          description: "International organizations recognized that poverty required economic solutions. Development work used to focus only on aid distribution. You will design programs to promote economic growth in developing nations. International development is going to tackle global inequality. You might work for the World Bank, UN, or NGOs.",
+          grammar: { simple_past: "recognized", used_to: "used to focus", will: "will design", be_going_to: "is going to tackle", may_might: "might work" }
+        }
+      ]
+    },
+    "Education": {
+      major: "Education",
+      subtitle: "Shape minds and inspire the next generation",
+      careers: [
+        {
+          title: "Teacher",
+          emoji: "👨‍🏫",
+          description: "Education transformed when digital tools entered classrooms. Teaching used to rely entirely on textbooks and lectures. You will inspire students and facilitate learning experiences. Education technology is going to reshape how we teach. You may specialize in elementary, secondary, or special education.",
+          grammar: { simple_past: "transformed", used_to: "used to rely", will: "will inspire", be_going_to: "is going to reshape", may_might: "may specialize" }
+        },
+        {
+          title: "Instructional Designer",
+          emoji: "💡",
+          description: "E-learning grew exponentially during the pandemic. Course design used to be informal and ad-hoc. You will create engaging online learning experiences. Digital learning is going to be a permanent fixture in education. You might develop courses for universities, corporations, or ed-tech companies.",
+          grammar: { simple_past: "grew", used_to: "used to be", will: "will create", be_going_to: "is going to be", may_might: "might develop" }
+        },
+        {
+          title: "Education Administrator",
+          emoji: "📚",
+          description: "Schools adopted new leadership models to address modern challenges. Administration used to focus mainly on logistics. You will lead schools and shape educational policy. School leadership is going to require both vision and adaptability. You may become a principal, superintendent, or policy director.",
+          grammar: { simple_past: "adopted", used_to: "used to focus", will: "will lead", be_going_to: "is going to require", may_might: "may become" }
+        },
+        {
+          title: "Corporate Trainer",
+          emoji: "🎯",
+          description: "Companies invested heavily in employee development. Training used to consist of occasional workshops. You will design and deliver professional development programs. Workplace learning is going to be continuous and personalized. You might specialize in leadership training, technical skills, or soft skills development.",
+          grammar: { simple_past: "invested", used_to: "used to consist", will: "will design", be_going_to: "is going to be", may_might: "might specialize" }
+        }
+      ]
+    }
+  };
+
+    async function searchCareers() {
+    const major = document.getElementById('majorInput').value.trim();
+    if (!major) { document.getElementById('majorInput').focus(); return; }
+
+    document.getElementById('loader').classList.add('active');
+    document.getElementById('viewer').classList.remove('active');
+    document.getElementById('grammarLegend').classList.remove('active');
+    document.getElementById('errorBox').classList.remove('active');
+    document.getElementById('searchBtn').disabled = true;
+
+    // Simulate API delay for realism
+    await new Promise(resolve => setTimeout(resolve, 1200));
+
+    try {
+      // Find matching demo data (case insensitive)
+      let data = null;
+      const majorLower = major.toLowerCase();
+      
+      for (const [key, value] of Object.entries(DEMO_DATA)) {
+        if (key.toLowerCase() === majorLower || majorLower.includes(key.toLowerCase())) {
+          data = value;
+          break;
+        }
+      }
+
+      // If no exact match, use a fuzzy match or default
+      if (!data) {
+        if (majorLower.includes('computer') || majorLower.includes('software') || majorLower.includes('programming')) {
+          data = DEMO_DATA["Computer Science"];
+        } else if (majorLower.includes('business') || majorLower.includes('management') || majorLower.includes('admin')) {
+          data = DEMO_DATA["Business Administration"];
+        } else if (majorLower.includes('psych') || majorLower.includes('mental')) {
+          data = DEMO_DATA["Psychology"];
+        } else if (majorLower.includes('environment') || majorLower.includes('ecology') || majorLower.includes('climate')) {
+          data = DEMO_DATA["Environmental Science"];
+        } else if (majorLower.includes('design') || majorLower.includes('art') || majorLower.includes('graphic')) {
+          data = DEMO_DATA["Design"];
+        } else {
+          // Default to Computer Science if no match
+          data = DEMO_DATA["Computer Science"];
+          data = { ...data, major: major }; // Use user's input
+        }
+      }
+
+      careers = data.careers || [];
+      current = 0;
+      startViewer();
+    } catch (err) {
+      console.error(err);
+      document.getElementById('loader').classList.remove('active');
+      document.getElementById('errorBox').classList.add('active');
+    }
+    document.getElementById('searchBtn').disabled = false;
+  }
+
+    function startViewer() {
+    document.getElementById('loader').classList.remove('active');
+    document.getElementById('viewer').classList.add('active');
+    document.getElementById('grammarLegend').classList.add('active');
+    buildDots();
+    showCard(0, 1);
+    document.getElementById('grammarLegend').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function buildDots() {
+    const bar = document.getElementById('progressBar');
+    bar.innerHTML = '';
+    careers.forEach((_, i) => {
+      const d = document.createElement('div');
+      d.className = 'progress-dot' + (i === 0 ? ' active' : '');
+      d.onclick = () => goTo(i);
+      bar.appendChild(d);
+    });
+  }
+
+  function syncDots() {
+    document.querySelectorAll('.progress-dot').forEach((d, i) => {
+      d.className = 'progress-dot' + (i < current ? ' done' : i === current ? ' active' : '');
+    });
+  }
+
+  function goTo(i) { if (i === current) return; showCard(i, i > current ? 1 : -1); current = i; syncDots(); syncNav(); }
+  function navigate(dir) { const n = current + dir; if (n < 0 || n >= careers.length) return; showCard(n, dir); current = n; syncDots(); syncNav(); }
+
+  function showCard(index, dir) {
+    const stage = document.getElementById('cardStage');
+    const c = careers[index];
+
+
+    const card = document.createElement('div');
+    card.className = 'career-card';
+    card.style.animationName = dir >= 0 ? 'slideIn' : 'slideInBack';
+
+    card.innerHTML = `
+      <div class="card-photo-wrap">
+        <div class="card-photo emoji-photo">
+          <div class="emoji-icon">${getCareerEmoji(c.title)}</div>
+        </div>
+        <div class="photo-label">Career ${String(index+1).padStart(2,'0')} / ${String(careers.length).padStart(2,'0')}</div>
+      </div>
+      <div class="card-body">
+        <div class="card-title">${c.emoji} ${c.title}</div>
+        <p class="card-desc">${highlightGrammar(c.description)}</p>
+        <div class="grammar-badges">
+          ${c.grammar?.simple_past ? `<span class="badge badge-past">Simple Past</span>` : ''}
+          ${c.grammar?.used_to     ? `<span class="badge badge-used">used to + V</span>` : ''}
+          ${c.grammar?.will        ? `<span class="badge badge-will">will</span>` : ''}
+          ${c.grammar?.be_going_to ? `<span class="badge badge-going">be going to</span>` : ''}
+          ${c.grammar?.may_might   ? `<span class="badge badge-may">may / might</span>` : ''}
+        </div>
+      </div>`;
+
+    const old = stage.querySelector('.career-card');
+    if (old) {
+      old.style.animation = `${dir >= 0 ? 'slideOut' : 'slideOutBack'} 0.28s forwards`;
+      old.addEventListener('animationend', () => { stage.innerHTML = ''; stage.appendChild(card); }, { once: true });
+    } else {
+      stage.innerHTML = '';
+      stage.appendChild(card);
+    }
+  }
+
+  function syncNav() {
+    document.getElementById('navCounter').textContent = `${current + 1} of ${careers.length}`;
+    document.getElementById('btnPrev').disabled = current === 0;
+    const btn = document.getElementById('btnNext');
+    if (current === careers.length - 1) {
+      btn.textContent = '🔄 Search Again';
+      btn.onclick = () => {
+        document.getElementById('viewer').classList.remove('active');
+        document.getElementById('grammarLegend').classList.remove('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        setTimeout(() => document.getElementById('majorInput').focus(), 600);
+      };
+    } else {
+      btn.textContent = 'Next →';
+      btn.onclick = () => navigate(1);
+    }
+  }
+
+  // init nav state placeholder
+  window.addEventListener('load', () => {
+    document.getElementById('navCounter').textContent = '';
+    document.getElementById('btnPrev').disabled = true;
+  });
+</script>
+
+</body>
+</html>
