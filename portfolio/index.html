@@ -72,11 +72,18 @@
     .project-thumb {
       height: 110px; background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
       display: flex; align-items: center; justify-content: center;
-      font-size: 3rem; position: relative;
+      font-size: 3rem; position: relative; overflow: hidden;
     }
-    .project-thumb img {
+    .project-thumb .thumb-emoji {
+      line-height: 1; z-index: 1; position: relative;
+    }
+    /* Auto-loaded thumbnail image (from thumbnails/{project-id}.{ext}) */
+    .project-thumb img.auto-thumb {
+      position: absolute; inset: 0;
       width: 100%; height: 100%; object-fit: cover;
+      z-index: 1;
     }
+    .project-thumb.has-image .thumb-emoji { display: none; }
     .project-thumb.gradient-1 { background: linear-gradient(135deg, #667eea, #764ba2); color: white; }
     .project-thumb.gradient-2 { background: linear-gradient(135deg, #f093fb, #f5576c); color: white; }
     .project-thumb.gradient-3 { background: linear-gradient(135deg, #4facfe, #00f2fe); color: white; }
@@ -96,6 +103,7 @@
       text-transform: uppercase;
       line-height: 1.4;
       font-family: var(--font-en, 'Georgia', serif);
+      z-index: 2;  /* auto-thumb 이미지 위에 표시 */
     }
     .source-tag.local { background: rgba(42,100,150,0.85); }
     .source-tag.gemini { background: rgba(66,133,244,0.85); }
@@ -165,7 +173,7 @@
       <div class="project-grid">
 
         <a class="project-card" href="https://gemini.google.com/share/ca35a23ef6d0" target="_blank" rel="noopener">
-          <div class="project-thumb gradient-1">&#x1F3E0;<span class="source-tag gemini">Gemini</span></div>
+          <div class="project-thumb gradient-1" data-project-id="week03-makeover"><span class="thumb-emoji">&#x1F3E0;</span><span class="source-tag gemini">Gemini</span></div>
           <div class="project-body">
             <div class="project-title">MAKEOVER</div>
             <div class="project-title-ko">방 꾸미기 시뮬레이션</div>
@@ -174,7 +182,7 @@
         </a>
 
         <a class="project-card" href="https://codepen.io/editor/estanzqo-the-bold/pen/019cf805-c691-7a06-bb1e-ca0b817af257" target="_blank" rel="noopener">
-          <div class="project-thumb gradient-2">&#x1F4AC;<span class="source-tag codepen">CodePen</span></div>
+          <div class="project-thumb gradient-2" data-project-id="week03-will-smith-chat"><span class="thumb-emoji">&#x1F4AC;</span><span class="source-tag codepen">CodePen</span></div>
           <div class="project-body">
             <div class="project-title">Will Smith Chat</div>
             <div class="project-title-ko">윌 스미스와 채팅</div>
@@ -183,7 +191,7 @@
         </a>
 
         <a class="project-card" href="https://codepen.io/editor/estanzqo-the-bold/pen/019cf82b-bb9a-73d3-a5c9-83498c3c31b2" target="_blank" rel="noopener">
-          <div class="project-thumb gradient-3">&#x1F4F0;<span class="source-tag codepen">CodePen</span></div>
+          <div class="project-thumb gradient-3" data-project-id="week03-card-news"><span class="thumb-emoji">&#x1F4F0;</span><span class="source-tag codepen">CodePen</span></div>
           <div class="project-body">
             <div class="project-title">Card News</div>
             <div class="project-title-ko">카드뉴스</div>
@@ -200,7 +208,7 @@
       <div class="project-grid">
 
         <a class="project-card" href="view.html?p=week04-kim-seafood-master.html&amp;t=Seafood Master&amp;s=김OO&amp;w=Week 4">
-          <div class="project-thumb gradient-3">&#x1F41F;<span class="source-tag local">Local</span></div>
+          <div class="project-thumb gradient-3" data-project-id="week04-seafood-master"><span class="thumb-emoji">&#x1F41F;</span><span class="source-tag local">Local</span></div>
           <div class="project-body">
             <div class="project-title">Seafood Master</div>
             <div class="project-title-ko">해산물 마스터 게임</div>
@@ -209,7 +217,7 @@
         </a>
 
         <a class="project-card" href="view.html?p=week04-shin-cook-helper.html&amp;t=Cook Helper&amp;s=신OO&amp;w=Week 4">
-          <div class="project-thumb gradient-5">&#x1F468;&#x200D;&#x1F373;<span class="source-tag local">Local</span></div>
+          <div class="project-thumb gradient-5" data-project-id="week04-cook-helper"><span class="thumb-emoji">&#x1F468;&#x200D;&#x1F373;</span><span class="source-tag local">Local</span></div>
           <div class="project-body">
             <div class="project-title">Cook Helper</div>
             <div class="project-title-ko">요리 도우미</div>
@@ -226,7 +234,7 @@
       <div class="project-grid">
 
         <a class="project-card" href="https://gemini.google.com/share/2eaf57108ec7" target="_blank" rel="noopener">
-          <div class="project-thumb gradient-4">&#x2708;&#xFE0F;<span class="source-tag gemini">Gemini</span></div>
+          <div class="project-thumb gradient-4" data-project-id="week05-grammar-traveler"><span class="thumb-emoji">&#x2708;&#xFE0F;</span><span class="source-tag gemini">Gemini</span></div>
           <div class="project-body">
             <div class="project-title">Global Grammar Traveler</div>
             <div class="project-title-ko">세계 일주 문법 학습</div>
@@ -235,7 +243,7 @@
         </a>
 
         <a class="project-card" href="https://gemini.google.com/share/c3810c3002f3" target="_blank" rel="noopener">
-          <div class="project-thumb gradient-6">&#x1F5FA;&#xFE0F;<span class="source-tag gemini">Gemini</span></div>
+          <div class="project-thumb gradient-6" data-project-id="week05-travel-planner"><span class="thumb-emoji">&#x1F5FA;&#xFE0F;</span><span class="source-tag gemini">Gemini</span></div>
           <div class="project-body">
             <div class="project-title">AI Travel Planner</div>
             <div class="project-title-ko">AI 맞춤 여행 플래너</div>
@@ -252,7 +260,7 @@
       <div class="project-grid">
 
         <a class="project-card" href="https://gemini.google.com/share/fa2c9db6dc28" target="_blank" rel="noopener">
-          <div class="project-thumb gradient-4">&#x1F9F9;<span class="source-tag gemini">Gemini</span></div>
+          <div class="project-thumb gradient-4" data-project-id="week06-clean-up"><span class="thumb-emoji">&#x1F9F9;</span><span class="source-tag gemini">Gemini</span></div>
           <div class="project-body">
             <div class="project-title">Clean Up</div>
             <div class="project-title-ko">청소 부탁 시뮬레이터</div>
@@ -261,7 +269,7 @@
         </a>
 
         <a class="project-card" href="https://gemini.google.com/share/e90520759e3f" target="_blank" rel="noopener">
-          <div class="project-thumb"><img src="assets/room-quest.png" alt="Room Quest preview"><span class="source-tag gemini">Gemini</span></div>
+          <div class="project-thumb gradient-7" data-project-id="week06-room-quest"><span class="thumb-emoji">&#x1F6AA;</span><span class="source-tag gemini">Gemini</span></div>
           <div class="project-body">
             <div class="project-title">Room Quest</div>
             <div class="project-title-ko">방 정리 퀘스트</div>
@@ -270,7 +278,7 @@
         </a>
 
         <a class="project-card" href="view.html?p=week06-lee-hotel-chaos-rescue.html&amp;t=Hotel Chaos Rescue&amp;s=이OO&amp;w=Week 6">
-          <div class="project-thumb gradient-2">&#x1F3E8;<span class="source-tag local">Local</span></div>
+          <div class="project-thumb gradient-2" data-project-id="week06-hotel-chaos-rescue"><span class="thumb-emoji">&#x1F3E8;</span><span class="source-tag local">Local</span></div>
           <div class="project-body">
             <div class="project-title">Hotel Chaos Rescue</div>
             <div class="project-title-ko">호텔 위기 구조 게임</div>
@@ -287,7 +295,7 @@
       <div class="project-grid">
 
         <a class="project-card" href="https://claude.ai/public/artifacts/bb1d07cf-479a-46db-8105-1db335aac52f" target="_blank" rel="noopener">
-          <div class="project-thumb gradient-5">&#x1F389;<span class="source-tag claude">Claude</span></div>
+          <div class="project-thumb gradient-5" data-project-id="week07-english-festival-quiz"><span class="thumb-emoji">&#x1F389;</span><span class="source-tag claude">Claude</span></div>
           <div class="project-body">
             <div class="project-title">English Festival Quiz</div>
             <div class="project-title-ko">영어권 축제 퀴즈</div>
@@ -296,7 +304,7 @@
         </a>
 
         <a class="project-card" href="https://claude.ai/public/artifacts/fc8dafe7-db59-4258-8425-7130022a44f1" target="_blank" rel="noopener">
-          <div class="project-thumb gradient-6">&#x1F30D;<span class="source-tag claude">Claude</span></div>
+          <div class="project-thumb gradient-6" data-project-id="week07-world-festival-explorer"><span class="thumb-emoji">&#x1F30D;</span><span class="source-tag claude">Claude</span></div>
           <div class="project-body">
             <div class="project-title">World Festival Explorer</div>
             <div class="project-title-ko">세계 축제 탐험</div>
@@ -305,7 +313,7 @@
         </a>
 
         <a class="project-card" href="https://gemini.google.com/share/a19c4b8b296d" target="_blank" rel="noopener">
-          <div class="project-thumb gradient-4">&#x1F697;<span class="source-tag gemini">Gemini</span></div>
+          <div class="project-thumb gradient-4" data-project-id="week07-green-car-assistant"><span class="thumb-emoji">&#x1F697;</span><span class="source-tag gemini">Gemini</span></div>
           <div class="project-body">
             <div class="project-title">Green Car Assistant</div>
             <div class="project-title-ko">친환경 자동차 도우미</div>
@@ -322,7 +330,7 @@
       <div class="project-grid">
 
         <a class="project-card" href="https://gemini.google.com/share/2a882fec60f0" target="_blank" rel="noopener">
-          <div class="project-thumb gradient-7">&#x1F52E;<span class="source-tag gemini">Gemini</span></div>
+          <div class="project-thumb gradient-7" data-project-id="week09-guess-future"><span class="thumb-emoji">&#x1F52E;</span><span class="source-tag gemini">Gemini</span></div>
           <div class="project-body">
             <div class="project-title">Guess Your Future</div>
             <div class="project-title-ko">미래 예측 시뮬레이터</div>
@@ -331,7 +339,7 @@
         </a>
 
         <a class="project-card" href="view.html?p=week09-jeon-future-career.html&amp;t=Discover Your Future Career&amp;s=전OO&amp;w=Week 9">
-          <div class="project-thumb gradient-1">&#x1F4BC;<span class="source-tag local">Local</span></div>
+          <div class="project-thumb gradient-1" data-project-id="week09-future-career"><span class="thumb-emoji">&#x1F4BC;</span><span class="source-tag local">Local</span></div>
           <div class="project-body">
             <div class="project-title">Discover Your Future Career</div>
             <div class="project-title-ko">미래 직업 발견하기</div>
@@ -348,7 +356,7 @@
       <div class="project-grid">
 
         <a class="project-card" href="https://gemini.google.com/share/500ae78edc3d" target="_blank" rel="noopener">
-          <div class="project-thumb gradient-3">&#x1F5FE;<span class="source-tag gemini">Gemini</span></div>
+          <div class="project-thumb gradient-3" data-project-id="week11-asia-master"><span class="thumb-emoji">&#x1F5FE;</span><span class="source-tag gemini">Gemini</span></div>
           <div class="project-body">
             <div class="project-title">Asia Master</div>
             <div class="project-title-ko">아시아 마스터 퀴즈</div>
@@ -357,7 +365,7 @@
         </a>
 
         <a class="project-card" href="view.html?p=week11-choi-world-elite-guide.html&amp;t=World Elite Guide&amp;s=최OO&amp;w=Week 11">
-          <div class="project-thumb gradient-8">&#x1F30F;<span class="source-tag local">Local</span></div>
+          <div class="project-thumb gradient-8" data-project-id="week11-world-elite-guide"><span class="thumb-emoji">&#x1F30F;</span><span class="source-tag local">Local</span></div>
           <div class="project-body">
             <div class="project-title">World Elite Guide</div>
             <div class="project-title-ko">세계 명소 엘리트 가이드</div>
@@ -366,7 +374,7 @@
         </a>
 
         <a class="project-card" href="https://gemini.google.com/share/f826573a305b" target="_blank" rel="noopener">
-          <div class="project-thumb gradient-1">&#x26BD;<span class="source-tag gemini">Gemini</span></div>
+          <div class="project-thumb gradient-1" data-project-id="week11-euro-stadium"><span class="thumb-emoji">&#x26BD;</span><span class="source-tag gemini">Gemini</span></div>
           <div class="project-body">
             <div class="project-title">EURO Stadium Scout</div>
             <div class="project-title-ko">유럽 축구 경기장 탐험</div>
@@ -383,7 +391,7 @@
       <div class="project-grid">
 
         <a class="project-card" href="https://gemini.google.com/share/2225e394b097" target="_blank" rel="noopener">
-          <div class="project-thumb gradient-6">&#x1F3F0;<span class="source-tag gemini">Gemini</span></div>
+          <div class="project-thumb gradient-6" data-project-id="week12-mansion-mystery"><span class="thumb-emoji">&#x1F3F0;</span><span class="source-tag gemini">Gemini</span></div>
           <div class="project-body">
             <div class="project-title">The Mansion Mystery</div>
             <div class="project-title-ko">맨션 미스터리</div>
@@ -392,7 +400,7 @@
         </a>
 
         <a class="project-card" href="https://gemini.google.com/share/a41531d759ab" target="_blank" rel="noopener">
-          <div class="project-thumb gradient-7">&#x1F4DA;<span class="source-tag gemini">Gemini</span></div>
+          <div class="project-thumb gradient-7" data-project-id="week12-my-own-library"><span class="thumb-emoji">&#x1F4DA;</span><span class="source-tag gemini">Gemini</span></div>
           <div class="project-body">
             <div class="project-title">My Own Library</div>
             <div class="project-title-ko">나만의 도서관</div>
@@ -409,7 +417,7 @@
       <div class="project-grid">
 
         <a class="project-card" href="view.html?p=week14-oh-emoji-space-generator.html&amp;t=Emoji Space Generator&amp;s=오OO&amp;w=Week 14">
-          <div class="project-thumb gradient-5">&#x1F60A;<span class="source-tag local">Local</span></div>
+          <div class="project-thumb gradient-5" data-project-id="week14-emoji-space-generator"><span class="thumb-emoji">&#x1F60A;</span><span class="source-tag local">Local</span></div>
           <div class="project-body">
             <div class="project-title">Emoji Space Generator</div>
             <div class="project-title-ko">이모지 공간 제너레이터</div>
@@ -418,7 +426,7 @@
         </a>
 
         <a class="project-card" href="https://claude.ai/share/0807887a-7839-4e09-9093-5e74a86299ff" target="_blank" rel="noopener">
-          <div class="project-thumb gradient-8">&#x1F3E0;<span class="source-tag claude">Claude</span></div>
+          <div class="project-thumb gradient-8" data-project-id="week14-emoji-3d-room"><span class="thumb-emoji">&#x1F3E0;</span><span class="source-tag claude">Claude</span></div>
           <div class="project-body">
             <div class="project-title">Emoji 3D Room Curator</div>
             <div class="project-title-ko">이모지 3D 룸 큐레이터</div>
@@ -427,7 +435,7 @@
         </a>
 
         <a class="project-card" href="https://musical-pegasus-2e7bcd.netlify.app/" target="_blank" rel="noopener">
-          <div class="project-thumb gradient-4">&#x1F4DD;<span class="source-tag netlify">Netlify</span></div>
+          <div class="project-thumb gradient-4" data-project-id="week14-grammar-tool"><span class="thumb-emoji">&#x1F4DD;</span><span class="source-tag netlify">Netlify</span></div>
           <div class="project-body">
             <div class="project-title">Interactive Grammar Tool</div>
             <div class="project-title-ko">인터랙티브 문법 학습 도구</div>
@@ -444,5 +452,48 @@
   </div>
 
   <aside class="image-attribution" title="Images sourced from Unsplash and student-created content. Some may include AI-generated visuals.">Images: Unsplash &amp; AI-generated</aside>
+
+  <!-- ============================================
+       Auto-load project thumbnails from `thumbnails/` folder
+       Naming convention: thumbnails/{data-project-id}.{png|jpg|jpeg|webp}
+       If matching image exists, it overlays the default emoji+gradient.
+       If not, emoji+gradient fallback remains visible.
+       ============================================ -->
+  <script>
+    (function () {
+      var EXTS = ['png', 'jpg', 'jpeg', 'webp'];
+
+      function tryLoad(url) {
+        return new Promise(function (resolve) {
+          var img = new Image();
+          img.onload = function () { resolve(true); };
+          img.onerror = function () { resolve(false); };
+          img.src = url;
+        });
+      }
+
+      async function attachThumb(thumb) {
+        var id = thumb.getAttribute('data-project-id');
+        if (!id) return;
+        for (var i = 0; i < EXTS.length; i++) {
+          var url = 'thumbnails/' + id + '.' + EXTS[i];
+          var ok = await tryLoad(url);
+          if (ok) {
+            var imgEl = document.createElement('img');
+            imgEl.src = url;
+            imgEl.alt = '';
+            imgEl.className = 'auto-thumb';
+            imgEl.loading = 'lazy';
+            thumb.appendChild(imgEl);
+            thumb.classList.add('has-image');
+            return;
+          }
+        }
+      }
+
+      var thumbs = document.querySelectorAll('.project-thumb[data-project-id]');
+      thumbs.forEach(attachThumb);
+    })();
+  </script>
 </body>
 </html>
