@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Room Quest &mdash; 시작하기 (샘플 이미지 다운로드)</title>
+  <link rel="stylesheet" href="../../assets/css/theme.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { min-height: 100vh; }
+    body {
+      font-family: var(--font-en, 'Georgia', serif);
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: var(--color-text);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .topbar {
+      flex-shrink: 0;
+      height: 52px;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      display: flex;
+      align-items: center;
+      padding: 0 1rem;
+      gap: 0.8rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .topbar a {
+      color: white;
+      text-decoration: none;
+      padding: 0.4rem 0.85rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: all 0.2s;
+      white-space: nowrap;
+      background: rgba(0,0,0,0.25);
+    }
+    .topbar a:hover { background: rgba(0,0,0,0.45); transform: translateX(-2px); }
+    .topbar .project-info {
+      flex: 1; min-width: 0;
+      overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+      padding: 0 0.5rem;
+    }
+    .topbar .project-info .week {
+      display: inline-block; font-size: 0.7rem;
+      background: rgba(0,0,0,0.25); padding: 2px 8px;
+      border-radius: 10px; margin-right: 0.5rem;
+      letter-spacing: 0.05em; font-weight: 600;
+    }
+    .topbar .project-info .title { font-weight: 600; font-size: 1rem; }
+    .topbar .project-info .student {
+      font-family: var(--font-ko, 'Noto Sans KR', sans-serif);
+      opacity: 0.85; font-size: 0.85rem; margin-left: 0.6rem;
+    }
+
+    main {
+      flex: 1;
+      max-width: 760px;
+      width: 100%;
+      margin: 2rem auto;
+      padding: 0 1.5rem 3rem;
+    }
+    .card {
+      background: white;
+      border-radius: 14px;
+      padding: 2rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    }
+    .card h1 {
+      font-size: 1.8rem;
+      color: var(--color-primary);
+      margin-bottom: 0.4rem;
+    }
+    .card .subtitle {
+      font-family: var(--font-ko, sans-serif);
+      color: var(--color-text-muted);
+      margin-bottom: 1.2rem;
+    }
+
+    .notice {
+      background: linear-gradient(135deg, #fff4e6, #ffe9d6);
+      border-left: 4px solid #f39c12;
+      padding: 1rem 1.2rem;
+      border-radius: 8px;
+      margin: 1.5rem 0;
+    }
+    .notice strong { color: #b8651a; display: block; margin-bottom: 0.4rem; font-size: 1rem; }
+    .notice p { font-family: var(--font-ko, sans-serif); font-size: 0.92rem; line-height: 1.6; color: #5c3a0e; }
+    .notice ol { font-family: var(--font-ko, sans-serif); font-size: 0.92rem; line-height: 1.8; padding-left: 1.4rem; margin-top: 0.5rem; color: #5c3a0e; }
+
+    .sample-section {
+      margin: 1.5rem 0;
+      text-align: center;
+    }
+    .sample-section h3 {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--color-text-muted);
+      margin-bottom: 0.8rem;
+    }
+    .sample-preview {
+      display: block;
+      max-width: 100%;
+      width: 100%;
+      max-height: 400px;
+      object-fit: contain;
+      margin: 0 auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+      background: #f4f6f7;
+    }
+
+    .btn-group {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.8rem;
+      margin-top: 1.5rem;
+    }
+    @media (max-width: 480px) {
+      .btn-group { grid-template-columns: 1fr; }
+    }
+    .btn {
+      padding: 0.95rem 1.2rem;
+      border-radius: 10px;
+      text-decoration: none;
+      text-align: center;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+    }
+    .btn-download {
+      background: #f3f4f6;
+      color: var(--color-primary);
+      border: 1.5px solid var(--color-primary-light);
+    }
+    .btn-download:hover {
+      background: var(--color-primary-light);
+      color: white;
+      transform: translateY(-2px);
+    }
+    .btn-play {
+      background: linear-gradient(135deg, #4285f4, #34a853);
+      color: white;
+      box-shadow: 0 4px 12px rgba(66,133,244,0.3);
+    }
+    .btn-play:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(66,133,244,0.4);
+    }
+
+    .meta {
+      margin-top: 1.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid #e5e7eb;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.85rem;
+      color: var(--color-text-muted);
+    }
+    .meta .source-tag {
+      background: rgba(66,133,244,0.85);
+      color: white;
+      padding: 2px 8px;
+      border-radius: 8px;
+      font-size: 0.7rem;
+      letter-spacing: 0.05em;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <a href="../index.html">&larr; Back to Portfolio</a>
+    <div class="project-info">
+      <span class="week">Week 6</span>
+      <span class="title">Room Quest</span>
+      <span class="student">· 김OO</span>
+    </div>
+  </div>
+
+  <main>
+    <div class="card">
+      <h1>&#x1F6AA; Room Quest</h1>
+      <div class="subtitle">방 정리 퀘스트 &mdash; 어지러운 방 사진을 분석해 정리 미션을 수행하는 인터랙티브 게임</div>
+
+      <div class="notice">
+        <strong>&#x2139;&#xFE0F; 게임 진행 안내</strong>
+        <p>이 게임은 <strong>방 사진 업로드</strong>가 필요합니다. 아래 샘플 이미지를 다운로드해서 사용하세요.</p>
+        <ol>
+          <li>아래 <em>샘플 이미지 다운로드</em> 버튼 클릭</li>
+          <li><em>Room Quest 시작</em> 버튼으로 게임 페이지 이동</li>
+          <li>게임 화면에서 다운로드한 이미지를 업로드</li>
+          <li>퀘스트 진행!</li>
+        </ol>
+      </div>
+
+      <div class="sample-section">
+        <h3>&#x1F4F7; 샘플 방 사진</h3>
+        <img src="week06-room-quest.png" alt="Room Quest 샘플 방 사진" class="sample-preview">
+      </div>
+
+      <div class="btn-group">
+        <a href="week06-room-quest.png" download="room-quest-sample.png" class="btn btn-download">
+          &#x1F4E5; 샘플 이미지 다운로드
+        </a>
+        <a href="https://gemini.google.com/share/e90520759e3f" target="_blank" rel="noopener" class="btn btn-play">
+          &#x1F3AE; Room Quest 시작 &#x2197;
+        </a>
+      </div>
+
+      <div class="meta">
+        <span>제작: 김OO &middot; Week 6</span>
+        <span class="source-tag">Gemini</span>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
