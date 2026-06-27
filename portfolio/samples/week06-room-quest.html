@@ -117,47 +117,72 @@
       background: #f4f6f7;
     }
 
-    .btn-group {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.8rem;
+    .primary-action {
       margin-top: 1.5rem;
     }
-    @media (max-width: 480px) {
-      .btn-group { grid-template-columns: 1fr; }
-    }
-    .btn {
-      padding: 0.95rem 1.2rem;
-      border-radius: 10px;
-      text-decoration: none;
-      text-align: center;
-      font-weight: 600;
-      font-size: 0.95rem;
-      transition: all 0.2s;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.4rem;
-    }
-    .btn-download {
-      background: #f3f4f6;
-      color: var(--color-primary);
-      border: 1.5px solid var(--color-primary-light);
-    }
-    .btn-download:hover {
-      background: var(--color-primary-light);
-      color: white;
-      transform: translateY(-2px);
-    }
-    .btn-play {
+    .btn-combo {
+      display: block;
+      width: 100%;
+      padding: 1.1rem 1.5rem;
+      border: 0;
+      border-radius: 12px;
       background: linear-gradient(135deg, #4285f4, #34a853);
       color: white;
-      box-shadow: 0 4px 12px rgba(66,133,244,0.3);
+      font-size: 1.05rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 6px 18px rgba(66,133,244,0.35);
+      transition: all 0.2s;
+      font-family: var(--font-en, 'Georgia', serif);
     }
-    .btn-play:hover {
+    .btn-combo:hover {
       transform: translateY(-2px);
-      box-shadow: 0 6px 18px rgba(66,133,244,0.4);
+      box-shadow: 0 10px 24px rgba(66,133,244,0.45);
     }
+    .btn-combo:active { transform: translateY(0); }
+    .btn-combo .small {
+      display: block;
+      font-size: 0.78rem;
+      font-weight: 500;
+      opacity: 0.9;
+      margin-top: 0.3rem;
+      letter-spacing: 0.02em;
+    }
+
+    .secondary-actions {
+      margin-top: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      font-size: 0.85rem;
+    }
+    .secondary-actions a {
+      color: var(--color-text-muted);
+      text-decoration: none;
+      padding: 0.3rem 0.6rem;
+      border-radius: 6px;
+      transition: all 0.2s;
+    }
+    .secondary-actions a:hover {
+      color: var(--color-primary);
+      background: #f3f4f6;
+    }
+    .secondary-actions .divider { color: #d1d5db; user-select: none; }
+
+    .feedback {
+      display: none;
+      margin-top: 0.8rem;
+      padding: 0.7rem 1rem;
+      background: #d1fae5;
+      border-left: 4px solid #10b981;
+      border-radius: 8px;
+      color: #065f46;
+      font-size: 0.9rem;
+      font-family: var(--font-ko, sans-serif);
+    }
+    .feedback.visible { display: block; }
+    .feedback strong { display: block; margin-bottom: 0.2rem; }
 
     .meta {
       margin-top: 1.5rem;
@@ -198,28 +223,57 @@
 
       <div class="notice">
         <strong>&#x2139;&#xFE0F; 게임 진행 안내</strong>
-        <p>이 게임은 <strong>방 사진 업로드</strong>가 필요합니다. 아래 샘플 이미지를 다운로드해서 사용하세요.</p>
+        <p>이 게임은 <strong>방 사진 업로드</strong>가 필요합니다. 아래 버튼 하나로 모든 준비 완료!</p>
         <ol>
-          <li>아래 <em>샘플 이미지 다운로드</em> 버튼 클릭</li>
-          <li><em>Room Quest 시작</em> 버튼으로 게임 페이지 이동</li>
-          <li>게임 화면에서 다운로드한 이미지를 업로드</li>
-          <li>퀘스트 진행!</li>
+          <li>아래 <strong>다운로드 + 게임 시작</strong> 버튼 클릭<br>
+              <span style="font-size:0.88em; opacity:0.85;">&rarr; <em>messy room.jpg</em> 자동 다운로드 + Room Quest 새 탭 자동 오픈</span></li>
+          <li>게임 탭의 <strong>"사진 불러오기"</strong> 클릭 → 방금 다운된 <em>messy room.jpg</em> 선택</li>
+          <li>영어 명령어 입력하며 퀘스트 진행!</li>
         </ol>
       </div>
 
       <div class="sample-section">
-        <h3>&#x1F4F7; 샘플 방 사진</h3>
+        <h3>&#x1F4F7; 샘플 방 사진 (자동 다운로드됨)</h3>
         <img src="week06-room-quest.png" alt="Room Quest 샘플 방 사진" class="sample-preview">
       </div>
 
-      <div class="btn-group">
-        <a href="week06-room-quest.png" download="room-quest-sample.png" class="btn btn-download">
-          &#x1F4E5; 샘플 이미지 다운로드
-        </a>
-        <a href="https://gemini.google.com/share/e90520759e3f" target="_blank" rel="noopener" class="btn btn-play">
-          &#x1F3AE; Room Quest 시작 &#x2197;
-        </a>
+      <div class="primary-action">
+        <button type="button" class="btn-combo" onclick="downloadAndStart()">
+          &#x1F4E5; 다운로드 + &#x1F3AE; 게임 시작 (원클릭)
+          <span class="small">샘플 이미지 자동 다운로드 + Room Quest 새 탭 오픈</span>
+        </button>
+        <div id="feedback" class="feedback">
+          <strong>&#x2705; 준비 완료!</strong>
+          새 탭에서 게임이 열렸습니다. 게임 화면의 <em>사진 불러오기</em> 클릭 후 방금 다운된 <em>messy room.jpg</em>를 선택하세요.
+        </div>
       </div>
+
+      <div class="secondary-actions">
+        <a href="week06-room-quest.png" download="messy room.jpg">&#x1F4E5; 이미지만 받기</a>
+        <span class="divider">·</span>
+        <a href="https://gemini.google.com/share/e90520759e3f" target="_blank" rel="noopener">&#x1F3AE; 게임만 열기 &#x2197;</a>
+      </div>
+
+      <script>
+        function downloadAndStart() {
+          // 1. 게임 탭 먼저 열기 (popup blocker 우회: 사용자 제스처 직접 사용)
+          var gameWin = window.open('https://gemini.google.com/share/e90520759e3f', '_blank', 'noopener');
+
+          // 2. 이미지 다운로드 (이름을 게임 기대치인 "messy room.jpg"로)
+          var a = document.createElement('a');
+          a.href = 'week06-room-quest.png';
+          a.download = 'messy room.jpg';
+          a.style.display = 'none';
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+
+          // 3. 사용자에게 피드백
+          var fb = document.getElementById('feedback');
+          fb.classList.add('visible');
+          fb.scrollIntoView({behavior: 'smooth', block: 'center'});
+        }
+      </script>
 
       <div class="meta">
         <span>제작: 김OO &middot; Week 6</span>
