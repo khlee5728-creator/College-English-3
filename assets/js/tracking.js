@@ -28,6 +28,15 @@
   var ITEM_SEL = '.fill-blank-item, .transform-item, .quiz-item, .reading-question-item';
   if (!document.querySelector(ITEM_SEL)) return;   // 연습 문제 없는 페이지면 종료
 
+  // data-qid 누락 경고 — 새 문항 추가 시 고정 ID 부여를 잊지 않도록 (브라우저 콘솔 F12 에서 확인)
+  var missingQid = Array.prototype.filter.call(document.querySelectorAll(ITEM_SEL), function (el) {
+    return !(el.dataset && el.dataset.qid);
+  });
+  if (missingQid.length) {
+    console.warn('[tracking] data-qid 없는 문항 ' + missingQid.length + '개 → 위치 기반 ID로 대체됨 ' +
+      '(슬라이드를 삽입하면 ID가 바뀔 수 있음). 각 문항 태그에 data-qid="w' + pad2(WEEK) + '-qNN" 을 추가하세요.', missingQid);
+  }
+
   var sb = window.supabase.createClient(CONFIG.SUPABASE_URL, CONFIG.SUPABASE_ANON_KEY);
 
   // ---- 로컬 상태 ----
@@ -58,7 +67,8 @@
     return a[qid];
   }
 
-  // ---- 문항 ID: w05-s11-q2 (주차-슬라이드-문항) / data-qid 가 있으면 우선 ----
+  // ---- 문항 ID: data-qid (예: w05-q12 — 모든 문항에 부여됨, 슬라이드 위치와 무관) 우선
+  //      없을 때만 위치 기반 w05-s11-q2 (주차-슬라이드-문항) 로 대체 ----
   function pad2(n) { return (n < 10 ? '0' : '') + n; }
   function buildQuestionId(item) {
     if (item.dataset && item.dataset.qid) return item.dataset.qid;

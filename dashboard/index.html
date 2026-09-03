@@ -226,7 +226,7 @@
         var r = map[s + '|' + w], tot = weekTotals[w] || 0;
         sumT += tot;
         if (!r) { html += '<td><span class="cell c0">–</span></td>'; return; }
-        var ratio = tot ? r.attempted / tot : 0;
+        var ratio = tot ? Math.min(1, r.attempted / tot) : 0;   // 문항 삭제 후엔 시도 > 총 가능 → 색상은 100% 로 고정
         sumA += r.attempted;
         html += '<td title="정답 ' + r.solved + ' / 시도 ' + r.attempted + ' / 체크 ' + r.checks + '회 · 마지막 ' + fmtTime(r.last_at) + '">' +
           '<span class="cell ' + cellClass(ratio, r.attempted) + '">' + r.attempted + (tot ? '/' + tot : '') + '</span>' +
