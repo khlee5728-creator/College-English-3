@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>활동 대시보드 — Practical English 3</title>
+<link rel="stylesheet" href="../assets/css/theme.css">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--font-ko, 'Noto Sans KR', sans-serif); background: #f4f6f9; color: #1f2937; min-height: 100vh; }
+  .topbar { background: linear-gradient(135deg, #667eea, #764ba2); color: #fff; padding: .8rem 1.5rem; display: flex; align-items: center; gap: .6rem; flex-wrap: wrap; }
+  .topbar h1 { font-size: 1.1rem; font-weight: 700; flex: 1; min-width: 200px; }
+  .topbar select, .topbar button, .topbar a { font: inherit; font-size: .82rem; padding: .4rem .8rem; border-radius: 6px; border: 1px solid rgba(255,255,255,.35); background: rgba(255,255,255,.15); color: #fff; cursor: pointer; text-decoration: none; }
+  .topbar select option { color: #111; }
+  .topbar button:hover, .topbar a:hover { background: rgba(255,255,255,.3); }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 1.2rem 1.5rem 3rem; }
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: .8rem; margin-bottom: 1.2rem; }
+  .card { background: #fff; border-radius: 10px; padding: .9rem 1rem; box-shadow: 0 1px 3px rgba(0,0,0,.06); }
+  .card .k { font-size: .72rem; color: #6b7280; text-transform: uppercase; letter-spacing: .06em; }
+  .card .v { font-size: 1.5rem; font-weight: 700; color: #1a5276; margin-top: .2rem; }
+  .card .s { font-size: .74rem; color: #9ca3af; }
+  .tabs { display: flex; gap: .3rem; border-bottom: 2px solid #e5e7eb; margin-bottom: 1rem; flex-wrap: wrap; }
+  .tabs button { font: inherit; font-size: .9rem; padding: .55rem 1rem; border: 0; background: none; color: #6b7280; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -2px; }
+  .tabs button.on { color: #1a5276; border-bottom-color: #1a5276; font-weight: 600; }
+  .panel { display: none; background: #fff; border-radius: 10px; padding: 1rem; box-shadow: 0 1px 3px rgba(0,0,0,.06); }
+  .panel.on { display: block; }
+  .panel h2 { font-size: 1rem; margin-bottom: .5rem; color: #1a5276; }
+  .hint { font-size: .78rem; color: #6b7280; margin-bottom: .7rem; line-height: 1.5; }
+  .scroll { overflow-x: auto; }
+  table { border-collapse: collapse; font-size: .82rem; white-space: nowrap; }
+  th, td { padding: .35rem .5rem; border: 1px solid #eef0f3; text-align: center; }
+  th { background: #f9fafb; font-weight: 600; color: #374151; position: sticky; top: 0; }
+  td.sid, th.sid { text-align: left; font-family: var(--font-mono, monospace); position: sticky; left: 0; background: #fff; z-index: 1; }
+  th.sid { background: #f9fafb; z-index: 2; }
+  .cell { display: inline-block; min-width: 3.4em; padding: .15rem .3rem; border-radius: 4px; font-variant-numeric: tabular-nums; }
+  .c0 { background: #f3f4f6; color: #9ca3af; }
+  .c1 { background: #fee2e2; color: #991b1b; }
+  .c2 { background: #fef3c7; color: #92400e; }
+  .c3 { background: #d1fae5; color: #065f46; }
+  .c4 { background: #a7f3d0; color: #064e3b; font-weight: 600; }
+  .warn { color: #d97706; font-size: .75rem; margin-left: 2px; cursor: help; }
+  .none { color: #d1d5db; }
+  .ok { color: #059669; font-weight: 600; }
+  .bad { color: #dc2626; font-weight: 600; }
+  .q-list { list-style: none; }
+  .q-list li { padding: .55rem .6rem; border-bottom: 1px solid #f1f3f5; display: grid; grid-template-columns: 3.5em 7em 1fr 7em 4.5em; gap: .6rem; align-items: center; font-size: .85rem; }
+  .q-list li:first-child { font-weight: 600; color: #6b7280; font-size: .74rem; text-transform: uppercase; }
+  .rate { font-weight: 700; }
+  .rate.low { color: #dc2626; } .rate.mid { color: #d97706; } .rate.high { color: #059669; }
+  .snip { color: #4b5563; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .feed { list-style: none; font-size: .85rem; }
+  .feed li { padding: .45rem .4rem; border-bottom: 1px solid #f1f3f5; display: flex; gap: .8rem; align-items: center; flex-wrap: wrap; }
+  .feed .t { color: #9ca3af; font-family: var(--font-mono, monospace); font-size: .78rem; min-width: 8em; }
+  .feed .sid { font-family: var(--font-mono, monospace); }
+  .empty { color: #9ca3af; text-align: center; padding: 2rem; }
+  .gate { max-width: 380px; margin: 12vh auto; background: #fff; border-radius: 14px; padding: 2rem; box-shadow: 0 20px 50px rgba(0,0,0,.12); }
+  .gate h2 { font-size: 1.1rem; color: #1a5276; margin-bottom: .4rem; }
+  .gate p { font-size: .85rem; color: #6b7280; margin-bottom: 1rem; line-height: 1.5; }
+  .gate input { width: 100%; padding: .7rem .9rem; font-size: 1rem; border: 2px solid #d1d5db; border-radius: 8px; margin-bottom: .6rem; font: inherit; }
+  .gate input:focus { outline: none; border-color: #2a6496; }
+  .gate button { width: 100%; padding: .7rem; font: inherit; font-size: .95rem; font-weight: 600; background: #2a6496; color: #fff; border: 0; border-radius: 8px; cursor: pointer; }
+  .gate .err { color: #dc2626; font-size: .8rem; min-height: 1.2em; margin-bottom: .4rem; }
+  select.wk { font: inherit; padding: .35rem .6rem; border-radius: 6px; border: 1px solid #d1d5db; margin-bottom: .8rem; }
+  @media (max-width: 640px) { .q-list li { grid-template-columns: 3.5em 6em 1fr; } .q-list li span:nth-child(n+4) { display: none; } }
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  // ====== 설정: assets/js/tracking.js 와 동일한 값을 넣으세요 ======
+  var CONFIG = {
+    SUPABASE_URL: '',
+    SUPABASE_ANON_KEY: '',
+    DEFAULT_SEMESTER: '2026-2'
+  };
+
+  var WEEK_DIRS = {
+    1: 'week01-orientation', 2: 'week02-unit01-02', 3: 'week03-unit03', 4: 'week04-unit04',
+    5: 'week05-unit05', 6: 'week06-unit06', 7: 'week07-unit07-08', 8: 'week08-midterm',
+    9: 'week09-unit09', 10: 'week10-unit10', 11: 'week11-unit11', 12: 'week12-unit12',
+    13: 'week13-unit13-14', 14: 'week14-unit15-16', 15: 'week15-final'
+  };
+  var ITEM_SEL = '.fill-blank-item, .transform-item, .quiz-item, .reading-question-item';
+  var WEEKS = Object.keys(WEEK_DIRS).map(Number);
+
+  var app = document.getElementById('app');
+  var sb = null;
+  var pw = sessionStorage.getItem('pe3_dash_pw') || '';
+  var sem = CONFIG.DEFAULT_SEMESTER;
+  var data = null, weekTotals = {}, weekDetailCache = {};
+
+  function h(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]; }); }
+  function fmtTime(iso) { if (!iso) return '–'; return new Date(iso).toLocaleString('ko-KR', { month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' }); }
+  function shortQ(q) { return String(q).replace(/^w\d+-/, ''); }
+
+  if (!CONFIG.SUPABASE_URL || !CONFIG.SUPABASE_ANON_KEY) {
+    app.innerHTML = '<div class="gate"><h2>설정 필요</h2><p>dashboard/index.html 상단 CONFIG 에 Supabase URL 과 anon key 를 입력하세요.<br>세팅 방법: <code>supabase/README.md</code></p></div>';
+    return;
+  }
+  sb = window.supabase.createClient(CONFIG.SUPABASE_URL, CONFIG.SUPABASE_ANON_KEY);
+
+  // ---------- 비밀번호 게이트 ----------
+  function renderGate(msg) {
+    app.innerHTML = '<div class="gate"><h2>📊 활동 대시보드</h2><p>교수용 비밀번호를 입력하세요.<br>탭을 닫으면 다시 물어봅니다.</p>' +
+      '<input type="password" id="pw" autocomplete="current-password" placeholder="비밀번호">' +
+      '<div class="err">' + h(msg || '') + '</div><button id="go">열기</button></div>';
+    var inp = document.getElementById('pw');
+    function go() { pw = inp.value; sessionStorage.setItem('pe3_dash_pw', pw); load(); }
+    document.getElementById('go').onclick = go;
+    inp.onkeydown = function (e) { if (e.key === 'Enter') go(); };
+    inp.focus();
+  }
+
+  // ---------- 데이터 로드 ----------
+  async function rpc(name, params) {
+    var r = await sb.rpc(name, params);
+    if (r.error) throw r.error;
+    return r.data;
+  }
+  async function load() {
+    app.innerHTML = '<div class="gate"><p>불러오는 중…</p></div>';
+    try {
+      var sems = await rpc('dashboard_semesters', { pw: pw });
+      if (sems.length && sems.indexOf(sem) < 0) sem = sems[0];
+      data = await rpc('dashboard_overview', { pw: pw, sem: sem });
+      data.semesters = sems.length ? sems : [sem];
+      if (data.semesters.indexOf(CONFIG.DEFAULT_SEMESTER) < 0) data.semesters.unshift(CONFIG.DEFAULT_SEMESTER);
+      weekDetailCache = {};
+      renderApp();
+      loadWeekTotals();
+    } catch (e) {
+      var m = (e && e.message) || String(e);
+      if (/unauthorized/i.test(m)) { sessionStorage.removeItem('pe3_dash_pw'); pw = ''; renderGate('비밀번호가 올바르지 않습니다.'); }
+      else renderGate('오류: ' + m);
+    }
+  }
+  // 주차별 총 문항 수: 강의 HTML 을 가져와 문항 수를 셈 (세션 캐시)
+  async function loadWeekTotals() {
+    var cached = sessionStorage.getItem('pe3_week_totals');
+    if (cached) { weekTotals = JSON.parse(cached); renderHeatmap(); return; }
+    var parser = new DOMParser();
+    await Promise.all(WEEKS.map(async function (w) {
+      try {
+        var res = await fetch('../weeks/' + WEEK_DIRS[w] + '/index.html', { cache: 'no-cache' });
+        var doc = parser.parseFromString(await res.text(), 'text/html');
+        weekTotals[w] = doc.querySelectorAll(ITEM_SEL).length;
+      } catch (e) { weekTotals[w] = 0; }
+    }));
+    sessionStorage.setItem('pe3_week_totals', JSON.stringify(weekTotals));
+    renderHeatmap();
+  }
+
+  // ---------- 렌더 ----------
+  function renderApp() {
+    var t = data.totals || {};
+    app.innerHTML =
+      '<div class="topbar"><h1>📊 Practical English 3 — 활동 대시보드</h1>' +
+        '<select id="sem">' + data.semesters.map(function (s) { return '<option' + (s === sem ? ' selected' : '') + '>' + h(s) + '</option>'; }).join('') + '</select>' +
+        '<button id="refresh">새로고침</button><button id="csv">CSV 내보내기</button><a href="../index.html">홈</a><button id="logout">잠금</button>' +
+      '</div>' +
+      '<div class="wrap">' +
+        '<div class="cards">' +
+          '<div class="card"><div class="k">참여 학생</div><div class="v">' + (t.students || 0) + '</div><div class="s">명단 ' + (data.roster.length || '미등록') + (data.roster.length ? '명' : '') + '</div></div>' +
+          '<div class="card"><div class="k">총 체크 수</div><div class="v">' + (t.checks || 0) + '</div></div>' +
+          '<div class="card"><div class="k">최근 활동</div><div class="v" style="font-size:1rem">' + fmtTime(t.last_at) + '</div></div>' +
+          '<div class="card"><div class="k">학기</div><div class="v" style="font-size:1rem">' + h(sem) + '</div></div>' +
+        '</div>' +
+        '<div class="tabs"><button data-t="heat" class="on">히트맵</button><button data-t="week">주차 상세</button><button data-t="hard">어려운 문항</button><button data-t="recent">최근 활동</button></div>' +
+        '<div class="panel on" id="p-heat"></div><div class="panel" id="p-week"></div><div class="panel" id="p-hard"></div><div class="panel" id="p-recent"></div>' +
+      '</div>';
+    document.getElementById('sem').onchange = function () { sem = this.value; load(); };
+    document.getElementById('refresh').onclick = function () { sessionStorage.removeItem('pe3_week_totals'); weekTotals = {}; load(); };
+    document.getElementById('csv').onclick = exportCsv;
+    document.getElementById('logout').onclick = function () { sessionStorage.removeItem('pe3_dash_pw'); pw = ''; renderGate(); };
+    document.querySelectorAll('.tabs button').forEach(function (b) {
+      b.onclick = function () {
+        document.querySelectorAll('.tabs button').forEach(function (x) { x.classList.toggle('on', x === b); });
+        document.querySelectorAll('.panel').forEach(function (p) { p.classList.toggle('on', p.id === 'p-' + b.dataset.t); });
+      };
+    });
+    renderHeatmap(); renderHard(); renderRecent(); renderWeekPanel();
+  }
+
+  function studentList() {
+    var set = {};
+    data.roster.forEach(function (s) { set[s] = 1; });
+    data.heatmap.forEach(function (r) { set[r.student_id] = 1; });
+    return Object.keys(set).sort();
+  }
+  function activeWeeks() {
+    var set = {};
+    data.heatmap.forEach(function (r) { set[r.week] = 1; });
+    Object.keys(weekTotals).forEach(function (w) { if (weekTotals[w] > 0) set[w] = 1; });
+    var arr = Object.keys(set).map(Number).sort(function (a, b) { return a - b; });
+    return arr.length ? arr : WEEKS;
+  }
+  function cellClass(ratio, attempted) {
+    if (!attempted) return 'c0';
+    if (ratio >= 0.9) return 'c4';
+    if (ratio >= 0.6) return 'c3';
+    if (ratio >= 0.3) return 'c2';
+    return 'c1';
+  }
+  function renderHeatmap() {
+    var el = document.getElementById('p-heat'); if (!el) return;
+    var students = studentList(), weeks = activeWeeks();
+    if (!students.length) { el.innerHTML = '<h2>학생 × 주차 참여 히트맵</h2><div class="empty">아직 기록된 활동이 없습니다.</div>'; return; }
+    var map = {};
+    data.heatmap.forEach(function (r) { map[r.student_id + '|' + r.week] = r; });
+    var html = '<h2>학생 × 주차 참여 히트맵</h2>' +
+      '<div class="hint">셀 = 시도한 문항 수 / 그 주차 총 문항 수 (총 문항 수는 강의 페이지에서 자동 집계). 셀에 마우스를 올리면 정답 수·체크 횟수·마지막 활동 시각. ' +
+      '⚠ = 같은 학번이 여러 기기에서 기록됨. ? = 명단(roster)에 없는 학번.</div>' +
+      '<div class="scroll"><table><thead><tr><th class="sid">학번</th>' +
+      weeks.map(function (w) { return '<th>W' + w + '<br><span style="font-weight:400;color:#9ca3af">' + (weekTotals[w] != null ? weekTotals[w] + '문항' : '…') + '</span></th>'; }).join('') +
+      '<th>합계</th></tr></thead><tbody>';
+    students.forEach(function (s) {
+      var sumA = 0, sumT = 0;
+      var unknown = data.roster.length && data.roster.indexOf(s) < 0;
+      html += '<tr><td class="sid">' + h(s) + (unknown ? ' <span class="warn" title="명단에 없는 학번">?</span>' : '') + '</td>';
+      weeks.forEach(function (w) {
+        var r = map[s + '|' + w], tot = weekTotals[w] || 0;
+        sumT += tot;
+        if (!r) { html += '<td><span class="cell c0">–</span></td>'; return; }
+        var ratio = tot ? r.attempted / tot : 0;
+        sumA += r.attempted;
+        html += '<td title="정답 ' + r.solved + ' / 시도 ' + r.attempted + ' / 체크 ' + r.checks + '회 · 마지막 ' + fmtTime(r.last_at) + '">' +
+          '<span class="cell ' + cellClass(ratio, r.attempted) + '">' + r.attempted + (tot ? '/' + tot : '') + '</span>' +
+          (r.devices > 1 ? '<span class="warn" title="기기 ' + r.devices + '대에서 기록">⚠</span>' : '') + '</td>';
+      });
+      html += '<td><b>' + sumA + (sumT ? '/' + sumT : '') + '</b></td></tr>';
+    });
+    el.innerHTML = html + '</tbody></table></div>';
+  }
+
+  function renderWeekPanel() {
+    var el = document.getElementById('p-week'); if (!el) return;
+    var weeks = activeWeeks();
+    var cur = el.dataset.week ? Number(el.dataset.week) : weeks[weeks.length - 1];
+    if (weeks.indexOf(cur) < 0) cur = weeks[weeks.length - 1];
+    el.innerHTML = '<h2>주차 상세</h2><select class="wk">' +
+      weeks.map(function (w) { return '<option value="' + w + '"' + (w === cur ? ' selected' : '') + '>Week ' + w + '</option>'; }).join('') +
+      '</select><div id="wk-body"><div class="empty">불러오는 중…</div></div>';
+    el.querySelector('.wk').onchange = function () { el.dataset.week = this.value; renderWeekPanel(); };
+    el.dataset.week = cur;
+    renderWeekBody(cur);
+  }
+  async function renderWeekBody(w) {
+    var body = document.getElementById('wk-body'); if (!body) return;
+    try {
+      if (!weekDetailCache[w]) weekDetailCache[w] = await rpc('dashboard_week', { pw: pw, sem: sem, wk: w });
+      var rows = weekDetailCache[w];
+      if (!rows.length) { body.innerHTML = '<div class="empty">이 주차에 기록된 활동이 없습니다.</div>'; return; }
+      var qids = {}, students = {}, map = {}, qText = {};
+      rows.forEach(function (r) { qids[r.question_id] = 1; students[r.student_id] = 1; map[r.student_id + '|' + r.question_id] = r; });
+      data.questions.forEach(function (q) { if (q.week === w) qText[q.question_id] = q.question_text; });
+      var qArr = Object.keys(qids).sort(), sArr = Object.keys(students).sort();
+      var html = '<div class="hint">✓ = 정답 경험 있음 · ✗ = 시도했으나 미정답 · 작은 숫자 = 시도 횟수 · 열 머리글에 마우스를 올리면 문항 내용</div>' +
+        '<div class="scroll"><table><thead><tr><th class="sid">학번</th>' +
+        qArr.map(function (q) { return '<th title="' + h(qText[q] || '') + '">' + h(shortQ(q)) + '</th>'; }).join('') +
+        '<th>정답/시도</th></tr></thead><tbody>';
+      sArr.forEach(function (s) {
+        var ok = 0, tried = 0;
+        html += '<tr><td class="sid">' + h(s) + '</td>';
+        qArr.forEach(function (q) {
+          var r = map[s + '|' + q];
+          if (!r) { html += '<td class="none">–</td>'; return; }
+          tried++; if (r.ever_correct) ok++;
+          html += '<td title="' + r.attempts + '회 시도 · ' + fmtTime(r.last_at) + '"><span class="' + (r.ever_correct ? 'ok' : 'bad') + '">' + (r.ever_correct ? '✓' : '✗') + '</span>' +
+            (r.attempts > 1 ? '<small style="color:#9ca3af"> ' + r.attempts + '</small>' : '') + '</td>';
+        });
+        html += '<td><b>' + ok + '/' + tried + '</b></td></tr>';
+      });
+      body.innerHTML = html + '</tbody></table></div>';
+    } catch (e) { body.innerHTML = '<div class="empty">오류: ' + h(e.message || e) + '</div>'; }
+  }
+
+  function renderHard() {
+    var el = document.getElementById('p-hard'); if (!el) return;
+    var qs = data.questions.filter(function (q) { return q.students >= 2; })
+      .map(function (q) { q.rate = q.students ? q.students_correct / q.students : 0; return q; })
+      .sort(function (a, b) { return a.rate - b.rate || b.students - a.students; })
+      .slice(0, 30);
+    if (!qs.length) { el.innerHTML = '<h2>어려운 문항</h2><div class="empty">2명 이상이 시도한 문항이 아직 없습니다.</div>'; return; }
+    el.innerHTML = '<h2>어려운 문항 TOP 30</h2><div class="hint">정답률 = 정답 경험이 있는 학생 수 ÷ 시도한 학생 수 (2명 이상 시도한 문항만). 낮은 순. 다음 수업 복습 포인트로 활용하세요.</div>' +
+      '<ul class="q-list"><li><span>주차</span><span>문항</span><span>내용</span><span>정답률</span><span>시도</span></li>' +
+      qs.map(function (q) {
+        var pct = Math.round(q.rate * 100), cls = pct < 50 ? 'low' : pct < 75 ? 'mid' : 'high';
+        return '<li><span>W' + q.week + '</span><span style="font-family:var(--font-mono,monospace)">' + h(shortQ(q.question_id)) + '</span>' +
+          '<span class="snip" title="' + h(q.question_text) + '">' + h(q.question_text) + '</span>' +
+          '<span class="rate ' + cls + '">' + pct + '% <small style="font-weight:400;color:#9ca3af">(' + q.students_correct + '/' + q.students + ')</small></span>' +
+          '<span style="color:#6b7280">' + q.attempts + '회</span></li>';
+      }).join('') + '</ul>';
+  }
+
+  function renderRecent() {
+    var el = document.getElementById('p-recent'); if (!el) return;
+    if (!data.recent.length) { el.innerHTML = '<h2>최근 활동</h2><div class="empty">기록 없음</div>'; return; }
+    el.innerHTML = '<h2>최근 활동 (최근 60건)</h2><ul class="feed">' + data.recent.map(function (r) {
+      return '<li><span class="t">' + fmtTime(r.created_at) + '</span><span class="sid">' + h(r.student_id) + '</span>' +
+        '<span>W' + r.week + ' ' + h(shortQ(r.question_id)) + '</span>' +
+        '<span class="' + (r.correct ? 'ok' : 'bad') + '">' + (r.correct ? '✓ 정답' : '✗ 오답') + '</span>' +
+        '<span style="color:#9ca3af">' + r.attempt_no + '회차</span></li>';
+    }).join('') + '</ul>';
+  }
+
+  async function exportCsv() {
+    try {
+      var rows = await rpc('dashboard_export', { pw: pw, sem: sem });
+      var cols = ['id', 'student_id', 'device_id', 'semester', 'week', 'question_id', 'question_text', 'correct', 'attempt_no', 'user_answer', 'created_at'];
+      var csv = '﻿' + cols.join(',') + '\n' + rows.map(function (r) {
+        return cols.map(function (c) { var v = r[c] == null ? '' : String(r[c]); return '"' + v.replace(/"/g, '""') + '"'; }).join(',');
+      }).join('\n');
+      var a = document.createElement('a');
+      a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv;charset=utf-8' }));
+      a.download = 'pe3-activities-' + sem + '-' + new Date().toISOString().slice(0, 10) + '.csv';
+      a.click();
+      setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
+    } catch (e) { alert('내보내기 실패: ' + (e.message || e)); }
+  }
+
+  // ---------- 시작 ----------
+  if (pw) load(); else renderGate();
+})();
+</script>
+</body>
+</html>

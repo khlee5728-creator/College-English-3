@@ -13,6 +13,15 @@ document.addEventListener('DOMContentLoaded', () => {
     .replace(/\s+/g, ' ')
     .trim();
 
+  // ---- 활동 기록용 이벤트 (assets/js/tracking.js 가 수신) ----
+  // 학생이 문제를 체크할 때마다 발생. tracking.js 가 없으면 아무 효과 없음.
+  const emitAnswerChecked = (item, correct, answer) => {
+    item.dispatchEvent(new CustomEvent('answer-checked', {
+      bubbles: true,
+      detail: { item, correct: !!correct, answer }
+    }));
+  };
+
   // ---- Sentence Analysis Legend (auto-inject) ----
   document.querySelectorAll('section.slide').forEach(section => {
     if (!section.querySelector('.sentence-analysis')) return;
@@ -124,6 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
         feedback.innerHTML = `<strong>Try again!</strong><br><span style="font-size:0.9em;">${wrongList}</span>`;
         feedback.className = 'feedback incorrect';
       }
+      emitAnswerChecked(item, allCorrect, Array.from(inputs).map(i => i.value.trim()).join(' | '));
     });
   });
 
@@ -170,6 +180,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (value !== correctValue) {
           option.classList.add('incorrect');
         }
+        emitAnswerChecked(item, value === correctValue, value);
       });
     });
   });
@@ -263,6 +274,7 @@ document.addEventListener('DOMContentLoaded', () => {
           option.classList.add('incorrect');
           if (feedback) { feedback.textContent = 'Incorrect.'; feedback.style.color = '#e74c3c'; }
         }
+        emitAnswerChecked(item, value === correctValue, value);
       });
     });
   });
@@ -280,7 +292,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const answers = rawAnswers.map(normalizeAnswer); // Normalized for comparison
       const userAnswer = normalizeAnswer(input.value);
 
-      if (answers.includes(userAnswer)) {
+      const isCorrect = answers.includes(userAnswer);
+      if (isCorrect) {
         input.classList.remove('incorrect');
         input.classList.add('correct');
         if (rawAnswers.length > 1) {
@@ -303,6 +316,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         feedback.className = 'feedback incorrect';
       }
+      emitAnswerChecked(item, isCorrect, input.value.trim());
     });
   });
 
