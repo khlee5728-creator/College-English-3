@@ -10,8 +10,8 @@
   'use strict';
 
   var CONFIG = {
-    SUPABASE_URL: '',        // 예: https://abcdefgh.supabase.co
-    SUPABASE_ANON_KEY: '',   // Supabase → Project Settings → API → anon public
+    SUPABASE_URL: 'https://ctozlnhywicspifxdwsx.supabase.co',
+    SUPABASE_ANON_KEY: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN0b3psbmh5d2ljc3BpZnhkd3N4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg0MDQ1NjAsImV4cCI6MjEwMzk4MDU2MH0.vOIvmN6_rsZIFL5roFlB1xqO88tRgkXVm5DJ_WWcXGM',
     SEMESTER: '2026-2'       // 학기 식별자 (대시보드에서 학기별 조회)
   };
 
