@@ -194,4 +194,19 @@
 
   /* Flip All button */
   .btn-flip-all { display: none !important; }
+
+  /* Embedded video: replace the player with its YouTube URL */
+  .video-embed {
+    aspect-ratio: auto;
+    height: auto;
+    max-width: none;
+    background: none;
+    border: 1px dashed #999;
+    border-radius: 0;
+    padding: 6pt 8pt;
+    margin: 6pt 0;
+  }
+  .video-embed iframe { display: none !important; }
+  .video-embed::after { content: "Video: " attr(data-url); font-size: 9pt; color: #333; }
+  .video-caption { color: #333; }
 }

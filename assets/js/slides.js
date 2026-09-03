@@ -115,6 +115,14 @@ class SlidePresentation {
     this.slides[index].classList.add('active');
     this.currentIndex = index;
 
+    // Pause YouTube players on the slides we just left (embeds carry enablejsapi=1)
+    this.slides.forEach((s, i) => {
+      if (i === index) return;
+      s.querySelectorAll('iframe[src*="youtube"]').forEach(f => {
+        try { f.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*'); } catch (e) { /* not loaded yet */ }
+      });
+    });
+
     // Update counter
     const counter = document.getElementById('slide-counter');
     if (counter) counter.textContent = `${index + 1} / ${this.total}`;
