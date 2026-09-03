@@ -177,6 +177,10 @@
   .contrast-table td:first-child,
   .contrast-table td:last-child { background: none; }
 
+  /* Image grid */
+  .img-grid { display: grid; gap: 6pt; break-inside: avoid; }
+  .img-grid img { max-height: 120px; }
+
   /* Data Table / Box */
   .data-table th { background: #ddd; color: black; }
   .data-table td { background: none; }
