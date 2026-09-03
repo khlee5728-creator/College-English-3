@@ -177,6 +177,10 @@
   .contrast-table td:first-child,
   .contrast-table td:last-child { background: none; }
 
+  /* Inline markers */
+  .mark-bg { background: #eee; }
+  .mark-strike { color: #555; }
+
   /* Image grid */
   .img-grid { display: grid; gap: 6pt; break-inside: avoid; }
   .img-grid img { max-height: 120px; }

@@ -1632,3 +1632,25 @@
   padding: var(--space-md);
   margin: var(--space-sm) 0;
 }
+
+/* ---- Inline semantic markers & small utilities (replace per-slide inline styles) ---- */
+.mark-wrong  { color: #c0392b; font-weight: var(--fw-bold, 700); }
+.mark-right  { color: #27ae60; font-weight: var(--fw-bold, 700); }
+.mark-strike { color: #999; text-decoration: line-through; }
+.mark-key    { color: var(--color-primary); font-weight: var(--fw-bold, 700); }
+.mark-label  { color: #2a6496; margin-right: 0.5rem; }
+.mark-bg     { background: #fadbd8; padding: 0 4px; border-radius: 3px; }
+.text-primary   { color: var(--color-primary); }
+.text-secondary { color: var(--color-secondary); }
+.muted { color: #666; }
+.small { font-size: 0.9em; }
+.big   { font-size: 2em; }
+.tight { margin: 0 0 0.3rem; }
+.no-indent { text-indent: 0; }
+.list-compact { margin: 0; padding-left: 1.1em; }
+.list-plain   { list-style: none; padding: 0; line-height: 2; }
+.gap-xs { margin-bottom: 0.3rem; }
+.check-row { display: flex; align-items: center; gap: 0.5rem; padding: 0.4rem 0; }
+/* specificity bumps: these used to be inline styles that beat component rules */
+.reading-passage .vocab-highlight.mark-bg { background: #fadbd8; }
+li.gap-xs, .fill-blank-item.gap-xs { margin-bottom: 0.3rem; }
