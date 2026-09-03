@@ -177,6 +177,12 @@
   .contrast-table td:first-child,
   .contrast-table td:last-child { background: none; }
 
+  /* Data Table / Box */
+  .data-table th { background: #ddd; color: black; }
+  .data-table td { background: none; }
+  .data-table td.sub, .contrast-table td.sub { background: #eee; }
+  .panel { background: none; border: 1px solid #ccc; }
+
   /* Grammar Analysis */
   .grammar-analysis { border: 1px solid #ccc; }
   .sentence-analysis { background: none; }
