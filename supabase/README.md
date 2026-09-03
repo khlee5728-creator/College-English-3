@@ -110,3 +110,4 @@ dashboard/ ── 비밀번호 ──▶ RPC (dashboard_overview 등)
 | 대시보드 "비밀번호가 올바르지 않습니다" | 3번 단계 재실행 |
 | 대시보드 "설정 필요" | `dashboard/index.html` 의 CONFIG 확인 |
 | 히트맵 총 문항 수가 `…` 로 남음 | 강의 HTML 을 불러오지 못한 것. 로컬 파일로 열면 그럴 수 있음 → 서버(GitHub Pages)에서 열기 |
+| SQL 실행 시 `function gen_salt(unknown) does not exist` | Supabase 는 `pgcrypto` 를 `extensions` 스키마에 설치합니다. 현재 `schema.sql` 은 모든 함수가 `search_path = public, extensions` 로 되어 있어 정상 동작합니다. 이 오류가 나면 최신 `schema.sql` 인지 확인 후 **파일 전체를 다시 실행**하세요 (재실행 안전) |

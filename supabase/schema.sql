@@ -71,7 +71,7 @@ create policy "anon_insert_activities"
 -- ------------------------------------------------------------
 create or replace function public.set_dashboard_password(new_pw text)
 returns void
-language sql security definer set search_path = public
+language sql security definer set search_path = public, extensions
 as $$
   insert into public.settings (key, value)
   values ('dashboard_pw_hash', crypt(new_pw, gen_salt('bf')))
@@ -82,7 +82,7 @@ revoke all on function public.set_dashboard_password(text) from public, anon, au
 -- 내부 검증 헬퍼 (외부에서 직접 호출 불가)
 create or replace function public._require_dashboard_pw(pw text)
 returns void
-language plpgsql security definer set search_path = public
+language plpgsql security definer set search_path = public, extensions
 as $$
 begin
   if pw is null or not exists (
@@ -100,7 +100,7 @@ revoke all on function public._require_dashboard_pw(text) from public, anon, aut
 -- ------------------------------------------------------------
 create or replace function public.dashboard_overview(pw text, sem text)
 returns jsonb
-language plpgsql security definer set search_path = public
+language plpgsql security definer set search_path = public, extensions
 as $$
 begin
   perform public._require_dashboard_pw(pw);
@@ -162,7 +162,7 @@ grant execute on function public.dashboard_overview(text, text) to anon;
 -- ------------------------------------------------------------
 create or replace function public.dashboard_week(pw text, sem text, wk int)
 returns jsonb
-language plpgsql security definer set search_path = public
+language plpgsql security definer set search_path = public, extensions
 as $$
 begin
   perform public._require_dashboard_pw(pw);
@@ -186,7 +186,7 @@ grant execute on function public.dashboard_week(text, text, int) to anon;
 -- ------------------------------------------------------------
 create or replace function public.dashboard_export(pw text, sem text)
 returns setof public.activities
-language plpgsql security definer set search_path = public
+language plpgsql security definer set search_path = public, extensions
 as $$
 begin
   perform public._require_dashboard_pw(pw);
@@ -201,7 +201,7 @@ grant execute on function public.dashboard_export(text, text) to anon;
 -- ------------------------------------------------------------
 create or replace function public.dashboard_semesters(pw text)
 returns jsonb
-language plpgsql security definer set search_path = public
+language plpgsql security definer set search_path = public, extensions
 as $$
 begin
   perform public._require_dashboard_pw(pw);
