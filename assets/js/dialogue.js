@@ -227,8 +227,10 @@
      배치는 그대로 두고 항목별 ▶, 전체 듣기, 속도, 텍스트 가리기(듣기 연습)를 붙인다.
      항목마다 목소리를 바꿔 여러 사람이 말하는 느낌을 준다. */
   function initList(box) {
-    var items = Array.prototype.filter.call(box.querySelectorAll('p'), function (p) {
-      return p.textContent.replace(/\s+/g, ' ').trim().length > 0;
+    // 항목 선택자: data-dialogue-items (기본 <p>). 예: ".info-box p, .sequence-step"
+    var sel = box.getAttribute('data-dialogue-items') || 'p';
+    var items = Array.prototype.filter.call(box.querySelectorAll(sel), function (p) {
+      return p.textContent.replace(/\s+/g, ' ').trim().length > 0 && !p.querySelector(sel);
     });
     if (items.length < 1) return;
     box.classList.add('dlg-list');
@@ -241,7 +243,10 @@
       '<button type="button" class="dlg-btn dlg-speed" title="속도">1.0&times;</button>' +
       '<button type="button" class="dlg-btn dlg-hide">텍스트 가리기</button>' +
       '<span class="dlg-status"></span>';
-    box.insertBefore(ctrl, box.firstChild);
+    // 컨트롤은 첫 항목이 속한 최상위 자식 바로 앞에 (컨테이너가 섹션이어도 제목/이미지 뒤에 놓임)
+    var top = items[0];
+    while (top.parentNode && top.parentNode !== box) top = top.parentNode;
+    box.insertBefore(ctrl, top);
 
     var data = [];
     items.forEach(function (p, i) {

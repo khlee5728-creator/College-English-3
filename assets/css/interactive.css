@@ -1701,3 +1701,7 @@ li.gap-xs, .fill-blank-item.gap-xs { margin-bottom: 0.3rem; }
 .dlg-list.is-hidden .dlg-item-text { filter: blur(7px); user-select: none; cursor: pointer; transition: filter 0.25s; }
 .dlg-list.is-hidden p.is-revealed .dlg-item-text { filter: none; }
 .dlg-list.is-hidden .dlg-item-text::selection { background: transparent; }
+/* list mode on sequence steps: keep the numbered circle, put the play button at the right */
+.sequence-step.dlg-item .dlg-item-text { flex: 1; order: 1; }
+.sequence-step.dlg-item .dlg-item-play { position: static; order: 2; margin-left: auto; align-self: center; flex-shrink: 0; }
+.sequence-step.dlg-item.is-current { background: var(--color-bg-grammar, #eaf2f8); border-radius: 8px; }
