@@ -1705,3 +1705,8 @@ li.gap-xs, .fill-blank-item.gap-xs { margin-bottom: 0.3rem; }
 .sequence-step.dlg-item .dlg-item-text { flex: 1; order: 1; }
 .sequence-step.dlg-item .dlg-item-play { position: static; order: 2; margin-left: auto; align-self: center; flex-shrink: 0; }
 .sequence-step.dlg-item.is-current { background: var(--color-bg-grammar, #eaf2f8); border-radius: 8px; }
+/* list mode on checklist rows: checkbox first, text, play button at the right */
+.check-row.dlg-item input { order: 0; }
+.check-row.dlg-item .dlg-item-text { flex: 1; order: 1; }
+.check-row.dlg-item .dlg-item-play { position: static; order: 2; margin-left: auto; flex-shrink: 0; }
+.check-row.dlg-item.is-current { background: var(--color-bg-grammar, #eaf2f8); border-radius: 6px; }

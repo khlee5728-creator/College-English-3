@@ -248,17 +248,28 @@
     while (top.parentNode && top.parentNode !== box) top = top.parentNode;
     box.insertBefore(ctrl, top);
 
+    // data-dialogue-prefix: 각 항목을 읽을 때 앞에 붙일 문장 (예: "If you get a high-paying job, ")
+    var prefix = box.getAttribute('data-dialogue-prefix') || '';
     var data = [];
     items.forEach(function (p, i) {
       var wrap = document.createElement('span');
       wrap.className = 'dlg-item-text';
-      while (p.firstChild) wrap.appendChild(p.firstChild);
+      // 체크박스 등 입력 요소는 읽기 텍스트 밖에 그대로 둔다 (체크리스트 라벨)
+      var inputs = [];
+      while (p.firstChild) {
+        var c = p.firstChild;
+        if (c.nodeType === 1 && /^(INPUT|SELECT)$/.test(c.tagName)) { inputs.push(c); p.removeChild(c); }
+        else wrap.appendChild(c);
+      }
       var btn = document.createElement('button');
       btn.type = 'button'; btn.className = 'dlg-item-play'; btn.title = '이 항목 듣기'; btn.innerHTML = '&#9654;';
       btn.setAttribute('data-i', i);
+      inputs.forEach(function (inp) { p.appendChild(inp); });
       p.appendChild(btn); p.appendChild(wrap);
       p.classList.add('dlg-item');
       var text = wrap.textContent.replace(/\s+/g, ' ').trim().replace(/^\d+[\.\)]\s*/, '');
+      if (prefix) text = prefix + text.charAt(0).toLowerCase() + text.slice(1);
+      p.setAttribute('data-spoken', text);
       data.push({ el: p, text: text });
     });
 
@@ -310,13 +321,17 @@
     box.addEventListener('click', function (e) {
       var b = e.target.closest('.dlg-item-play');
       if (b) {
+        e.preventDefault();                       // <label> 안에서도 체크박스가 토글되지 않게
         var i = parseInt(b.getAttribute('data-i'), 10);
         pause(); clearMarks(); data[i].el.classList.add('is-current'); setStatus((i + 1) + ' / ' + data.length);
         speak(data[i], i, function () { data[i].el.classList.remove('is-current'); setStatus(''); });
         return;
       }
       var t = e.target.closest('.dlg-item-text');
-      if (t && box.classList.contains('is-hidden')) t.parentNode.classList.add('is-revealed');
+      if (t && box.classList.contains('is-hidden') && !t.parentNode.classList.contains('is-revealed')) {
+        e.preventDefault();                       // 가린 문장을 확인하는 클릭은 체크가 아님
+        t.parentNode.classList.add('is-revealed');
+      }
     });
     box.addEventListener('keydown', function (e) { if (e.key === ' ' || e.key === 'Spacebar') e.stopPropagation(); }, true);
 
