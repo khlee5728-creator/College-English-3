@@ -1599,10 +1599,11 @@
 .data-table {
   width: 100%;
   border-collapse: collapse;
-  table-layout: fixed;
+  table-layout: auto;              /* fixed broke tables without <colgroup> (W08/W15) */
   margin: var(--space-md) 0;
   font-size: var(--fs-body);
 }
+.data-table:has(colgroup) { table-layout: fixed; }
 .data-table th {
   background: var(--color-primary);
   color: var(--color-text-white);
