@@ -87,7 +87,7 @@ a:hover { color: var(--color-primary); text-decoration: underline; }
 
 /* Highlight text */
 .highlight {
-  background: linear-gradient(transparent 60%, #ffeaa7 60%);
+  background: linear-gradient(transparent 60%, var(--color-warning-light) 60%);
   padding: 0 2px;
 }
 

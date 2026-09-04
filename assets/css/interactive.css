@@ -1710,3 +1710,67 @@ li.gap-xs, .fill-blank-item.gap-xs { margin-bottom: 0.3rem; }
 .check-row.dlg-item .dlg-item-text { flex: 1; order: 1; }
 .check-row.dlg-item .dlg-item-play { position: static; order: 2; margin-left: auto; flex-shrink: 0; }
 .check-row.dlg-item.is-current { background: var(--color-bg-grammar, #eaf2f8); border-radius: 6px; }
+
+/* ============================================
+   EDITORIAL THEME OVERRIDES (phase 2)
+   Serif headings, quiet notes, no gradients.
+   ============================================ */
+h1, h2, h3, .slide--title .subtitle, #slide-counter, .wk-num, .step-label {
+  font-family: var(--font-heading);
+  font-optical-sizing: auto;
+  letter-spacing: -0.01em;
+}
+h1, h2 { font-weight: var(--fw-bold); }
+h3 { font-weight: var(--fw-semibold); }
+.slide--title h1 {                       /* no gradient-filled text */
+  background: none;
+  -webkit-background-clip: initial;
+  background-clip: initial;
+  -webkit-text-fill-color: initial;
+  color: var(--color-primary);
+}
+.slide--title .subtitle { font-style: italic; }
+.slide--break { background: var(--color-bg-alt); }
+.slide--section { background: var(--color-bg-alt); }
+#slide-nav { background: rgba(247,243,234,0.96); border-top-color: var(--color-border); }
+#keyboard-hint { border-radius: var(--radius-md); }
+
+/* Korean note: a quiet aside instead of a yellow banner */
+.korean-note {
+  background: transparent;
+  border-left: 2px solid var(--color-border);
+  border-radius: 0;
+  padding: 0.2rem 0 0.2rem 1rem;
+  margin: var(--space-md) 0 var(--space-sm);
+  color: var(--color-text-light);
+  font-size: calc(var(--fs-body) * 0.92);
+}
+.korean-note::before {
+  content: "Note";
+  display: block;
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-size: 0.78em;
+  color: var(--color-text-muted);
+  margin-bottom: 0.1rem;
+}
+.korean-note strong { color: var(--color-text); }
+/* title & section slides: the note is a subtitle, not an aside */
+.slide--title .korean-note, .slide--section .korean-note {
+  border: 0; padding: 0; text-align: center; margin: var(--space-sm) auto var(--space-md);
+  color: var(--color-text-light); font-size: var(--fs-body-lg);
+}
+.slide--title .korean-note::before, .slide--section .korean-note::before { content: none; }
+
+/* Reading passages read like a textbook */
+.reading-passage, .reading-passage p { font-family: var(--font-heading); font-optical-sizing: auto; }
+.reading-passage { background: var(--color-bg-reading); border-color: var(--color-border); }
+
+/* Tables & panels on paper */
+.data-table td { background: #fbf8f1; }
+.info-box { background: var(--color-info-light); border-left-color: var(--color-info); }
+.panel { border: 1px solid var(--color-border-light); }
+
+/* Dialogue player: keep sans for chat, paper for bubbles */
+.dlg-side-b .dlg-body { background: var(--color-bg-grammar); }
+.dlg-body { border-color: var(--color-border); }

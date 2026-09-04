@@ -4,44 +4,45 @@
    ============================================ */
 
 :root {
-  /* Color Palette */
-  --color-primary: #1a5276;
-  --color-primary-light: #2980b9;
-  --color-primary-dark: #0e3a56;
-  --color-secondary: #27ae60;
-  --color-secondary-light: #2ecc71;
-  --color-accent: #e74c3c;
-  --color-accent-light: #ff6b6b;
-  --color-warning: #f39c12;
-  --color-warning-light: #ffeaa7;
-  --color-info: #3498db;
-  --color-info-light: #d6eaf8;
+  /* Color Palette — editorial: ink on paper, one red accent, muted semantic tints */
+  --color-primary: #1d2430;          /* ink */
+  --color-primary-light: #3b4657;
+  --color-primary-dark: #0f141c;
+  --color-secondary: #2f7d4f;        /* muted green (correct / contrast) */
+  --color-secondary-light: #3f9a64;
+  --color-accent: #b8412f;           /* red accent (wrong / exam / emphasis) */
+  --color-accent-light: #d9604d;
+  --color-warning: #c98a1b;          /* mustard */
+  --color-warning-light: #ffe66d;    /* marker-pen yellow */
+  --color-info: #3b5b8c;
+  --color-info-light: #e8ecf2;
 
-  /* Background Colors */
-  --color-bg: #fefefe;
-  --color-bg-alt: #f4f6f7;
-  --color-bg-dark: #2c3e50;
-  --color-bg-korean: #fff8e1;
-  --color-bg-grammar: #eaf2f8;
-  --color-bg-expression: #e8f8f5;
-  --color-bg-activity: #fef9e7;
-  --color-bg-correct: #eafaf1;
-  --color-bg-incorrect: #fdedec;
-  --color-bg-vocab: #f5f0ff;
+  /* Background Colors — paper family */
+  --color-bg: #f7f3ea;
+  --color-bg-alt: #efe9db;
+  --color-bg-dark: #1d2430;
+  --color-bg-korean: #f1ece0;
+  --color-bg-grammar: #ece7dc;
+  --color-bg-expression: #e9ede4;
+  --color-bg-activity: #f3ecd9;
+  --color-bg-correct: #e7efe6;
+  --color-bg-incorrect: #f4e3df;
+  --color-bg-vocab: #ece8e0;
 
   /* Text Colors */
-  --color-text: #2c3e50;
-  --color-text-light: #5d6d7e;
-  --color-text-muted: #95a5a6;
+  --color-text: #1d2430;
+  --color-text-light: #4b5563;
+  --color-text-muted: #8a8f98;
   --color-text-white: #ffffff;
-  --color-text-korean: #6d4c00;
+  --color-text-korean: #3f3a30;
 
   /* Border Colors */
-  --color-border: #d5dbdb;
-  --color-border-light: #ebedef;
+  --color-border: #d8d0bf;
+  --color-border-light: #e6dfd0;
 
-  /* Typography */
-  --font-en: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  /* Typography — Fraunces for headings & passages, Noto Sans KR for everything else */
+  --font-heading: 'Fraunces', 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
+  --font-en: 'Noto Sans KR', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
   --font-ko: 'Noto Sans KR', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
   --font-mono: 'Consolas', 'Monaco', 'Courier New', monospace;
 
@@ -75,17 +76,17 @@
   --slide-max-width: 1100px;
   --slide-padding: clamp(1.5rem, 4vw, 3.5rem);
 
-  /* Border Radius */
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
-  --radius-xl: 16px;
+  /* Border Radius — tighter, less "app-like" */
+  --radius-sm: 3px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 10px;
   --radius-full: 50%;
 
-  /* Shadows */
-  --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
-  --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
-  --shadow-lg: 0 8px 24px rgba(0,0,0,0.12);
+  /* Shadows — barely there */
+  --shadow-sm: 0 1px 2px rgba(29,36,48,0.06);
+  --shadow-md: 0 2px 6px rgba(29,36,48,0.08);
+  --shadow-lg: 0 4px 14px rgba(29,36,48,0.10);
 
   /* Transitions */
   --transition-fast: 150ms ease;
@@ -94,16 +95,16 @@
 
   /* Progress Bar */
   --progress-height: 4px;
-  --progress-color: var(--color-primary-light);
+  --progress-color: var(--color-accent);
 
   /* Reading Section */
-  --color-bg-reading: #faf9f6;
-  --color-reading-border: #8e7cc3;
+  --color-bg-reading: #fbf8f1;
+  --color-reading-border: #8a7ba8;
 
-  /* Grammar Analysis */
-  --color-subject: #e74c3c;
-  --color-verb: #2980b9;
-  --color-object: #27ae60;
-  --color-complement: #f39c12;
-  --color-modifier: #8e44ad;
+  /* Grammar Analysis — same roles, muted */
+  --color-subject: #b8412f;
+  --color-verb: #2f5f8c;
+  --color-object: #2f7d4f;
+  --color-complement: #c98a1b;
+  --color-modifier: #7a4e8e;
 }
