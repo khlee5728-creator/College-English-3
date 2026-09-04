@@ -4,249 +4,230 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Practical English 3 (대학영어 3) - Course Home</title>
-  <link rel="stylesheet" href="assets/css/theme.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --paper: #f7f3ea;
+      --paper-deep: #efe9db;
+      --ink: #1d2430;
+      --ink-soft: #4b5563;
+      --muted: #8a8f98;
+      --rule: #d8d0bf;
+      --accent: #b8412f;
+      --marker: #ffe66d;
+      --serif: 'Fraunces', 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
+      --sans: 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { background: var(--paper); }
     body {
-      font-family: var(--font-en);
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      min-height: 100vh;
-      color: var(--color-text);
-      overflow-y: auto;
+      margin: 0;
+      font-family: var(--sans);
+      color: var(--ink);
+      background:
+        radial-gradient(1200px 500px at 50% -200px, #fffdf6 0%, transparent 70%),
+        var(--paper);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
     }
-    .container {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 2rem 1.5rem 3rem;
+    a { color: inherit; text-decoration: none; }
+    .wrap { max-width: 860px; margin: 0 auto; padding: 0 1.4rem 4rem; }
+
+    /* ---- masthead ---- */
+    .masthead { padding: 3.2rem 0 1.6rem; border-bottom: 2px solid var(--ink); }
+    .kicker {
+      font-family: var(--serif); font-style: italic; font-size: 1rem; color: var(--ink-soft);
+      margin: 0 0 .4rem; letter-spacing: .01em;
     }
-    header {
-      text-align: center;
-      padding: 2rem 0 1.5rem;
-      color: white;
+    .masthead h1 {
+      font-family: var(--serif); font-weight: 700; font-optical-sizing: auto;
+      font-size: clamp(2.6rem, 7vw, 4.6rem); line-height: 1.02; letter-spacing: -.02em;
+      margin: 0 0 .9rem;
     }
-    header h1 {
-      font-size: clamp(1.8rem, 4vw, 2.8rem);
-      margin-bottom: 0.3rem;
-      color: white;
+    .masthead h1 .no { color: var(--accent); }
+    .tagline { margin: 0; font-size: clamp(1rem, 1.7vw, 1.15rem); color: var(--ink-soft); }
+    .tagline strong { font-weight: 500; color: var(--ink); }
+    .tagline .en { display: block; font-family: var(--serif); font-style: italic; font-size: .95rem; color: var(--muted); margin-top: .35rem; }
+
+    /* ---- quick links ---- */
+    .quick { display: flex; flex-wrap: wrap; gap: .5rem 1.6rem; padding: .9rem 0; border-bottom: 1px solid var(--rule); font-size: .93rem; }
+    .quick a { position: relative; padding-bottom: 1px; }
+    .quick a::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; background: var(--ink); transform: scaleX(0); transform-origin: left; transition: transform .2s ease; }
+    .quick a:hover::after { transform: scaleX(1); }
+    .quick .dim { margin-left: auto; color: var(--muted); font-size: .8rem; }
+
+    /* ---- contents ---- */
+    .toc h2 {
+      font-family: var(--serif); font-weight: 600; font-size: 1.05rem; letter-spacing: .02em;
+      margin: 2.4rem 0 .2rem; display: flex; align-items: baseline; gap: .6rem;
     }
-    header .ko-title {
-      font-family: var(--font-ko);
-      font-size: clamp(1rem, 2vw, 1.3rem);
-      opacity: 0.9;
-      margin-bottom: 0.5rem;
+    .toc h2 .ko { font-family: var(--sans); font-weight: 400; font-size: .85rem; color: var(--muted); }
+    .part {
+      display: flex; align-items: baseline; gap: .7rem;
+      font-family: var(--serif); font-weight: 600; font-size: 1.35rem; margin: 1.6rem 0 .3rem;
     }
-    header p {
-      font-size: clamp(0.9rem, 1.5vw, 1.1rem);
-      opacity: 0.8;
+    .part em { font-family: var(--sans); font-style: normal; font-weight: 400; font-size: .85rem; color: var(--muted); }
+    .part::after { content: ""; flex: 1; height: 1px; background: var(--rule); transform: translateY(-.35em); }
+
+    .weeks { list-style: none; margin: 0; padding: 0; }
+    .weeks li { border-bottom: 1px solid var(--rule); }
+    .weeks a {
+      display: grid; grid-template-columns: 3.2rem 1fr auto; column-gap: .9rem; align-items: baseline;
+      padding: .78rem .35rem; position: relative;
     }
-    .week-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1rem;
-      margin-top: 1rem;
+    .wk { font-family: var(--serif); font-weight: 600; font-size: 1.15rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+    .ttl { font-family: var(--serif); font-size: 1.22rem; font-weight: 600; line-height: 1.25; }
+    .ttl .mark {
+      background-image: linear-gradient(transparent 62%, var(--marker) 62%, var(--marker) 92%, transparent 92%);
+      background-size: 0% 100%; background-repeat: no-repeat; transition: background-size .28s ease;
     }
-    .week-card {
-      background: white;
-      border-radius: 12px;
-      padding: 1.3rem 1.5rem;
-      text-decoration: none;
-      color: var(--color-text);
-      transition: all 0.25s ease;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      display: block;
-      position: relative;
-      overflow: hidden;
+    .weeks a:hover .ttl .mark, .weeks li.now .ttl .mark { background-size: 100% 100%; }
+    .sub { display: block; font-family: var(--sans); font-weight: 400; font-size: .86rem; color: var(--ink-soft); margin-top: .15rem; }
+    .unit { font-family: var(--serif); font-style: italic; font-size: .95rem; color: var(--muted); white-space: nowrap; }
+    .weeks a::after {   /* dotted leader between title and unit */
+      content: ""; position: absolute; left: 4.1rem; right: 0; bottom: .55rem; border-bottom: 1px dotted var(--rule); z-index: -1;
     }
-    .week-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
-      text-decoration: none;
+    .weeks a:hover .wk { color: var(--ink); }
+    .weeks a:hover .unit { color: var(--ink-soft); }
+
+    /* exam stamp / this-week tag */
+    .stamp {
+      display: inline-block; font-family: var(--sans); font-weight: 700; font-size: .68rem; letter-spacing: .12em;
+      color: var(--accent); border: 1.5px solid var(--accent); border-radius: 3px; padding: .05rem .38rem;
+      transform: rotate(-4deg); margin-left: .45rem; vertical-align: .15em; opacity: .9;
     }
-    .week-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
+    .now-tag {
+      display: none; font-family: var(--sans); font-weight: 700; font-size: .7rem; color: var(--paper);
+      background: var(--accent); border-radius: 999px; padding: .12rem .55rem; margin-left: .5rem; vertical-align: .2em; letter-spacing: .04em;
     }
-    .week-card.first-half::before { background: var(--color-primary-light); }
-    .week-card.second-half::before { background: var(--color-secondary); }
-    .week-card.exam::before { background: var(--color-accent); }
-    .week-card.ot::before { background: var(--color-warning); }
-    .week-num {
-      font-size: 0.8rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      color: var(--color-text-muted);
-      margin-bottom: 0.3rem;
+    .weeks li.now .now-tag { display: inline-block; }
+    .weeks li.now .wk { color: var(--accent); }
+
+    /* ---- footer ---- */
+    footer { margin-top: 3rem; padding-top: 1rem; border-top: 2px solid var(--ink); font-size: .82rem; color: var(--muted); display: flex; flex-wrap: wrap; gap: .4rem 1.2rem; }
+    footer .spacer { flex: 1; }
+    footer a:hover { color: var(--ink); }
+
+    @media (max-width: 560px) {
+      .weeks a { grid-template-columns: 2.6rem 1fr; }
+      .unit { grid-column: 2; font-size: .85rem; white-space: normal; }
+      .weeks a::after { display: none; }
+      .masthead { padding-top: 2.2rem; }
     }
-    .week-card h3 {
-      font-size: 1.1rem;
-      color: var(--color-primary);
-      margin-bottom: 0.3rem;
-    }
-    .week-card .units {
-      font-size: 0.85rem;
-      color: var(--color-text-light);
-      margin-bottom: 0.3rem;
-    }
-    .week-card .topics {
-      font-family: var(--font-ko);
-      font-size: 0.82rem;
-      color: var(--color-text-muted);
-    }
-    .week-card.exam {
-      background: linear-gradient(135deg, #fff5f5, #ffe0e0);
-    }
-    .week-card.exam h3 {
-      color: var(--color-accent);
-    }
-    .section-label {
-      color: white;
-      font-size: 0.9rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      margin: 2rem 0 0.8rem;
-      opacity: 0.9;
-    }
-    footer {
-      text-align: center;
-      color: rgba(255,255,255,0.6);
-      padding: 2rem 0 1rem;
-      font-size: 0.8rem;
-    }
+    @media (prefers-reduced-motion: reduce) { .ttl .mark, .quick a::after { transition: none; } }
   </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <h1>Practical English 3</h1>
-      <div class="ko-title">대학영어 3 - 생활 영어</div>
-      <p>Interchange 2 (5th Edition) | 15-Week Course</p>
+  <div class="wrap">
+    <header class="masthead">
+      <p class="kicker">대학영어 3 &middot; 2026년 2학기</p>
+      <h1>Practical<br>English <span class="no">3</span></h1>
+      <p class="tagline">
+        <strong>말하고, 듣고, 틀리고, 다시 말하기.</strong> 열다섯 주짜리 생활 영어.
+        <span class="en">Interchange 2, 5th ed. &middot; Units 1&ndash;16 &middot; 15 weeks</span>
+      </p>
     </header>
 
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; margin: 1.5rem 0;">
-      <a href="guide/index.html" class="week-card" style="border-top: none;">
-        <div style="position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--color-info);"></div>
-        <div class="week-num" style="color: var(--color-info);">Project Guide</div>
-        <h3 style="color: var(--color-info);">AI 도구 활용 창의적 학습 프로젝트</h3>
-        <div class="units">발표 및 과제 가이드 &mdash; Presentation &amp; Assignment Guide</div>
-        <div class="topics">프로젝트 수행 단계, 평가 기준, 제출 포맷 안내</div>
-      </a>
-      <a href="portfolio/index.html" class="week-card" style="border-top: none;">
-        <div style="position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, #667eea, #764ba2);"></div>
-        <div class="week-num" style="color: #764ba2;">Student Gallery</div>
-        <h3 style="color: #764ba2;">&#x1F3A8; Student Portfolio</h3>
-        <div class="units">학생 포트폴리오 &mdash; Creative AI Projects</div>
-        <div class="topics">학생들이 제작한 학습 도구, 게임, 인터랙티브 콘텐츠 모음</div>
-      </a>
-    </div>
+    <nav class="quick" aria-label="바로가기">
+      <a href="guide/index.html">프로젝트 가이드</a>
+      <a href="portfolio/index.html">학생 포트폴리오</a>
+      <a class="dim" href="dashboard/index.html" title="교수용 활동 대시보드">Dashboard</a>
+    </nav>
 
-    <div class="section-label">First Half (전반기)</div>
-    <div class="week-grid">
-      <a href="weeks/week01-orientation/index.html" class="week-card ot">
-        <div class="week-num">Week 1</div>
-        <h3>Orientation</h3>
-        <div class="units">Course Introduction & Icebreaking</div>
-        <div class="topics">오리엔테이션, 자기소개</div>
-      </a>
-      <a href="weeks/week02-unit01-02/index.html" class="week-card first-half">
-        <div class="week-num">Week 2</div>
-        <h3>Childhood Memories & City Life</h3>
-        <div class="units">Unit 1 & Unit 2</div>
-        <div class="topics">어린 시절 추억과 도시 생활</div>
-      </a>
-      <a href="weeks/week03-unit03/index.html" class="week-card first-half">
-        <div class="week-num">Week 3</div>
-        <h3>Housing & Lifestyle</h3>
-        <div class="units">Unit 3</div>
-        <div class="topics">생활 환경의 변화</div>
-      </a>
-      <a href="weeks/week04-unit04/index.html" class="week-card first-half">
-        <div class="week-num">Week 4</div>
-        <h3>Food & Cooking</h3>
-        <div class="units">Unit 4</div>
-        <div class="topics">음식과 요리 경험</div>
-      </a>
-      <a href="weeks/week05-unit05/index.html" class="week-card first-half">
-        <div class="week-num">Week 5</div>
-        <h3>Travel Planning</h3>
-        <div class="units">Unit 5</div>
-        <div class="topics">여행 계획 세우기</div>
-      </a>
-      <a href="weeks/week06-unit06/index.html" class="week-card first-half">
-        <div class="week-num">Week 6</div>
-        <h3>Requests, Refusals & Apologies</h3>
-        <div class="units">Unit 6</div>
-        <div class="topics">부탁, 거절, 그리고 사과</div>
-      </a>
-      <a href="weeks/week07-unit07-08/index.html" class="week-card first-half">
-        <div class="week-num">Week 7</div>
-        <h3>Technology & Celebrations</h3>
-        <div class="units">Unit 7 & Unit 8</div>
-        <div class="topics">기술 활용과 기념일</div>
-      </a>
-      <a href="weeks/week08-midterm/index.html" class="week-card exam">
-        <div class="week-num">Week 8</div>
-        <h3>Midterm Exam</h3>
-        <div class="units">Units 1-8 Review & Test</div>
-        <div class="topics">중간고사</div>
-      </a>
-    </div>
+    <main class="toc">
+      <h2>Contents <span class="ko">차례</span></h2>
 
-    <div class="section-label">Second Half (후반기)</div>
-    <div class="week-grid">
-      <a href="weeks/week09-unit09/index.html" class="week-card second-half">
-        <div class="week-num">Week 9</div>
-        <h3>Changes Through Time</h3>
-        <div class="units">Unit 9</div>
-        <div class="topics">시대의 변화</div>
-      </a>
-      <a href="weeks/week10-unit10/index.html" class="week-card second-half">
-        <div class="week-num">Week 10</div>
-        <h3>Personality & Careers</h3>
-        <div class="units">Unit 10</div>
-        <div class="topics">성향과 직업 탐색</div>
-      </a>
-      <a href="weeks/week11-unit11/index.html" class="week-card second-half">
-        <div class="week-num">Week 11</div>
-        <h3>World Landmarks & Culture</h3>
-        <div class="units">Unit 11</div>
-        <div class="topics">세계의 명소와 문화</div>
-      </a>
-      <a href="weeks/week12-unit12/index.html" class="week-card second-half">
-        <div class="week-num">Week 12</div>
-        <h3>Storytelling</h3>
-        <div class="units">Unit 12</div>
-        <div class="topics">흥미로운 스토리텔링</div>
-      </a>
-      <a href="weeks/week13-unit13-14/index.html" class="week-card second-half">
-        <div class="week-num">Week 13</div>
-        <h3>Pop Culture & Body Language</h3>
-        <div class="units">Unit 13 & Unit 14</div>
-        <div class="topics">대중문화와 비언어적 의사소통</div>
-      </a>
-      <a href="weeks/week14-unit15-16/index.html" class="week-card second-half">
-        <div class="week-num">Week 14</div>
-        <h3>Dilemmas & Excuses</h3>
-        <div class="units">Unit 15 & Unit 16</div>
-        <div class="topics">곤란한 상황과 변명</div>
-      </a>
-      <a href="weeks/week15-final/index.html" class="week-card exam">
-        <div class="week-num">Week 15</div>
-        <h3>Final Exam</h3>
-        <div class="units">Units 9-16 Review & Test</div>
-        <div class="topics">기말고사</div>
-      </a>
-    </div>
+      <h3 class="part">Part I <em>전반기</em></h3>
+      <ol class="weeks" id="weeks-1">
+        <li data-week="1"><a href="weeks/week01-orientation/index.html">
+          <span class="wk">01</span>
+          <span class="ttl"><span class="mark">Orientation</span><span class="now-tag">이번 주</span><span class="sub">수업 안내 &middot; 교재 &middot; 평가 방법</span></span>
+          <span class="unit">Intro</span></a></li>
+        <li data-week="2"><a href="weeks/week02-unit01-02/index.html">
+          <span class="wk">02</span>
+          <span class="ttl"><span class="mark">Childhood Memories &amp; City Life</span><span class="now-tag">이번 주</span><span class="sub">어린 시절 추억과 도시 생활</span></span>
+          <span class="unit">Units 1&ndash;2</span></a></li>
+        <li data-week="3"><a href="weeks/week03-unit03/index.html">
+          <span class="wk">03</span>
+          <span class="ttl"><span class="mark">Housing &amp; Lifestyle</span><span class="now-tag">이번 주</span><span class="sub">생활 환경의 변화</span></span>
+          <span class="unit">Unit 3</span></a></li>
+        <li data-week="4"><a href="weeks/week04-unit04/index.html">
+          <span class="wk">04</span>
+          <span class="ttl"><span class="mark">Food &amp; Cooking</span><span class="now-tag">이번 주</span><span class="sub">음식과 요리 경험</span></span>
+          <span class="unit">Unit 4</span></a></li>
+        <li data-week="5"><a href="weeks/week05-unit05/index.html">
+          <span class="wk">05</span>
+          <span class="ttl"><span class="mark">Travel Planning</span><span class="now-tag">이번 주</span><span class="sub">여행 계획 세우기</span></span>
+          <span class="unit">Unit 5</span></a></li>
+        <li data-week="6"><a href="weeks/week06-unit06/index.html">
+          <span class="wk">06</span>
+          <span class="ttl"><span class="mark">Requests, Refusals &amp; Apologies</span><span class="now-tag">이번 주</span><span class="sub">부탁, 거절, 그리고 사과</span></span>
+          <span class="unit">Unit 6</span></a></li>
+        <li data-week="7"><a href="weeks/week07-unit07-08/index.html">
+          <span class="wk">07</span>
+          <span class="ttl"><span class="mark">Technology &amp; Celebrations</span><span class="now-tag">이번 주</span><span class="sub">기술 활용과 기념일</span></span>
+          <span class="unit">Units 7&ndash;8</span></a></li>
+        <li data-week="8" class="exam"><a href="weeks/week08-midterm/index.html">
+          <span class="wk">08</span>
+          <span class="ttl"><span class="mark">Midterm</span><span class="stamp">시험</span><span class="now-tag">이번 주</span><span class="sub">중간고사 &middot; 1&ndash;8단원 복습</span></span>
+          <span class="unit">Units 1&ndash;8</span></a></li>
+      </ol>
+
+      <h3 class="part">Part II <em>후반기</em></h3>
+      <ol class="weeks" id="weeks-2">
+        <li data-week="9"><a href="weeks/week09-unit09/index.html">
+          <span class="wk">09</span>
+          <span class="ttl"><span class="mark">Changes Through Time</span><span class="now-tag">이번 주</span><span class="sub">시대의 변화</span></span>
+          <span class="unit">Unit 9</span></a></li>
+        <li data-week="10"><a href="weeks/week10-unit10/index.html">
+          <span class="wk">10</span>
+          <span class="ttl"><span class="mark">Personality &amp; Careers</span><span class="now-tag">이번 주</span><span class="sub">성향과 직업 탐색</span></span>
+          <span class="unit">Unit 10</span></a></li>
+        <li data-week="11"><a href="weeks/week11-unit11/index.html">
+          <span class="wk">11</span>
+          <span class="ttl"><span class="mark">World Landmarks &amp; Culture</span><span class="now-tag">이번 주</span><span class="sub">세계의 명소와 문화</span></span>
+          <span class="unit">Unit 11</span></a></li>
+        <li data-week="12"><a href="weeks/week12-unit12/index.html">
+          <span class="wk">12</span>
+          <span class="ttl"><span class="mark">Storytelling</span><span class="now-tag">이번 주</span><span class="sub">흥미로운 스토리텔링</span></span>
+          <span class="unit">Unit 12</span></a></li>
+        <li data-week="13"><a href="weeks/week13-unit13-14/index.html">
+          <span class="wk">13</span>
+          <span class="ttl"><span class="mark">Pop Culture &amp; Body Language</span><span class="now-tag">이번 주</span><span class="sub">대중문화와 비언어적 의사소통</span></span>
+          <span class="unit">Units 13&ndash;14</span></a></li>
+        <li data-week="14"><a href="weeks/week14-unit15-16/index.html">
+          <span class="wk">14</span>
+          <span class="ttl"><span class="mark">Dilemmas &amp; Excuses</span><span class="now-tag">이번 주</span><span class="sub">곤란한 상황과 변명</span></span>
+          <span class="unit">Units 15&ndash;16</span></a></li>
+        <li data-week="15" class="exam"><a href="weeks/week15-final/index.html">
+          <span class="wk">15</span>
+          <span class="ttl"><span class="mark">Final</span><span class="stamp">시험</span><span class="now-tag">이번 주</span><span class="sub">기말고사 &middot; 9&ndash;16단원 복습</span></span>
+          <span class="unit">Units 9&ndash;16</span></a></li>
+      </ol>
+    </main>
 
     <footer>
-      Practical English 3 | Interchange 2, 5th Edition
-      <span style="opacity:.55; margin-left:.6rem;">&middot; <a href="dashboard/index.html" style="color:inherit; text-decoration:none;" title="교수용 활동 대시보드">Dashboard</a></span>
+      <span>Practical English 3 &middot; Interchange 2 (5th ed.)</span>
+      <span class="spacer"></span>
+      <a href="guide/index.html">Guide</a>
+      <a href="portfolio/index.html">Portfolio</a>
+      <a href="dashboard/index.html" title="교수용 활동 대시보드">Dashboard</a>
     </footer>
   </div>
+
+  <script>
+    // "이번 주" 표시 — 개강일 기준 (필요하면 날짜만 바꾸세요)
+    (function () {
+      var SEMESTER_START = '2026-09-01';
+      var start = new Date(SEMESTER_START + 'T00:00:00');
+      var days = Math.floor((new Date() - start) / 86400000);
+      var week = Math.floor(days / 7) + 1;
+      if (days < 0 || week > 15) return;
+      var li = document.querySelector('.weeks li[data-week="' + week + '"]');
+      if (li) li.classList.add('now');
+    })();
+  </script>
 </body>
 </html>
