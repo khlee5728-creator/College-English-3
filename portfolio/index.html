@@ -10,164 +10,66 @@
   <link rel="stylesheet" href="../assets/css/theme.css">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: var(--font-en);
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      min-height: 100vh;
-      color: var(--color-text);
-    }
-    .container { max-width: 1100px; margin: 0 auto; padding: 2rem 1.5rem 3rem; }
-    .back-link {
-      display: inline-flex; align-items: center; gap: 0.4rem;
-      color: rgba(255,255,255,0.85); text-decoration: none;
-      font-size: 0.9rem; margin-bottom: 1rem;
-      padding: 0.4rem 0.8rem; background: rgba(0,0,0,0.15);
-      border-radius: 6px; transition: all 0.2s;
-    }
-    .back-link:hover { background: rgba(0,0,0,0.3); color: white; }
-    header { text-align: center; padding: 1rem 0 2rem; color: white; }
-    header h1 {
-      font-size: clamp(1.8rem, 4vw, 2.5rem);
-      margin-bottom: 0.4rem; color: white;
-    }
-    header .ko-title {
-      font-family: var(--font-ko);
-      font-size: clamp(1rem, 2vw, 1.2rem);
-      opacity: 0.92; margin-bottom: 0.5rem;
-    }
-    header p { font-size: 0.95rem; opacity: 0.85; }
-    header .stat {
-      display: inline-block; margin: 0.8rem 0.4rem 0;
-      padding: 0.25rem 0.8rem; background: rgba(255,255,255,0.15);
-      border-radius: 12px; font-size: 0.8rem; backdrop-filter: blur(4px);
-    }
+    body { font-family: var(--font-en); background: var(--color-bg); min-height: 100vh; color: var(--color-text); line-height: 1.55; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+    .container { max-width: 1000px; margin: 0 auto; padding: 1.4rem 1.4rem 3rem; }
+    .back-link { display: inline-block; font-family: var(--font-heading); font-style: italic; font-size: .95rem; color: var(--color-text-light); border-bottom: 1px solid transparent; }
+    .back-link:hover { color: var(--color-text); border-bottom-color: var(--color-text); }
 
-    .week-section { margin: 2rem 0; }
-    .week-heading {
-      color: white; font-size: 0.85rem; font-weight: 600;
-      text-transform: uppercase; letter-spacing: 2px;
-      margin-bottom: 0.8rem; padding-bottom: 0.4rem;
-      border-bottom: 1px solid rgba(255,255,255,0.25);
-      display: flex; align-items: baseline; gap: 0.6rem;
-    }
-    .week-heading .topic {
-      font-family: var(--font-ko); font-size: 0.85rem;
-      font-weight: 400; text-transform: none;
-      letter-spacing: 0; opacity: 0.8;
-    }
-    .project-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
-      gap: 1rem;
-    }
-    .project-card {
-      background: white; border-radius: 12px;
-      overflow: hidden; text-decoration: none; color: var(--color-text);
-      box-shadow: 0 2px 8px rgba(0,0,0,0.12);
-      display: flex; flex-direction: column;
-      transition: all 0.25s ease; position: relative;
-    }
-    .project-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 10px 26px rgba(0,0,0,0.18);
-      text-decoration: none;
-    }
-    .project-thumb {
-      height: 110px; background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 3rem; position: relative; overflow: hidden;
-    }
-    .project-thumb .thumb-emoji {
-      line-height: 1; z-index: 1; position: relative;
-    }
-    /* Auto-loaded thumbnail image (from thumbnails/{project-id}.{ext}) */
-    .project-thumb img.auto-thumb {
-      position: absolute; inset: 0;
-      width: 100%; height: 100%; object-fit: cover;
-      z-index: 1;
-    }
+    header { padding: 1.6rem 0 1.2rem; border-bottom: 2px solid var(--color-primary); margin-bottom: .5rem; }
+    header .kicker { font-family: var(--font-heading); font-style: italic; font-size: 1rem; color: var(--color-text-light); margin-bottom: .3rem; }
+    header h1 { font-family: var(--font-heading); font-weight: 700; font-size: clamp(2.2rem, 5vw, 3.4rem); line-height: 1.05; letter-spacing: -.02em; margin-bottom: .5rem; }
+    header .ko-title { font-size: clamp(1rem, 1.6vw, 1.1rem); color: var(--color-text-light); }
+    header .ko-title strong { font-weight: 500; color: var(--color-text); }
+    header .stats { font-family: var(--font-heading); font-style: italic; font-size: .95rem; color: var(--color-text-muted); margin-top: .5rem; }
+
+    .week-section { margin: 2rem 0 0; }
+    .week-heading { display: flex; align-items: baseline; gap: .7rem; font-family: var(--font-heading); font-weight: 600; font-size: 1.3rem; margin-bottom: .8rem; }
+    .week-heading .topic { font-family: var(--font-ko); font-weight: 400; font-size: .85rem; color: var(--color-text-muted); }
+    .week-heading::after { content: ""; flex: 1; height: 1px; background: var(--color-border); transform: translateY(-.35em); }
+
+    .project-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: .9rem; }
+    .project-card { background: #fffdf8; border: 1px solid var(--color-border); border-radius: var(--radius-md); overflow: hidden; display: flex; flex-direction: column; position: relative; transition: border-color .2s; }
+    .project-card:hover { border-color: var(--color-primary); }
+    .project-thumb { height: 104px; display: flex; align-items: center; justify-content: center; font-size: 2.6rem; position: relative; overflow: hidden; border-bottom: 1px solid var(--color-border-light); color: var(--color-primary); }
+    .project-thumb .thumb-emoji { line-height: 1; z-index: 1; position: relative; filter: saturate(.75); }
+    .project-thumb img.auto-thumb { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; }
     .project-thumb.has-image .thumb-emoji { display: none; }
-    .project-thumb.gradient-1 { background: linear-gradient(135deg, #667eea, #764ba2); color: white; }
-    .project-thumb.gradient-2 { background: linear-gradient(135deg, #f093fb, #f5576c); color: white; }
-    .project-thumb.gradient-3 { background: linear-gradient(135deg, #4facfe, #00f2fe); color: white; }
-    .project-thumb.gradient-4 { background: linear-gradient(135deg, #43e97b, #38f9d7); color: #1a5276; }
-    .project-thumb.gradient-5 { background: linear-gradient(135deg, #fa709a, #fee140); color: white; }
-    .project-thumb.gradient-6 { background: linear-gradient(135deg, #30cfd0, #330867); color: white; }
-    .project-thumb.gradient-7 { background: linear-gradient(135deg, #a8edea, #fed6e3); color: #5b3a8a; }
-    .project-thumb.gradient-8 { background: linear-gradient(135deg, #ffecd2, #fcb69f); color: #6b3410; }
+    /* paper-toned tints (were rainbow gradients) */
+    .project-thumb.gradient-1 { background: #e8e1d2; }
+    .project-thumb.gradient-2 { background: #ece0dc; }
+    .project-thumb.gradient-3 { background: #dfe6e8; }
+    .project-thumb.gradient-4 { background: #e1e8dc; }
+    .project-thumb.gradient-5 { background: #f0e6d0; }
+    .project-thumb.gradient-6 { background: #e3dfe9; }
+    .project-thumb.gradient-7 { background: #e6e9e2; }
+    .project-thumb.gradient-8 { background: #f1e2d6; }
 
-    .source-tag {
-      position: absolute; top: 6px; right: 6px;
-      padding: 2px 7px; border-radius: 8px;
-      font-size: 0.62rem; font-weight: 700;
-      background: rgba(0,0,0,0.55); color: white;
-      letter-spacing: 0.06em;
-      backdrop-filter: blur(4px);
-      text-transform: uppercase;
-      line-height: 1.4;
-      font-family: var(--font-en, 'Georgia', serif);
-      z-index: 2;  /* auto-thumb 이미지 위에 표시 */
-    }
-    .source-tag.local { background: rgba(42,100,150,0.85); }
-    .source-tag.gemini { background: rgba(66,133,244,0.85); }
-    .source-tag.codepen { background: rgba(0,0,0,0.85); }
-    .source-tag.claude { background: rgba(217,119,69,0.9); }
-    .source-tag.netlify { background: rgba(0,191,178,0.85); }
+    .source-tag { position: absolute; top: 7px; right: 7px; z-index: 2; font-family: var(--font-heading); font-style: italic; font-size: .72rem; color: var(--color-text); background: rgba(255,253,248,.92); border: 1px solid var(--color-border); border-radius: 3px; padding: 1px 7px; line-height: 1.4; }
 
-    .project-body { padding: 0.9rem 1rem 1rem; flex: 1; display: flex; flex-direction: column; }
-    .project-title {
-      font-size: 1rem; font-weight: 600; color: var(--color-primary);
-      margin-bottom: 0.25rem; line-height: 1.3;
-    }
-    .project-title-ko {
-      font-family: var(--font-ko); font-size: 0.82rem;
-      color: var(--color-text-muted); margin-bottom: 0.6rem;
-    }
-    .project-meta {
-      margin-top: auto; padding-top: 0.5rem;
-      border-top: 1px solid #eee;
-      display: flex; justify-content: space-between; align-items: center;
-      font-size: 0.78rem; color: var(--color-text-light);
-    }
-    .student-name {
-      font-family: var(--font-ko); font-weight: 600;
-      color: var(--color-text);
-    }
-    .open-arrow {
-      color: var(--color-primary); font-weight: 600; font-size: 0.85rem;
-    }
+    .project-body { padding: .8rem .95rem .9rem; flex: 1; display: flex; flex-direction: column; }
+    .project-title { font-family: var(--font-heading); font-weight: 600; font-size: 1.12rem; line-height: 1.25; margin-bottom: .15rem; }
+    .project-title-ko { font-size: .82rem; color: var(--color-text-light); margin-bottom: .6rem; }
+    .project-title-ko .chip { display: inline-block; font-size: .72rem; color: var(--color-warning); border: 1px solid var(--color-warning); border-radius: 3px; padding: 0 .4rem; margin-left: .3rem; vertical-align: .1em; }
+    .project-meta { margin-top: auto; padding-top: .5rem; border-top: 1px solid var(--color-border-light); display: flex; justify-content: space-between; align-items: center; font-size: .8rem; color: var(--color-text-light); }
+    .student-name { font-weight: 500; color: var(--color-text); }
+    .open-arrow { font-family: var(--font-heading); font-style: italic; color: var(--color-accent); }
 
-    footer {
-      text-align: center; color: rgba(255,255,255,0.6);
-      padding: 2rem 0 1rem; font-size: 0.8rem;
-    }
+    footer { margin-top: 3rem; padding-top: 1rem; border-top: 2px solid var(--color-primary); font-size: .82rem; color: var(--color-text-muted); }
 
-    /* Image attribution (consistent with lecture pages) */
-    .image-attribution {
-      position: fixed; bottom: 12px; left: 12px; z-index: 997;
-      background: rgba(255, 255, 255, 0.88); padding: 3px 10px;
-      border-radius: 12px; border: 1px solid rgba(0, 0, 0, 0.08);
-      color: #6b7280; font-size: 0.7em; font-style: italic;
-      font-family: var(--font-en, 'Georgia', serif);
-      backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
-      cursor: help;
-    }
-    .image-attribution::before { content: "\2726 "; font-style: normal; color: #9ca3af; }
+    .image-attribution { position: fixed; bottom: 12px; left: 12px; z-index: 997; background: rgba(247,243,234,.92); padding: 3px 10px; border-radius: 3px; border: 1px solid var(--color-border); color: var(--color-text-muted); font-size: .7em; font-style: italic; font-family: var(--font-heading); cursor: help; }
+    .image-attribution::before { content: "\2726 "; font-style: normal; }
   </style>
 </head>
 <body>
   <div class="container">
-    <a href="../index.html" class="back-link">&larr; Course Home</a>
+    <a href="../index.html" class="back-link">&larr; Course home</a>
 
     <header>
-      <h1>&#x1F3A8; Student Portfolio</h1>
-      <div class="ko-title">학생 포트폴리오 &mdash; 창의적 AI 활용 프로젝트</div>
-      <p>Student-created learning tools, games, and interactive experiences</p>
-      <div>
-        <span class="stat">23 Projects</span>
-        <span class="stat">Weeks 3 &ndash; 14</span>
-        <span class="stat">Gemini · Claude · CodePen · Netlify</span>
-      </div>
+      <div class="kicker">Practical English 3</div>
+      <h1>Student Portfolio</h1>
+      <div class="ko-title"><strong>학생 포트폴리오</strong> &mdash; 창의적 AI 활용 프로젝트. 학생들이 만든 학습 도구, 게임, 인터랙티브 콘텐츠.</div>
+      <div class="stats">23 projects &middot; Weeks 3&ndash;14 &middot; Gemini, Claude, CodePen, Netlify</div>
     </header>
 
     <!-- ============== WEEK 3 ============== -->
@@ -275,7 +177,7 @@
           <div class="project-thumb gradient-7" data-project-id="week06-room-quest"><span class="thumb-emoji">&#x1F6AA;</span><span class="source-tag gemini">Gemini</span></div>
           <div class="project-body">
             <div class="project-title">Room Quest</div>
-            <div class="project-title-ko">방 정리 퀘스트 <span style="background:#fef3c7; color:#92400e; font-size:0.7em; padding:1px 6px; border-radius:6px; margin-left:0.2em; font-family:var(--font-ko);">📷 사진 업로드 필요</span></div>
+            <div class="project-title-ko">방 정리 퀘스트 <span class="chip">사진 업로드 필요</span></div>
             <div class="project-meta"><span class="student-name">김OO</span><span class="open-arrow">열기 &rarr;</span></div>
           </div>
         </a>
