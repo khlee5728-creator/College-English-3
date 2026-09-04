@@ -608,6 +608,10 @@
   text-indent: 0;
 }
 
+/* List-style passages (numbered opinions, quoted tips): no first-line indent */
+.reading-passage--list p,
+.reading-passage p.no-indent { text-indent: 0; }
+
 .conversation-dialogue p {
   text-indent: 0 !important;
 }
