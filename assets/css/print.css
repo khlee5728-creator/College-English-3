@@ -177,6 +177,10 @@
   .contrast-table td:first-child,
   .contrast-table td:last-child { background: none; }
 
+  /* Dialogue player: print the plain script, not the widget */
+  .dlg-controls, .dlg-chat { display: none !important; }
+  .dlg-print { display: block !important; }
+
   /* Inline markers */
   .mark-bg { background: #eee; }
   .mark-strike { color: #555; }
