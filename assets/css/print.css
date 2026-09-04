@@ -180,6 +180,9 @@
   /* Dialogue player: print the plain script, not the widget */
   .dlg-controls, .dlg-chat { display: none !important; }
   .dlg-print { display: block !important; }
+  .dlg-item-play { display: none !important; }
+  .dlg-list p.dlg-item { padding-left: 0; }
+  .dlg-list .dlg-item-text { filter: none !important; }
 
   /* Inline markers */
   .mark-bg { background: #eee; }

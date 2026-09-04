@@ -222,5 +222,112 @@
     setPlayBtn();
   }
 
-  Array.prototype.forEach.call(boxes, initDialogue);
+  /* ---------- 목록 모드: data-dialogue="list" ----------
+     Perspectives 처럼 독립된 의견/팁이 <p> 로 나열된 지문.
+     배치는 그대로 두고 항목별 ▶, 전체 듣기, 속도, 텍스트 가리기(듣기 연습)를 붙인다.
+     항목마다 목소리를 바꿔 여러 사람이 말하는 느낌을 준다. */
+  function initList(box) {
+    var items = Array.prototype.filter.call(box.querySelectorAll('p'), function (p) {
+      return p.textContent.replace(/\s+/g, ' ').trim().length > 0;
+    });
+    if (items.length < 1) return;
+    box.classList.add('dlg-list');
+
+    var ctrl = document.createElement('div');
+    ctrl.className = 'dlg-controls';
+    ctrl.innerHTML =
+      '<button type="button" class="dlg-btn dlg-play">&#9654; 전체 듣기</button>' +
+      '<button type="button" class="dlg-btn dlg-restart" title="처음부터">&#8635;</button>' +
+      '<button type="button" class="dlg-btn dlg-speed" title="속도">1.0&times;</button>' +
+      '<button type="button" class="dlg-btn dlg-hide">텍스트 가리기</button>' +
+      '<span class="dlg-status"></span>';
+    box.insertBefore(ctrl, box.firstChild);
+
+    var data = [];
+    items.forEach(function (p, i) {
+      var wrap = document.createElement('span');
+      wrap.className = 'dlg-item-text';
+      while (p.firstChild) wrap.appendChild(p.firstChild);
+      var btn = document.createElement('button');
+      btn.type = 'button'; btn.className = 'dlg-item-play'; btn.title = '이 항목 듣기'; btn.innerHTML = '&#9654;';
+      btn.setAttribute('data-i', i);
+      p.appendChild(btn); p.appendChild(wrap);
+      p.classList.add('dlg-item');
+      var text = wrap.textContent.replace(/\s+/g, ' ').trim().replace(/^\d+[\.\)]\s*/, '');
+      data.push({ el: p, text: text });
+    });
+
+    var btnPlay = ctrl.querySelector('.dlg-play'), btnRestart = ctrl.querySelector('.dlg-restart');
+    var btnSpeed = ctrl.querySelector('.dlg-speed'), btnHide = ctrl.querySelector('.dlg-hide');
+    var status = ctrl.querySelector('.dlg-status');
+    var cur = 0, playing = false, rate = 1, token = 0;
+
+    function setStatus(t) { status.textContent = t || ''; }
+    function setPlayBtn() { btnPlay.innerHTML = playing ? '&#10074;&#10074; 일시정지' : (cur > 0 && cur < data.length ? '&#9654; 계속' : '&#9654; 전체 듣기'); }
+    function clearMarks() { data.forEach(function (d) { d.el.classList.remove('is-current'); }); }
+    function cancelSpeech() { if (TTS) { try { window.speechSynthesis.cancel(); } catch (e) {} } }
+    function speak(d, i, done) {
+      var finished = false, my = ++token;
+      function fin() { if (finished || my !== token) return; finished = true; done(); }
+      var ms = Math.max(1500, words(d.text) * 450 / rate + 1200);
+      if (!TTS) { setTimeout(fin, ms); return; }
+      cancelSpeech();
+      var u = new SpeechSynthesisUtterance(d.text);
+      var vf = voiceFor(i % 3);
+      if (vf.voice) u.voice = vf.voice;
+      u.lang = 'en-US'; u.rate = rate; u.pitch = vf.pitch;
+      u.onend = fin; u.onerror = fin;
+      setTimeout(fin, ms + 4000);
+      try { window.speechSynthesis.speak(u); } catch (e) { setTimeout(fin, ms); }
+    }
+    function step() {
+      if (!playing) return;
+      if (cur >= data.length) { playing = false; clearMarks(); setPlayBtn(); setStatus('끝 · ↺ 로 다시'); return; }
+      clearMarks();
+      var d = data[cur]; d.el.classList.add('is-current');
+      try { d.el.scrollIntoView({ block: 'nearest', behavior: 'smooth' }); } catch (e) {}
+      setStatus((cur + 1) + ' / ' + data.length);
+      speak(d, cur, function () { if (!playing) return; cur += 1; setTimeout(step, 500); });
+    }
+    function play() { if (playing) return; if (cur >= data.length) cur = 0; playing = true; setPlayBtn(); step(); }
+    function pause() { playing = false; token++; cancelSpeech(); setPlayBtn(); if (cur < data.length && cur > 0) setStatus('일시정지'); }
+    function restart() { pause(); cur = 0; clearMarks(); setStatus(''); setPlayBtn(); }
+
+    btnPlay.addEventListener('click', function () { playing ? pause() : play(); });
+    btnRestart.addEventListener('click', restart);
+    btnSpeed.addEventListener('click', function () { rate = (rate === 1) ? 0.8 : 1; btnSpeed.innerHTML = rate.toFixed(1) + '&times;'; });
+    btnHide.addEventListener('click', function () {
+      var on = box.classList.toggle('is-hidden');
+      btnHide.textContent = on ? '텍스트 보기' : '텍스트 가리기';
+      if (!on) data.forEach(function (d) { d.el.classList.remove('is-revealed'); });
+    });
+    // 항목 ▶: 그 항목만 듣기 / 가린 텍스트 클릭: 그 항목만 보기
+    box.addEventListener('click', function (e) {
+      var b = e.target.closest('.dlg-item-play');
+      if (b) {
+        var i = parseInt(b.getAttribute('data-i'), 10);
+        pause(); clearMarks(); data[i].el.classList.add('is-current'); setStatus((i + 1) + ' / ' + data.length);
+        speak(data[i], i, function () { data[i].el.classList.remove('is-current'); setStatus(''); });
+        return;
+      }
+      var t = e.target.closest('.dlg-item-text');
+      if (t && box.classList.contains('is-hidden')) t.parentNode.classList.add('is-revealed');
+    });
+    box.addEventListener('keydown', function (e) { if (e.key === ' ' || e.key === 'Spacebar') e.stopPropagation(); }, true);
+
+    var slide = box.closest('.slide');
+    if (slide && window.MutationObserver) {
+      new MutationObserver(function () { if (!slide.classList.contains('active') && playing) pause(); })
+        .observe(slide, { attributes: true, attributeFilter: ['class'] });
+    }
+    var NAV = { ArrowRight: 1, ArrowLeft: 1, PageDown: 1, PageUp: 1, Home: 1, End: 1, Escape: 1 };
+    document.addEventListener('keydown', function (e) { if (playing && NAV[e.key] && !box.contains(e.target)) pause(); }, true);
+    document.addEventListener('click', function (e) { if (playing && e.target.closest && e.target.closest('#slide-nav')) pause(); }, true);
+    document.addEventListener('visibilitychange', function () { if (document.hidden) pause(); });
+    setPlayBtn();
+  }
+
+  Array.prototype.forEach.call(boxes, function (box) {
+    if (box.getAttribute('data-dialogue') === 'list') initList(box); else initDialogue(box);
+  });
 })();
