@@ -1901,6 +1901,21 @@ h3 { font-weight: var(--fw-semibold); }
 .dlg-body { border-radius: var(--radius-lg) var(--radius-lg) var(--radius-lg) 2px; box-shadow: none; }
 .dlg-side-b .dlg-body { border-radius: var(--radius-lg) var(--radius-lg) 2px var(--radius-lg); }
 
+/* -- answer boxes: width follows the font size so the placeholder never clips -- */
+.fill-blank-input {
+  width: 18ch;                 /* inline blanks (e.g. W10 s25) */
+  flex: 1 1 18ch;              /* inside .fill-blank-item: grow to fit, wrap on phones */
+  min-width: 0;
+  max-width: 24em;
+  background: #fff;
+}
+.fill-blank-input::placeholder,
+.transform-input::placeholder {
+  font-size: 0.85em;
+  color: var(--color-text-muted);
+  opacity: 1;
+}
+
 /* -- phones: nav buttons flow in one row, floating chrome shrinks -- */
 @media (max-width: 640px) {
   #slide-nav {
@@ -1919,4 +1934,5 @@ h3 { font-weight: var(--fw-semibold); }
   #class-timer { top: 40px; right: 8px; font-size: 1rem; padding: 0.2rem 0.5rem; }
   .dlg-controls { gap: 0.35rem; }
   .dlg-status { margin-left: 0; flex-basis: 100%; }
+  .fill-blank-item .fill-blank-input { flex-basis: 100%; max-width: none; }  /* full row; Check wraps below */
 }
