@@ -1900,3 +1900,23 @@ h3 { font-weight: var(--fw-semibold); }
 .dlg-bubble.is-you .dlg-body { background: #fff8dc; outline-color: var(--color-warning); }
 .dlg-body { border-radius: var(--radius-lg) var(--radius-lg) var(--radius-lg) 2px; box-shadow: none; }
 .dlg-side-b .dlg-body { border-radius: var(--radius-lg) var(--radius-lg) 2px var(--radius-lg); }
+
+/* -- phones: nav buttons flow in one row, floating chrome shrinks -- */
+@media (max-width: 640px) {
+  #slide-nav {
+    justify-content: space-between;
+    gap: 0.4rem;
+    padding: 0.45rem 0.6rem calc(0.45rem + env(safe-area-inset-bottom, 0px));
+  }
+  #btn-home, #btn-pdf { position: static; }          /* no more absolute overlap */
+  #slide-nav button, #btn-home, #btn-pdf { height: 40px; min-width: 40px; padding: 0 0.6rem; font-size: 0.9rem; flex: 0 0 auto; }
+  #btn-prev, #btn-next { width: 48px; }
+  #slide-counter { flex: 1; min-width: 0; font-size: 0.9rem; }
+  .slide { padding-bottom: calc(var(--space-3xl) + 40px); }
+  #btn-fullscreen, #keyboard-hint { display: none; }  /* no keyboard, no page fullscreen on phones */
+  body #pe3-track-badge { top: 8px; right: 8px; padding: 2px 8px; font-size: 0.7rem; }
+  .image-attribution { bottom: 66px; left: 8px; font-size: 0.62em; max-width: 72vw; padding: 2px 7px; }
+  #class-timer { top: 40px; right: 8px; font-size: 1rem; padding: 0.2rem 0.5rem; }
+  .dlg-controls { gap: 0.35rem; }
+  .dlg-status { margin-left: 0; flex-basis: 100%; }
+}
