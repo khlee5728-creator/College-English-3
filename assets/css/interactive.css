@@ -1903,11 +1903,15 @@ h3 { font-weight: var(--fw-semibold); }
 
 /* -- answer boxes: width follows the font size so the placeholder never clips -- */
 .fill-blank-input {
-  width: 18ch;                 /* inline blanks (e.g. W10 s25) */
-  flex: 1 1 18ch;              /* inside .fill-blank-item: grow to fit, wrap on phones */
+  width: 18ch;                 /* blanks inside a sentence keep a fixed, font-relative width */
+  flex: 0 0 auto;
   min-width: 0;
-  max-width: 24em;
+  max-width: 100%;
   background: #fff;
+}
+.fill-blank-item > p + .fill-blank-input {   /* question line above, answer box below: grow to fit */
+  flex: 1 1 18ch;
+  max-width: 24em;
 }
 .fill-blank-input::placeholder,
 .transform-input::placeholder {
@@ -1934,5 +1938,5 @@ h3 { font-weight: var(--fw-semibold); }
   #class-timer { top: 40px; right: 8px; font-size: 1rem; padding: 0.2rem 0.5rem; }
   .dlg-controls { gap: 0.35rem; }
   .dlg-status { margin-left: 0; flex-basis: 100%; }
-  .fill-blank-item .fill-blank-input { flex-basis: 100%; max-width: none; }  /* full row; Check wraps below */
+  .fill-blank-item > p + .fill-blank-input { flex-basis: 100%; max-width: none; }  /* full row; Check wraps below */
 }
