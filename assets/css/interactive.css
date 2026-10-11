@@ -1940,3 +1940,18 @@ h3 { font-weight: var(--fw-semibold); }
   .dlg-status { margin-left: 0; flex-basis: 100%; }
   .fill-blank-item > p + .fill-blank-input { flex-basis: 100%; max-width: none; }  /* full row; Check wraps below */
 }
+
+/* -- compact slides: dense grammar/vocab slides that must fit one screen (W06 s5, s12) -- */
+.slide--compact .grammar-analysis { padding: var(--space-md) var(--space-lg); margin: var(--space-sm) 0; }
+.slide--compact .grammar-analysis h3 { margin-bottom: var(--space-xs); }
+.slide--compact .grammar-analysis > p { margin: var(--space-xs) 0; }
+.slide--compact .sentence-analysis { line-height: 1.6; padding: var(--space-xs) var(--space-md); margin-bottom: var(--space-xs); }
+.pv-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-sm); }
+.slide--compact .pv-grid { grid-template-columns: repeat(3, 1fr); }
+.slide--compact .phrasal-verb-card { padding: var(--space-xs) var(--space-md); }
+.slide--compact .phrasal-verb-card .pv-meaning { margin: var(--space-xs) 0 0; }
+@media (max-width: 640px) { .slide--compact .pv-grid, .pv-grid { grid-template-columns: 1fr 1fr; } }
+.slide--compact .phrasal-verb-card .pv-verb,
+.slide--compact .phrasal-verb-card .pv-particle { font-size: var(--fs-body-lg); }
+.slide--compact .phrasal-verb-card .pv-meaning { font-size: var(--fs-small); line-height: 1.35; }
+.slide--compact > .korean-note { margin-top: var(--space-sm); }
