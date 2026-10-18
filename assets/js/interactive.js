@@ -196,6 +196,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // ---- Supplementary-note popups: <button data-open-note="id"> opens <dialog id="id" class="note-dialog"> ----
+  document.querySelectorAll('[data-open-note]').forEach(btn => {
+    const dlg = document.getElementById(btn.dataset.openNote);
+    if (!dlg || typeof dlg.showModal !== 'function') return;
+    btn.addEventListener('click', () => { dlg.showModal(); dlg.scrollTop = 0; dlg.focus(); });
+    // click on the dimmed backdrop (outside the box) closes it
+    dlg.addEventListener('click', e => { if (e.target === dlg) dlg.close(); });
+  });
+
   // ---- Reset Buttons ----
   document.querySelectorAll('.btn-reset').forEach(btn => {
     btn.addEventListener('click', () => {

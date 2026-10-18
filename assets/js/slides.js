@@ -54,6 +54,9 @@ class SlidePresentation {
   }
 
   handleKeydown(e) {
+    // A note popup (<dialog>) is open: leave keys to the dialog (Esc closes it natively)
+    if (document.querySelector('dialog[open]')) return;
+
     // Don't navigate when typing in input fields
     if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
       if (e.key === 'Escape') e.target.blur();

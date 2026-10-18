@@ -1955,3 +1955,35 @@ h3 { font-weight: var(--fw-semibold); }
 .slide--compact .phrasal-verb-card .pv-particle { font-size: var(--fs-body-lg); }
 .slide--compact .phrasal-verb-card .pv-meaning { font-size: var(--fs-small); line-height: 1.35; }
 .slide--compact > .korean-note { margin-top: var(--space-sm); }
+
+/* -- pronunciation answer key: stressed syllables revealed by a "Show stress" button (W07 s32) -- */
+.stress-key { transition: color var(--transition-fast); }
+.show-stress .stress-key { font-weight: var(--fw-bold); color: var(--color-primary); }
+@media print { .stress-key { font-weight: var(--fw-bold); } }
+.stress-list p { font-size: inherit; }
+
+/* -- supplementary-note popup: <button data-open-note> + <dialog class="note-dialog"> -- */
+.btn-note {
+  font-family: var(--font-heading); font-style: italic; font-size: var(--fs-small);
+  padding: 0.2rem 0.75rem; border: 1px solid var(--color-border); border-radius: var(--radius-sm);
+  background: transparent; color: var(--color-text-light); cursor: pointer;
+}
+.btn-note:hover { border-color: var(--color-primary); color: var(--color-primary); }
+.note-dialog {
+  max-width: min(760px, 92vw); max-height: 86vh; overflow-y: auto;
+  padding: 1.4rem 1.7rem 1.2rem; border: 1px solid var(--color-primary); border-radius: var(--radius-md);
+  background: var(--color-bg); color: var(--color-text); box-shadow: 0 14px 40px rgba(29,36,48,.25);
+  font-family: var(--font-ko); font-size: 1rem; line-height: 1.65;
+}
+.note-dialog::backdrop { background: rgba(29,36,48,.45); }
+.note-dialog h3 { font-family: var(--font-heading); font-size: 1.35rem; margin: 0 0 0.6rem; }
+.note-dialog h4 { font-size: 1.02rem; margin: 1rem 0 0.3rem; color: var(--color-primary); }
+.note-dialog p, .note-dialog li { margin: 0.2rem 0; }
+.note-dialog ul { margin: 0.2rem 0 0.2rem 1.2rem; padding: 0; }
+.note-dialog .en { font-family: var(--font-heading); }
+.note-dialog .note-src { margin-top: 1rem; font-size: 0.85rem; color: var(--color-text-muted); }
+.note-dialog form { text-align: right; margin-top: 0.8rem; }
+@media print { .btn-note, .note-dialog { display: none !important; } }
+.note-dialog p, .note-dialog li, .note-dialog ul { font-size: inherit; line-height: inherit; }
+.korean-note .btn-note { margin-left: 0.4rem; vertical-align: baseline; }
+.note-dialog { margin: auto; max-height: 90vh; }

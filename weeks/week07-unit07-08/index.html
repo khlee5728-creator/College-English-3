@@ -1194,15 +1194,52 @@
     </section>
 
     <!-- ========== SLIDE 33: Unit 8 Pronunciation ========== -->
-    <section class="slide slide--content">
+    <section class="slide slide--content" data-dialogue="list" data-dialogue-items=".stress-list p">
       <h2>Pronunciation: Stress and Rhythm</h2>
-      <p>Listen to the <strong>stressed words</strong> and natural rhythm in these sentences:</p>
-      <div style="font-size: var(--fs-h3); line-height: 2; margin: var(--space-md) 0;">
-        <p>&bull; &nbsp; <strong>WHEN</strong> women get <strong>MAR</strong>ried, they usually <strong>WEAR</strong> a brightly colored <strong>SA</strong>ri.</p>
-        <p>&bull; &nbsp; <strong>AF</strong>ter the <strong>GROOM</strong> arrives, the <strong>BRIDE</strong> and groom ex<strong>CHANGE</strong> garlands.</p>
-        <p>&bull; &nbsp; Be<strong>FORE</strong> the <strong>WED</strong>ding, the bride&rsquo;s <strong>RE</strong>latives have a <strong>PAR</strong>ty.</p>
+      <p class="tight"><strong>A.</strong> Listen and practice. Notice how stressed syllables occur with a regular rhythm.</p>
+      <div class="reading-passage reading-passage--list stress-list" style="font-size: var(--fs-body); padding: var(--space-sm) var(--space-md); margin-bottom: var(--space-sm);">
+        <p>When <strong class="text-primary">wo</strong>men get <strong class="text-primary">mar</strong>ried, they <strong class="text-primary">u</strong>sually <strong class="text-primary">wear</strong> a <strong class="text-primary">bright</strong>ly <strong class="text-primary">co</strong>lored <strong class="text-primary">sa</strong>ri.</p>
       </div>
-      <div class="korean-note"><strong>리듬 연습:</strong> 내용어(명사, 동사, 형용사)는 강하게, 기능어(전치사, 관사, 대명사)는 약하게 발음하세요.</div>
+      <p class="tight" style="display:flex; align-items:center; gap: var(--space-sm); flex-wrap: wrap;"><span><strong>B.</strong> Listen to the stress and rhythm in these sentences. Then practice them.</span> <button type="button" class="btn-reveal" onclick="var l=this.closest('section').querySelectorAll('.stress-list')[1],on=l.classList.toggle('show-stress');this.textContent=on?'Hide stress':'Show stress';">Show stress</button></p>
+      <div class="reading-passage reading-passage--list stress-list" style="font-size: 1.375rem; padding: var(--space-sm) var(--space-md); margin-bottom: var(--space-sm);">
+        <p>1. <span class="stress-key">Af</span>ter the <span class="stress-key">groom</span> ar<span class="stress-key">rives</span>, the <span class="stress-key">bride</span> and <span class="stress-key">groom</span> ex<span class="stress-key">change</span> <span class="stress-key">gar</span>lands of <span class="stress-key">flow</span>ers.</p>
+        <p>2. Be<span class="stress-key">fore</span> the <span class="stress-key">wed</span>ding, the <span class="stress-key">bride&rsquo;s</span> <span class="stress-key">fe</span>male <span class="stress-key">rel</span>atives <span class="stress-key">us</span>ually have a <span class="stress-key">par</span>ty to <span class="stress-key">cel</span>ebrate.</p>
+        <p>3. When the <span class="stress-key">groom</span> takes <span class="stress-key">off</span> his <span class="stress-key">shoes</span>, the <span class="stress-key">bride&rsquo;s</span> <span class="stress-key">sis</span>ters <span class="stress-key">steal</span> them.</p>
+      </div>
+      <dialog id="w07-stress-note" class="note-dialog" aria-labelledby="w07-stress-note-title" tabindex="-1">
+        <h3 id="w07-stress-note-title">보충 설명: 문장 강세</h3>
+
+        <h4>1. 접속사는 강세를 받을까?</h4>
+        <p>접속사는 기능어라서 기본적으로 약하게 읽습니다. 다만 길이와 쓰임에 따라 달라집니다.</p>
+        <ul>
+          <li><strong>and, but, or</strong>: 거의 항상 약하게. <span class="en">the <strong>bride</strong> and <strong>groom</strong></span></li>
+          <li><strong>when, if, as</strong> (1음절): 보통 약하게. A와 B3의 <span class="en">When</span>에는 강세가 없습니다.</li>
+          <li><strong>after, before, because</strong> (2음절 이상): 단어의 강세 음절이 문장 강세를 받기 쉽습니다. <span class="en"><strong>Af</strong>ter</span>(B1), <span class="en">be<strong>fore</strong></span>(B2)</li>
+          <li>대조·강조할 때는 짧은 접속사도 강하게 읽습니다. <span class="en">I&rsquo;ll go <strong>if</strong> you go, not <strong>when</strong> you go.</span></li>
+        </ul>
+
+        <h4>2. B2에서 have는 왜 강세가 없을까?</h4>
+        <p class="en">&hellip; <strong>us</strong>ually have a <strong>par</strong>ty to <strong>cel</strong>ebrate.</p>
+        <ul>
+          <li><strong>가벼운 동사:</strong> <span class="en">have a party</span>에서 뜻은 <span class="en">party</span>에 있고 <span class="en">have</span>는 틀 역할만 합니다(<span class="en">take a shower, make a decision</span>도 같은 경향). &ldquo;가지고 있다&rdquo;는 뜻일 때는 강세를 받습니다: <span class="en">She <strong>has</strong> two <strong>cars</strong>.</span></li>
+          <li><strong>정보 초점:</strong> 새로운 정보는 &ldquo;무엇을 하는가 &rarr; 파티&rdquo;이므로 강세가 <span class="en">party</span>로 갑니다.</li>
+          <li><strong>리듬:</strong> <span class="en">us-, have, par-</span>가 모두 강하면 강세가 몰려 리듬이 무너집니다.</li>
+        </ul>
+
+        <h4>3. B3은 구동사인데 왜 takes에 강세가 없을까?</h4>
+        <p>Unit 6에서 배운 대로 구동사는 <strong>동사와 부사 모두 강세</strong>를 받는 것이 기본입니다: <span class="en"><strong>Pick</strong> them <strong>up</strong>. <strong>Turn</strong> it <strong>off</strong>.</span></p>
+        <p>하지만 문장 안에서는 리듬 때문에 하나가 약해질 수 있습니다.</p>
+        <p class="en">When the <strong>groom</strong> takes <strong>off</strong> his <strong>shoes</strong>, &hellip;</p>
+        <ul>
+          <li><span class="en">groom + takes + off</span>가 약한 음절 없이 붙으면 강세가 세 번 연속됩니다. 영어는 이런 <strong>강세 충돌</strong>을 피하므로 가운데 <span class="en">takes</span>가 약해집니다.</li>
+          <li>의미(벗다)를 결정하는 부사 <span class="en">off</span>는 강세가 남습니다.</li>
+          <li>Unit 6 예문은 동사와 부사 사이에 약한 대명사(<span class="en">them, it</span>)가 있어 충돌이 없으므로 둘 다 강세를 받습니다.</li>
+        </ul>
+
+        <p class="note-src">강세 위치: 교재 p.53 · 교사용 지도서 T-53 답안. 이유 설명은 지도서에 없는 내용으로, 영어 강세·리듬 원리에 따른 보충 해설입니다.</p>
+        <form method="dialog"><button class="btn-check">닫기</button></form>
+      </dialog>
+      <div class="korean-note">굵은 글씨 = 강세 음절. B는 듣고 강세를 찾은 뒤 <strong>Show stress</strong>로 확인하고, 같은 리듬으로 따라 읽어 보세요. <button type="button" class="btn-note" data-open-note="w07-stress-note">보충 설명</button></div>
     </section>
 
     <!-- ========== SLIDE 34: Unit 8 Reading — Pre-Reading ========== -->
