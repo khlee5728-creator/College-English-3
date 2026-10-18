@@ -1987,3 +1987,12 @@ h3 { font-weight: var(--fw-semibold); }
 .note-dialog p, .note-dialog li, .note-dialog ul { font-size: inherit; line-height: inherit; }
 .korean-note .btn-note { margin-left: 0.4rem; vertical-align: baseline; }
 .note-dialog { margin: auto; max-height: 90vh; }
+
+/* -- holiday cards: photo + title + one-line description in one card (W07 s21) -- */
+.holiday-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-sm); margin: 0 0 var(--space-sm); }
+.holiday-card { background: #fffdf8; border: 1px solid var(--color-border-light); border-radius: var(--radius-md); overflow: hidden; }
+.holiday-card img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; display: block; }
+.holiday-card h3 { font-size: 1.05rem; color: var(--color-primary); margin: 0.4rem 0.6rem 0.15rem; }
+.holiday-card p { font-size: 0.82rem; line-height: 1.4; color: var(--color-text-light); margin: 0 0.6rem 0.5rem; }
+@media (max-width: 640px) { .holiday-cards { grid-template-columns: 1fr 1fr; } }
+#presentation.overview-mode .holiday-card img { display: none; }
