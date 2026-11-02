@@ -229,5 +229,6 @@
   }
   .video-embed iframe { display: none !important; }
   .video-embed::after { content: "Video: " attr(data-url); font-size: 9pt; color: #333; }
+  .video-embed.map-embed::after { content: "Map: " attr(data-url); }
   .video-caption { color: #333; }
 }
