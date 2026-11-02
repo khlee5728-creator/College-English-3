@@ -2012,3 +2012,13 @@ h3 { font-weight: var(--fw-semibold); }
 .ending-list li strong { min-width: 0; }
 .match-grid .fill-blank-item .btn-check { padding: 0.15rem 0.6rem; }
 @media (max-width: 640px) { .match-grid { grid-template-rows: none; grid-auto-flow: row; } }
+
+/* -- compact multiple-choice items in two columns (W09 s20) -- */
+.quiz-grid { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: repeat(3, auto); grid-auto-flow: column; gap: var(--space-sm) var(--space-md); }
+.quiz-grid .quiz-item { margin: 0; padding: var(--space-xs) var(--space-sm); }
+.quiz-grid .quiz-item > p { font-size: 1.1rem; margin: 0 0 0.25rem; font-weight: var(--fw-semibold); }
+.quiz-grid .quiz-options { gap: 0.2rem; }
+.quiz-grid .quiz-option { font-size: 1rem; padding: 0.2rem 0.6rem; line-height: 1.35; }
+@media (max-width: 640px) { .quiz-grid { grid-template-columns: 1fr; grid-template-rows: none; grid-auto-flow: row; } }
+.quiz-grid .quiz-item > p { font-size: 1.2rem; }
+.quiz-grid .quiz-option { font-size: 1.1rem; padding: 0.25rem 0.7rem; }
