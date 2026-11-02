@@ -13,6 +13,15 @@ document.addEventListener('DOMContentLoaded', () => {
     .replace(/\s+/g, ' ')
     .trim();
 
+  // ---- Multiple-choice layout: sentence-length options go one per line ----
+  // Short options sit side by side (CSS); long ones would wrap inside narrow columns.
+  document.querySelectorAll('.quiz-options').forEach(opts => {
+    const options = [...opts.querySelectorAll('.quiz-option')];
+    const longest = Math.max(0, ...options.map(o => o.textContent.trim().length));
+    const perColumn = options.length === 4 ? 40 : 22;   // 2 x 2 columns are wider than 3 in a row
+    if (longest > perColumn) opts.classList.add('quiz-options--stack');
+  });
+
   // ---- 활동 기록용 이벤트 (assets/js/tracking.js 가 수신) ----
   // 학생이 문제를 체크할 때마다 발생. tracking.js 가 없으면 아무 효과 없음.
   const emitAnswerChecked = (item, correct, answer) => {

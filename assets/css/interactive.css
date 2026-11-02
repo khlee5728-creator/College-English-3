@@ -2032,7 +2032,10 @@ h3 { font-weight: var(--fw-semibold); }
   .quiz-item > p { margin-bottom: var(--space-xs); }
   .quiz-options { flex-direction: row; flex-wrap: wrap; gap: var(--space-xs) var(--space-sm); }
   .quiz-option { flex: 1 1 0; min-width: 12em; padding: var(--space-xs) var(--space-md); line-height: 1.35; }
-  .quiz-grid .quiz-options { flex-direction: column; flex-wrap: nowrap; }
+  .quiz-options:not(.quiz-options--stack):has(> .quiz-option:nth-child(4):last-child) { display: grid; grid-template-columns: 1fr 1fr; }  /* 4 options: 2 x 2, never 3 + 1 */
+  .quiz-options--stack { flex-direction: column; }   /* sentence-length options (set by interactive.js): one per line */
+  .quiz-options--stack .quiz-option { flex: none; min-width: 0; }
+  .quiz-grid .quiz-options, .quiz-grid .quiz-item .quiz-options:has(> .quiz-option:nth-child(n)) { display: flex; flex-direction: column; flex-wrap: nowrap; }
   .quiz-grid .quiz-option { flex: none; min-width: 0; }
 
   /* fill-in-the-blank: question and answer box share one line when they fit */
