@@ -2022,3 +2022,31 @@ h3 { font-weight: var(--fw-semibold); }
 @media (max-width: 640px) { .quiz-grid { grid-template-columns: 1fr; grid-template-rows: none; grid-auto-flow: row; } }
 .quiz-grid .quiz-item > p { font-size: 1.2rem; }
 .quiz-grid .quiz-option { font-size: 1.1rem; padding: 0.25rem 0.7rem; }
+.note-dialog .data-table { font-size: 0.95rem; margin: 0.3rem 0; }
+.note-dialog .data-table th, .note-dialog .data-table td { font-size: inherit; padding: 0.35rem 0.6rem; line-height: 1.4; }
+
+/* -- readability pass: fit practice slides on one projected screen (wider than phones) -- */
+@media screen and (min-width: 641px) {
+  /* multiple choice: options side by side instead of one full-width row each */
+  .quiz-item { padding: var(--space-sm) var(--space-lg); margin-bottom: var(--space-sm); }
+  .quiz-item > p { margin-bottom: var(--space-xs); }
+  .quiz-options { flex-direction: row; flex-wrap: wrap; gap: var(--space-xs) var(--space-sm); }
+  .quiz-option { flex: 1 1 0; min-width: 12em; padding: var(--space-xs) var(--space-md); line-height: 1.35; }
+  .quiz-grid .quiz-options { flex-direction: column; flex-wrap: nowrap; }
+  .quiz-grid .quiz-option { flex: none; min-width: 0; }
+
+  /* fill-in-the-blank: question and answer box share one line when they fit */
+  .fill-blank-container { margin: var(--space-sm) 0; }
+  .fill-blank-item { padding: var(--space-xs) var(--space-lg); margin-bottom: var(--space-xs); }
+  .fill-blank-item p { flex: 1 1 22em; margin-bottom: 0; }
+
+  /* exercise / explanation boxes: tighter vertical rhythm */
+  .transform-item { padding: var(--space-sm) var(--space-lg); margin-bottom: var(--space-sm); }
+  .grammar-analysis { padding: var(--space-md) var(--space-lg); margin: var(--space-sm) 0; }
+  .error-box { padding: var(--space-sm) var(--space-lg); margin: var(--space-sm) 0; }
+  .grammar-analysis h3, .error-box h3 { margin-bottom: var(--space-xs); }
+  .sentence-analysis { line-height: 1.9; padding: var(--space-xs) var(--space-md); }
+  .error-item { padding: var(--space-xs) 0; }
+  .contrast-table td { padding: var(--space-sm) var(--space-md); }
+  .slide-image--hero { max-height: min(22vh, 260px); }
+}
