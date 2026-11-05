@@ -2053,3 +2053,6 @@ h3 { font-weight: var(--fw-semibold); }
   .contrast-table td { padding: var(--space-sm) var(--space-md); }
   .slide-image--hero { max-height: min(22vh, 260px); }
 }
+
+/* -- underlines stay visible under letters with descenders (g, y, p): W10 s9 -- */
+.data-table u { text-decoration-skip-ink: none; }
